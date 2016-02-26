@@ -1,5 +1,38 @@
 <?php
 
+function retrieveCategories($iStart = null, $iLength = null) {
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'category')
+            ->range(($iStart ?: 0), ($iLength ?: 6));
+
+    $aResult = $oQuery->execute();
+    return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
+}
+
+function displayCategories($iStart = null, $iLength = null) {
+    $aCategories = retrieveCategories($iStart = null, $iLength = null);
+    include 'categories_list.tpl.php';
+}
+
+function retrieveProducts($oTerm = null, $iStart = null, $iLength = null) {
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'product')
+            ->range(($iStart ?: 0), ($iLength ?: 5));
+    if ($oTerm) {
+        $oQuery->fieldCondition('field_category', 'tid', $oTerm->tid);
+    }
+    $aResult = $oQuery->execute();
+
+    return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
+}
+
+function displayProducts($oTerm = null, $iStart = null, $iLength = null) {
+    $aProducts = retrieveProducts($oTerm, $iStart = null, $iLength = null);
+    include 'products_list.tpl.php';
+}
+
 function qcsasia_links__system_main_menu($variables) {
     if ($variables['links']) {
         ?>
@@ -22,9 +55,10 @@ function qcsasia_links__system_main_menu($variables) {
                                 </a><?php if ($link['below']) { ?>
                                     <ul class="dropdown-menu hidden-xs"><?php
                                         foreach ($link['below'] as $below) {
-                                            if (isset($below['link'])) { ?>
+                                            if (isset($below['link'])) {
+                                                ?>
                                                 <li>
-                                                    <a href="<?= url($below['link']['link_path']) .(isset($below['link']['localized_options']['query']) ? "?" . drupal_http_build_query($below['link']['localized_options']['query']) : '') ?>"><?= $below['link']['link_title'] ?></a>
+                                                    <a href="<?= url($below['link']['link_path']) . (isset($below['link']['localized_options']['query']) ? "?" . drupal_http_build_query($below['link']['localized_options']['query']) : '') ?>"><?= $below['link']['link_title'] ?></a>
                                                 </li><?php
                                             }
                                         }
@@ -48,12 +82,12 @@ function qcsasia_breadcrumb($variables) {
             $sTermId = substr($sNormalPath, 14);
             $oTerm = taxonomy_term_load($sTermId);
             switch ($oTerm->vocabulary_machine_name) {
-                case 'product': 
+                case 'product':
                     $oCategory = taxonomy_term_load($oTerm->field_category['und'][0]['tid']);
-                    $breadcrumb[] = '<a href="'.url('taxonomy/term/'.$oCategory->tid).'">'.$oCategory->name.'</a>';
+                    $breadcrumb[] = '<a href="' . url('taxonomy/term/' . $oCategory->tid) . '">' . $oCategory->name . '</a>';
                     break;
                 case 'category':
-                    $breadcrumb[] = '<a href="'.url('products').'">Promotional products</a>';
+                    $breadcrumb[] = '<a href="' . url('products') . '">Promotional products</a>';
                     break;
             }
         }
