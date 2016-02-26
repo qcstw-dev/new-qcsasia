@@ -9,6 +9,6 @@
 
 echo "<ul>";
 foreach ($aProducts as $oProduct) {
-    echo '<li><a href="' . drupal_get_path_alias(entity_uri('taxonomy_term', $oProduct)['path']) . '" >' . $oProduct->name . '</li>';
+    echo '<li><a href="' . url(entity_uri('taxonomy_term', $oProduct)['path']) . '" >' . $oProduct->name . '</li>';
 }
 echo "</ul>";

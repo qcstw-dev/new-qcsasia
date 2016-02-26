@@ -13,7 +13,7 @@
     // Display categories
     print "<ul>";
     foreach ($aCategories as $oCategory) {
-        print '<li><a href="' . drupal_get_path_alias(entity_uri('taxonomy_term', $oCategory)['path']) . '" >' . $oCategory->name . '</a></li>';
+        print '<li><a href="' . url(entity_uri('taxonomy_term', $oCategory)['path']) . '" >' . $oCategory->name . '</a></li>';
     }
     print "</ul>";
     ?>
