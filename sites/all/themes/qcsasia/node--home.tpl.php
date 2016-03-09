@@ -1,5 +1,5 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-    <h2>Our promotional products lines</h2><?php 
+    <h2 class="margin-top-0">Our promotional products lines</h2><?php 
      displayCategories(); ?>
     <h2>News</h2><?php
     // retrieve posts

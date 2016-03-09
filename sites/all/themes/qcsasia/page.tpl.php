@@ -54,22 +54,22 @@
     <?php endif; ?>
     <div class="margin-bottom-20">
         <div class="footer-logo min-width-15-percent" style="margin-left: 80px;">
-            <img src="https://www.qcsasia.com/wp-content/uploads/2014/11/caefi.png">
+            <img src="<?= base_path() . path_to_theme() . "/images/footer/caefi.png" ?>">
         </div>
 
         <div class="footer-logo min-width-15-percent">
-            <img src="https://www.qcsasia.com/wp-content/uploads/2014/11/eppa.png">
+            <img src="<?= base_path() . path_to_theme() . "/images/footer/eppa.png" ?>">
         </div>
 
         <div class="footer-logo min-width-10-percent">
-            <img src="https://www.qcsasia.com/wp-content/uploads/2013/11/promota300.jpg">
+            <img src="<?= base_path() . path_to_theme() . "/images/footer/promota300.jpg" ?>">
         </div>
 
         <div class="footer-logo min-width-15-percent">
-            <img src="https://www.qcsasia.com/wp-content/uploads/2014/05/sedex_trans.jpg">
+            <img src="<?= base_path() . path_to_theme() . "/images/footer/sedex_trans.jpg" ?>">
         </div>
         <div class="footer-logo min-width-20-percent">
-            <img src="https://www.qcsasia.com/wp-content/uploads/2014/05/PPAI-logo-QCS.jpg">
+            <img src="<?= base_path() . path_to_theme() . "/images/footer/PPAI-logo-QCS.jpg" ?>">
         </div>
     </div>
 </div>
