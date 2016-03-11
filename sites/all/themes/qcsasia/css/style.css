@@ -3,6 +3,48 @@
     font-family: DfKaiSB;
     src: url(../fonts/kaiu.ttf);
 }
+@font-face {
+    font-family:'icomoon';
+    src:url(../fonts/icomoon.eot);
+    src:url(../fonts/icomoon.eot?#iefix) format('embedded-opentype'),
+        url(../fonts/icomoon.woff2) format('woff2'),
+        url(../fonts/icomoon.woff) format('woff'),
+        url(../fonts/icomoon.ttf) format('truetype'),
+        url(../fonts/icomoon.svg) format('svg')
+}
+.icomoon {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    font-size: 20px;
+}
+.icomoon-truck:before {
+    content: '\e900';
+}
+.icomoon-box .path1:before {
+    content: "\e90c";
+    color: rgb(255, 255, 255);
+}
+.icomoon-box .path2:before {
+    content: "\e90d";
+    margin-left: -1em;
+    color: rgb(37, 37, 37);
+}
+.icomoon-box .path3:before {
+    content: "\e90e";
+    margin-left: -1em;
+    color: rgb(161, 192, 87);
+}
+.icomoon-box .path4:before {
+    content: "\e90f";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
 .font-dfkai {
     font-family: DfKaiSB;
 }
@@ -33,10 +75,10 @@ h2 {
     font-size: 22px !important;
 }
 .h1, h1 {
-    color: #5CB970;
+    color: #38B15D;
 }
 .h2, h2 {
-    background: #5CB970;
+    background: #38B15D;
     padding: 10px;
     color: #fff;
     text-align: center;
@@ -64,7 +106,7 @@ ol, .breadcrumb {
     background-color: #E8E8E8;
 }
 a {
-    color: #17A745;
+    color: #38B15D;
 }
 .navbar-default {
     border-radius: 0;
@@ -76,7 +118,7 @@ a {
     margin-bottom: 20px;
 }
 .color-green {
-    color: #5CB970;
+    color: #38B15D;
 }
 .color-red {
     color: #d9534f;
@@ -85,7 +127,7 @@ a {
     background: none;
 }
 #menu .navbar {
-    border-bottom: 5px solid #5CB970;
+    border-bottom: 5px solid #38B15D;
     text-transform: uppercase;
     background: #F3F3F3;
 }
@@ -94,7 +136,7 @@ a {
 #menu .navbar-nav>li.focus>a,
 #menu .navbar-default .navbar-nav>.active>a, 
 #menu .navbar-default .navbar-nav>.open>a {
-    background: #5CB970;
+    background: #38B15D;
     color: #fff;
 }
 #menu ul.dropdown-menu {
@@ -126,7 +168,7 @@ a {
 .btn-primary, .btn-primary:hover, .btn-primary:active,
 .btn-primary:focus, .btn-primary:hover, .btn-primary:active:focus {
     background-image: none;
-    background-color: #5CB970;
+    background-color: #38B15D;
     color: #fff;
     border: none;
 }
@@ -167,6 +209,9 @@ a {
 }
 .font-size-20 {
     font-size: 20px;
+}
+.font-size-65 {
+    font-size: 65px;
 }
 .height-150 {
     min-height: 150px !important;
@@ -395,7 +440,7 @@ a {
     margin-top: 15px;
     margin-bottom: 15px;
     padding-top: 15px;
-    background: #5CB970;
+    background: #38B15D;
     color: #fff;
 }
 .footer-logo {
@@ -419,7 +464,7 @@ a {
     background-position: center right .5625rem;
     -webkit-background-size: 1.4625rem 1.4625rem;
     background-size: 2.4625rem 3.4625rem;
-    border: 1px solid #5CB970;
+    border: 1px solid #38B15D;
 }
 .popup {
     position: relative;
@@ -431,11 +476,11 @@ a {
 }
 .error-message,
 .error-message-email {
-    border: 2px solid #5CB970;
+    border: 2px solid #38B15D;
     display: none;
     padding: 5px;
     text-align: center;
-    color: #5CB970;
+    color: #38B15D;
     font-weight: bold;
     margin-bottom: 5px;
     margin-top: 5px;
@@ -458,7 +503,6 @@ a {
     min-height: 284px;
 }
 .cell-key {
-    min-width: 110px;
     font-weight: bold;
     background: #E8E8E8;
 }
@@ -471,10 +515,7 @@ a {
     color: #777;
 }
 .block-tabs .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.open>a {
-    background-image: -webkit-linear-gradient(top,#dbdbdb 0,#e2e2e2 100%);
-    background-image: -o-linear-gradient(top,#dbdbdb 0,#e2e2e2 100%);
-    background-image: -webkit-gradient(linear,left top,left bottom,from(#dbdbdb),to(#e2e2e2));
-    background-image: radial-gradient(#6CBD7A 0, #17A745 100%);
+    background: #38B15D;
     color: #fff;
 }
 @media (min-width: 768px) {
@@ -494,18 +535,17 @@ a {
 .tab-block {
     display: none;
 }
-.overflow-scroll {
-    overflow: scroll;
-}
-.overflow-hidden {
-    overflow: hidden;
-}
 .block-active {
     display: block;
 }
+
 .tab-block .glyphicon{
-    font-size: 20px;
+    font-size: 22px;
     top: 4px;
+    margin-right: 8px;
+}
+.tab-block .icomoon {
+    font-size: 30px;
 }
 .document-center .list-title {
     font-weight: bold;
@@ -520,12 +560,12 @@ a {
     width: 100%;
 }
 .ymal h3 {
-    background: #5CB970;
+    background: #38B15D;
     color: #fff;
 }
 .ymal-pics .slick-next,
 .ymal-pics .slick-prev {
-    width: 95px;
+    width: 40px;
 }
 .ymal-pics .slick-next {
     right:-50px;

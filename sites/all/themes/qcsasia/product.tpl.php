@@ -1,22 +1,18 @@
-<?php //var_dump($term);    ?>
+<?php //var_dump($term);      ?>
 <div class="product-page">
     <div class="col-md-3 main-picture-block margin-top-20">
         <div class="thumbnail thumb margin-bottom-10">
-            <div><img src="<?= path_to_theme() . "/images/products/pkm/main/pkm.jpg" ?>" title="" alt="" /></div>
-            <div><img src="<?= path_to_theme() . "/images/products/pkm/options/magnet.jpg" ?>" title="" alt="" /></div>
-            <div><img src="<?= path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg" ?>" title="" alt="" /></div>
-            <div><img src="<?= path_to_theme() . "/images/products/pkm/main/pkm.jpg" ?>" title="" alt="" /></div>
-            <div><img src="<?= path_to_theme() . "/images/products/pkm/options/magnet.jpg" ?>" title="" alt="" /></div>
-            <div><img src="<?= path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg" ?>" title="" alt="" /></div>
+            <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-main.jpg") ?>" title="" alt="" /></div>
+            <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-rc.jpg") ?>" title="" alt="" /></div>
+            <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-fc.jpg") ?>" title="" alt="" /></div>
+            <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-main.jpg") ?>" title="" alt="" /></div>
         </div>
         <div class="padding-left-30 padding-right-30">
             <div class="thumbnails">
-                <div><img src="<?= path_to_theme() . "/images/products/pkm/main/pkm.jpg" ?>" title="" alt="" /></div>
-                <div><img src="<?= path_to_theme() . "/images/products/pkm/options/magnet.jpg" ?>" title="" alt="" /></div>
-                <div><img src="<?= path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg" ?>" title="" alt="" /></div>
-                <div><img src="<?= path_to_theme() . "/images/products/pkm/main/pkm.jpg" ?>" title="" alt="" /></div>
-                <div><img src="<?= path_to_theme() . "/images/products/pkm/options/magnet.jpg" ?>" title="" alt="" /></div>
-                <div><img src="<?= path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg" ?>" title="" alt="" /></div>
+                <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-main.jpg") ?>" title="" alt="" /></div>
+                <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-rc.jpg") ?>" title="" alt="" /></div>
+                <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-fc.jpg") ?>" title="" alt="" /></div>
+                <div><span class="glyphicon glyphicon-play-circle font-size-65 play-video" ></span></div>
             </div>
         </div>
         <div class="enlarge"><span class="glyphicon glyphicon-zoom-in"></span></div>
@@ -48,20 +44,20 @@
                     <tr>
                         <td class="border-right cell-key">Logo size</td>
                         <td>Ø 20 mm</td>
-                        <td class="border-left border-right bold">Item size</td>
+                        <td class="border-left border-right cell-key">Item size</td>
                         <td>Ø 22*6 mm</td>
-                        <td class="border-left border-right bold">Patent</td>
+                        <td class="border-left border-right cell-key">Patent</td>
                         <td colspan="5">CN652880</td>
                     </tr>
                     <tr>
                         <td class="border-right cell-key">Colors available</td>
                         <td colspan="5">
-                            <img class="pull-left margin-right-md-10" src="<?= path_to_theme() . "/images/colors/03-pms287c.png" ?>" alt="" title="" />
-                            <img class="pull-left margin-right-md-10" src="<?= path_to_theme() . "/images/colors/05-pmsblack.png" ?>" alt="" title="" />
-                            <img class="pull-left margin-right-md-10" src="<?= path_to_theme() . "/images/colors/06-pmsgreenc.png" ?>" alt="" title="" />
-                            <img class="pull-left margin-right-md-10" src="<?= path_to_theme() . "/images/colors/07-pms1.png" ?>" alt="" title="" />
-                            <img class="pull-left margin-right-md-10" src="<?= path_to_theme() . "/images/colors/10-pms116c.png" ?>" alt="" title="" />
-                            <img class="pull-left margin-right-md-10" src="<?= path_to_theme() . "/images/colors/11-pms032c.png" ?>" alt="" title="" />
+                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/03-pms287c.png") ?>" alt="" title="" />
+                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/05-pmsblack.png") ?>" alt="" title="" />
+                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/06-pmsgreenc.png") ?>" alt="" title="" />
+                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/07-pms1.png") ?>" alt="" title="" />
+                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/10-pms116c.png") ?>" alt="" title="" />
+                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/11-pms032c.png") ?>" alt="" title="" />
                         </td>
                     </tr>
                 </tbody>
@@ -82,15 +78,11 @@
         <div class="tab-block tab-block-1 block-logo border border-top-0  block-active">
             <div class="col-md-12">
                 <div class="col-md-3 thumbnail margin-top-20">
-                    <img src="<?= path_to_theme() . "/images/products/pkm/options/double-side-doming.jpg" ?>" alt="" title="" />
+                    <img src="<?= url(path_to_theme() . "/images/products/pkm/options/double-side-doming.jpg") ?>" alt="" title="" />
                 </div>
                 <div class="col-md-9">
                     <h3 class="">Doming</h3>
                     <div class="col-md-7">
-                        <div>
-                            <span class="glyphicon glyphicon-plus-sign color-green"></span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
                         <div>
                             <span class="glyphicon glyphicon-plus-sign color-green"></span>
                             Curabitur volutpat ligula vestibulum scelerisque pharetra. 
@@ -107,6 +99,16 @@
                             <span class="glyphicon glyphicon-picture"></span>
                             Curabitur volutpat ligula vestibulum scelerisque pharetra. 
                         </div>
+                        <div>
+                            <span class="icomoon icomoon-truck"></span>
+                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
+                        </div>
+                        <div>
+                            <span class="icomoon icomoon-box">
+                                <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                            </span>
+                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
+                        </div>
                     </div>
                     <div class="col-md-5">
                         <iframe width="100%" src="https://www.youtube.com/embed/30wgizEF4sQ?list=UUXc7QDb4CJhheXh_D-ywIqg&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
@@ -115,7 +117,7 @@
             </div>
             <div class="col-md-12 hidden-text-area">
                 <div class="col-md-3 thumbnail margin-top-20">
-                    <img src="<?= path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg" ?>" alt="" title="" />
+                    <img src="<?= url(path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg") ?>" alt="" title="" />
                 </div>
                 <div class="col-md-9">
                     <h3 class="">LR: Laser engraving</h3>
@@ -156,49 +158,49 @@
             <div class="col-md-3">
                 <a href="#">
                     <div class="thumbnail margin-bottom-0">
-                        <img src="<?= path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg" ?>" alt="" title="" />
+                        <img src="<?= url(path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg") ?>" alt="" title="" />
                     </div>
-                    <div class="subtitle-pic">Double side doming</div>
+                    <div class="subtitle-pic">2ODD#-Double side doming</div>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="#">
                     <div class="thumbnail margin-bottom-0">
-                        <img src="<?= path_to_theme() . "/images/products/pkm/options/magnet.jpg" ?>" alt="" title="" />
+                        <img src="<?= url(path_to_theme() . "/images/products/pkm/options/magnet.jpg") ?>" alt="" title="" />
                     </div>
-                    <div class="subtitle-pic">Double side doming</div>
+                    <div class="subtitle-pic">MG12# Ø12mm Magnet</div>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="#">
                     <div class="thumbnail margin-bottom-0">
-                        <img src="<?= path_to_theme() . "/images/products/pkm/options/double-side-doming.jpg" ?>" alt="" title="" />
+                        <img src="<?= url(path_to_theme() . "/images/products/pkm/options/double-side-doming.jpg") ?>" alt="" title="" />
                     </div>
-                    <div class="subtitle-pic">Double side doming</div>
+                    <div class="subtitle-pic">SC205# Screen cleaner</div>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="#">
                     <div class="thumbnail margin-bottom-0">
-                        <img src="<?= path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg" ?>" alt="" title="" />
+                        <img src="<?= url(path_to_theme() . "/images/products/pkm/options/double-side-recess.jpg") ?>" alt="" title="" />
                     </div>
-                    <div class="subtitle-pic">Double side doming</div>
+                    <div class="subtitle-pic">2RC# Double side recess</div>
                 </a>
             </div>
 
             <div class="clearfix"></div>
         </div>
         <div class="tab-block tab-block-3 border border-top-0 padding-20">
-            <div class="col-md-4 thumbnail margin-bottom-0">
-                <a href="#"><img src="<?= path_to_theme() . "/images/template/layout-maker.jpg" ?>" alt="" title="" /></a>
+            <div class="col-md-6 thumbnail margin-bottom-0">
+                <a href="#"><img src="<?= url(path_to_theme() . "/images/template/layout-maker.jpg") ?>" alt="" title="" /></a>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <p class="text-justify margin-bottom-0">
                     Aenean ultricies scelerisque ipsum, eget aliquam lorem pharetra 
                     ac. Proin porttitor metus non diam euismod, nec dapibus nisi 
                     elementum. Integer congue augue augue, eu rutrum est gravida ut.
                     Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                    posuere cubilia.
+                    posuere cubilia.<br /><br />
                     Aenean ultricies scelerisque ipsum, eget aliquam lorem pharetra 
                     ac. Proin porttitor metus non diam euismod, nec dapibus nisi 
                     elementum. Integer congue augue augue, eu rutrum est gravida ut.
@@ -250,38 +252,38 @@
                 <div class="ymal-pics ">
                     <div>
                         <a href="#">
-                            <img src="<?= path_to_theme() . "/images/products/pkm/options/double-side-doming.jpg" ?>" title="" alt="" />
-                            <div class="subtitle-pic">Blablabla</div>
+                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/phm.jpg") ?>" title="" alt="" />
+                            <div class="subtitle-pic">Plastic key hanger #PHM203</div>
                         </a>
                     </div>
                     <div>
                         <a href="#">
-                            <img src="<?= path_to_theme() . "/images/products/pkm/options/magnet.jpg" ?>" title="" alt="" />
-                            <div class="subtitle-pic">Blablabla</div>
+                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/qat.jpg") ?>" title="" alt="" />
+                            <div class="subtitle-pic">Pocket plastic ashtray/pillbox keychain #QAT3</div>
                         </a>
                     </div>
                     <div>
                         <a href="#">
-                            <img src="<?= path_to_theme() . "/images/products/pkm/options/double-side-doming.jpg" ?>" title="" alt="" />
-                            <div class="subtitle-pic">Blablabla</div>
+                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/psr.jpg") ?>" title="" alt="" />
+                            <div class="subtitle-pic">Plastic loop keychain #PSR205</div>
                         </a>
                     </div>
                     <div>
                         <a href="#">
-                            <img src="<?= path_to_theme() . "/images/products/pkm/options/double-side-doming.jpg" ?>" title="" alt="" />
-                            <div class="subtitle-pic">Blablabla</div>
+                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/pabh.jpg") ?>" title="" alt="" />
+                            <div class="subtitle-pic">Bag hanger plastic keychain #PABH2</div>
                         </a>
                     </div>
                     <div>
                         <a href="#">
-                            <img src="<?= path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg" ?>" title="" alt="" />
-                            <div class="subtitle-pic">Blablabla</div>
+                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/pkp.jpg") ?>" title="" alt="" />
+                            <div class="subtitle-pic">Square plastic keychain with doming #PKP102</div>
                         </a>
                     </div>
                     <div>
                         <a href="#">
-                            <img src="<?= path_to_theme() . "/images/products/pkm/options/magnet.jpg" ?>" title="" alt="" />
-                            <div class="subtitle-pic">Blablabla</div>
+                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/pss.jpg") ?>" title="" alt="" />
+                            <div class="subtitle-pic">Plastic loop keychain #PSS205</div>
                         </a>
                     </div>
                 </div>
@@ -297,12 +299,21 @@
         $('.tab-block-' + $(this).data('id-tab')).addClass('block-active');
     });
     $('.enlarge').on('click', function () {
-        console.log($('.thumb .slick-current img').attr('src'));
-
         $.magnificPopup.open({
             items: [{
                     src: $('<div class="white-popup">' +
                             '<div><img src="' + $('.thumb .slick-current img').attr('src') + '" /></div>' +
+                            '</div>'),
+                    type: 'inline'
+
+                }]
+        });
+    });
+    $('.play-video').on('click', function () {
+        $.magnificPopup.open({
+            items: [{
+                    src: $('<div class="white-popup">' +
+                            '<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ikoAIe9DGas" frameborder="0" allowfullscreen></iframe></div>' +
                             '</div>'),
                     type: 'inline'
 
@@ -319,18 +330,19 @@
     });
     $('.thumbnails').slick({
         slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
         asNavFor: '.thumb',
         variableWidth: true,
+        infinite: true,
+//        centerMode: true,
         arrows: true,
-        centerMode: true,
         focusOnSelect: true
     });
     $('.ymal-pics').slick({
         infinite: true,
         slidesToShow: 4,
         slidesToScroll: 1,
-        centerMode: true,
+//        centerMode: true,
         responsive: [
             {
                 breakpoint: 1024,
