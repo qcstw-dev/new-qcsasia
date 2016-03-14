@@ -192,6 +192,9 @@ a {
     border: none;
     box-shadow: none;
 }
+.border-bottom {
+    border-bottom: 1px solid #ddd;
+}
 .border-top {
     border-top: 1px solid #ddd;
 }
@@ -424,8 +427,11 @@ a {
     text-align: center;
 }
 /****************** SLIDER ********************************/
-.carousel-control.right, .carousel-control.left {
+.carousel-control.left, .carousel-control.right {
     background-image: none;
+    opacity: 1;
+    text-shadow: 0;
+    width: 7%;
 }
 .carousel-inner > .item > img {
     margin: 0 auto;
@@ -484,6 +490,34 @@ a {
     font-weight: bold;
     margin-bottom: 5px;
     margin-top: 5px;
+}
+/****************** HOMEPAGE ***********************/
+#carousel-home-2 {
+    min-height: 601px;
+}
+.block.function img,
+.block.logo-process img {
+    max-width: 200px;
+}
+.category.block-line {
+    text-align: center;
+}
+.node-home #carousel-home-2 .carousel-control.left, 
+.node-home #carousel-home-2 .carousel-control.right {
+    color: #777;
+}
+.node-home #carousel-home-2 .carousel-control span {
+    font-size: 50px;
+}
+.node-home #carousel-home-2 .block-line-content {
+    padding-right: 65px;
+    padding-left: 65px;
+}
+.block-line img{
+    width: 100%;
+}
+.node-home .qcs-news-block img {
+    max-height: 140px;
 }
 /****************** PRODUCT PAGE *******************/
 .main-picture-block .thumbnail {

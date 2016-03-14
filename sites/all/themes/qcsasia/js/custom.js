@@ -15,4 +15,6 @@ $(function() {
         $(this).find('.dropdown-menu').stop(true, true).hide();
         $(this).removeClass('focus');
     });
+    $('.carousel-home').carousel();
+    $('.carousel-home-2').carousel();
 });
