@@ -1,5 +1,5 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-    <!--    <h2 class="margin-top-0">Our promotional products lines</h2><?php displayCategories(); ?>
+    <!--    <h2>Our promotional products lines</h2><?php displayCategories(); ?>
         <h2>News</h2><?php
 // retrieve posts
     $oQuery = new EntityFieldQuery();
@@ -21,7 +21,7 @@
     ?>    -->
 
     <div class="col-md-12 padding-0">
-        <div id="carousel-home" class="carousel slide" data-ride="carousel-home">
+        <div id="carousel-home" class="carousel carousel-home slide" data-ride="carousel-home">
             <!-- Indicators -->
             <ol class="carousel-indicators">
                 <li data-target="#carousel-home" data-slide-to="0" class="active"></li>
@@ -33,12 +33,15 @@
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <img src="<?= url(path_to_theme() . "/images/home/slider/pkm.jpg") ?>" alt="" title="" />
+                    <div class="slide-text">Plastic keychain tag with magnet #PKM205</div>
                 </div>
                 <div class="item">
                     <img src="<?= url(path_to_theme() . "/images/home/slider/zmr.jpg") ?>" alt="" title="" />
+                    <div class="slide-text">Zamac multi-ring keychain #ZMR205</div>
                 </div>
                 <div class="item">
                     <img src="<?= url(path_to_theme() . "/images/home/slider/zum.jpg") ?>" alt="" title="" />
+                    <div class="slide-text">Zamac coin holder keychain #ZUM01302</div>
                 </div>
             </div>
             <!-- Controls -->
@@ -52,12 +55,11 @@
             </a>
         </div>
     </div>
-
     <div class="col-md-12 padding-0">
-        <div id="carousel-home-2" class="carousel slide" data-ride="carousel-home-2">
+        <div id="carousel-home-2" class="carousel carousel-home-2 slide" data-ride="carousel-home-2">
             <div class="carousel-inner" role="listbox">
-                <div class="block-line category item active">
-                    <h2 class="margin-top-0">Our product lines</h2>
+<!--                <div class="block-line category item active">
+                    <h2>Our product lines</h2>
                     <div class="col-md-12 block-line-content">
                         <div class="col-md-3">
                             <a href="#" title="">
@@ -182,9 +184,82 @@
                             </a>
                         </div>
                     </div>
+                </div>-->
+                <div class="block-line category item active">
+                    <h2>Our product lines</h2>
+                    <div class="col-md-12 block-line-content">
+                        <div class="col-md-3">
+                            <a href="#" title="">
+                                <div class="thumbnail">
+                                    <div class="padding-0">
+                                        <img src="<?= url(path_to_theme() . "/images/home/category/metal-enamel/2.jpg") ?>" alt="" title="" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="subtitle-pic">Metal enamel</div>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" title="">
+                                <div class="thumbnail">
+                                    <div class="padding-0">
+                                        <img src="<?= url(path_to_theme() . "/images/home/category/pvc/2.jpg") ?>" alt="" title="" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="subtitle-pic">Metal enamel</div>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" title="">
+                                <div class="thumbnail">
+                                    <div class="padding-0">
+                                        <img src="<?= url(path_to_theme() . "/images/home/category/aluminium/2.jpg") ?>" alt="" title="" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="subtitle-pic">Metal enamel</div>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" title="">
+                                <div class="thumbnail">
+                                    <div class="padding-0">
+                                        <img src="<?= url(path_to_theme() . "/images/home/category/plastic-injection/2.jpg") ?>" alt="" title="" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="subtitle-pic">Metal enamel</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-12 block-line-content margin-top-20">
+                        <div class="col-md-3 col-md-offset-3">
+                            <a href="#" title="">
+                                <div class="thumbnail">
+                                    <div class="padding-0">
+                                        <img src="<?= url(path_to_theme() . "/images/home/category/gift/2.jpg") ?>" alt="" title="" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="subtitle-pic">Metal enamel</div>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" title="">
+                                <div class="thumbnail">
+                                    <div class="padding-0">
+                                        <img src="<?= url(path_to_theme() . "/images/home/category/licence/2.jpg") ?>" alt="" title="" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="subtitle-pic">Metal enamel</div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="block-line function item">
-                    <h2 class="margin-top-0">Our product functions</h2>
+                    <h2>Our product functions</h2>
                     <div class="col-md-12 block-line-content margin-bottom-20">
                         <div class="col-md-3">
                             <div class="thumbnail">
@@ -239,7 +314,7 @@
                     </div>
                 </div>
                 <div class="block-line logo-process item">
-                    <h2 class="margin-top-0">Our logo processes</h2>
+                    <h2>Our logo processes</h2>
                     <div class="col-md-12 block-line-content margin-bottom-20">
                         <div class="col-md-3">
                             <div class="thumbnail">

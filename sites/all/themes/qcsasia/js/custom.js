@@ -16,5 +16,5 @@ $(function() {
         $(this).removeClass('focus');
     });
     $('.carousel-home').carousel();
-    $('.carousel-home-2').carousel();
+    $('.carousel-home-2').carousel({'interval' : false});
 });
