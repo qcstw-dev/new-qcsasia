@@ -154,6 +154,10 @@ a {
 .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
     background: #E8E8E8;
 }
+#menu .search-form-content {
+    padding: 9px;
+    margin: 0;
+}
 /***************** MENU TOP *************/
 #menu-top {
     background: #38B15D;
@@ -519,15 +523,13 @@ a {
 }
 .node-home .slide .slide-text {
     position: absolute;
-    bottom: 12px;
-    font-size: 22px;
-    background: #fff;
-    padding: 5px;
-    right: 0;
-    border-top: 1px solid;
-    border-bottom: 1px solid;
-    border-left: 1px solid;
-    border-color: #38B15D;
+    bottom: 9%;
+    width: 100%;
+    font-size: 23px;
+    background-color: rgba(204, 204, 204, 0.70);
+    padding: 4px;
+    color: #fff;
+    text-align: center;
 }
 .block.function img,
 .block.logo-process img {

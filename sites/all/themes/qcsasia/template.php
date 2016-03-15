@@ -80,7 +80,7 @@ function qcsasia_links__system_menu_top($variables) {
                             </li><?php 
                                 } ?>
                         </ul>
-                        <ul class="nav navbar-nav navbar-right padding-10 margin-0">
+                        <ul class="nav navbar-nav navbar-right search-form-content">
                             <li><form><input class="margin-right-md-10" type="text" /><button class="btn btn-primary" type="submit">Search</button></form></li>
                         </ul>
                     </div>
