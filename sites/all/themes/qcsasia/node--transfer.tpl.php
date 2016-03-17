@@ -7,17 +7,29 @@ $stermId = '';
 // for each product in the xml file
 foreach ($XMLposts as $XMLpost) {
     $stermId = (string) $XMLpost->id;
+
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'product')
+            ->fieldCondition('field_old_id', 'value', $stermId)
+            ->range(0, 5);
+
+    $aResult = $oQuery->execute();
+
     // if the produc already exist, we modify it
-    if (taxonomy_term_load($stermId)->field_old_id['und'][0]['value'] == $stermId) {
-        $oTerm = taxonomy_term_load($stermId);
-    } 
+    if ($aResult) {
+        $oTerm = taxonomy_term_load(key(array_shift($aResult)));
+    }
     // else we create it
     else {
-        $oTerm = custom_create_taxonomy_term((string) $XMLpost->title, $stermId, '2');
+        $oTerm = custom_create_taxonomy_term((string) $XMLpost->name, $stermId);
     }
 }
 
-function custom_create_taxonomy_term($sName, $sId, $sVid) {
+var_dump($oTerm);
+
+function custom_create_taxonomy_term($sName, $sId, $sVid = 2) {
+
     $term = new stdClass();
     $term->name = $sName;
     $term->vid = $sVid;
@@ -26,8 +38,6 @@ function custom_create_taxonomy_term($sName, $sId, $sVid) {
     taxonomy_term_save($term);
     return $term;
 }
-
-
 
 /**** RETRIEVE PICTURE ****/
 //$url = "http://qcsasia.com/.........";
