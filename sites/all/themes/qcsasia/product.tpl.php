@@ -247,9 +247,9 @@
         <h3 class="margin-0">You might also like</h3>
     </div>
     <div class="col-md-12">
-        <div class="col-md-12 border padding-top-20 padding-bottom-20 padding-0">
+        <div class="col-md-12 border padding-top-20 padding-0">
             <div class="padding-left-50 padding-right-50">
-                <div class="ymal-pics ">
+                <div class="big-slick ymal-pics">
                     <div>
                         <a href="#">
                             <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/phm.jpg") ?>" title="" alt="" />
@@ -334,15 +334,13 @@
         asNavFor: '.thumb',
         variableWidth: true,
         infinite: true,
-//        centerMode: true,
         arrows: true,
         focusOnSelect: true
     });
     $('.ymal-pics').slick({
         infinite: true,
-        slidesToShow: 4,
+        slidesToShow: 5,
         slidesToScroll: 1,
-//        centerMode: true,
         responsive: [
             {
                 breakpoint: 1024,

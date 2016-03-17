@@ -6,10 +6,10 @@ version = VERSION
 core = 7.x
 
 stylesheets[all][] = css/bootstrap.min.css
-stylesheets[all][] = css/bootstrap-theme.min.css
 stylesheets[all][] = css/magnific-popup.css
 stylesheets[all][] = js/slick/slick.css
 stylesheets[all][] = js/slick/slick-theme.css
+stylesheets[all][] = css/flags/css/flag-icon.min.css
 stylesheets[all][] = css/style.css
 
 scripts[] = js/jquery-1.11.3.min.js

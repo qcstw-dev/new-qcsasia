@@ -19,7 +19,6 @@
     }
     echo '</ul>';
     ?>    -->
-
     <div class="col-md-12 padding-0">
         <div id="carousel-home" class="carousel carousel-home slide" data-ride="carousel-home">
             <!-- Indicators -->
@@ -55,26 +54,165 @@
             </a>
         </div>
     </div>
-    <div class="col-md-12 padding-0">
+
+    <div class="col-md-12 margin-top-10 padding-0">
+        <h2 class="margin-0">Our product lines</h2>
+    </div>
+    <div class="col-md-12 border padding-0">
+        <div class="col-md-12 padding-top-10 padding-right-50 padding-left-50">
+            <div class="big-slick carousel-category">
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/metal-enamel.jpg") ?>" alt="" title="" />
+                        <div class="subtitle-pic">Metal enamel</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/pvc-cloisonne.jpg") ?>" alt="" title="" />
+                        <div class="subtitle-pic">Soft PVC cloisonne</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/aluminium.jpg") ?>" alt="" title="" />
+                        <div class="subtitle-pic">Aluminium</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/plastic-injection.jpg") ?>" alt="" title="" />
+                        <div class="subtitle-pic">Plastic injection</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/gift.jpg") ?>" alt="" title="" />
+                        <div class="subtitle-pic">Gift</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 margin-top-10 padding-0">
+        <h2 class="margin-0">Our product functions</h2>
+    </div>
+    <div class="col-md-12 border padding-0">
+        <div class="col-md-12 padding-top-10 padding-right-50 padding-left-50">
+            <div class="big-slick carousel-function">
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/keychain.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Keychain</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/bar.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Bar - accessory</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/trolley-token.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Trolley token</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/wearable.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Wearable</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/canister.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Canister and container</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/3c.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">3C accessory</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/tools.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Tools</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/stickers.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Stickers / Doming</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 margin-top-10 padding-0">
+        <h2 class="margin-0">Our logo processes</h2>
+    </div>
+    <div class="col-md-12 border padding-0">
+        <div class="col-md-12 padding-top-10 padding-right-50 padding-left-50">
+            <div class="big-slick carousel-function">
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/doming.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Doming</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/digital-printing.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Digital printing</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/silk-screen-print.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">silk screen print</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/laser.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Laser</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/offset-printing.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Offset printing</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/enamel.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">Enamel</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/pvc-cloisonne.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">PVC cloisonne</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    <div class="col-md-12 padding-0">
         <div id="carousel-home-2" class="carousel carousel-home-2 slide" data-ride="carousel-home-2">
             <div class="carousel-inner" role="listbox">
-<!--                <div class="block-line category item active">
+                <div class="block-line category item active">
                     <h2>Our product lines</h2>
                     <div class="col-md-12 block-line-content">
                         <div class="col-md-3">
                             <a href="#" title="">
-                                <div class="border">
-                                    <div class="col-md-6 padding-0 border-bottom border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/metal-enamel/1.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-bottom">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/metal-enamel/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/metal-enamel/3.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/metal-enamel/4.jpg") ?>" alt="" title="" />
+                                <div class="thumbnail">
+                                    <div class="padding-0">
+                                        <img src="<?= url(path_to_theme() . "/images/home/category/metal-enamel.jpg") ?>" alt="" title="" />
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -83,18 +221,9 @@
                         </div>
                         <div class="col-md-3">
                             <a href="#" title="">
-                                <div class="border">
-                                    <div class="col-md-6 padding-0 border-bottom border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/pvc/1.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-bottom">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/pvc/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/pvc/3.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/pvc/4.jpg") ?>" alt="" title="" />
+                                <div class="thumbnail">
+                                    <div class="padding-0">
+                                        <img src="<?= url(path_to_theme() . "/images/home/category/pvc-cloisonne.jpg") ?>" alt="" title="" />
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -103,18 +232,9 @@
                         </div>
                         <div class="col-md-3">
                             <a href="#" title="">
-                                <div class="border">
-                                    <div class="col-md-6 padding-0 border-bottom border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/aluminium/1.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-bottom">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/aluminium/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/aluminium/3.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/aluminium/4.jpg") ?>" alt="" title="" />
+                                <div class="thumbnail">
+                                    <div class="padding-0">
+                                        <img src="<?= url(path_to_theme() . "/images/home/category/aluminium.jpg") ?>" alt="" title="" />
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -123,18 +243,9 @@
                         </div>
                         <div class="col-md-3">
                             <a href="#" title="">
-                                <div class="border">
-                                    <div class="col-md-6 padding-0 border-bottom border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/plastic-injection/1.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-bottom">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/plastic-injection/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/plastic-injection/3.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/plastic-injection/4.jpg") ?>" alt="" title="" />
+                                <div class="thumbnail">
+                                    <div class="padding-0">
+                                        <img src="<?= url(path_to_theme() . "/images/home/category/plastic-injection.jpg") ?>" alt="" title="" />
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -145,104 +256,13 @@
                     <div class="col-md-12 block-line-content margin-top-20">
                         <div class="col-md-3 col-md-offset-3">
                             <a href="#" title="">
-                                <div class="border">
-                                    <div class="col-md-6 padding-0 border-bottom border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/gift/1.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-bottom">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/gift/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/gift/3.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/gift/4.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="subtitle-pic">Gift line</div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" title="">
-                                <div class="border">
-                                    <div class="col-md-6 padding-0 border-bottom border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/licence/1.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-bottom">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/licence/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0 border-right">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/licence/3.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="col-md-6 padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/licence/4.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="subtitle-pic">Licence and patent exploitation</div>
-                            </a>
-                        </div>
-                    </div>
-                </div>-->
-                <div class="block-line category item active">
-                    <h2>Our product lines</h2>
-                    <div class="col-md-12 block-line-content">
-                        <div class="col-md-3">
-                            <a href="#" title="">
-                                <div class="thumbnail">
-                                    <div class="padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/metal-enamel/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="subtitle-pic">Metal enamel</div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" title="">
-                                <div class="thumbnail">
-                                    <div class="padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/pvc/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="subtitle-pic">Metal enamel</div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" title="">
-                                <div class="thumbnail">
-                                    <div class="padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/aluminium/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="subtitle-pic">Metal enamel</div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" title="">
-                                <div class="thumbnail">
-                                    <div class="padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/plastic-injection/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="subtitle-pic">Metal enamel</div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-12 block-line-content margin-top-20">
-                        <div class="col-md-3 col-md-offset-3">
-                            <a href="#" title="">
                                 <div class="thumbnail">
                                     <div class="padding-0">
                                         <img src="<?= url(path_to_theme() . "/images/home/category/gift/2.jpg") ?>" alt="" title="" />
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <div class="subtitle-pic">Metal enamel</div>
+                                <div class="subtitle-pic">Gift</div>
                             </a>
                         </div>
                         <div class="col-md-3">
@@ -253,7 +273,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                                <div class="subtitle-pic">Metal enamel</div>
+                                <div class="subtitle-pic">Licence</div>
                             </a>
                         </div>
                     </div>
@@ -364,7 +384,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Controls -->
+             Controls 
             <a class="left carousel-control" href="#carousel-home-2" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -374,30 +394,33 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-    </div>
+    </div>-->
     <div class="col-md-12"><?php
         $response_xml_data = file_get_contents("https://www.qcsasia.com/rss-posts/");
         $posts = simplexml_load_string($response_xml_data) or die("Error: Cannot create object");
-        if ($posts) { ?>
+        if ($posts) {
+            ?>
             <div class="col-xs-12 padding-0">
-                <h2>News</h2>
+                <h3>News</h3>
             </div>
             <div class="col-xs-12 padding-0 blocks qcs-news-block"><?php
                 $i = 0;
-                foreach ($posts as $post) { ?>
+                foreach ($posts as $post) {
+                    ?>
                     <a href="<?= $post->url ?>" title="<?= $post->title ?>" >
                         <div class="col-sm-3">
-                            <div class="col-xs-12 thumbnail">
+                            <div class="col-xs-12 thumbnail margin-bottom-10">
                                 <img src="<?= $post->thumbnail_url ?>" alt="<?= $post->title ?>" title="<?= $post->title ?>" />
+                                <div class="subtitle-pic"><?= $post->title ?></div>
                             </div>
-                            <div class="subtitle-pic"><?= $post->title ?></div>
                         </div>
                     </a><?php
                     $i++;
                     if ($i == 4) {
                         break;
                     }
-                } ?>
+                }
+                ?>
             </div><?php }
             ?>
     </div>

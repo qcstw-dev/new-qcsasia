@@ -1,6 +1,16 @@
-<div id="main-content" class="container"><?php 
-    if (isset($menu_top) && $menu_top): ?>
-        <div id="menu-top" class="col-xs-12"><?php
+<div id="main-content" class="container"><?php if (isset($menu_top) && $menu_top): ?>
+    <div id="menu-top" class="col-xs-12">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="flag-icon flag-icon-gb"></span> English <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#"><span class="flag-icon flag-icon-cn"></span> Chinese</a></li>
+                <li><a href="#"><span class="flag-icon flag-icon-fr"></span> French</a></li>
+                <li><a href="#"><span class="flag-icon flag-icon-de"></span> German</a></li>
+                <li><a href="#"><span class="flag-icon flag-icon-es"></span> Spanish</a></li>
+            </ul>
+        </div><?php
             print theme('links__system_menu_top', array(
                 'links' => menu_tree_all_data('menu-menu-top'),
                 'attributes' => array(
@@ -12,9 +22,10 @@
                     'level' => 'h2',
                     'class' => array('element-invisible'),
                 ),
-            )); ?>
-        </div><?php
-    endif; ?>
+            ));
+            ?>
+        </div><?php endif;
+        ?>
     <div id="header" class="row hidden-print">
         <div id="banner" class="col-xs-12">
             <?php if ($logo): ?>
@@ -33,8 +44,7 @@
                         <i><?php print $site_slogan ?><br /><span class="font-dfkai font-size-24">人生苦短，寧缺勿濫</span></i>
                     </div><?php } ?>
             </div>
-        </div><?php
-        if (isset($main_menu) && $main_menu): ?>
+        </div><?php if (isset($main_menu) && $main_menu): ?>
             <div id="menu" class="col-xs-12 padding-xs-0"><?php
                 print theme('links__system_main_menu', array(
                     'links' => menu_tree_all_data('main-menu'),
@@ -47,25 +57,26 @@
                         'level' => 'h2',
                         'class' => array('element-invisible'),
                     ),
-                )); ?>
-            </div><?php 
-        endif; ?>
+                ));
+                ?>
+            </div><?php endif;
+            ?>
     </div>
     <div id="content" class="col-xs-12 padding-0">
         <?php if ($breadcrumb): ?>
-            <ol class="breadcrumb hidden-print"><?php print $breadcrumb; ?></ol>
-            <?php endif; ?>
+            <ol class="breadcrumb hidden-print margin-top-10 margin-bottom-10"><?php print $breadcrumb; ?></ol>
+        <?php endif; ?>
         <div class="col-xs-12 padding-0"><?php
 //                  var_dump($page['content']['system_main']['nodes'][2]['#node']->metatags);
             print render($page['content']);
             ?>
         </div>
     </div>
-        <?php if ($page['footer']): ?>
+    <?php if ($page['footer']): ?>
         <div id="footer" class="col-xs-12">
-        <?php print render($page['footer']); ?>
+            <?php print render($page['footer']); ?>
         </div>
-<?php endif; ?>
+    <?php endif; ?>
     <div class="margin-bottom-20">
         <div class="footer-logo min-width-15-percent" style="margin-left: 80px;">
             <img src="<?= base_path() . path_to_theme() . "/images/footer/caefi.png" ?>">

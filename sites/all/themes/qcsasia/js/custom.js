@@ -1,6 +1,5 @@
 $(function() {
     $('.btn-show-hide-text-area').on('click', function () {
-        console.log('totot');
        if ($('.hidden-text-area').css('display') == 'none') {
            $(this).find('.glyphicon').removeClass('glyphicon-menu-down').addClass('glyphicon-menu-up');
        } else {
@@ -16,5 +15,14 @@ $(function() {
         $(this).removeClass('focus');
     });
     $('.carousel-home').carousel();
-    $('.carousel-home-2').carousel({'interval' : false});
+    $('.carousel-category').slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1
+    });
+    $('.carousel-function').slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1
+    });
 });
