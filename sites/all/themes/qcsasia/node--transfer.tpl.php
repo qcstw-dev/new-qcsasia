@@ -1,14 +1,15 @@
-
 <?php
-//$oQuery = new EntityFieldQuery();
-//$oQuery->entityCondition('entity_type', 'taxonomy_term')
-//        ->entityCondition('bundle', 'product');
-//$aResult = $oQuery->execute();
-//foreach ($aResult['taxonomy_term'] as $result) {
-//    $oTerm = taxonomy_term_load($result->tid);
-//    taxonomy_term_delete($oTerm->tid);
-//}
-//exit;
+if (isset($_GET['delete_all'])) {
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'product');
+    $aResult = $oQuery->execute();
+    foreach ($aResult['taxonomy_term'] as $result) {
+        $oTerm = taxonomy_term_load($result->tid);
+        taxonomy_term_delete($oTerm->tid);
+    }
+    exit;
+}
 
 set_time_limit(0);
 $response_xml_data = file_get_contents("https://qcsasia.com/xml-products/" . (isset($_GET['id']) && $_GET['id'] ? '?id=' . $_GET['id'] : ''));
@@ -31,17 +32,17 @@ foreach ($XMLposts as $XMLpost) {
 
     // if the produc already exist, we modify it
     if ($aResult) {
-        $oTerm = taxonomy_term_load(key(array_shift($aResult)));
+        echo 'already exit !';
+//        $oTerm = taxonomy_term_load(key(array_shift($aResult)));
     }
     // else we create it
     else {
         $oTerm = custom_create_taxonomy_term((string) $XMLpost->name, $stermId);
+        saveData($oTerm, $XMLpost);
     }
-    saveData($oTerm, $XMLpost);
 }
 
 function saveData($oTerm, $XMLpost) {
-
     // DATA
     $oTerm->description = (string) $XMLpost->description;
     $oTerm->field_date_gmt['und'][0]['value'] = (string) $XMLpost->date_gmt;
@@ -275,132 +276,129 @@ function saveData($oTerm, $XMLpost) {
     }
 
     // SLIDESHOW
-    foreach ($XMLpost->slideshow->slide as $aSlide) {
-        add_field_collection_slide($aSlide->slide_title, $aSlide->slide_image, $oTerm);
-    }
-
-    //var_dump($oTerm);
+//    foreach ($XMLpost->slideshow->slide as $aSlide) {
+//        add_field_collection_slide($aSlide->slide_title, $aSlide->slide_image, $oTerm);
+//    }
+    taxonomy_term_save($oTerm);
 }
-
-taxonomy_term_save($oTerm);
 /*
-if () {
-    ?>
-    <script>
-        setTimeout(function () {
-            location.reload();
-        }, 5000);
-    </script><?php }*/
+  if () {
+  ?>
+  <script>
+  setTimeout(function () {
+  location.reload();
+  }, 5000);
+  </script><?php } */
 
 
 
 /* * ***************************************************** FUNCTIONS ************************************************ */
 
 function custom_create_taxonomy_term($sName, $sId, $sVid = 2) {
-$oTerm = new stdClass();
-$oTerm->name = $sName;
-$oTerm->vid = $sVid;
-$oTerm->field_old_id['und'][0]['value'] = $sId;
-$oTerm->language = 'und';
-taxonomy_term_save($oTerm);
-return $oTerm;
+    $oTerm = new stdClass();
+    $oTerm->name = $sName;
+    $oTerm->vid = $sVid;
+    $oTerm->field_old_id['und'][0]['value'] = $sId;
+    $oTerm->language = 'und';
+    taxonomy_term_save($oTerm);
+    return $oTerm;
 }
 
 function add_field_collection_slide($sTitle, $sUrl, $oTerm) {
-$field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_slide'));
-$field_collection_item->field_slide_title[LANGUAGE_NONE][] = ['value' => $sTitle];
+    $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_slide'));
+    $field_collection_item->field_slide_title[LANGUAGE_NONE][] = ['value' => $sTitle];
 
-saveSlide($sUrl, $oTerm, $field_collection_item);
+    saveSlide($sUrl, $oTerm, $field_collection_item);
 
 // Save field collection item
-$field_collection_item->setHostEntity('taxonomy_term', $oTerm);
-$field_collection_item->save(FALSE);
+    $field_collection_item->setHostEntity('taxonomy_term', $oTerm);
+    $field_collection_item->save(FALSE);
 }
 
 function saveSlide($sUrl, $oTerm, $field_collection_item) {
-$sTargetPath = 'products/slideshow';
+    $sTargetPath = 'products/slideshow';
 
-$file_temp = file_get_contents($sUrl);
-$file_temp = file_save_data($file_temp, 'public://' . $sTargetPath . '/' . basename($sUrl), FILE_EXISTS_REPLACE);
+    $file_temp = file_get_contents($sUrl);
+    $file_temp = file_save_data($file_temp, 'public://' . $sTargetPath . '/' . basename($sUrl), FILE_EXISTS_REPLACE);
 
-$file_temp->title = $oTerm->name;
-$file_temp->alt = $oTerm->name;
+    $file_temp->title = $oTerm->name;
+    $file_temp->alt = $oTerm->name;
 
-$field_collection_item->field_slide_image['und'][0] = (array) $file_temp;
+    $field_collection_item->field_slide_image['und'][0] = (array) $file_temp;
 }
 
 function savePicture($sType, $sImgPath, $oTerm, $bAlreadyAdd) {
-$sFolderName = '';
-switch ($sType) {
-case 'thumbnail':
-$sFolderName = 'thumbnail';
-break;
-case 'photo_function':
-$sFolderName = 'photo-function';
-break;
-case 'first_image':
-$sFolderName = 'main';
-break;
-case 'image_option':
-$sFolderName = 'option';
-break;
-case 'image_new_product':
-$sFolderName = 'new-product';
-break;
-case 'image_logo_process':
-$sFolderName = 'logo-process';
-break;
-}
+    $sFolderName = '';
+    switch ($sType) {
+        case 'thumbnail':
+            $sFolderName = 'thumbnail';
+            break;
+        case 'photo_function':
+            $sFolderName = 'photo-function';
+            break;
+        case 'first_image':
+            $sFolderName = 'main';
+            break;
+        case 'image_option':
+            $sFolderName = 'option';
+            break;
+        case 'image_new_product':
+            $sFolderName = 'new-product';
+            break;
+        case 'image_logo_process':
+            $sFolderName = 'logo-process';
+            break;
+    }
 
-$sTargetPath = 'products/' . $sFolderName;
+    $sTargetPath = 'products/' . $sFolderName;
 
-$file_temp = file_get_contents($sImgPath);
-$file_temp = file_save_data($file_temp, 'public://' . $sTargetPath . '/' . basename($sImgPath), FILE_EXISTS_REPLACE);
+    $file_temp = file_get_contents($sImgPath);
+    $file_temp = file_save_data($file_temp, 'public://' . $sTargetPath . '/' . basename($sImgPath), FILE_EXISTS_REPLACE);
 
-$sFieldName = '';
-switch ($sType) {
-case 'thumbnail':
-$sFieldName = 'field_thumbnail';
-break;
-case 'photo_function':
-$sFieldName = 'field_photo_function';
-break;
-case 'first_image':
-$sFieldName = 'field_main_photo';
-break;
-case 'image_option':
-$sFieldName = 'field_image_option';
-break;
-case 'image_new_product':
-$sFieldName = 'field_image_new_product';
-break;
-case 'image_logo_process':
-$sFieldName = 'field_image_logo_process';
-break;
-}
+    $sFieldName = '';
+    switch ($sType) {
+        case 'thumbnail':
+            $sFieldName = 'field_thumbnail';
+            break;
+        case 'photo_function':
+            $sFieldName = 'field_photo_function';
+            break;
+        case 'first_image':
+            $sFieldName = 'field_main_photo';
+            break;
+        case 'image_option':
+            $sFieldName = 'field_image_option';
+            break;
+        case 'image_new_product':
+            $sFieldName = 'field_image_new_product';
+            break;
+        case 'image_logo_process':
+            $sFieldName = 'field_image_logo_process';
+            break;
+    }
 
-$file_temp->title = $oTerm->name;
-$file_temp->alt = $oTerm->name;
+    $file_temp->title = $oTerm->name;
+    $file_temp->alt = $oTerm->name;
 
-if (in_array($sFieldName, ['field_image_option', 'field_image_logo_process'])) {
-if ($bAlreadyAdd[$sFieldName]) {
-$oTerm->{$sFieldName}['und'][] = (array) $file_temp;
-} else {
-$oTerm->{$sFieldName}['und'][0] = (array) $file_temp;
-$bAlreadyAdd[$sFieldName] = true;
-}
-} else {
-$oTerm->{$sFieldName}['und'][0] = (array) $file_temp;
-}
+    if (in_array($sFieldName, ['field_image_option', 'field_image_logo_process'])) {
+        $oTerm->{$sFieldName}['und'][] = (array) $file_temp;
+//        if ($bAlreadyAdd[$sFieldName] == true) {
+//            $oTerm->{$sFieldName}['und'][] = (array) $file_temp;
+//        } else {
+//            $oTerm->{$sFieldName}['und'][0] = (array) $file_temp;
+//            $bAlreadyAdd[$sFieldName] = true;
+//        }
+    } else {
+        $oTerm->{$sFieldName}['und'][0] = (array) $file_temp;
+    }
 }
 
 function add_field_collection_document($oTerm, $sTitle, $sLink) {
-$field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_document'));
-$field_collection_item->field_document_title[LANGUAGE_NONE][] = ['value' => $sTitle];
-$field_collection_item->field_document_link[LANGUAGE_NONE][] = ['value' => $sLink];
+    $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_document'));
+    $field_collection_item->field_document_title[LANGUAGE_NONE][] = ['value' => $sTitle];
+    $field_collection_item->field_document_link[LANGUAGE_NONE][] = ['value' => $sLink];
 
 // Save field collection item
-$field_collection_item->setHostEntity('taxonomy_term', $oTerm);
-$field_collection_item->save(FALSE);
+    $field_collection_item->setHostEntity('taxonomy_term', $oTerm);
+    $field_collection_item->save(FALSE);
 }
-
