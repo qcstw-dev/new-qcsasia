@@ -202,200 +202,279 @@
             </div>
         </div>
     </div>
-<!--    <div class="col-md-12 padding-0">
-        <div id="carousel-home-2" class="carousel carousel-home-2 slide" data-ride="carousel-home-2">
-            <div class="carousel-inner" role="listbox">
-                <div class="block-line category item active">
-                    <h2>Our product lines</h2>
-                    <div class="col-md-12 block-line-content">
-                        <div class="col-md-3">
-                            <a href="#" title="">
-                                <div class="thumbnail">
-                                    <div class="padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/metal-enamel.jpg") ?>" alt="" title="" />
+    <!--    <div class="col-md-12 padding-0">
+            <div id="carousel-home-2" class="carousel carousel-home-2 slide" data-ride="carousel-home-2">
+                <div class="carousel-inner" role="listbox">
+                    <div class="block-line category item active">
+                        <h2>Our product lines</h2>
+                        <div class="col-md-12 block-line-content">
+                            <div class="col-md-3">
+                                <a href="#" title="">
+                                    <div class="thumbnail">
+                                        <div class="padding-0">
+                                            <img src="<?= url(path_to_theme() . "/images/home/category/metal-enamel.jpg") ?>" alt="" title="" />
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="subtitle-pic">Metal enamel</div>
-                            </a>
+                                    <div class="subtitle-pic">Metal enamel</div>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="#" title="">
+                                    <div class="thumbnail">
+                                        <div class="padding-0">
+                                            <img src="<?= url(path_to_theme() . "/images/home/category/pvc-cloisonne.jpg") ?>" alt="" title="" />
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="subtitle-pic">Soft PVC cloisonne</div>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="#" title="">
+                                    <div class="thumbnail">
+                                        <div class="padding-0">
+                                            <img src="<?= url(path_to_theme() . "/images/home/category/aluminium.jpg") ?>" alt="" title="" />
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="subtitle-pic">Aluminium</div>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="#" title="">
+                                    <div class="thumbnail">
+                                        <div class="padding-0">
+                                            <img src="<?= url(path_to_theme() . "/images/home/category/plastic-injection.jpg") ?>" alt="" title="" />
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="subtitle-pic">Plastic injection</div>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <a href="#" title="">
-                                <div class="thumbnail">
-                                    <div class="padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/pvc-cloisonne.jpg") ?>" alt="" title="" />
+                        <div class="col-md-12 block-line-content margin-top-20">
+                            <div class="col-md-3 col-md-offset-3">
+                                <a href="#" title="">
+                                    <div class="thumbnail">
+                                        <div class="padding-0">
+                                            <img src="<?= url(path_to_theme() . "/images/home/category/gift/2.jpg") ?>" alt="" title="" />
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="subtitle-pic">Soft PVC cloisonne</div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" title="">
-                                <div class="thumbnail">
-                                    <div class="padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/aluminium.jpg") ?>" alt="" title="" />
+                                    <div class="subtitle-pic">Gift</div>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="#" title="">
+                                    <div class="thumbnail">
+                                        <div class="padding-0">
+                                            <img src="<?= url(path_to_theme() . "/images/home/category/licence/2.jpg") ?>" alt="" title="" />
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="subtitle-pic">Aluminium</div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" title="">
-                                <div class="thumbnail">
-                                    <div class="padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/plastic-injection.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="subtitle-pic">Plastic injection</div>
-                            </a>
+                                    <div class="subtitle-pic">Licence</div>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-12 block-line-content margin-top-20">
-                        <div class="col-md-3 col-md-offset-3">
-                            <a href="#" title="">
+                    <div class="block-line function item">
+                        <h2>Our product functions</h2>
+                        <div class="col-md-12 block-line-content margin-bottom-20">
+                            <div class="col-md-3">
                                 <div class="thumbnail">
-                                    <div class="padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/gift/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="clearfix"></div>
+                                    <img src="<?= url(path_to_theme() . "/images/home/function/keychain.jpg") ?>" title="" alt="" />
                                 </div>
-                                <div class="subtitle-pic">Gift</div>
-                            </a>
+                                <div class="subtitle-pic">Keychain</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/function/bar.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">Bar - accessory</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/function/trolley-token.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">Trolley token</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/function/wearable.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">Wearable</div>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <a href="#" title="">
+                        <div class="col-md-12 block-line-content">
+                            <div class="col-md-3">
                                 <div class="thumbnail">
-                                    <div class="padding-0">
-                                        <img src="<?= url(path_to_theme() . "/images/home/category/licence/2.jpg") ?>" alt="" title="" />
-                                    </div>
-                                    <div class="clearfix"></div>
+                                    <img src="<?= url(path_to_theme() . "/images/home/function/canister.jpg") ?>" title="" alt="" />
                                 </div>
-                                <div class="subtitle-pic">Licence</div>
-                            </a>
+                                <div class="subtitle-pic">Canister and container</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/function/3c.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">3C accessory</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/function/tools.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">Tools</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/function/stickers.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">Stickers / Doming</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-line logo-process item">
+                        <h2>Our logo processes</h2>
+                        <div class="col-md-12 block-line-content margin-bottom-20">
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/logo-process/doming.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">Doming</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/logo-process/digital-printing.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">Digital printing</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/logo-process/silk-screen-print.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">silk screen print</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/logo-process/laser.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">Laser</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 block-line-content">
+                            <div class="col-md-3 col-md-offset-2">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/logo-process/offset-printing.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">Offset printing</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/logo-process/enamel.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">Enamel</div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <img src="<?= url(path_to_theme() . "/images/home/logo-process/pvc-cloisonne.jpg") ?>" title="" alt="" />
+                                </div>
+                                <div class="subtitle-pic">PVC cloisonne</div>
+                            </div>
+    
                         </div>
                     </div>
                 </div>
-                <div class="block-line function item">
-                    <h2>Our product functions</h2>
-                    <div class="col-md-12 block-line-content margin-bottom-20">
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/function/keychain.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Keychain</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/function/bar.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Bar - accessory</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/function/trolley-token.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Trolley token</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/function/wearable.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Wearable</div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 block-line-content">
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/function/canister.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Canister and container</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/function/3c.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">3C accessory</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/function/tools.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Tools</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/function/stickers.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Stickers / Doming</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="block-line logo-process item">
-                    <h2>Our logo processes</h2>
-                    <div class="col-md-12 block-line-content margin-bottom-20">
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/logo-process/doming.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Doming</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/logo-process/digital-printing.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Digital printing</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/logo-process/silk-screen-print.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">silk screen print</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/logo-process/laser.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Laser</div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 block-line-content">
-                        <div class="col-md-3 col-md-offset-2">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/logo-process/offset-printing.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Offset printing</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/logo-process/enamel.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">Enamel</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="<?= url(path_to_theme() . "/images/home/logo-process/pvc-cloisonne.jpg") ?>" title="" alt="" />
-                            </div>
-                            <div class="subtitle-pic">PVC cloisonne</div>
-                        </div>
-
-                    </div>
-                </div>
+                 Controls 
+                <a class="left carousel-control" href="#carousel-home-2" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-home-2" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-             Controls 
-            <a class="left carousel-control" href="#carousel-home-2" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carousel-home-2" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+        </div>-->
+    <div class="col-md-12 padding-0 news-content">
+        <div class="col-xs-12 padding-0">
+            <h3>News</h3>
         </div>
-    </div>-->
-    <div class="col-md-12"><?php
+        <div class="col-md-6 border-right padding-0">
+            <div class="col-md-12 news-row">
+                <a href="#" title="">
+                    <div class="col-md-3 thumbnail">
+                        <img src="<?= url(path_to_theme() . "/images/home/logo-process/pvc-cloisonne.jpg") ?>" title="" alt="" />
+                    </div>
+                    <div class="col-md-9 news-text">
+                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
+                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-12 news-row">
+                <a href="#" title="">
+                    <div class="col-md-3 thumbnail">
+                        <img src="<?= url(path_to_theme() . "/images/home/category/pvc-cloisonne.jpg") ?>" title="" alt="" />
+                    </div>
+                    <div class="col-md-9 news-text">
+                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
+                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-12 news-row">
+                <a href="#" title="">
+                    <div class="col-md-3 thumbnail">
+                        <img src="<?= url(path_to_theme() . "/images/home/function/3c.jpg") ?>" title="" alt="" />
+                    </div>
+                    <div class="col-md-9 news-text">
+                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
+                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 padding-0">
+            <div class="col-md-12 news-row">
+                <a href="#" title="">
+                    <div class="col-md-3 thumbnail">
+                        <img src="<?= url(path_to_theme() . "/images/home/function/keychain.jpg") ?>" title="" alt="" />
+                    </div>
+                    <div class="col-md-9 news-text">
+                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
+                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-12 news-row">
+                <a href="#" title="">
+                    <div class="col-md-3 thumbnail">
+                        <img src="<?= url(path_to_theme() . "/images/home/function/bar.jpg") ?>" title="" alt="" />
+                    </div>
+                    <div class="col-md-9 news-text">
+                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
+                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-12 news-row">
+                <a href="#" title="">
+                    <div class="col-md-3 thumbnail">
+                        <img src="<?= url(path_to_theme() . "/images/home/function/trolley-token.jpg") ?>" title="" alt="" />
+                    </div>
+                    <div class="col-md-9 news-text">
+                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
+                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+
+    </div>
+<!--    <div class="col-md-12"><?php
         $response_xml_data = file_get_contents("https://www.qcsasia.com/rss-posts/");
         $posts = simplexml_load_string($response_xml_data) or die("Error: Cannot create object");
         if ($posts) {
@@ -423,5 +502,5 @@
                 ?>
             </div><?php }
             ?>
-    </div>
+    </div>-->
 </div>

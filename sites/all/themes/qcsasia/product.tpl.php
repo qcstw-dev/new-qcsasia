@@ -1,4 +1,4 @@
-<?php //var_dump($term);      ?>
+<?php var_dump($term);      ?>
 <div class="product-page">
     <div class="col-md-3 main-picture-block margin-top-20">
         <div class="thumbnail thumb margin-bottom-10">

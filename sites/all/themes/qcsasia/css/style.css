@@ -600,6 +600,24 @@ a {
     width: auto;
     max-width: 80%;
 }
+.news-content img {
+    width: 100px;
+}
+.news-content p,
+.news-content .thumbnail {
+    margin-bottom: 0;
+}
+.news-content a {
+    color: inherit;
+}
+.news-content .news-row {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.news-content .news-text h4{
+    margin-top: 0;
+}
 /****************** SEARCH PAGE *******************/
 .block-filter {
     position: absolute;
@@ -648,6 +666,7 @@ a {
 }
 .node-products-list .block-list-products {
     margin-left: 280px;
+    min-height: 735px;
 }
 /****************** PRODUCT PAGE *******************/
 .main-picture-block .thumbnail {
@@ -667,8 +686,10 @@ a {
     min-height: 284px;
 }
 .cell-key {
-    font-weight: bold;
+    font-weight: bold;    
+    vertical-align: middle !important;
     background: #E8E8E8;
+    text-align: center;
 }
 .block-tabs .nav {
     width: 100%;
