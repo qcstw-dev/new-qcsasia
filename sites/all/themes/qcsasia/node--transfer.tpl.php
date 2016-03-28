@@ -1,15 +1,15 @@
 <?php
-if (isset($_GET['delete_all'])) {
-    $oQuery = new EntityFieldQuery();
-    $oQuery->entityCondition('entity_type', 'taxonomy_term')
-            ->entityCondition('bundle', 'product');
-    $aResult = $oQuery->execute();
-    foreach ($aResult['taxonomy_term'] as $result) {
-        $oTerm = taxonomy_term_load($result->tid);
-        taxonomy_term_delete($oTerm->tid);
-    }
-    exit;
-}
+//if (isset($_GET['delete_all'])) {
+//    $oQuery = new EntityFieldQuery();
+//    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+//            ->entityCondition('bundle', 'product');
+//    $aResult = $oQuery->execute();
+//    foreach ($aResult['taxonomy_term'] as $result) {
+//        $oTerm = taxonomy_term_load($result->tid);
+//        taxonomy_term_delete($oTerm->tid);
+//    }
+//    exit;
+//}
 
 set_time_limit(0);
 $response_xml_data = file_get_contents("https://qcsasia.com/xml-products/" . (isset($_GET['id']) && $_GET['id'] ? '?id=' . $_GET['id'] : ''));
@@ -32,18 +32,21 @@ foreach ($XMLposts as $XMLpost) {
 
     // if the produc already exist, we modify it
     if ($aResult) {
-        echo 'already exit !';
-//        $oTerm = taxonomy_term_load(key(array_shift($aResult)));
+//        echo 'already exit !';
+        $oTerm = taxonomy_term_load(key(array_shift($aResult)));
     }
     // else we create it
     else {
         $oTerm = custom_create_taxonomy_term((string) $XMLpost->name, $stermId);
-        saveData($oTerm, $XMLpost);
     }
+        saveData($oTerm, $XMLpost);
 }
 
 function saveData($oTerm, $XMLpost) {
     // DATA
+//    $oTerm->field_description['und'][0]['value'] = (string) $XMLpost->description;
+    $oTerm->field_product_name['und'][0]['value'] = (string) $XMLpost->name;
+    /*
     $oTerm->description = (string) $XMLpost->description;
     $oTerm->field_date_gmt['und'][0]['value'] = (string) $XMLpost->date_gmt;
     $oTerm->field_complicated['und'][0]['value'] = (string) $XMLpost->complicated;
@@ -57,7 +60,8 @@ function saveData($oTerm, $XMLpost) {
     $oTerm->field_program_item['und'][0]['value'] = (string) $XMLpost->program_item;
     $oTerm->field_activate_supplier_program['und'][0]['value'] = (string) $XMLpost->activate_supplier_program;
     $oTerm->field_activate_sales_program['und'][0]['value'] = (string) $XMLpost->activate_sales_program;
-
+    */
+    
     // RELATION WITH OTHERS TAXONOMY TERMS
     // RESET
     $oTerm->field_function['und'] = [];
@@ -88,8 +92,9 @@ function saveData($oTerm, $XMLpost) {
                 $oTerm->field_function['und'][] = ['tid' => '63'];
                 break;
             case 'office-awards' : // Office
-            case 'wearable' : // Office
                 $oTerm->field_function['und'][] = ['tid' => '62'];
+            case 'wearable' : // Office
+                $oTerm->field_function['und'][] = ['tid' => '17'];
                 break;
         }
     }
@@ -172,7 +177,7 @@ function saveData($oTerm, $XMLpost) {
             $oTerm->field_category['und'][] = ['tid' => '89'];
             break;
     }
-
+    
     // RESET
     $oTerm->field_supplier_program['und'] = [];
     foreach ((array) $XMLpost->supplier_program as $sValue) {
@@ -251,7 +256,8 @@ function saveData($oTerm, $XMLpost) {
                 break;
         }
     }
-
+    
+    /*
     // DOCUMENT CENTER
     // RESET
     if ($oTerm->field_document) {
@@ -279,6 +285,8 @@ function saveData($oTerm, $XMLpost) {
 //    foreach ($XMLpost->slideshow->slide as $aSlide) {
 //        add_field_collection_slide($aSlide->slide_title, $aSlide->slide_image, $oTerm);
 //    }
+     
+     */
     taxonomy_term_save($oTerm);
 }
 /*

@@ -645,6 +645,9 @@ a {
 .block-product .thumbnail:hover {
     border: 1px solid #38B15D;
 }
+.node-products-list .block-product .thumbnail {
+    overflow: hidden;
+}
 .block-product {
     text-align: center;
 }
@@ -655,7 +658,7 @@ a {
     width: 100%;
 }
 .block-product .title-product {
-    min-height: 40px;
+    height: 40px;
 }
 .block-product a {
     text-decoration: none;

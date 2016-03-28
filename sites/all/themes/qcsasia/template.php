@@ -139,7 +139,7 @@ function getProducts() {
             ->range(0, 200);
 
     if (drupal_get_query_parameters()) {
-        foreach (drupal_get_query_parameters() as $sKey => $sValue) {
+        foreach (drupal_get_query_parameters() as $sKey => $mValue) {
             switch ($sKey) {
                 case 'new':
                     $oQuery->fieldCondition('field_new_product', 'value', '1');
@@ -151,8 +151,27 @@ function getProducts() {
                     $oQuery->fieldCondition('field_patented_item', 'value', '1');
                     break;
                 case 'category':
-                    $oCategory = taxonomy_get_term_by_name($sValue);
-                    $oQuery->fieldCondition('field_category', 'tid', $oCategory->tid);
+                    // Rettrieve the category
+                    $aCategories = getTermByRef($mValue, 'category');
+                    $aChildrenCategories = [];
+                    foreach ($aCategories as $oCategory) {
+                        // retrieve children categories
+                        $aChildrenCategories = taxonomy_get_children($oCategory->tid);
+                        if ($aChildrenCategories) {
+                            foreach ($aChildrenCategories as $oChildrenCategory) {
+                                $aCategories[$oChildrenCategory->tid] = $oChildrenCategory;
+                            }
+                        }
+                    }
+                    $oQuery->fieldCondition('field_category', 'tid', array_keys($aCategories));
+                    break;
+                case 'function':
+                    $aFunctions = getTermByRef($mValue, 'function');
+                    $oQuery->fieldCondition('field_function', 'tid', array_keys($aFunctions));
+                    break;
+                case 'logo-process':
+                    $aLogoProcesses = getTermByRef($mValue, 'logo_process');
+                    $oQuery->fieldCondition('field_logo_process', 'tid', array_keys($aLogoProcesses));
                     break;
             }
         }
@@ -170,6 +189,55 @@ function qcsasia_preprocess_page(&$vars) {
     }
 
     $vars['menu_top'] = theme('links', array('links' => menu_navigation_links('menu-menu-top')));
+}
+
+/**
+ * 
+ * @return array Main Category term object (that has children)
+ */
+function retrieveFilters($sType) {
+    $aFilters = [];
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', $sType)
+            ->range(0, 200);
+    $aResult = $oQuery->execute();
+    if ($sType === 'category') {
+        foreach ($aResult['taxonomy_term'] as $oTerm) {
+            if (taxonomy_get_children($oTerm->tid)) {
+                $aFilters[] = $oTerm->tid;
+            }
+        }
+    } else {
+        $aFilters = array_keys($aResult['taxonomy_term']);
+    }
+    return taxonomy_term_load_multiple($aFilters);
+}
+
+/**
+ * 
+ * @param multiple (array or string) $mReferences
+ * @return Object Term
+ */
+function getTermByRef($mReferences, $sType) {
+    $aReferences = [];
+    if (!is_array($mReferences)) {
+        $aReferences[] = $mReferences;
+    } else {
+        $aReferences = $mReferences;
+    }
+    $oQueryTerm = new EntityFieldQuery();
+    $oQueryTerm->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', $sType)
+            ->fieldCondition('field_reference', 'value', $aReferences)
+            ->range(0, count($aReferences));
+
+    $aTermResult = $oQueryTerm->execute();
+    $aTermsIds = [];
+    foreach ($aTermResult['taxonomy_term'] as $oTerm) {
+        $aTermsIds[] = $oTerm->tid;
+    }
+    return taxonomy_term_load_multiple($aTermsIds);
 }
 
 function qcsasia_preprocess_html(&$vars) {

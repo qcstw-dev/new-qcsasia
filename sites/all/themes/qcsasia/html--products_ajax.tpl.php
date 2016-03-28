@@ -1,8 +1,10 @@
 <?php
-//var_dump($aProducts);
 if ($aProducts) {
     $i = 4;
     foreach ($aProducts as $oProduct) {
+//        var_dump($oProduct);
+        $sName = $oProduct->field_product_name['und'][0]['value'];
+        $sRef = $oProduct->field_product_ref['und'][0]['value'];
         if ($i % 4 == 0) { ?>
             <div class = "col-md-12 padding-0"><?php 
         } ?>
@@ -10,8 +12,9 @@ if ($aProducts) {
             <div class = "thumbnail">
                 <a href = "<?= url('taxonomy/term/'.$oProduct->tid) ?>" title = "">
                     <img src = "<?= file_create_url($oProduct->field_thumbnail['und'][0]['uri']) ?>" alt = "" title = "" />
-                    <div class = "ref-product"><?= $oProduct->name ?></div>
-                    <div class = "title-product"></div>
+                    <!--<div class = "ref-product"><?= taxonomy_term_load($oProduct->field_category['und'][0]['tid'])->name ?></div>-->
+                    <div class = "ref-product"><?= ($sRef ?: '')  ?></div>
+                    <div class = "title-product"><?= $sName ?></div>
                 </a>
             </div>
         </div><?php
@@ -20,4 +23,6 @@ if ($aProducts) {
             </div><?php
         }
     }
+} else { ?>
+<div class="alert alert-warning" role="alert"><strong>Oops!..</strong> There is currently no products that match with your criteria</div><?php
 }
