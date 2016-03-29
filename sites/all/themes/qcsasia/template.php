@@ -124,13 +124,52 @@ function qcsasia_breadcrumb($variables) {
 function qcsasia_preprocess_node(&$vars) {
     switch ($vars['node']->type) {
         case 'products_list' :
-            $aProducts = getProducts();
+            // retrieve products
+            $aProducts = getProducts(drupal_get_query_parameters());
             $vars['aProducts'] = taxonomy_term_load_multiple(array_keys($aProducts));
+
+            // retrieve potential number for filters
+            $vars['aFilterNumProducts'] = getPotentialNumberForFilters();
             break;
     }
 }
 
-function getProducts() {
+function getPotentialNumberForFilters() {
+    // retrieve potential number for filters
+    //get all filters
+    $aAllFilters = ['new', 'cheap', 'patented'];
+    foreach (retrieveFilters('category') as $oTerm) {
+        $aAllFilters['category'][] = $oTerm->field_reference['und'][0]['value'];
+    }
+    foreach (retrieveFilters('function') as $oTerm) {
+        $aAllFilters['function'][] = $oTerm->field_reference['und'][0]['value'];
+    }
+    foreach (retrieveFilters('logo_process') as $oTerm) {
+        $aAllFilters['logo-process'][] = $oTerm->field_reference['und'][0]['value'];
+    }
+    $aCurrentFilters = drupal_get_query_parameters();
+    $aFiltersPotential = [];
+    foreach ($aAllFilters as $sKey => $mValue) {
+        if (is_array($mValue)) {
+            foreach ($mValue as $sValue) {
+                $aFiltersPotential = $aCurrentFilters;
+                if (!isset($aCurrentFilters[$sKey]) || !in_array($sValue, $aCurrentFilters[$sKey])) {
+                    $aFiltersPotential[$sKey][] = $sValue;
+                    $aFilterNumProducts[$sKey][$sValue] = getProducts($aFiltersPotential, true);
+                }
+            }
+        } else {
+            if (!in_array($mValue, $aCurrentFilters)) {
+                $aFiltersPotential = $aCurrentFilters;
+                $aFiltersPotential[$mValue] = '';
+                $aFilterNumProducts[$mValue] = getProducts($aFiltersPotential, true);
+            }
+        }
+    }
+    return $aFilterNumProducts;
+}
+
+function getProducts($aQueryParameters, $bCount = false) {
     // retrieve products
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
@@ -138,8 +177,8 @@ function getProducts() {
             ->fieldOrderBy('field_date_gmt', 'value', 'DESC')
             ->range(0, 200);
 
-    if (drupal_get_query_parameters()) {
-        foreach (drupal_get_query_parameters() as $sKey => $mValue) {
+    if ($aQueryParameters) {
+        foreach ($aQueryParameters as $sKey => $mValue) {
             switch ($sKey) {
                 case 'new':
                     $oQuery->fieldCondition('field_new_product', 'value', '1');
@@ -176,10 +215,12 @@ function getProducts() {
             }
         }
     }
-
-    $aResult = $oQuery->execute();
-
-    return $aResult['taxonomy_term'];
+    if ($bCount) {
+        return $oQuery->count()->execute();
+    } else {
+        $aResult = $oQuery->execute();
+        return $aResult['taxonomy_term'];
+    }
 }
 
 function qcsasia_preprocess_page(&$vars) {
@@ -244,8 +285,11 @@ function qcsasia_preprocess_html(&$vars) {
     header('HTTP/1.1 200 OK');
     switch ($vars['theme_hook_suggestions'][0]) {
         case 'html__products_ajax' :
-            $aProducts = getProducts();
+            $aProducts = getProducts(drupal_get_query_parameters());
             $vars['aProducts'] = taxonomy_term_load_multiple(array_keys($aProducts));
+            break;
+        case 'html__products_number_ajax' :
+            $vars['aFilterNumProducts'] = getPotentialNumberForFilters();
             break;
     }
 }
