@@ -137,7 +137,7 @@ function qcsasia_preprocess_node(&$vars) {
 function getPotentialNumberForFilters() {
     // retrieve potential number for filters
     //get all filters
-    $aAllFilters = ['new', 'cheap', 'patented'];
+    $aAllFilters = ['new', 'cheap', 'patented', 'rush'];
     foreach (retrieveFilters('category') as $oTerm) {
         $aAllFilters['category'][] = $oTerm->field_reference['und'][0]['value'];
     }
@@ -188,6 +188,9 @@ function getProducts($aQueryParameters, $bCount = false) {
                     break;
                 case 'patented':
                     $oQuery->fieldCondition('field_patented_item', 'value', '1');
+                    break;
+                case 'rush':
+                    $oQuery->fieldCondition('field_rush', 'value', '1');
                     break;
                 case 'category':
                     // Rettrieve the category
