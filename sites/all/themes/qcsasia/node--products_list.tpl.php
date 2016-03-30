@@ -114,7 +114,7 @@
             bIssetGetVars = true;
         });
         console.log(url + query);
-        
+
         $.ajax(url + query, {
             dataType: 'html',
             beforeSend: function () {
@@ -123,9 +123,12 @@
             },
             success: function (data) {
                 $('.products_list').html(data);
+                var newUrl = baseUrl + '/' + window.location.pathname.split('/')[2] + '/' + query;
+                window.history.pushState({path: newUrl}, '', newUrl);
             }
         });
-        
+
+        $(this).parent().find('.count').html('');
         console.log(baseUrl + '/products_number_ajax/' + query);
         $.ajax(baseUrl + '/products_number_ajax/' + query, {
             dataType: 'json',
@@ -133,7 +136,6 @@
                 $.each(data, function (index, filter) {
                     if ($.type(filter) !== 'string') {
                         $.each(filter, function (i, value) {
-                            
                             $('.' + i).parent().find('.count').html(($('.' + i).is(':checked') ? '' : '(' + value + ')'));
                         });
                     } else {
