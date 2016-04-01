@@ -174,12 +174,21 @@ function getProducts($aQueryParameters, $bCount = false) {
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
             ->entityCondition('bundle', 'product')
-            ->fieldOrderBy('field_date_gmt', 'value', 'DESC')
-            ->range(0, 200);
-
+            ->fieldOrderBy('field_date_gmt', 'value', 'DESC');
     if ($aQueryParameters) {
         foreach ($aQueryParameters as $sKey => $mValue) {
             switch ($sKey) {
+                case 'keyword':
+                    $mValue = explode(' ', $mValue);
+                    foreach ($mValue as $sKeyword) {
+                        preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matches);
+                        if ($matches) {
+                            $oQuery->fieldCondition('field_product_ref', 'value', $sKeyword, 'CONTAINS');
+                        } else {
+                            $oQuery->fieldCondition('field_description', 'value', $sKeyword, 'CONTAINS');
+                        }
+                    }
+                    break;
                 case 'new':
                     $oQuery->fieldCondition('field_new_product', 'value', '1');
                     break;
@@ -225,7 +234,19 @@ function getProducts($aQueryParameters, $bCount = false) {
         return $aResult['taxonomy_term'];
     }
 }
-
+function getLineProductThumbnails ($sLineCategoryTid) {
+    $aThumbnailsUrl = [];
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'product')
+            ->fieldCondition('field_category', 'tid', $sLineCategoryTid)
+            ->range(0, 4);
+    $aResults = $oQuery->execute();
+    foreach ($aResults['taxonomy_term'] as $oProduct) {
+        $aThumbnailsUrl[] = taxonomy_term_load($oProduct->tid)->field_thumbnail['und'][0]['uri'];
+    }
+    return $aThumbnailsUrl;
+}
 function qcsasia_preprocess_page(&$vars) {
     // delete eror message no content for term
     if (isset($vars['page']['content']['system_main']['no_content'])) {
@@ -243,8 +264,7 @@ function retrieveFilters($sType) {
     $aFilters = [];
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
-            ->entityCondition('bundle', $sType)
-            ->range(0, 200);
+            ->entityCondition('bundle', $sType);
     $aResult = $oQuery->execute();
     if ($sType === 'category') {
         foreach ($aResult['taxonomy_term'] as $oTerm) {

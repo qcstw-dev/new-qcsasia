@@ -1,7 +1,7 @@
 $(function () {
 
     var getUrl = window.location;
-    baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + (getUrl.host === 'localhost' ? getUrl.pathname.split('/')[1] : '');
+    baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + (getUrl.host === 'localhost' ? 'new-qcsasia' : '');
 
     $('.btn-show-hide-text-area').on('click', function () {
         if ($('.hidden-text-area').css('display') == 'none') {

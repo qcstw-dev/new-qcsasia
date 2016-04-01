@@ -2,10 +2,10 @@
     <div class="block-filter col-md-3 thumbnail padding">
         <h4>Filter by:</h4>
         <div class="block-filter-group visible">
-            <div><label><input type="checkbox" class="filter new" value="new" <?= (isset($_GET['new']) ? 'checked' : '') ?>/>New Product <span class="count"><?= (!isset($_GET['new']) ? '(' . $aFilterNumProducts['new'] . ')' : '') ?></span></label></div>
-            <div><label><input type="checkbox" class="filter patented" value="patented" <?= (isset($_GET['patented']) ? 'checked' : '') ?>/>Patented Product <span class="count"><?= (!isset($_GET['patented']) ? '(' . $aFilterNumProducts['patented'] . ')' : '') ?></span></label></div>
-            <div><label><input type="checkbox" class="filter cheap" value="cheap" <?= (isset($_GET['cheap']) ? 'checked' : '') ?>/>Very cheap product <span class="count"><?= (!isset($_GET['cheap']) ? '(' . $aFilterNumProducts['cheap'] . ')' : '') ?></span></label></div>
-            <div><label><input type="checkbox" class="filter rush" value="rush" <?= (isset($_GET['rush']) ? 'checked' : '') ?>/>Rush service product <span class="count"><?= (!isset($_GET['rush']) ? '(' . $aFilterNumProducts['rush'] . ')' : '') ?></span></label></div>
+            <div><label><input type="checkbox" class="filter new" value="new" <?= (isset($_GET['new']) ? 'checked' : '') ?>/>New Product <span class="count badge"><?= (!isset($_GET['new']) ? $aFilterNumProducts['new'] : '') ?></span></label></div>
+            <div><label><input type="checkbox" class="filter patented" value="patented" <?= (isset($_GET['patented']) ? 'checked' : '') ?>/>Patented Product <span class="count badge"><?= (!isset($_GET['patented']) ? $aFilterNumProducts['patented'] : '') ?></span></label></div>
+            <div><label><input type="checkbox" class="filter cheap" value="cheap" <?= (isset($_GET['cheap']) ? 'checked' : '') ?>/>Very cheap product <span class="count badge"><?= (!isset($_GET['cheap']) ? $aFilterNumProducts['cheap'] : '') ?></span></label></div>
+            <div><label><input type="checkbox" class="filter rush" value="rush" <?= (isset($_GET['rush']) ? 'checked' : '') ?>/>Rush service product <span class="count badge"><?= (!isset($_GET['rush']) ? $aFilterNumProducts['rush'] : '') ?></span></label></div>
         </div>
         <div class="filter-group-title" data-group-title="material"><span class="glyphicon glyphicon-chevron-down"></span> Material</div>
         <div class="block-filter-group group-material"><?php
@@ -19,10 +19,9 @@
                 <div>
                     <label>
                         <input type="checkbox" class="filter multiple category <?= $sRef ?>" value="<?= $sRef ?>" <?= ($bChecked ? 'checked' : '') ?>/>
-                        <?= $oTerm->name ?> <span class="count"><?= (!$bChecked ? '(' . $aFilterNumProducts['category'][$sRef] . ')' : '') ?></span>
+    <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['category'][$sRef] : '') ?></span>
                     </label>
-                </div><?php }
-                    ?>
+                </div><?php } ?>
         </div>
         <div class="filter-group-title" data-group-title="function"><span class="glyphicon glyphicon-chevron-down"></span> Function</div>
         <div class="block-filter-group group-function"><?php
@@ -36,13 +35,12 @@
                 <div>
                     <label>
                         <input type="checkbox" class="filter multiple function <?= $sRef ?>" value="<?= $sRef ?>" <?= ($bChecked ? 'checked' : '') ?>/>
-                        <?= $oTerm->name ?> <span class="count"><?= (!$bChecked ? '(' . $aFilterNumProducts['function'][$sRef] . ')' : '') ?></span>
+    <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['function'][$sRef] : '') ?></span>
                     </label>
-                </div><?php }
-                    ?>
+                </div><?php } ?>
         </div>
-        <div class="filter-group-title" data-group-title="logo_process"><span class="glyphicon glyphicon-chevron-down"></span> Logo process</div>
-        <div class="block-filter-group group-function"><?php
+        <div class="filter-group-title" data-group-title="logo-process"><span class="glyphicon glyphicon-chevron-down"></span> Logo process</div>
+        <div class="block-filter-group group-logo-process"><?php
             if (isset($_GET['logo-process']) && !is_array($_GET['logo-process'])) {
                 $_GET['logo-process'] = [$_GET['logo-process']];
             }
@@ -53,27 +51,41 @@
                 <div>
                     <label>
                         <input type="checkbox" class="filter multiple logo-process <?= $sRef ?>" value="<?= $sRef ?>" <?= ($bChecked ? 'checked' : '') ?>/>
-                        <?= $oTerm->name ?> <span class="count"><?= (!$bChecked ? '(' . $aFilterNumProducts['logo-process'][$sRef] . ')' : '') ?></span>
+                <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['logo-process'][$sRef] : '') ?></span>
                     </label>
                 </div><?php }
-                    ?>
+            ?>
         </div>
     </div>
     <div class="col-md-9 padding-0 block-list-products">
         <div class="col-md-12">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for...">
+            <div class="input-group padding margin-bottom-10">
+                <input type="text" class="form-control search-field" placeholder="Search for..." value="<?= (isset($_GET['keyword']) && $_GET['keyword'] ? $_GET['keyword'] : '') ?>">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-default btn-search" type="button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div><!-- /input-group -->
         </div>
-        <div class="col-md-12 products_list"><?php include 'html--products_ajax.tpl.php'; ?>
+        <div class="col-md-12 products_list">
+<?php include 'html--products_ajax.tpl.php'; ?>
         </div>
     </div>
 </div>
 <script>
+    $('.search-field').keypress(function (event) {
+        if (event.which == 13) {
+            updateSearchResults();
+            return false;    //<---- Add this line
+        }
+    });
+    $('.btn-search').on('click', function () {
+        updateSearchResults();
+    });
     $('.filter').on('click', function () {
+        $(this).parent().find('.count').html('');
+        updateSearchResults();
+    });
+    function updateSearchResults() {
         var aFilterValues = [];
         var aFilterCat = [];
         var aFilterFunction = [];
@@ -113,8 +125,11 @@
             query = query + (bIssetGetVars ? '&' : '?') + 'logo-process[]=' + value;
             bIssetGetVars = true;
         });
-        console.log(url + query);
+        if ($('.search-field').val()) {
+            query = query + (bIssetGetVars ? '&' : '?') + $.param({keyword: $('.search-field').val()});
+        }
 
+        console.log(url + query);
         $.ajax(url + query, {
             dataType: 'html',
             beforeSend: function () {
@@ -123,12 +138,11 @@
             },
             success: function (data) {
                 $('.products_list').html(data);
-                var newUrl = baseUrl + '/' + window.location.pathname.split('/')[2] + '/' + query;
+                var newUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : '/' + window.location.pathname.split('/')['2']) + '/' + query;
                 window.history.pushState({path: newUrl}, '', newUrl);
             }
         });
 
-        $(this).parent().find('.count').html('');
         console.log(baseUrl + '/products_number_ajax/' + query);
         $.ajax(baseUrl + '/products_number_ajax/' + query, {
             dataType: 'json',
@@ -136,13 +150,13 @@
                 $.each(data, function (index, filter) {
                     if ($.type(filter) !== 'string') {
                         $.each(filter, function (i, value) {
-                            $('.' + i).parent().find('.count').html(($('.' + i).is(':checked') ? '' : '(' + value + ')'));
+                            $('.' + i).parent().find('.count').html(($('.' + i).is(':checked') ? '' : value));
                         });
                     } else {
-                        $('.' + index).parent().find('.count').html(($('.' + index).is(':checked') ? '' : '(' + filter + ')'));
+                        $('.' + index).parent().find('.count').html(($('.' + index).is(':checked') ? '' : filter));
                     }
                 });
             }
         });
-    });
+    }
 </script>

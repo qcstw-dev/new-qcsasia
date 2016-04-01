@@ -1,32 +1,32 @@
 <div id="main-content" class="container"><?php if (isset($menu_top) && $menu_top): ?>
-    <div id="menu-top" class="col-xs-12">
-        <div class="btn-group pull-right">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="flag-icon flag-icon-gb"></span> English <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="#"><span class="flag-icon flag-icon-cn"></span> Chinese</a></li>
-                <li><a href="#"><span class="flag-icon flag-icon-fr"></span> French</a></li>
-                <li><a href="#"><span class="flag-icon flag-icon-de"></span> German</a></li>
-                <li><a href="#"><span class="flag-icon flag-icon-es"></span> Spanish</a></li>
-            </ul>
-        </div><?php
-            print theme('links__system_menu_top', array(
-                'links' => menu_tree_all_data('menu-menu-top'),
-                'attributes' => array(
-                    'id' => 'menu-top-links',
-                    'class' => array('nav', 'nav-tabs'),
-                ),
-                'heading' => array(
-                    'text' => t('Menu top'),
-                    'level' => 'h2',
-                    'class' => array('element-invisible'),
-                ),
-            ));
-            ?>
-        </div><?php endif;
-        ?>
     <div id="header" class="row hidden-print">
+        <div id="menu-top" class="col-xs-12 padding-0">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="flag-icon flag-icon-gb"></span> English <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><span class="flag-icon flag-icon-cn"></span> Chinese</a></li>
+                    <li><a href="#"><span class="flag-icon flag-icon-fr"></span> French</a></li>
+                    <li><a href="#"><span class="flag-icon flag-icon-de"></span> German</a></li>
+                    <li><a href="#"><span class="flag-icon flag-icon-es"></span> Spanish</a></li>
+                </ul>
+            </div><?php
+                print theme('links__system_menu_top', array(
+                    'links' => menu_tree_all_data('menu-menu-top'),
+                    'attributes' => array(
+                        'id' => 'menu-top-links',
+                        'class' => array('nav', 'nav-tabs'),
+                    ),
+                    'heading' => array(
+                        'text' => t('Menu top'),
+                        'level' => 'h2',
+                        'class' => array('element-invisible'),
+                    ),
+                ));
+                ?>
+            </div><?php endif;
+            ?>
         <div id="banner" class="col-xs-12">
             <?php if ($logo): ?>
                 <div id="logo" class="col-xs-12 col-sm-2 text-center">
@@ -45,7 +45,7 @@
                     </div><?php } ?>
             </div>
         </div><?php if (isset($main_menu) && $main_menu): ?>
-            <div id="menu" class="col-xs-12 padding-xs-0"><?php
+            <div id="menu" class="col-xs-12 padding-0"><?php
                 print theme('links__system_main_menu', array(
                     'links' => menu_tree_all_data('main-menu'),
                     'attributes' => array(
