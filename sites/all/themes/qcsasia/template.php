@@ -212,6 +212,8 @@ function getProducts($aQueryParameters, $bCount = false) {
                             foreach ($aChildrenCategories as $oChildrenCategory) {
                                 $aCategories[$oChildrenCategory->tid] = $oChildrenCategory;
                             }
+                        } else {
+                            $aCategories[$oChildrenCategory->tid] = $oChildrenCategory;
                         }
                     }
                     $oQuery->fieldCondition('field_category', 'tid', array_keys($aCategories));

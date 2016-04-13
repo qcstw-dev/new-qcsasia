@@ -534,6 +534,9 @@ a {
     max-width: 500px;
     margin: 20px auto;
 }
+.white-popup {
+    max-width: 500px;
+}
 .error-message,
 .error-message-email {
     border: 2px solid #38B15D;
@@ -648,6 +651,7 @@ a {
 }
 .block-product .thumbnail:hover {
     border: 1px solid #38B15D;
+    cursor: pointer;
 }
 .node-products-list .block-product .thumbnail {
     overflow: hidden;
@@ -655,11 +659,21 @@ a {
 .block-product {
     text-align: center;
 }
-.block-product .ref-product {
+.block-product .ref-product,
+.block-line-product .title-product-ref {
     font-weight: bold;
     margin-top: 10px;
-    color: #379453;
     width: 100%;
+    color: #379453;
+}
+.block-line-product .title-product-ref {
+    font-size: 18px;
+}
+.block-line-product .title-product {
+    font-weight: bold;
+}
+.block-line-product a{
+    color: inherit;
 }
 .block-product .title-product {
     height: 40px;
@@ -781,7 +795,9 @@ span.count.badge {
 .big-slick .slick-next:before {
     font-size: 40px;
 }
-
+.ymal-pics .subtitle-pic {
+    background: none;
+}
 /******** SLICK *********/
 .slick-prev,
 .slick-next,

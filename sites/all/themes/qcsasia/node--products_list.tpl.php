@@ -19,7 +19,7 @@
                 <div>
                     <label>
                         <input type="checkbox" class="filter multiple category <?= $sRef ?>" value="<?= $sRef ?>" <?= ($bChecked ? 'checked' : '') ?>/>
-    <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['category'][$sRef] : '') ?></span>
+                        <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['category'][$sRef] : '') ?></span>
                     </label>
                 </div><?php } ?>
         </div>
@@ -35,7 +35,7 @@
                 <div>
                     <label>
                         <input type="checkbox" class="filter multiple function <?= $sRef ?>" value="<?= $sRef ?>" <?= ($bChecked ? 'checked' : '') ?>/>
-    <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['function'][$sRef] : '') ?></span>
+                        <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['function'][$sRef] : '') ?></span>
                     </label>
                 </div><?php } ?>
         </div>
@@ -51,10 +51,10 @@
                 <div>
                     <label>
                         <input type="checkbox" class="filter multiple logo-process <?= $sRef ?>" value="<?= $sRef ?>" <?= ($bChecked ? 'checked' : '') ?>/>
-                <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['logo-process'][$sRef] : '') ?></span>
+                        <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['logo-process'][$sRef] : '') ?></span>
                     </label>
                 </div><?php }
-            ?>
+                    ?>
         </div>
     </div>
     <div class="col-md-9 padding-0 block-list-products">
@@ -67,7 +67,7 @@
             </div><!-- /input-group -->
         </div>
         <div class="col-md-12 products_list">
-<?php include 'html--products_ajax.tpl.php'; ?>
+            <?php include 'html--products_ajax.tpl.php'; ?>
         </div>
     </div>
 </div>
@@ -75,7 +75,7 @@
     $('.search-field').keypress(function (event) {
         if (event.which == 13) {
             updateSearchResults();
-            return false;    //<---- Add this line
+            return false;
         }
     });
     $('.btn-search').on('click', function () {
