@@ -45,7 +45,7 @@ foreach ($XMLposts as $XMLpost) {
 function saveData($oTerm, $XMLpost) {
     // DATA
 //    $oTerm->field_description['und'][0]['value'] = (string) $XMLpost->description;
-    $oTerm->field_product_name['und'][0]['value'] = (string) $XMLpost->name;
+//    $oTerm->field_product_name['und'][0]['value'] = (string) $XMLpost->name;
     /*
     $oTerm->description = (string) $XMLpost->description;
     $oTerm->field_date_gmt['und'][0]['value'] = (string) $XMLpost->date_gmt;
@@ -62,200 +62,246 @@ function saveData($oTerm, $XMLpost) {
     $oTerm->field_activate_sales_program['und'][0]['value'] = (string) $XMLpost->activate_sales_program;
     */
     
-    // RELATION WITH OTHERS TAXONOMY TERMS
-    // RESET
-    $oTerm->field_function['und'] = [];
+//     RELATION WITH OTHERS TAXONOMY TERMS
+//     RESET COLORS
+    $oTerm->field_colors['und'] = [];
 
-    foreach ((array) $XMLpost->function as $sValue) {
+    foreach ((array) $XMLpost->color_available as $sValue) {
         switch ($sValue) {
-            case 'keychain' :
-            case 'led-products' : // Keychain
-                $oTerm->field_function['und'][] = ['tid' => '12'];
+            case '01-pms021c' : 
+                $oTerm->field_colors['und'][] = ['tid' => '304'];
                 break;
-            case 'coin-keychain' : // trolley token
-                $oTerm->field_function['und'][] = ['tid' => '15'];
+            case '02-pms200c' : 
+                $oTerm->field_colors['und'][] = ['tid' => '305'];
                 break;
-            case 'magnet-stickers' : //stickers and magnets
-                $oTerm->field_function['und'][] = ['tid' => '65'];
+            case '03-pms287c' : 
+                $oTerm->field_colors['und'][] = ['tid' => '306'];
                 break;
-            case 'label-pins' : //wearable
-                $oTerm->field_function['und'][] = ['tid' => '17'];
+            case '04-pms2602' : 
+                $oTerm->field_colors['und'][] = ['tid' => '307'];
                 break;
-            case 'bottle-opener' : // bar accessory
-            case 'bag-hanger' : // bar accessory
-                $oTerm->field_function['und'][] = ['tid' => '13'];
+            case '05-pmsblack' : 
+                $oTerm->field_colors['und'][] = ['tid' => '308'];
                 break;
-            case 'container-canister' :
-                $oTerm->field_function['und'][] = ['tid' => '19'];
+            case '06-pmsgreenc' : 
+                $oTerm->field_colors['und'][] = ['tid' => '309'];
                 break;
-            case 'phone-accessories' : // 3C accessory
-                $oTerm->field_function['und'][] = ['tid' => '63'];
+            case '07-pms1' : 
+                $oTerm->field_colors['und'][] = ['tid' => '310'];
                 break;
-            case 'office-awards' : // Office
-                $oTerm->field_function['und'][] = ['tid' => '62'];
-            case 'wearable' : // Office
-                $oTerm->field_function['und'][] = ['tid' => '17'];
+            case '08-pms312c' : 
+                $oTerm->field_colors['und'][] = ['tid' => '311'];
+                break;
+            case '09-pms237c' : 
+                $oTerm->field_colors['und'][] = ['tid' => '312'];
+                break;
+            case '10-pms116c' : 
+                $oTerm->field_colors['und'][] = ['tid' => '310'];
+                break;
+            case '11-pms032c' : 
+                $oTerm->field_colors['und'][] = ['tid' => '311'];
+                break;
+            case '12-pms367c' : 
+                $oTerm->field_colors['und'][] = ['tid' => '312'];
+                break;
+            case '13-pms349c' : 
+                $oTerm->field_colors['und'][] = ['tid' => '313'];
                 break;
         }
     }
     // RESET
-    $oTerm->field_category['und'] = [];
-    switch ($XMLpost->category) {
-        case 'metal-enamel' :
-            $oTerm->field_category['und'][] = ['tid' => '1'];
-            break;
-        case 'aluminium' :
-            $oTerm->field_category['und'][] = ['tid' => '3'];
-            break;
-        case 'plastic-injection' :
-            $oTerm->field_category['und'][] = ['tid' => '4'];
-            break;
-        case 'psba-silicon-wristband-with-plastic-patch-plastic-injection' :
-            $oTerm->field_category['und'][] = ['tid' => '76'];
-            break;
-        case 'quick-up-ring-bottle-opener-qck' :
-            $oTerm->field_category['und'][] = ['tid' => '77'];
-            break;
-        case 'pdtov-dogtag-and-dogcharm' :
-            $oTerm->field_category['und'][] = ['tid' => '71'];
-            break;
-        case 'keychain' : // metal enamel keychain
-            $oTerm->field_category['und'][] = ['tid' => '82'];
-            break;
-        case 'pskc-silicon-keychain-with-plastic-patch' :
-            $oTerm->field_category['und'][] = ['tid' => '78'];
-            break;
-        case 'aluminium-coin-keychain-with-doming' :
-            $oTerm->field_category['und'][] = ['tid' => '72'];
-            break;
-        case 'soft-pvc-cloisonne' :
-            $oTerm->field_category['und'][] = ['tid' => '2'];
-            break;
-        case 'kcodd-double-side-doming-keychain' :
-            $oTerm->field_category['und'][] = ['tid' => '79'];
-            break;
-        case 'soft-pvc-wearable-items' :
-            $oTerm->field_category['und'][] = ['tid' => '68'];
-            break;
-        case 'rubber-trolley-coin-keychain' :
-            $oTerm->field_category['und'][] = ['tid' => '80'];
-            break;
-        case 'pka-aluminium-keychain-with-doming' :
-            $oTerm->field_category['und'][] = ['tid' => '73'];
-            break;
-        case 'soft-pvc-desk-accessories' :
-            $oTerm->field_category['und'][] = ['tid' => '69'];
-            break;
-        case 'coin-keychain' :
-            $oTerm->field_category['und'][] = ['tid' => '84'];
-            break;
-        case 'aop-aluminium-bottle-opener' :
-            $oTerm->field_category['und'][] = ['tid' => '74'];
-            break;
-        case 'blinking-perfumed-glow-in-the-dark-and-uv-sensitive-soft-pvc' :
-            $oTerm->field_category['und'][] = ['tid' => '70'];
-            break;
-        case 'bar-accessories' :
-            $oTerm->field_category['und'][] = ['tid' => '85'];
-            break;
-        case 'pop-aluminium-bottle-opener' :
-            $oTerm->field_category['und'][] = ['tid' => '75'];
-            break;
-        case 'desk-accessories' :
-            $oTerm->field_category['und'][] = ['tid' => '86'];
-            break;
-        case 'wearable-accessories' :
-            $oTerm->field_category['und'][] = ['tid' => '87'];
-            break;
-        case 'lapel-pins' :
-            $oTerm->field_category['und'][] = ['tid' => '81'];
-            break;
-        case 'metal-lapel-pins-mlp' :
-            $oTerm->field_category['und'][] = ['tid' => '81'];
-            break;
-        case 'medals-and-emblems' :
-            $oTerm->field_category['und'][] = ['tid' => '89'];
-            break;
-    }
+//    $oTerm->field_function['und'] = [];
+//
+//    foreach ((array) $XMLpost->function as $sValue) {
+//        switch ($sValue) {
+//            case 'keychain' :
+//            case 'led-products' : // Keychain
+//                $oTerm->field_function['und'][] = ['tid' => '12'];
+//                break;
+//            case 'coin-keychain' : // trolley token
+//                $oTerm->field_function['und'][] = ['tid' => '15'];
+//                break;
+//            case 'magnet-stickers' : //stickers and magnets
+//                $oTerm->field_function['und'][] = ['tid' => '65'];
+//                break;
+//            case 'label-pins' : //wearable
+//                $oTerm->field_function['und'][] = ['tid' => '17'];
+//                break;
+//            case 'bottle-opener' : // bar accessory
+//            case 'bag-hanger' : // bar accessory
+//                $oTerm->field_function['und'][] = ['tid' => '13'];
+//                break;
+//            case 'container-canister' :
+//                $oTerm->field_function['und'][] = ['tid' => '19'];
+//                break;
+//            case 'phone-accessories' : // 3C accessory
+//                $oTerm->field_function['und'][] = ['tid' => '63'];
+//                break;
+//            case 'office-awards' : // Office
+//                $oTerm->field_function['und'][] = ['tid' => '62'];
+//            case 'wearable' : // Office
+//                $oTerm->field_function['und'][] = ['tid' => '17'];
+//                break;
+//        }
+//    }
+    // RESET
+//    $oTerm->field_category['und'] = [];
+//    switch ($XMLpost->category) {
+//        case 'metal-enamel' :
+//            $oTerm->field_category['und'][] = ['tid' => '1'];
+//            break;
+//        case 'aluminium' :
+//            $oTerm->field_category['und'][] = ['tid' => '3'];
+//            break;
+//        case 'plastic-injection' :
+//            $oTerm->field_category['und'][] = ['tid' => '4'];
+//            break;
+//        case 'psba-silicon-wristband-with-plastic-patch-plastic-injection' :
+//            $oTerm->field_category['und'][] = ['tid' => '76'];
+//            break;
+//        case 'quick-up-ring-bottle-opener-qck' :
+//            $oTerm->field_category['und'][] = ['tid' => '77'];
+//            break;
+//        case 'pdtov-dogtag-and-dogcharm' :
+//            $oTerm->field_category['und'][] = ['tid' => '71'];
+//            break;
+//        case 'keychain' : // metal enamel keychain
+//            $oTerm->field_category['und'][] = ['tid' => '82'];
+//            break;
+//        case 'pskc-silicon-keychain-with-plastic-patch' :
+//            $oTerm->field_category['und'][] = ['tid' => '78'];
+//            break;
+//        case 'aluminium-coin-keychain-with-doming' :
+//            $oTerm->field_category['und'][] = ['tid' => '72'];
+//            break;
+//        case 'soft-pvc-cloisonne' :
+//            $oTerm->field_category['und'][] = ['tid' => '2'];
+//            break;
+//        case 'kcodd-double-side-doming-keychain' :
+//            $oTerm->field_category['und'][] = ['tid' => '79'];
+//            break;
+//        case 'soft-pvc-wearable-items' :
+//            $oTerm->field_category['und'][] = ['tid' => '68'];
+//            break;
+//        case 'rubber-trolley-coin-keychain' :
+//            $oTerm->field_category['und'][] = ['tid' => '80'];
+//            break;
+//        case 'pka-aluminium-keychain-with-doming' :
+//            $oTerm->field_category['und'][] = ['tid' => '73'];
+//            break;
+//        case 'soft-pvc-desk-accessories' :
+//            $oTerm->field_category['und'][] = ['tid' => '69'];
+//            break;
+//        case 'coin-keychain' :
+//            $oTerm->field_category['und'][] = ['tid' => '84'];
+//            break;
+//        case 'aop-aluminium-bottle-opener' :
+//            $oTerm->field_category['und'][] = ['tid' => '74'];
+//            break;
+//        case 'blinking-perfumed-glow-in-the-dark-and-uv-sensitive-soft-pvc' :
+//            $oTerm->field_category['und'][] = ['tid' => '70'];
+//            break;
+//        case 'bar-accessories' :
+//            $oTerm->field_category['und'][] = ['tid' => '85'];
+//            break;
+//        case 'pop-aluminium-bottle-opener' :
+//            $oTerm->field_category['und'][] = ['tid' => '75'];
+//            break;
+//        case 'desk-accessories' :
+//            $oTerm->field_category['und'][] = ['tid' => '86'];
+//            break;
+//        case 'wearable-accessories' :
+//            $oTerm->field_category['und'][] = ['tid' => '87'];
+//            break;
+//        case 'lapel-pins' :
+//            $oTerm->field_category['und'][] = ['tid' => '81'];
+//            break;
+//        case 'metal-lapel-pins-mlp' :
+//            $oTerm->field_category['und'][] = ['tid' => '81'];
+//            break;
+//        case 'medals-and-emblems' :
+//            $oTerm->field_category['und'][] = ['tid' => '89'];
+//            break;
+//    }
     
     // RESET
-    $oTerm->field_supplier_program['und'] = [];
-    foreach ((array) $XMLpost->supplier_program as $sValue) {
-        switch ($sValue) {
-            case 'ODD':
-                $oTerm->field_supplier_program['und'][] = ['tid' => '41'];
-                break;
-            case 'OD':
-                $oTerm->field_supplier_program['und'][] = ['tid' => '42'];
-                break;
-            case 'LR':
-                $oTerm->field_supplier_program['und'][] = ['tid' => '43'];
-                break;
-            case 'PP':
-                $oTerm->field_supplier_program['und'][] = ['tid' => '44'];
-                break;
-        }
-    }
+//    $oTerm->field_supplier_program['und'] = [];
+//    foreach ((array) $XMLpost->supplier_program as $sValue) {
+//        switch ($sValue) {
+//            case 'ODD':
+//                $oTerm->field_supplier_program['und'][] = ['tid' => '41'];
+//                break;
+//            case 'OD':
+//                $oTerm->field_supplier_program['und'][] = ['tid' => '42'];
+//                break;
+//            case 'LR':
+//                $oTerm->field_supplier_program['und'][] = ['tid' => '43'];
+//                break;
+//            case 'PP':
+//                $oTerm->field_supplier_program['und'][] = ['tid' => '44'];
+//                break;
+//        }
+//    }
 
-    $oTerm->field_sales_program['und'] = [];
-    foreach ((array) $XMLpost->sales_program as $sValue) {
-        switch ($sValue) {
-            case 'ODD':
-                $oTerm->field_sales_program['und'][] = ['tid' => '37'];
-                break;
-            case 'OD':
-                $oTerm->field_sales_program['und'][] = ['tid' => '38'];
-                break;
-            case 'LR':
-                $oTerm->field_sales_program['und'][] = ['tid' => '39'];
-                break;
-            case 'PP':
-                $oTerm->field_sales_program['und'][] = ['tid' => '40'];
-                break;
-        }
-    }
+//    $oTerm->field_sales_program['und'] = [];
+//    foreach ((array) $XMLpost->sales_program as $sValue) {
+//        switch ($sValue) {
+//            case 'ODD':
+//                $oTerm->field_sales_program['und'][] = ['tid' => '37'];
+//                break;
+//            case 'OD':
+//                $oTerm->field_sales_program['und'][] = ['tid' => '38'];
+//                break;
+//            case 'LR':
+//                $oTerm->field_sales_program['und'][] = ['tid' => '39'];
+//                break;
+//            case 'PP':
+//                $oTerm->field_sales_program['und'][] = ['tid' => '40'];
+//                break;
+//        }
+//    }
 
     // RESET
-    $oTerm->field_logo_process['und'] = [];
-    foreach ((array) $XMLpost->logo_process as $sValue) {
-        switch ($sValue) {
-            case '2D-PVC-Cloisonne': // PVC Cloisonne
-            case '3D-PVC-Cloisonne': // PVC Cloisonne
-                $oTerm->field_logo_process['und'][] = ['tid' => '29'];
-                break;
-            case 'Laser-engraving': // laser engraving
-                $oTerm->field_logo_process['und'][] = ['tid' => '31'];
-                break;
-            case 'Silk-screen-printing': // silk screen printing
-                $oTerm->field_logo_process['und'][] = ['tid' => '32'];
-                break;
-            case 'Digitel-printing': // digital printing
-                $oTerm->field_logo_process['und'][] = ['tid' => '33'];
-                break;
-            case 'Doming': // doming
-                $oTerm->field_logo_process['und'][] = ['tid' => '34'];
-                break;
-            case 'Offset-printing': // offset printing
-            case 'Epoxy': // offset printing
-                $oTerm->field_logo_process['und'][] = ['tid' => '36'];
-                break;
-            case 'Blind-stamping':
-                break;
-            case 'Soft-enamel': // enamel
-            case 'Woven-enamel': // enamel
-                $oTerm->field_logo_process['und'][] = ['tid' => '27'];
-                break;
-            case 'Pvc-label': // PVC Cloisonne
-                $oTerm->field_logo_process['und'][] = ['tid' => '29'];
-                break;
-            case 'Zamac':
-            case 'Brass':
-            case 'Iron':
-            case 'Offset':
-                $oTerm->field_logo_process['und'][] = ['tid' => '27'];
-                break;
-        }
-    }
+//    $oTerm->field_logo_process['und'] = [];
+//    foreach ((array) $XMLpost->logo_process as $sValue) {
+//        switch ($sValue) {
+//            case '2D-PVC-Cloisonne': // PVC Cloisonne
+//            case '3D-PVC-Cloisonne': // PVC Cloisonne
+//                $oTerm->field_logo_process['und'][] = ['tid' => '29'];
+//                break;
+//            case 'Laser-engraving': // laser engraving
+//                $oTerm->field_logo_process['und'][] = ['tid' => '31'];
+//                break;
+//            case 'Silk-screen-printing': // silk screen printing
+//                $oTerm->field_logo_process['und'][] = ['tid' => '32'];
+//                break;
+//            case 'Digitel-printing': // digital printing
+//                $oTerm->field_logo_process['und'][] = ['tid' => '33'];
+//                break;
+//            case 'Doming': // doming
+//                $oTerm->field_logo_process['und'][] = ['tid' => '34'];
+//                break;
+//            case 'Offset-printing': // offset printing
+//            case 'Epoxy': // offset printing
+//                $oTerm->field_logo_process['und'][] = ['tid' => '36'];
+//                break;
+//            case 'Blind-stamping':
+//                break;
+//            case 'Soft-enamel': // enamel
+//            case 'Woven-enamel': // enamel
+//                $oTerm->field_logo_process['und'][] = ['tid' => '27'];
+//                break;
+//            case 'Pvc-label': // PVC Cloisonne
+//                $oTerm->field_logo_process['und'][] = ['tid' => '29'];
+//                break;
+//            case 'Zamac':
+//            case 'Brass':
+//            case 'Iron':
+//            case 'Offset':
+//                $oTerm->field_logo_process['und'][] = ['tid' => '27'];
+//                break;
+//        }
+//    }
     
     /*
     // DOCUMENT CENTER

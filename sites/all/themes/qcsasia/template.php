@@ -318,3 +318,28 @@ function qcsasia_preprocess_html(&$vars) {
             break;
     }
 }
+
+function displayOption($aImageOption) { ?>
+    <div class="col-md-3">
+        <div class="thumbnail margin-bottom-0">
+            <img src="<?= file_create_url($aImageOption['uri']) ?>" alt="" title="" />
+        </div>
+        <div class="subtitle-pic"><?= str_replace('.jpg', '', $aImageOption['filename']) ?></div>
+    </div><?php
+}
+
+function displayLogoProcess($sIdLogoProcess, $term, $iPosition) {
+    $oLogoProcess = taxonomy_term_load($sIdLogoProcess); ?>
+    <div class="col-md-3 thumbnail margin-top-20">
+        <img src="<?= file_create_url($term->field_image_logo_process['und'][$iPosition]['uri']) ?>" alt="" title="" />
+    </div>
+    <div class="col-md-9">
+        <h3 class=""><?= $oLogoProcess->name ?></h3>
+        <div class="col-md-7">
+            <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>
+        </div>
+        <div class="col-md-5">
+            <?= $oLogoProcess->field_youtube_video['und'][0]['value'] ?>
+        </div>
+    </div><?php
+} 

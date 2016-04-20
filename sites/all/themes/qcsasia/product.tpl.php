@@ -1,63 +1,72 @@
-<?php var_dump($term);      ?>
 <div class="product-page">
     <div class="col-md-3 main-picture-block margin-top-20">
-        <div class="thumbnail thumb margin-bottom-10">
-            <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-main.jpg") ?>" title="" alt="" /></div>
-            <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-rc.jpg") ?>" title="" alt="" /></div>
-            <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-fc.jpg") ?>" title="" alt="" /></div>
-            <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-main.jpg") ?>" title="" alt="" /></div>
+        <div class="thumbnail thumb margin-bottom-10 event-enlarge"><?php 
+            foreach ($term->field_main_photo['und'] as $aFieldMainPhoto) { ?>
+                <div><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php
+            }
+            if ($term->field_photo_function) { ?>
+                <div><img src="<?= file_create_url($term->field_photo_function['und'][0]['uri']) ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php 
+            } ?>
         </div>
         <div class="padding-left-30 padding-right-30">
-            <div class="thumbnails">
-                <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-main.jpg") ?>" title="" alt="" /></div>
-                <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-rc.jpg") ?>" title="" alt="" /></div>
-                <div><img src="<?= url(path_to_theme() . "/images/products/pkm/main/pkm-fc.jpg") ?>" title="" alt="" /></div>
-                <div><span class="glyphicon glyphicon-play-circle font-size-65 play-video" ></span></div>
+            <div class="thumbnails"><?php 
+                foreach ($term->field_main_photo['und'] as $aFieldMainPhoto) { ?>
+                    <div><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" title="" alt="" /></div><?php
+                }
+                if ($term->field_photo_function) { ?>
+                    <div><img src="<?= file_create_url($term->field_photo_function['und'][0]['uri']) ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php 
+                }
+                if ($term->field_youtube_video) { ?>
+                    <div><span class="glyphicon glyphicon-play-circle font-size-65 play-video" ></span></div><?php
+                } ?>
             </div>
         </div>
-        <div class="enlarge"><span class="glyphicon glyphicon-zoom-in"></span></div>
+        <div class="enlarge event-enlarge"><span class="glyphicon glyphicon-zoom-in"></span></div>
     </div>
     <div class="col-md-9">
-        <h2><?= $term_name ?></h2>
+        <h2><?= $term->field_product_name['und'][0]['value']." ".$term->field_product_ref['und'][0]['value'] ?></h2>
         <div class="panel panel-default">
             <!-- Table -->
             <table class="table">
                 <tbody class="border-none">
                     <tr>
                         <td class="border-right cell-key">Description</td>
-                        <td colspan="5">
-                            Plastic keychain that with an additional 
-                            magnet, works as a key hanger. Back home or at the 
-                            office, you can hang your keys on any metallic surface.
-                            Cheap and easy to custom with a lot of option. Plastic 
-                            (PP) material. Recessed (#RC205) front side & top side.
-                        </td>
+                        <td colspan="5"><?= $term->field_description['und'][0]['value'] ?></td>
+                    </tr>
+                    <tr>
+                        <td class="border-right cell-key">Technical info</td>
+                        <td colspan="5"><?= $term->field_technical_info['und'][0]['value'] ?></td>
                     </tr>
                     <tr>
                         <td class="border-right cell-key">Attachement</td>
-                        <td colspan="5">iron stamping nickel plated 25 mm spilt ring (#SR25).</td>
+                        <td colspan="5"><?= $term->field_attachement['und'][0]['value'] ?></td>
                     </tr>
                     <tr>
                         <td class="border-right cell-key">Packaging</td>
-                        <td colspan="5">31g/pc, 400pcs/0.014cbm/12.4kg/12.9kg</td>
+                        <td colspan="5"><?= $term->field_packaging['und'][0]['value'] ?></td>
                     </tr>
                     <tr>
                         <td class="border-right cell-key">Logo size</td>
-                        <td>Ø 20 mm</td>
+                        <td><?= $term->field_logo_size['und'][0]['value'] ?></td>
                         <td class="border-left border-right cell-key">Item size</td>
-                        <td>Ø 22*6 mm</td>
-                        <td class="border-left border-right cell-key">Patent</td>
-                        <td colspan="5">CN652880</td>
+                        <td><?= $term->field_item_size['und'][0]['value'] ?></td><?php
+                        if ($term->field_patent) { ?>
+                            <td class="border-left border-right cell-key">Patent</td>
+                            <td colspan="5"><?= $term->field_patent['und'][0]['value'] ?></td><?php
+                        } ?>
                     </tr>
                     <tr>
                         <td class="border-right cell-key">Colors available</td>
-                        <td colspan="5">
-                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/03-pms287c.png") ?>" alt="" title="" />
-                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/05-pmsblack.png") ?>" alt="" title="" />
-                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/06-pmsgreenc.png") ?>" alt="" title="" />
-                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/07-pms1.png") ?>" alt="" title="" />
-                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/10-pms116c.png") ?>" alt="" title="" />
-                            <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/11-pms032c.png") ?>" alt="" title="" />
+                        <td colspan="5"><?php
+                        if ($term->field_colors) {
+                            foreach ($term->field_colors['und'] as $value) {
+                                $sImageColor = taxonomy_term_load($value['tid'])->name.'.png'; ?>
+                                <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/$sImageColor") ?>" alt="" title="" /><?php
+                            }
+                        }
+                        if ($term->field_display_image_finishes['und'][0]['value']) { ?>
+                                <img src="<?= url(path_to_theme() . "/images/colors/finishes.jpg") ?>" alt="" title="" /><?php
+                        } ?>
                         </td>
                     </tr>
                 </tbody>
@@ -68,126 +77,41 @@
         <nav class="navbar navbar-default margin-bottom-0">
             <div class=" navbar-collapse padding-0 tabs" id="navbar-collapse-menu-tab">
                 <ul class="nav navbar-nav text-center">
-                    <li class="border-right active"><a class="tab" data-id-tab="1">Logo process</a></li>
+                    <li class="border-right "><a class="tab" data-id-tab="1">Logo process</a></li>
                     <li><a class="border-right tab" data-id-tab="2">Options</a></li>
                     <li><a class="border-right tab" data-id-tab="3">Layout maker</a></li>
-                    <li><a class="tab" data-id-tab="4">Document center</a></li>
+                    <li class="active"><a class="tab" data-id-tab="4">Document center</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
-        <div class="tab-block tab-block-1 block-logo border border-top-0  block-active">
-            <div class="col-md-12">
-                <div class="col-md-3 thumbnail margin-top-20">
-                    <img src="<?= url(path_to_theme() . "/images/products/pkm/options/double-side-doming.jpg") ?>" alt="" title="" />
-                </div>
-                <div class="col-md-9">
-                    <h3 class="">Doming</h3>
-                    <div class="col-md-7">
-                        <div>
-                            <span class="glyphicon glyphicon-plus-sign color-green"></span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
-                        <div>
-                            <span class="glyphicon glyphicon-plus-sign color-green"></span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
-                        <div>
-                            <span class="glyphicon glyphicon-minus-sign color-red"></span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
-                        <div>
-                            <span class="glyphicon glyphicon-picture"></span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
-                        <div>
-                            <span class="icomoon icomoon-truck"></span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
-                        <div>
-                            <span class="icomoon icomoon-box">
-                                <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
-                            </span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
+        <div class="tab-block tab-block-1 block-logo border border-top-0  "><?php
+            if ($term->field_logo_process) { ?>
+                <div class="col-md-12"><?php
+                    displayLogoProcess($term->field_logo_process['und'][0]['tid'], $term, 0); ?>
+                </div><?php
+                if (isset($term->field_logo_process['und'][1])) { ?>
+                    <div class="col-md-12 hidden-text-area"><?php
+                        $iPosition = 1;
+                        foreach (array_slice($term->field_logo_process['und'], 1) as $aLogoProcess) { ?>
+                        <div class="col-md-12 padding-0"><?php
+                            displayLogoProcess($aLogoProcess['tid'], $term, $iPosition);
+                            $iPosition++; ?>
+                        </div><?php
+                        } ?>
                     </div>
-                    <div class="col-md-5">
-                        <iframe width="100%" src="https://www.youtube.com/embed/30wgizEF4sQ?list=UUXc7QDb4CJhheXh_D-ywIqg&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    <div class="col-md-12 padding-0">
+                        <div class="btn-show-hide-text-area"><span class="glyphicon glyphicon-menu-down"></span> More logo processes <span class="glyphicon glyphicon-menu-down"></span></div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-12 hidden-text-area">
-                <div class="col-md-3 thumbnail margin-top-20">
-                    <img src="<?= url(path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg") ?>" alt="" title="" />
-                </div>
-                <div class="col-md-9">
-                    <h3 class="">LR: Laser engraving</h3>
-                    <div class="col-md-7">
-                        <div>
-                            <span class="glyphicon glyphicon-plus-sign color-green"></span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
-                        <div>
-                            <span class="glyphicon glyphicon-plus-sign color-green"></span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
-                        <div>
-                            <span class="glyphicon glyphicon-plus-sign color-green"></span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
-                        <div>
-                            <span class="glyphicon glyphicon-minus-sign color-red"></span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
-                        <div>
-                            <span class="glyphicon glyphicon-picture"></span>
-                            Curabitur volutpat ligula vestibulum scelerisque pharetra. 
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <iframe width="100%" src="https://www.youtube.com/embed/hC5-UQzFM-U?list=UUXc7QDb4CJhheXh_D-ywIqg&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-md-12 padding-0">
-                <div class="btn-show-hide-text-area"><span class="glyphicon glyphicon-menu-down"></span> More logo processes <span class="glyphicon glyphicon-menu-down"></span></div>
-            </div>
-            <div class="clearfix"></div>
+                    <div class="clearfix"></div><?php
+                }
+            } ?>
         </div>
-        <div class="tab-block tab-block-2 border border-top-0 padding-top-10 padding-bottom-10">
-            <div class="col-md-3">
-                <a href="#">
-                    <div class="thumbnail margin-bottom-0">
-                        <img src="<?= url(path_to_theme() . "/images/products/pkm/options/screen-cleaner.jpg") ?>" alt="" title="" />
-                    </div>
-                    <div class="subtitle-pic">2ODD#-Double side doming</div>
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a href="#">
-                    <div class="thumbnail margin-bottom-0">
-                        <img src="<?= url(path_to_theme() . "/images/products/pkm/options/magnet.jpg") ?>" alt="" title="" />
-                    </div>
-                    <div class="subtitle-pic">MG12# Ø12mm Magnet</div>
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a href="#">
-                    <div class="thumbnail margin-bottom-0">
-                        <img src="<?= url(path_to_theme() . "/images/products/pkm/options/double-side-doming.jpg") ?>" alt="" title="" />
-                    </div>
-                    <div class="subtitle-pic">SC205# Screen cleaner</div>
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a href="#">
-                    <div class="thumbnail margin-bottom-0">
-                        <img src="<?= url(path_to_theme() . "/images/products/pkm/options/double-side-recess.jpg") ?>" alt="" title="" />
-                    </div>
-                    <div class="subtitle-pic">2RC# Double side recess</div>
-                </a>
-            </div>
-
+        <div class="tab-block tab-block-2 border border-top-0 padding-top-10 padding-bottom-10"><?php
+            if (field_image_option) {
+                foreach ($term->field_image_option['und'] as $aImageOption) {
+                    displayOption($aImageOption);
+                } 
+            } ?>
             <div class="clearfix"></div>
         </div>
         <div class="tab-block tab-block-3 border border-top-0 padding-20">
@@ -212,7 +136,7 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="tab-block tab-block-4 border border-top-0 padding-20 document-center padding-top-20">
+        <div class="tab-block tab-block-4 border border-top-0 padding-20 document-center padding-top-20 block-active">
             <div class="col-md-6 border-right">
                 <div class="list-title" data-id-doc="1"><span class="glyphicon glyphicon-picture"></span> Pictures high definition</div>
                 <ul class="list-doc">
@@ -298,7 +222,7 @@
         $('.tab-block').removeClass('block-active');
         $('.tab-block-' + $(this).data('id-tab')).addClass('block-active');
     });
-    $('.enlarge').on('click', function () {
+    $('.event-enlarge').on('click', function () {
         $.magnificPopup.open({
             items: [{
                     src: $('<div class="white-popup">' +
@@ -308,18 +232,20 @@
 
                 }]
         });
-    });
-    $('.play-video').on('click', function () {
-        $.magnificPopup.open({
-            items: [{
-                    src: $('<div class="white-popup">' +
-                            '<div><iframe width="420" height="315" src="https://www.youtube.com/embed/ikoAIe9DGas" frameborder="0" allowfullscreen></iframe></div>' +
-                            '</div>'),
-                    type: 'inline'
+    });<?php
+    if ($term->field_youtube_video) { ?>
+        $('.play-video').on('click', function () {
+            $.magnificPopup.open({
+                items: [{
+                        src: $('<div class="white-popup">' +
+                                '<div><?= $term->field_youtube_video['und'][0]['value'] ?></div>' +
+                                '</div>'),
+                        type: 'inline'
 
-                }]
-        });
-    });
+                    }]
+            });
+        }); <?php
+    } ?>
     $('.thumb').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -366,4 +292,4 @@
         ]
     });
 </script>
-
+<?php var_dump($term); ?>
