@@ -77,14 +77,18 @@
         <nav class="navbar navbar-default margin-bottom-0">
             <div class=" navbar-collapse padding-0 tabs" id="navbar-collapse-menu-tab">
                 <ul class="nav navbar-nav text-center">
-                    <li class="border-right "><a class="tab" data-id-tab="1">Logo process</a></li>
-                    <li><a class="border-right tab" data-id-tab="2">Options</a></li>
-                    <li><a class="border-right tab" data-id-tab="3">Layout maker</a></li>
-                    <li class="active"><a class="tab" data-id-tab="4">Document center</a></li>
+                    <li class="border-right active"><a class="tab" data-id-tab="1">Logo process</a></li><?php
+                        if ($term->field_image_option) {?>
+                            <li><a class="border-right tab" data-id-tab="2">Options</a></li><?php
+                        } ?>
+                    <li><a class="border-right tab" data-id-tab="3">Layout maker</a></li><?php
+                        if ($term->field_group_document) { ?>
+                            <li><a class="tab" data-id-tab="4">Document center</a></li><?php
+                        } ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
-        <div class="tab-block tab-block-1 block-logo border border-top-0  "><?php
+        <div class="tab-block tab-block-1 block-logo border border-top-0 block-active"><?php
             if ($term->field_logo_process) { ?>
                 <div class="col-md-12"><?php
                     displayLogoProcess($term->field_logo_process['und'][0]['tid'], $term, 0); ?>
@@ -105,15 +109,16 @@
                     <div class="clearfix"></div><?php
                 }
             } ?>
-        </div>
-        <div class="tab-block tab-block-2 border border-top-0 padding-top-10 padding-bottom-10"><?php
-            if (field_image_option) {
+            <div class="clearfix"></div>
+        </div><?php
+        if ($term->field_image_option) { ?>
+            <div class="tab-block tab-block-2 border border-top-0 padding-top-10 padding-bottom-10"><?php
                 foreach ($term->field_image_option['und'] as $aImageOption) {
                     displayOption($aImageOption);
-                } 
-            } ?>
-            <div class="clearfix"></div>
-        </div>
+                } ?>
+                <div class="clearfix"></div>
+            </div><?php
+        } ?>
         <div class="tab-block tab-block-3 border border-top-0 padding-20">
             <div class="col-md-6 thumbnail margin-bottom-0">
                 <a href="#"><img src="<?= url(path_to_theme() . "/images/template/layout-maker.jpg") ?>" alt="" title="" /></a>
@@ -135,37 +140,13 @@
                 <p class="text-right bold"><a href="#" ><span class="glyphicon glyphicon-edit"></span> Customise your product</a></p>
             </div>
             <div class="clearfix"></div>
-        </div>
-        <div class="tab-block tab-block-4 border border-top-0 padding-20 document-center padding-top-20 block-active">
-            <div class="col-md-6 border-right">
-                <div class="list-title" data-id-doc="1"><span class="glyphicon glyphicon-picture"></span> Pictures high definition</div>
-                <ul class="list-doc">
-                    <li><a href="#"><span class="glyphicon glyphicon-picture"></span> PKM - PHOTO HIGH DEF RC</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-picture"></span> PKM - PHOTO HIGH DEF DOMING</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> PKM - DOWNLOAD ALL PHOTO HIGH DEF</a></li>
-                </ul>
-                <div class="list-title" data-id-doc="1"><span class="glyphicon glyphicon-file"></span> Pricelist</div>
-                <ul class="list-doc">
-                    <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> PKM - PRICELIST 1</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> PKM - PRICELIST 2</a></li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <div class="list-title" data-id-doc="1"><span class="glyphicon glyphicon-file"></span> Digital drawing</div>
-                <ul class="list-doc">
-                    <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> PKM - DIGITAL DRAWING</a></li>
-                </ul>
-                <div class="list-title" data-id-doc="1"><span class="glyphicon glyphicon-file"></span> Patent</div>
-                <ul class="list-doc">
-                    <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> PKM - PATENT</a></li>
-                </ul>
-                <div class="list-title" data-id-doc="1"><span class="glyphicon glyphicon-file"></span> Unbranded flyers</div>
-                <ul class="list-doc">
-                    <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> PKM - UNBRANDED FLYER </a></li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
+        </div><?php
+        if ($term->field_group_document) { ?>
+            <div class="tab-block tab-block-4 border border-top-0 padding-20 document-center padding-top-20"><?php
+                 displayDocumentCenter($term); ?>
+                <div class="clearfix"></div>
+            </div><?php
+        } ?>
     </div>
     <div class="col-md-12 margin-top-20 ymal">
         <h3 class="margin-0">You might also like</h3>
@@ -293,3 +274,5 @@
     });
 </script>
 <?php var_dump($term); ?>
+<?php // var_dump(entity_load('field_collection_item', [$term->field_group_document['und'][0]['value']])); ?>
+<?php // var_dump(entity_load('field_collection_item', [array_shift(entity_load('field_collection_item', [$term->field_group_document['und'][0]['value']]))->field_document['und'][0]['value'], array_shift(entity_load('field_collection_item', [$term->field_group_document['und'][0]['value']]))->field_document['und'][1]['value']])); ?>

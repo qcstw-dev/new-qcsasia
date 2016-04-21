@@ -236,7 +236,8 @@ function getProducts($aQueryParameters, $bCount = false) {
         return $aResult['taxonomy_term'];
     }
 }
-function getLineProductThumbnails ($sLineCategoryTid) {
+
+function getLineProductThumbnails($sLineCategoryTid) {
     $aThumbnailsUrl = [];
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
@@ -249,6 +250,7 @@ function getLineProductThumbnails ($sLineCategoryTid) {
     }
     return $aThumbnailsUrl;
 }
+
 function qcsasia_preprocess_page(&$vars) {
     // delete eror message no content for term
     if (isset($vars['page']['content']['system_main']['no_content'])) {
@@ -319,27 +321,68 @@ function qcsasia_preprocess_html(&$vars) {
     }
 }
 
-function displayOption($aImageOption) { ?>
+function displayDocumentCenter($term) {
+    $iCounter = 1;
+    $aIdDocumentsGroupsEntities = [];
+    foreach ($term->field_group_document['und'] as $aGroupDocument) {
+        $aIdDocumentsGroupsEntities[] = $aGroupDocument['value'];
+    }
+    $oFieldDocumentsGroups = entity_load('field_collection_item', $aIdDocumentsGroupsEntities);
+    foreach ($oFieldDocumentsGroups as $oFieldDocumentsGroup) {
+        if (count($term->field_group_document['und']) > 2 && $iCounter == 1) {
+            ?>
+            <div class="col-md-6 border-right"><?php }
+        ?>
+            <div class="list-title" data-id-doc="1"><span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocumentsGroup->field_group_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'file') ?>"></span> <?= $oFieldDocumentsGroup->field_group_document_title['und'][0]['value'] ?></div><?php
+            $aIdDocumentsEntities = [];
+            foreach ($oFieldDocumentsGroup->field_document['und'] as $aDocument) {
+                $aIdDocumentsEntities[] = $aDocument['value'];
+            }
+            $oFieldDocuments = entity_load('field_collection_item', $aIdDocumentsEntities);
+            if ($oFieldDocuments) {
+                ?>
+                <ul class="list-doc"><?php foreach ($oFieldDocuments as $oFieldDocument) { ?>
+                        <li><a target="blank" href="<?= $oFieldDocument->field_document_link['und'][0]['value'] ?>"><span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocument->field_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'download-alt') ?>"></span> <?= $oFieldDocument->field_document_title['und'][0]['value'] ?></a></li><?php }
+                ?>
+                </ul><?php
+            }
+            if ($iCounter == 2) {
+                ?>
+            </div>
+            <div class="col-md-6"><?php
+        }
+        if (count($term->field_group_document['und']) == $iCounter) {
+            ?>
+            </div><?php
+        }
+        $iCounter++;
+    }
+}
+
+function displayOption($aImageOption) {
+    $aImageOptionEntity = array_shift(entity_load('field_collection_item', [$aImageOption['value']]));
+    ?>
     <div class="col-md-3">
         <div class="thumbnail margin-bottom-0">
-            <img src="<?= file_create_url($aImageOption['uri']) ?>" alt="" title="" />
+            <img src="<?= file_create_url($aImageOptionEntity->field_image_option_img['und'][0]['uri']) ?>" alt="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" title="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" />
         </div>
-        <div class="subtitle-pic"><?= str_replace('.jpg', '', $aImageOption['filename']) ?></div>
+        <div class="subtitle-pic"><?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?></div>
     </div><?php
 }
 
 function displayLogoProcess($sIdLogoProcess, $term, $iPosition) {
-    $oLogoProcess = taxonomy_term_load($sIdLogoProcess); ?>
+    $oLogoProcess = taxonomy_term_load($sIdLogoProcess);
+    ?>
     <div class="col-md-3 thumbnail margin-top-20">
         <img src="<?= file_create_url($term->field_image_logo_process['und'][$iPosition]['uri']) ?>" alt="" title="" />
     </div>
     <div class="col-md-9">
         <h3 class=""><?= $oLogoProcess->name ?></h3>
         <div class="col-md-7">
-            <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>
+    <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>
         </div>
         <div class="col-md-5">
-            <?= $oLogoProcess->field_youtube_video['und'][0]['value'] ?>
+    <?= $oLogoProcess->field_youtube_video['und'][0]['value'] ?>
         </div>
     </div><?php
-} 
+}
