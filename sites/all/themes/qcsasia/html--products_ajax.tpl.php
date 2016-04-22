@@ -26,11 +26,8 @@ if ($aProducts) {
         }
     }
     parse_str($_SERVER['QUERY_STRING'], $aQuery);
-    var_dump($aQuery);
     unset($aQuery['category']);
     $sQueryNoCategory = http_build_query($aQuery);
-    var_dump($aQuery);
-    var_dump($sQueryNoCategory);
     ?>
     <script>
         $('.block-category').on('click', function () {
