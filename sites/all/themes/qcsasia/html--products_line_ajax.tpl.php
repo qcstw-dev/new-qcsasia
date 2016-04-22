@@ -4,7 +4,7 @@
         <div class="col-md-12 block-line-product padding-0 padding-bottom-10 padding-top-10 border-bottom">
             <a href="<?= url('taxonomy/term/' . $oProduct->tid) ?>" title="<?= $oProductLine->field_product_name['und'][0]['value'] ?>">
                 <div class="col-md-3 thumbnail margin-0">
-                    <img src="<?= file_create_url($oProductLine->field_thumbnail['und'][0]['uri']) ?>" alt="" title="" />
+                    <img src="<?= file_create_url($oProductLine->field_main_photo['und'][0]['uri']) ?>" alt="" title="" />
                 </div>
                 <div class="col-md-9">
                     <div class="title-product-ref"><?= $oProductLine->field_product_ref['und'][0]['value'] ?></div>

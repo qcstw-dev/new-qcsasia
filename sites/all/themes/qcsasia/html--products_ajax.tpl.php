@@ -59,9 +59,11 @@ function displayLineBlock($oCategory, $aLineProducts) {
     ?>
     <div class = "block-product block-category col-md-3" data-reference="<?= $oCategory->field_reference['und'][0]['value'] ?>">
         <div class = "thumbnail">
-            <div class="col-md-12 padding-0 products-thumbnails"><?php foreach ($oCategory->field_category_thumbnail['und'] as $aThumbnail) { ?>
-                    <img class="col-md-6 padding-0" src = "<?= file_create_url($aThumbnail['uri']) ?>" alt = "" title = "" /><?php }
-    ?>
+            <div class="col-md-12 padding-0 products-thumbnails"><?php 
+                foreach ($oCategory->field_category_thumbnail['und'] as $aThumbnail) { ?>
+                    <img class="col-md-6 padding-0" src = "<?= file_create_url($aThumbnail['uri']) ?>" alt = "" title = "" /><?php 
+                }?>
+            <div class="clearfix"></div>
             </div>
             <div class = "ref-product"><?= ($sRef ? $sRef . ' Line' : 'Product line') ?></div>
             <div class = "title-product"><?= $sName ?></div>
@@ -76,7 +78,7 @@ function displayProductBlock($oProduct) {
     <div class = "block-product col-md-3">
         <div class = "thumbnail">
             <a href = "<?= url('taxonomy/term/' . $oProduct->tid) ?>" title = "">
-                <img src = "<?= file_create_url($oProduct->field_thumbnail['und'][0]['uri']) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
+                <img src = "<?= file_create_url(( $oProduct->field_image_logo_process['und'][0]['uri'] ? : $oProduct->field_main_photo['und'][0]['uri'])) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
                 <div class = "ref-product"><?= ($sRef ? : '') ?></div>
                 <div class = "title-product"><?= $sName ?></div>
             </a>

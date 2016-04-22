@@ -22,11 +22,16 @@ $(function () {
     $('.carousel-category').slick({
         infinite: true,
         slidesToShow: 4,
-        slidesToScroll: 1
+        slidesToScroll: 4
     });
     $('.carousel-function').slick({
         infinite: true,
         slidesToShow: 4,
-        slidesToScroll: 1
+        slidesToScroll: 4
+    });
+    $('.carousel-logo-process').slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4
     });
 });

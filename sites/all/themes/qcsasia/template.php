@@ -200,7 +200,8 @@ function getProducts($aQueryParameters, $bCount = false) {
                     $oQuery->fieldCondition('field_cheap_item', 'value', '1');
                     break;
                 case 'patented':
-                    $oQuery->fieldCondition('field_patented_item', 'value', '1');
+                    $oQuery->fieldCondition('field_patent', 'value', '', '<>');
+//                    $oQuery->fieldCondition('field_patented_item', 'value', '1');
                     break;
                 case 'rush':
                     $oQuery->fieldCondition('field_rush', 'value', '1');

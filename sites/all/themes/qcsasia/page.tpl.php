@@ -62,7 +62,7 @@
             </div><?php endif;
             ?>
     </div>
-    <div id="content" class="col-xs-12 padding-0">
+    <div id="content" class="row">
         <?php if ($breadcrumb): ?>
             <ol class="breadcrumb hidden-print margin-top-10 margin-bottom-10"><?php print $breadcrumb; ?></ol>
         <?php endif; ?>
