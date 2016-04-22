@@ -248,6 +248,3 @@
         ]
     });
 </script>
-<?php var_dump($term); ?>
-<?php // var_dump(entity_load('field_collection_item', [$term->field_group_document['und'][0]['value']])); ?>
-<?php // var_dump(entity_load('field_collection_item', [array_shift(entity_load('field_collection_item', [$term->field_group_document['und'][0]['value']]))->field_document['und'][0]['value'], array_shift(entity_load('field_collection_item', [$term->field_group_document['und'][0]['value']]))->field_document['und'][1]['value']])); ?>
