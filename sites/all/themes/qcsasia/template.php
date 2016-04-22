@@ -157,7 +157,7 @@ function getPotentialNumberForFilters() {
                     if (count($aFiltersPotential[$sKey]) > 1) {
                         $aFiltersPotential[$sKey][] = $sValue;
                     } else {
-                        $aFiltersPotential[] = $sValue;
+                        $aFiltersPotential[$sKey] = $sValue;
                     }
                     $aFilterNumProducts[$sKey][$sValue] = getProducts($aFiltersPotential, true);
                 }
