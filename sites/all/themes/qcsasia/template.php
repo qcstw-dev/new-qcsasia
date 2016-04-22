@@ -1,5 +1,4 @@
 <?php
-
 function retrieveCategories($iStart = null, $iLength = null) {
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
@@ -48,8 +47,7 @@ function qcsasia_links__system_menu_top($variables) {
 }
 
 function qcsasia_links__system_main_menu($variables) {
-    if ($variables['links']) {
-        ?>
+    if ($variables['links']) { ?>
         <nav class="navbar navbar-default">
             <div class="container-fluid padding-sm-0">
                 <div class="navbar-header">
@@ -69,18 +67,14 @@ function qcsasia_links__system_main_menu($variables) {
                                 </a><?php if ($link['below']) { ?>
                                     <ul class="dropdown-menu hidden-xs"><?php
                                         foreach ($link['below'] as $below) {
-                                            if (isset($below['link'])) {
-                                                ?>
+                                            if (isset($below['link'])) { ?>
                                                 <li>
                                                     <a href="<?= url($below['link']['link_path']) . (isset($below['link']['localized_options']['query']) ? "?" . drupal_http_build_query($below['link']['localized_options']['query']) : '') ?>"><?= $below['link']['link_title'] ?></a>
                                                 </li><?php
                                             }
-                                        }
-                                        ?>
-                                    </ul><?php }
-                                    ?>
-                            </li><?php }
-                                ?>
+                                        } ?>
+                                    </ul><?php } ?>
+                            </li><?php } ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right search-form-content">
                         <li><form><input class="margin-right-md-10" type="text" /><button class="btn btn-primary" type="submit">Search</button></form></li>
@@ -101,7 +95,13 @@ function qcsasia_breadcrumb($variables) {
             switch ($oTerm->vocabulary_machine_name) {
                 case 'product':
                     $oCategory = taxonomy_term_load($oTerm->field_category['und'][0]['tid']);
-                    $breadcrumb[] = '<a href="' . url('taxonomy/term/' . $oCategory->tid) . '">' . $oCategory->name . '</a>';
+                    $aCategoryParents = taxonomy_get_parents($oCategory->tid);
+                    if ($aCategoryParents) {
+                        foreach ($aCategoryParents as $oCategoryParent) {
+                            $breadcrumb[] = '<a href="' . url('search', ['query' => ['category' => $oCategoryParent->field_reference['und'][0]['value']]]) . '">' . $oCategoryParent->field_category_title['und'][0]['value']. '</a>';
+                        }
+                    }
+                    $breadcrumb[] = '<a href="' . url('search', ['query' => ['category' => $oCategory->field_reference['und'][0]['value']]]) . '">' . $oCategory->field_category_title['und'][0]['value'] .' '. $oCategory->field_category_reference['und'][0]['value'] . '</a>';
                     break;
                 case 'category':
                     $breadcrumb[] = '<a href="' . url('products') . '">Promotional products</a>';
@@ -154,7 +154,11 @@ function getPotentialNumberForFilters() {
             foreach ($mValue as $sValue) {
                 $aFiltersPotential = $aCurrentFilters;
                 if (!isset($aCurrentFilters[$sKey]) || !in_array($sValue, $aCurrentFilters[$sKey])) {
-                    $aFiltersPotential[$sKey][] = $sValue;
+                    if (count($aFiltersPotential[$sKey]) > 1) {
+                        $aFiltersPotential[$sKey][] = $sValue;
+                    } else {
+                        $aFiltersPotential[] = $sValue;
+                    }
                     $aFilterNumProducts[$sKey][$sValue] = getProducts($aFiltersPotential, true);
                 }
             }
