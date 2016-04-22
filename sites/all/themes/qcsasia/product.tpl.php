@@ -147,54 +147,29 @@
                 <div class="clearfix"></div>
             </div><?php
         } ?>
-    </div>
-    <div class="col-md-12 margin-top-20 ymal">
-        <h3 class="margin-0">You might also like</h3>
-    </div>
-    <div class="col-md-12">
-        <div class="col-md-12 border padding-top-20 padding-0">
-            <div class="padding-left-50 padding-right-50">
-                <div class="big-slick ymal-pics">
-                    <div>
-                        <a href="#">
-                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/phm.jpg") ?>" title="" alt="" />
-                            <div class="subtitle-pic">Plastic key hanger #PHM203</div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/qat.jpg") ?>" title="" alt="" />
-                            <div class="subtitle-pic">Pocket plastic ashtray/pillbox keychain #QAT3</div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/psr.jpg") ?>" title="" alt="" />
-                            <div class="subtitle-pic">Plastic loop keychain #PSR205</div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/pabh.jpg") ?>" title="" alt="" />
-                            <div class="subtitle-pic">Bag hanger plastic keychain #PABH2</div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/pkp.jpg") ?>" title="" alt="" />
-                            <div class="subtitle-pic">Square plastic keychain with doming #PKP102</div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <img src="<?= url(path_to_theme() . "/images/products/pkm/ymal/pss.jpg") ?>" title="" alt="" />
-                            <div class="subtitle-pic">Plastic loop keychain #PSS205</div>
-                        </a>
+    </div><?php
+    if ($term->field_you_might_like) { ?>
+        <div class="col-md-12 margin-top-20 ymal">
+            <h3 class="margin-0">You might also like</h3>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-12 border padding-top-20 padding-0">
+                <div class="padding-left-50 padding-right-50">
+                    <div class="big-slick ymal-pics"><?php
+                            foreach ($term->field_you_might_like['und'] as $aYouMightLike) { 
+                                $oYouMightLikeEntity = taxonomy_term_load($aYouMightLike['tid']); ?>
+                                <div>
+                                    <a href="<?= url('taxonomy/term/' . $oYouMightLikeEntity->tid) ?>">
+                                        <img src="<?= file_create_url($oYouMightLikeEntity->field_main_photo['und'][0]['uri']) ?>" title="" alt="" />
+                                        <div class="subtitle-pic"><?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?></div>
+                                    </a>
+                                </div><?php
+                            } ?>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div><?php
+    } ?>
 </div>
 <script>
     $('.tab').on('click', function () {
