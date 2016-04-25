@@ -67,13 +67,12 @@
             <ol class="breadcrumb hidden-print margin-top-10 margin-bottom-10"><?php print $breadcrumb; ?></ol>
         <?php endif; ?>
         <div class="col-xs-12 padding-0"><?php
-//                  var_dump($page['content']['system_main']['nodes'][2]['#node']->metatags);
             print render($page['content']);
             ?>
         </div>
     </div>
     <?php if ($page['footer']): ?>
-        <div id="footer" class="col-xs-12">
+        <div id="footer" class="col-xs-12 padding-0">
             <?php print render($page['footer']); ?>
         </div>
     <?php endif; ?>
