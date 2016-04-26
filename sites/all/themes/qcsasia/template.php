@@ -154,7 +154,7 @@ function getPotentialNumberForFilters() {
             foreach ($mValue as $sValue) {
                 $aFiltersPotential = $aCurrentFilters;
                 if (!isset($aCurrentFilters[$sKey]) || !in_array($sValue, $aCurrentFilters[$sKey])) {
-                    if (count($aFiltersPotential[$sKey]) > 1) {
+                    if (isset($aFiltersPotential[$sKey]) && count($aFiltersPotential[$sKey]) > 1) {
                         $aFiltersPotential[$sKey][] = $sValue;
                     } else {
                         $aFiltersPotential[$sKey] = $sValue;
