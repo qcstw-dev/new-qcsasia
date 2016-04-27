@@ -33,7 +33,11 @@ $(function () {
         slidesToShow: 4,
         slidesToScroll: 4
     });
-    
+    $('.gallery-container').magnificPopup({
+            delegate: 'a', // child items selector, by clicking on it popup will open
+            type: 'image',
+            gallery: {enabled: true}
+        });
     $('.filter-group-title').on('click', function () {
         if ($(this).find('span').hasClass('glyphicon-chevron-right')) {
             $(this).find('span').removeClass('glyphicon-chevron-right');

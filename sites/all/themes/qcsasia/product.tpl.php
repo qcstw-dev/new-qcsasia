@@ -32,15 +32,19 @@
                     <tr>
                         <td class="border-right cell-key">Description</td>
                         <td colspan="5"><?= $term->field_description['und'][0]['value'] ?></td>
-                    </tr>
-                    <tr>
-                        <td class="border-right cell-key">Technical info</td>
-                        <td colspan="5"><?= $term->field_technical_info['und'][0]['value'] ?></td>
-                    </tr>
-                    <tr>
-                        <td class="border-right cell-key">Attachement</td>
-                        <td colspan="5"><?= $term->field_attachement['und'][0]['value'] ?></td>
-                    </tr>
+                    </tr><?php
+//                    if ($term->field_technical_info) { ?>
+                        <tr>
+                            <td class="border-right cell-key">Technical info</td>
+                            <td colspan="5"><?= $term->field_technical_info['und'][0]['value'] ?></td>
+                        </tr><?php
+//                    }
+//                    if ($term->field_attachement) { ?>
+                        <tr>
+                            <td class="border-right cell-key">Attachement</td>
+                            <td colspan="5"><?= $term->field_attachement['und'][0]['value'] ?></td>
+                        </tr><?php
+//                    } ?>
                     <tr>
                         <td class="border-right cell-key">Packaging</td>
                         <td colspan="5"><?= $term->field_packaging['und'][0]['value'] ?></td>
@@ -54,21 +58,23 @@
                             <td class="border-left border-right cell-key">Patent</td>
                             <td colspan="5"><?= $term->field_patent['und'][0]['value'] ?></td><?php
                         } ?>
-                    </tr>
-                    <tr>
-                        <td class="border-right cell-key">Colors available</td>
-                        <td colspan="5"><?php
-                        if ($term->field_colors) {
-                            foreach ($term->field_colors['und'] as $value) {
-                                $sImageColor = taxonomy_term_load($value['tid'])->name.'.png'; ?>
-                                <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/$sImageColor") ?>" alt="" title="" /><?php
+                    </tr><?php
+                    if ($term->field_colors) { ?>
+                        <tr>
+                            <td class="border-right cell-key">Colors available</td>
+                            <td colspan="5"><?php
+                            if ($term->field_colors) {
+                                foreach ($term->field_colors['und'] as $value) {
+                                    $sImageColor = taxonomy_term_load($value['tid'])->name.'.png'; ?>
+                                    <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/$sImageColor") ?>" alt="" title="" /><?php
+                                }
                             }
-                        }
-                        if ($term->field_display_image_finishes['und'][0]['value']) { ?>
-                                <img src="<?= url(path_to_theme() . "/images/colors/finishes.jpg") ?>" alt="" title="" /><?php
-                        } ?>
-                        </td>
-                    </tr>
+                            if ($term->field_display_image_finishes['und'][0]['value']) { ?>
+                                    <img src="<?= url(path_to_theme() . "/images/colors/finishes.jpg") ?>" alt="" title="" /><?php
+                            } ?>
+                            </td>
+                        </tr><?php
+                    } ?>
                 </tbody>
             </table>
         </div>

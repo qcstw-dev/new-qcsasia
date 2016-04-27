@@ -197,10 +197,10 @@ function getGifts($aQueryParameters) {
         switch (key($aQueryParameters)) {
             case 'theme':
                 // retrieve theme
-                $oTheme = getTermByRef($aQueryParameters['theme'], 'theme');
+                $oTheme = array_shift(getTermByRef($aQueryParameters['theme'], 'theme'));
                 break;
             case 'display':
-                $oDisplay = getTermByRef($aQueryParameters['display'], 'display');
+                $oDisplay = array_shift(getTermByRef($aQueryParameters['display'], 'display'));
                 break;
         }
     }
@@ -385,11 +385,10 @@ function getTermByRef($mReferences, $sType) {
     foreach ($aTermResult['taxonomy_term'] as $oTerm) {
         $aTermsIds[] = $oTerm->tid;
     }
-    if (count($aTermsIds) > 1) {
-        return taxonomy_term_load_multiple($aTermsIds);
-    } else {
-        return taxonomy_term_load(array_shift($aTermsIds));
+    if (count($aTermsIds) == 1) {
+        $aTermsIds = [$aTermsIds[0] => $aTermsIds[0]];
     }
+    return taxonomy_term_load_multiple($aTermsIds);
 }
 
 function qcsasia_preprocess_html(&$vars) {

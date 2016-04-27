@@ -2,7 +2,7 @@
 if ($aProducts) {
     $aLineProducts = [];
     $aUsedCategories = []; ?>
-    <div class="col-md-12 margin-bottom-10"><strong>Products: <?= count($aProducts) ?></strong></div><?php
+    <div class="col-md-12 margin-bottom-10"><strong><?= count($aProducts) ?> Products</strong></div><?php
     $i = 4;
     foreach ($aProducts as $oProduct) {
         if ($i % 4 == 0) {
