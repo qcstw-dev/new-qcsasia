@@ -118,8 +118,12 @@ function saveData($oTerm, $XMLpost) {
 
     $aThemes = (array) $XMLpost->themes;
     
-    foreach ($aThemes['theme'] as $oTheme) {
-        saveTheme($oTheme, $oTerm);
+    if (is_array($aThemes['theme'])) {
+        foreach ($aThemes['theme'] as $oTheme) {
+            saveTheme($oTheme, $oTerm);
+        }
+    } else {
+        saveTheme($aThemes['theme'], $oTerm);
     }
     
     $aDisplays = (array) $XMLpost->displays;
@@ -133,6 +137,7 @@ function saveData($oTerm, $XMLpost) {
 }
 
 function saveDisplay($oDisplay, $oTerm) {
+    field_delete_instance($oDisplay->field_gift_display);
     $sDisplayRef = $oDisplay->display_ref;
     $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_gift_display'));
     switch ($sDisplayRef) {
@@ -158,6 +163,7 @@ function saveDisplay($oDisplay, $oTerm) {
     $field_collection_item->save();
 }
 function saveTheme($oTheme, $oTerm) {
+    field_delete_instance($oTheme->field_gift_theme);
     $sThemeRef = $oTheme->theme_ref;
     $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_gift_theme'));
     switch ($sThemeRef) {

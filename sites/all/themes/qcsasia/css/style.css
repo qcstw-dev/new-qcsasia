@@ -113,6 +113,7 @@ ol, .breadcrumb {
 }
 a {
     color: #38B15D;
+    cursor: pointer;
 }
 .navbar-default {
     border-radius: 0;
@@ -135,6 +136,9 @@ a {
 .visible {
     display: inherit;
     visibility: visible;
+}
+.thumbnail {
+    border-radius: 0;
 }
 /***************** MAIN MENU *************/
 #menu .navbar {
@@ -625,6 +629,7 @@ a {
 }
 /****************** SEARCH PAGE *******************/
 .block-filter {
+    border: none;
     position: absolute;
     width: 280px;
 }
@@ -643,11 +648,13 @@ a {
 .block-filter-group label {
     cursor: pointer;
 }
-.node-products-list .block-product img {
+.node-search-gifts .block-product img,
+.node-search-products .block-product img {
     width: 150px;
     height: 150px;
 }
-.node-products-list .block-category img {
+.node-search-gifts .block-category img,
+.node-search-products .block-category img {
     width: 82px;
     height: 82px;
 }
@@ -655,7 +662,8 @@ a {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 8px 0 rgba(0, 0, 0, 0.19);
     cursor: pointer;
 }
-.node-products-list .block-product .thumbnail {
+.node-search-gifts .block-product .thumbnail,
+.node-search-products .block-product .thumbnail {
     overflow: hidden;
 }
 .block-product {
@@ -685,10 +693,12 @@ a {
     text-decoration: none;
     color: inherit;
 }
-.node-products-list .block-product .subtitle-pic {
+.node-search-gifts .block-product .subtitle-pic,
+.node-search-products .block-product .subtitle-pic {
     border-top: 1px solid #ddd;
 }
-.node-products-list .block-list-products {
+.node-search-gifts .block-list-products,
+.node-search-products .block-list-products {
     margin-left: 280px;
     min-height: 735px;
 }

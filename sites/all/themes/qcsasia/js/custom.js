@@ -1,5 +1,4 @@
 $(function () {
-
     var getUrl = window.location;
     baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + (getUrl.host === 'localhost' ? 'new-qcsasia' : '');
 
@@ -33,5 +32,25 @@ $(function () {
         infinite: true,
         slidesToShow: 4,
         slidesToScroll: 4
+    });
+    
+    $('.filter-group-title').on('click', function () {
+        if ($(this).find('span').hasClass('glyphicon-chevron-right')) {
+            $(this).find('span').removeClass('glyphicon-chevron-right');
+            $(this).find('span').addClass('glyphicon-chevron-down');
+        } else {
+            $(this).find('span').removeClass('glyphicon-chevron-down');
+            $(this).find('span').addClass('glyphicon-chevron-right');
+        }
+        $('.group-' + $(this).data('group-title')).slideToggle();
+    });
+    $(window).scroll(function () {
+        if ($('.block-list-products').length) {
+            if (($(window).scrollTop() - $('.block-list-products').offset().top) > 0) {
+                $('.block-filter').addClass('fixed');
+            } else {
+                $('.block-filter').removeClass('fixed');
+            }
+        }
     });
 });

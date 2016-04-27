@@ -66,7 +66,7 @@ function saveData($oTerm, $XMLpost) {
     $oTerm->field_patent['und'][0]['value'] = (string) $XMLpost->patent;
     $oTerm->field_new_product['und'][0]['value'] = (string) $XMLpost->new;
     $oTerm->field_cheap_item['und'][0]['value'] = (string) $XMLpost->cheap_item;
-    $oTerm->field_program_item['und'][0]['value'] = (string) $XMLpost->program_item;
+    $oTerm->field_rush['und'][0]['value'] = (string) $XMLpost->program_item;
     $oTerm->field_activate_supplier_program['und'][0]['value'] = (string) $XMLpost->activate_supplier_program;
     $oTerm->field_activate_sales_program['und'][0]['value'] = (string) $XMLpost->activate_sales_program;
     

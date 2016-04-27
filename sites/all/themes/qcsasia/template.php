@@ -1,4 +1,5 @@
 <?php
+
 function retrieveCategories($iStart = null, $iLength = null) {
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
@@ -27,10 +28,10 @@ function retrieveProducts($oTerm = null, $iStart = null, $iLength = null) {
     return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
 }
 
-function displayProducts($oTerm = null, $iStart = null, $iLength = null) {
-    $aProducts = retrieveProducts($oTerm, $iStart = null, $iLength = null);
-    include 'products_list.tpl.php';
-}
+//function displayProducts($oTerm = null, $iStart = null, $iLength = null) {
+//    $aProducts = retrieveProducts($oTerm, $iStart = null, $iLength = null);
+//    include 'products_list.tpl.php';
+//}
 
 function qcsasia_links__system_menu_top($variables) {
     if ($variables['links']) {
@@ -47,7 +48,8 @@ function qcsasia_links__system_menu_top($variables) {
 }
 
 function qcsasia_links__system_main_menu($variables) {
-    if ($variables['links']) { ?>
+    if ($variables['links']) {
+        ?>
         <nav class="navbar navbar-default">
             <div class="container-fluid padding-sm-0">
                 <div class="navbar-header">
@@ -67,12 +69,14 @@ function qcsasia_links__system_main_menu($variables) {
                                 </a><?php if ($link['below']) { ?>
                                     <ul class="dropdown-menu hidden-xs"><?php
                                         foreach ($link['below'] as $below) {
-                                            if (isset($below['link'])) { ?>
+                                            if (isset($below['link'])) {
+                                                ?>
                                                 <li>
                                                     <a href="<?= url($below['link']['link_path']) . (isset($below['link']['localized_options']['query']) ? "?" . drupal_http_build_query($below['link']['localized_options']['query']) : '') ?>"><?= $below['link']['link_title'] ?></a>
                                                 </li><?php
                                             }
-                                        } ?>
+                                        }
+                                        ?>
                                     </ul><?php } ?>
                             </li><?php } ?>
                     </ul>
@@ -98,10 +102,10 @@ function qcsasia_breadcrumb($variables) {
                     $aCategoryParents = taxonomy_get_parents($oCategory->tid);
                     if ($aCategoryParents) {
                         foreach ($aCategoryParents as $oCategoryParent) {
-                            $breadcrumb[] = '<a href="' . url('search', ['query' => ['category' => $oCategoryParent->field_reference['und'][0]['value']]]) . '">' . $oCategoryParent->field_category_title['und'][0]['value']. '</a>';
+                            $breadcrumb[] = '<a href="' . url('search', ['query' => ['category' => $oCategoryParent->field_reference['und'][0]['value']]]) . '">' . $oCategoryParent->field_category_title['und'][0]['value'] . '</a>';
                         }
                     }
-                    $breadcrumb[] = '<a href="' . url('search', ['query' => ['category' => $oCategory->field_reference['und'][0]['value']]]) . '">' . $oCategory->field_category_title['und'][0]['value'] .' '. $oCategory->field_category_reference['und'][0]['value'] . '</a>';
+                    $breadcrumb[] = '<a href="' . url('search', ['query' => ['category' => $oCategory->field_reference['und'][0]['value']]]) . '">' . $oCategory->field_category_title['und'][0]['value'] . ' ' . $oCategory->field_category_reference['und'][0]['value'] . '</a>';
                     break;
                 case 'category':
                     $breadcrumb[] = '<a href="' . url('products') . '">Promotional products</a>';
@@ -123,13 +127,18 @@ function qcsasia_breadcrumb($variables) {
 
 function qcsasia_preprocess_node(&$vars) {
     switch ($vars['node']->type) {
-        case 'products_list' :
+        case 'search_products' :
             // retrieve products
             $aProducts = getProducts(drupal_get_query_parameters());
             $vars['aProducts'] = taxonomy_term_load_multiple(array_keys($aProducts));
 
             // retrieve potential number for filters
             $vars['aFilterNumProducts'] = getPotentialNumberForFilters();
+            break;
+        case 'search_gifts' :
+            // retrieve gifts
+            $aGifts = getGifts(drupal_get_query_parameters());
+            $vars['aGifts'] = taxonomy_term_load_multiple(array_keys($aGifts));
             break;
     }
 }
@@ -173,6 +182,67 @@ function getPotentialNumberForFilters() {
     return $aFilterNumProducts;
 }
 
+function getGifts($aQueryParameters) {
+    // retrieve gifts
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'gift')
+            ->fieldOrderBy('field_date_gmt', 'value', 'DESC');
+
+    $aResult = $oQuery->execute();
+    $aGifts = $aResult['taxonomy_term'];
+
+    if ($aQueryParameters) {
+        reset($aQueryParameters);
+        switch (key($aQueryParameters)) {
+            case 'theme':
+                // retrieve theme
+                $oTheme = getTermByRef($aQueryParameters['theme'], 'theme');
+                break;
+            case 'display':
+                $oDisplay = getTermByRef($aQueryParameters['display'], 'display');
+                break;
+        }
+    }
+
+    $aGiftToDisplay = [];
+    if (isset($oTheme) || isset($oDisplay)) {
+        if (isset($oTheme)) {
+            foreach ($aGifts as $oGift) {
+                $oGiftEntity = taxonomy_term_load($oGift->tid);
+                $aFieldCollections = [];
+                foreach ($oGiftEntity->field_gift_theme['und'] as $oGiftEntityFieldTheme) {
+                    $aFieldCollections[] = field_collection_item_load($oGiftEntityFieldTheme['value']);
+                }
+                foreach ($aFieldCollections as $aFieldCollection) {
+                    if ($aFieldCollection->field_theme && ($oTheme->tid == $aFieldCollection->field_theme['und'][0]['tid'])) {
+                        $aGiftToDisplay[$oGiftEntity->tid] = $oGiftEntity;
+                        break;
+                    }
+                }
+            }
+        }
+        if (isset($oDisplay)) {
+            foreach ($aGifts as $oGift) {
+                $oGiftEntity = taxonomy_term_load($oGift->tid);
+                $aFieldCollections = [];
+                foreach ($oGiftEntity->field_gift_display['und'] as $oGiftEntityFieldDisplay) {
+                    $aFieldCollections[] = field_collection_item_load($oGiftEntityFieldDisplay['value']);
+                }
+                foreach ($aFieldCollections as $aFieldCollection) {
+                    if ($aFieldCollection->field_display && $oDisplay->tid == $aFieldCollection->field_display['und'][0]['tid']) {
+                        $aGiftToDisplay[$oGiftEntity->tid] = $oGiftEntity;
+                        break;
+                    }
+                }
+            }
+        }
+    } else {
+        $aGiftToDisplay = $aResult['taxonomy_term'];
+    }
+    return $aGiftToDisplay;
+}
+
 function getProducts($aQueryParameters, $bCount = false) {
     // retrieve products
     $oQuery = new EntityFieldQuery();
@@ -201,27 +271,32 @@ function getProducts($aQueryParameters, $bCount = false) {
                     break;
                 case 'patented':
                     $oQuery->fieldCondition('field_patent', 'value', '', '<>');
-//                    $oQuery->fieldCondition('field_patented_item', 'value', '1');
                     break;
                 case 'rush':
                     $oQuery->fieldCondition('field_rush', 'value', '1');
                     break;
                 case 'category':
                     // Rettrieve the category
-                    $aCategories = getTermByRef($mValue, 'category');
+                    $mCategories = getTermByRef($mValue, 'category');
+                    $aCategoriesBis = [];
+                    if (!is_array($mCategories)) {
+                        $aCategoriesBis[] = $mCategories;
+                    } else {
+                        $aCategoriesBis = $mCategories;
+                    }
                     $aChildrenCategories = [];
-                    foreach ($aCategories as $oCategory) {
+                    foreach ($aCategoriesBis as $oCategory) {
                         // retrieve children categories
                         $aChildrenCategories = taxonomy_get_children($oCategory->tid);
                         if ($aChildrenCategories) {
                             foreach ($aChildrenCategories as $oChildrenCategory) {
-                                $aCategories[$oChildrenCategory->tid] = $oChildrenCategory;
+                                $aCategoriesBis[$oChildrenCategory->tid] = $oChildrenCategory;
                             }
                         } else {
-                            $aCategories[$oChildrenCategory->tid] = $oChildrenCategory;
+                            $aCategoriesBis[$oChildrenCategory->tid] = $oChildrenCategory;
                         }
                     }
-                    $oQuery->fieldCondition('field_category', 'tid', array_keys($aCategories));
+                    $oQuery->fieldCondition('field_category', 'tid', array_keys($aCategoriesBis));
                     break;
                 case 'function':
                     $aFunctions = getTermByRef($mValue, 'function');
@@ -310,7 +385,11 @@ function getTermByRef($mReferences, $sType) {
     foreach ($aTermResult['taxonomy_term'] as $oTerm) {
         $aTermsIds[] = $oTerm->tid;
     }
-    return taxonomy_term_load_multiple($aTermsIds);
+    if (count($aTermsIds) > 1) {
+        return taxonomy_term_load_multiple($aTermsIds);
+    } else {
+        return taxonomy_term_load(array_shift($aTermsIds));
+    }
 }
 
 function qcsasia_preprocess_html(&$vars) {
@@ -355,9 +434,9 @@ function displayDocumentCenter($term) {
                 ?>
             </div>
             <div class="col-md-6"><?php
-        }
-        if (count($term->field_group_document['und']) == $iCounter) {
-            ?>
+            }
+            if (count($term->field_group_document['und']) == $iCounter) {
+                ?>
             </div><?php
         }
         $iCounter++;
@@ -384,10 +463,10 @@ function displayLogoProcess($sIdLogoProcess, $term, $iPosition) {
     <div class="col-md-9">
         <h3 class=""><?= $oLogoProcess->name ?></h3>
         <div class="col-md-7">
-    <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>
+            <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>
         </div>
         <div class="col-md-5">
-    <?= $oLogoProcess->field_youtube_video['und'][0]['value'] ?>
+            <?= $oLogoProcess->field_youtube_video['und'][0]['value'] ?>
         </div>
     </div><?php
 }
