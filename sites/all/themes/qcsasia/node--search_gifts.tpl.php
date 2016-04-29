@@ -20,8 +20,8 @@
         </div>
     </div>
     <div class="col-md-9 padding-0 block-list-products">
-        <div class="col-md-12 products_list"><?php if ($aGifts) { ?>
-            <div class="col-md-12 margin-bottom-10"><strong><?= count($aGifts) ?> Gifts</strong></div><?php
+        <div class="col-md-12 products_list"><?php 
+            if ($aGifts) { 
                 $i = 4;
                 foreach ($aGifts as $oGift) {
                     if ($i % 4 == 0) { ?>

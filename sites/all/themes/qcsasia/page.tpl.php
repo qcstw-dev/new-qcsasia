@@ -1,7 +1,7 @@
 <div id="main-content" class="container"><?php if (isset($menu_top) && $menu_top): ?>
     <div id="header" class="row hidden-print">
         <div id="menu-top" class="col-xs-12 padding-0">
-            <div class="btn-group pull-right">
+            <!--<div class="btn-group pull-right">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="flag-icon flag-icon-gb"></span> English <span class="caret"></span>
                 </button>
@@ -11,7 +11,7 @@
                     <li><a href="#"><span class="flag-icon flag-icon-de"></span> German</a></li>
                     <li><a href="#"><span class="flag-icon flag-icon-es"></span> Spanish</a></li>
                 </ul>
-            </div><?php
+            </div>--><?php
                 print theme('links__system_menu_top', array(
                     'links' => menu_tree_all_data('menu-menu-top'),
                     'attributes' => array(
@@ -80,7 +80,7 @@
         </div>
     <?php endif; ?>
     <div class="margin-bottom-20">
-        <div class="footer-logo min-width-15-percent" style="margin-left: 80px;">
+        <div class="footer-logo footer-logo-first min-width-15-percent">
             <img src="<?= base_path() . path_to_theme() . "/images/footer/caefi.png" ?>">
         </div>
 

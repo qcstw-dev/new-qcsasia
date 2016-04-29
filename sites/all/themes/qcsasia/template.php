@@ -34,16 +34,43 @@ function retrieveProducts($oTerm = null, $iStart = null, $iLength = null) {
 //}
 
 function qcsasia_links__system_menu_top($variables) {
-    if ($variables['links']) {
+    if ($variables['links']) { ?>
+        <nav class="navbar navbar-default navbar-top">
+            <div class="container-fluid padding-sm-0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-menu-top" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="navbar-brand visible-xs"></span>
+                </div>
+                <div class="navbar-collapse collapse padding-sm-0" id="navbar-collapse-menu-top" aria-expanded="false">
+                    <ul class="menu-list menu-list"><?php 
+                        foreach ($variables['links'] as $link) { ?>
+                            <li>
+                                <a href="<?= url($link['link']['link_path']) ?>" >
+                                    <?= $link['link']['link_title'] ?>
+                                </a>
+                            </li><?php
+                        } ?>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+            <?php
+        /*
         ?>
-        <ul class="menu-list pull-right"><?php foreach ($variables['links'] as $link) { ?>
+        <ul class="menu-list pull-right"><?php 
+            foreach ($variables['links'] as $link) { ?>
                 <li class="border-left">
                     <a href="<?= url($link['link']['link_path']) ?>" >
                         <?= $link['link']['link_title'] ?>
                     </a>
-                </li><?php }
-                    ?>
-        </ul><?php
+                </li><?php 
+            } ?>
+        </ul><?php */
     }
 }
 
@@ -62,7 +89,8 @@ function qcsasia_links__system_main_menu($variables) {
                     <span class="navbar-brand visible-xs">Menu</span>
                 </div>
                 <div class="navbar-collapse collapse padding-sm-0" id="navbar-collapse-main-menu" aria-expanded="false">
-                    <ul class="nav navbar-nav"><?php foreach ($variables['links'] as $link) { ?>
+                    <ul class="nav navbar-nav"><?php 
+                        foreach ($variables['links'] as $link) { ?>
                             <li class="<?= ($link['below'] ? 'dropdown' : '') ?><?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>">
                                 <a <?= ($link['below'] ? 'role="button" aria-haspopup="true" aria-expanded="false"' : '') ?> href="<?= url($link['link']['link_path']) ?>" >
                                     <?= $link['link']['link_title'] ?>
