@@ -1,5 +1,5 @@
 <div class="product-page">
-    <div class="col-md-3 main-picture-block margin-top-20">
+    <div class="col-sm-3 main-picture-block margin-top-20">
         <div class="thumbnail thumb margin-bottom-10 event-enlarge"><?php 
             foreach ($term->field_main_photo['und'] as $aFieldMainPhoto) { ?>
                 <div><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php
@@ -23,11 +23,11 @@
         </div>
         <div class="enlarge event-enlarge"><span class="glyphicon glyphicon-zoom-in"></span></div>
     </div>
-    <div class="col-md-9">
+    <div class="col-sm-9">
         <h2><?= $term->field_product_name['und'][0]['value']." ".$term->field_product_ref['und'][0]['value'] ?></h2>
         <div class="panel panel-default">
             <!-- Table -->
-            <table class="table">
+            <table class="table table-product">
                 <tbody class="border-none">
                     <tr>
                         <td class="border-right cell-key">Description</td>
@@ -79,6 +79,7 @@
             </table>
         </div>
     </div>
+    <div class="clearfix"></div>
     <div class="col-md-12 block-tabs">
         <nav class="navbar navbar-default margin-bottom-0">
             <div class=" navbar-collapse padding-0 tabs" id="navbar-collapse-menu-tab">
@@ -109,6 +110,7 @@
                         </div><?php
                         } ?>
                     </div>
+            <div class="clearfix"></div>
                     <div class="col-md-12 padding-0">
                         <div class="btn-show-hide-text-area"><span class="glyphicon glyphicon-menu-down"></span> More logo processes <span class="glyphicon glyphicon-menu-down"></span></div>
                     </div>
@@ -185,15 +187,17 @@
         $('.tab-block-' + $(this).data('id-tab')).addClass('block-active');
     });
     $('.event-enlarge').on('click', function () {
-        $.magnificPopup.open({
-            items: [{
-                    src: $('<div class="white-popup">' +
-                            '<div><img src="' + $('.thumb .slick-current img').attr('src') + '" /></div>' +
-                            '</div>'),
-                    type: 'inline'
+        if ($(window).width() >= 768) {
+            $.magnificPopup.open({
+                items: [{
+                        src: $('<div class="white-popup">' +
+                                '<div><img src="' + $('.thumb .slick-current img').attr('src') + '" /></div>' +
+                                '</div>'),
+                        type: 'inline'
 
-                }]
-        });
+                    }]
+            });
+        }
     });<?php
     if ($term->field_youtube_video) { ?>
         $('.play-video').on('click', function () {

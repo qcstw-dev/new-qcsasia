@@ -88,7 +88,7 @@ function qcsasia_links__system_main_menu($variables) {
                     </button>
                     <span class="navbar-brand visible-xs">Menu</span>
                 </div>
-                <div class="navbar-collapse collapse padding-sm-0" id="navbar-collapse-main-menu" aria-expanded="false">
+                <div class="navbar-collapse collapse" id="navbar-collapse-main-menu" aria-expanded="false">
                     <ul class="nav navbar-nav"><?php 
                         foreach ($variables['links'] as $link) { ?>
                             <li class="<?= ($link['below'] ? 'dropdown' : '') ?><?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>">
@@ -442,7 +442,7 @@ function displayDocumentCenter($term) {
     foreach ($oFieldDocumentsGroups as $oFieldDocumentsGroup) {
         if (count($term->field_group_document['und']) > 2 && $iCounter == 1) {
             ?>
-            <div class="col-md-6 border-right"><?php }
+            <div class="col-sm-6 border-sm-right"><?php }
         ?>
             <div class="list-title" data-id-doc="1"><span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocumentsGroup->field_group_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'file') ?>"></span> <?= $oFieldDocumentsGroup->field_group_document_title['und'][0]['value'] ?></div><?php
             $aIdDocumentsEntities = [];
@@ -460,7 +460,7 @@ function displayDocumentCenter($term) {
             if ($iCounter == 2) {
                 ?>
             </div>
-            <div class="col-md-6"><?php
+            <div class="col-sm-6"><?php
             }
             if (count($term->field_group_document['und']) == $iCounter) {
                 ?>
@@ -473,7 +473,7 @@ function displayDocumentCenter($term) {
 function displayOption($aImageOption) {
     $aImageOptionEntity = array_shift(entity_load('field_collection_item', [$aImageOption['value']]));
     ?>
-    <div class="col-md-3">
+    <div class="col-sm-3">
         <div class="thumbnail margin-bottom-0">
             <img src="<?= file_create_url($aImageOptionEntity->field_image_option_img['und'][0]['uri']) ?>" alt="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" title="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" />
         </div>
@@ -484,12 +484,12 @@ function displayOption($aImageOption) {
 function displayLogoProcess($sIdLogoProcess, $term, $iPosition) {
     $oLogoProcess = taxonomy_term_load($sIdLogoProcess);
     ?>
-    <div class="col-md-3 thumbnail margin-top-20">
+    <div class="col-sm-3 thumbnail margin-top-20">
         <img src="<?= file_create_url($term->field_image_logo_process['und'][$iPosition]['uri']) ?>" alt="" title="" />
     </div>
-    <div class="col-md-9">
+    <div class="col-sm-9">
         <h3 class=""><?= $oLogoProcess->name ?></h3>
-        <div class="col-md-7">
+        <div class="col-md-7 margin-bottom-sm-10">
             <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>
         </div>
         <div class="col-md-5">

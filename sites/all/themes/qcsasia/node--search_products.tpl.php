@@ -1,11 +1,12 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-    <div class="block-filter col-md-3 thumbnail padding">
+    <div class="btn-show-hide-text-area margin-bottom-10"><span class="glyphicon glyphicon-menu-down"></span> Filter <span class="glyphicon glyphicon-menu-down"></span></div>
+    <div class="block-filter col-md-3 thumbnail padding hidden-text-area">
         <h4>Filter by:</h4>
         <div class="block-filter-group visible">
-            <div><label><input type="checkbox" class="filter new" value="new" <?= (isset($_GET['new']) ? 'checked' : '') ?>/>New Product <span class="count badge"><?= (!isset($_GET['new']) ? $aFilterNumProducts['new'] : '') ?></span></label></div>
-            <div><label><input type="checkbox" class="filter patented" value="patented" <?= (isset($_GET['patented']) ? 'checked' : '') ?>/>Patented Product <span class="count badge"><?= (!isset($_GET['patented']) ? $aFilterNumProducts['patented'] : '') ?></span></label></div>
-            <div><label><input type="checkbox" class="filter cheap" value="cheap" <?= (isset($_GET['cheap']) ? 'checked' : '') ?>/>Very cheap product <span class="count badge"><?= (!isset($_GET['cheap']) ? $aFilterNumProducts['cheap'] : '') ?></span></label></div>
-            <div><label><input type="checkbox" class="filter rush" value="rush" <?= (isset($_GET['rush']) ? 'checked' : '') ?>/>Rush service product <span class="count badge"><?= (!isset($_GET['rush']) ? $aFilterNumProducts['rush'] : '') ?></span></label></div>
+            <div><label class="<?= (isset($_GET['new']) ? 'bold' : '') ?>"><input type="checkbox" class="filter new" value="new" <?= (isset($_GET['new']) ? 'checked' : '') ?>/>New Product <span class="count badge"><?= (!isset($_GET['new']) ? $aFilterNumProducts['new'] : '') ?></span></label></div>
+            <div><label class="<?= (isset($_GET['patented']) ? 'bold' : '') ?>"><input type="checkbox" class="filter patented" value="patented" <?= (isset($_GET['patented']) ? 'checked' : '') ?>/>Patented Product <span class="count badge"><?= (!isset($_GET['patented']) ? $aFilterNumProducts['patented'] : '') ?></span></label></div>
+            <div><label class="<?= (isset($_GET['cheap']) ? 'bold' : '') ?>"><input type="checkbox" class="filter cheap" value="cheap" <?= (isset($_GET['cheap']) ? 'checked' : '') ?>/>Very cheap product <span class="count badge"><?= (!isset($_GET['cheap']) ? $aFilterNumProducts['cheap'] : '') ?></span></label></div>
+            <div><label class="<?= (isset($_GET['rush']) ? 'bold' : '') ?>"><input type="checkbox" class="filter rush" value="rush" <?= (isset($_GET['rush']) ? 'checked' : '') ?>/>Rush service product <span class="count badge"><?= (!isset($_GET['rush']) ? $aFilterNumProducts['rush'] : '') ?></span></label></div>
         </div>
         <div class="filter-group-title" data-group-title="material"><span class="glyphicon glyphicon-chevron-down"></span> Material</div>
         <div class="block-filter-group group-material"><?php
@@ -17,7 +18,7 @@
                 $bChecked = isset($_GET['category']) && in_array($sRef, $_GET['category']);
                 ?>
                 <div>
-                    <label>
+                    <label class="<?= ($bChecked ? 'bold' : '') ?>">
                         <input type="checkbox" class="filter multiple category <?= $sRef ?>" value="<?= $sRef ?>" <?= ($bChecked ? 'checked' : '') ?>/>
                         <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['category'][$sRef] : '') ?></span>
                     </label>
@@ -33,7 +34,7 @@
                 $bChecked = isset($_GET['function']) && in_array($sRef, $_GET['function']);
                 ?>
                 <div>
-                    <label>
+                    <label class="<?= ($bChecked ? 'bold' : '') ?>">
                         <input type="checkbox" class="filter multiple function <?= $sRef ?>" value="<?= $sRef ?>" <?= ($bChecked ? 'checked' : '') ?>/>
                         <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['function'][$sRef] : '') ?></span>
                     </label>
@@ -49,13 +50,14 @@
                 $bChecked = isset($_GET['logo-process']) && in_array($sRef, $_GET['logo-process']);
                 ?>
                 <div>
-                    <label>
+                    <label class="<?= ($bChecked ? 'bold' : '') ?>">
                         <input type="checkbox" class="filter multiple logo-process <?= $sRef ?>" value="<?= $sRef ?>" <?= ($bChecked ? 'checked' : '') ?>/>
                         <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['logo-process'][$sRef] : '') ?></span>
                     </label>
                 </div><?php }
                     ?>
         </div>
+    <div class="btn-show-hide-text-area margin-bottom-10 margin-top-10"><span class="glyphicon glyphicon-menu-up"></span> Filter <span class="glyphicon glyphicon-menu-up"></span></div>
     </div>
     <div class="col-md-9 padding-0 block-list-products">
         <div class="col-md-12">
@@ -83,6 +85,11 @@
     });
     $('.filter').on('click', function () {
         $(this).parent().find('.count').html('');
+        if ($(this).is(':checked')) {
+            $(this).parent().addClass('bold');
+        } else {
+            $(this).parent().removeClass('bold');
+        }
         updateSearchResults();
     });
     function updateSearchResults() {

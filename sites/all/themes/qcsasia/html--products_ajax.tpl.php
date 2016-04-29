@@ -5,10 +5,10 @@ if ($aProducts) {
     <div class="col-md-12 margin-bottom-10"><strong><?= count($aProducts) ?> Products</strong></div><?php
     $i = 4;
     foreach ($aProducts as $oProduct) {
-        if ($i % 4 == 0) {
+       /* if ($i % 4 == 0) {
             ?>
             <div class = "col-md-12 padding-0"><?php
-            }
+            } */
             if (isset($oProduct->field_category['und'][0]['tid']) && taxonomy_get_parents($oProduct->field_category['und'][0]['tid'])) {
                 $oCategory = taxonomy_term_load($oProduct->field_category['und'][0]['tid']);
                 if (!in_array($oCategory->field_reference['und'][0]['value'], $aUsedCategories)) {
@@ -20,10 +20,10 @@ if ($aProducts) {
                 displayProductBlock($oProduct);
                 $i++;
             }
-            if ($i % 4 == 0) {
+            /* if ($i % 4 == 0) {
                 ?>
             </div><?php
-        }
+        } */
     }
     parse_str($_SERVER['QUERY_STRING'], $aQuery);
     unset($aQuery['category']);
@@ -32,7 +32,7 @@ if ($aProducts) {
     <script>
         $('.block-category').on('click', function () {
             var url = baseUrl + '/products_line_ajax/';
-            var query = '<?= ($sQueryNoCategory ? '?'.$sQueryNoCategory.'&' : '?') ?>' + 'category=' + $('.block-category').data('reference');
+            var query = '<?= ($sQueryNoCategory ? '?'.$sQueryNoCategory.'&' : '?') ?>' + 'category=' + $(this).data('reference');
             console.log(url + query);
             $.ajax(url + query, {
                 dataType: 'html',
@@ -57,14 +57,16 @@ function displayLineBlock($oCategory, $aLineProducts) {
     $sRef = (isset($oCategory->field_category_reference['und'][0]['value']) ? $oCategory->field_category_reference['und'][0]['value'] : '');
     $aLineProducts[$oCategory->field_reference['und'][0]['value']] = [];
     ?>
-    <div class = "block-product block-category col-md-3" data-reference="<?= $oCategory->field_reference['und'][0]['value'] ?>">
-        <div class = "thumbnail">
+    <div class = "block-product block-category col-xs-6 col-md-3" data-reference="<?= $oCategory->field_reference['und'][0]['value'] ?>">
+        <div class = "thumbnail thumbnail-hover">
             <div class="col-md-12 padding-0 products-thumbnails"><?php 
                 foreach ($oCategory->field_category_thumbnail['und'] as $aThumbnail) { ?>
-                    <img class="col-md-6 padding-0" src = "<?= file_create_url($aThumbnail['uri']) ?>" alt = "" title = "" /><?php 
+                <div class="col-xs-6 padding-0 thumbnail margin-0 border-none">
+                    <img class="" src = "<?= file_create_url($aThumbnail['uri']) ?>" alt = "" title = "" />
+                </div><?php
                 }?>
-            <div class="clearfix"></div>
             </div>
+            <div class="clearfix"></div>
             <div class = "ref-product"><?= ($sRef ? $sRef . ' Line' : 'Product line') ?></div>
             <div class = "title-product"><?= $sName ?></div>
         </div>
@@ -74,7 +76,7 @@ function displayLineBlock($oCategory, $aLineProducts) {
 function displayProductBlock($oProduct) {
     $sName = $oProduct->field_product_name['und'][0]['value'];
     $sRef = (isset($oProduct->field_product_ref['und'][0]['value']) ? $oProduct->field_product_ref['und'][0]['value'] : ''); ?>
-    <div class = "block-product col-md-3">
+    <div class = "block-product col-xs-6 col-md-3">
         <div class = "thumbnail">
             <a href = "<?= url('taxonomy/term/' . $oProduct->tid) ?>" title = ""><?php
                 $sLogoProcessUri = (isset($oProduct->field_image_logo_process['und'][0]['uri']) ? $oProduct->field_image_logo_process['und'][0]['uri'] : ''); ?>
