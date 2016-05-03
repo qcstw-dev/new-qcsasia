@@ -46,7 +46,7 @@ function qcsasia_links__system_menu_top($variables) {
                     </button>
                     <span class="navbar-brand visible-xs"></span>
                 </div>
-                <div class="navbar-collapse collapse padding-sm-0" id="navbar-collapse-menu-top" aria-expanded="false">
+                <div class="navbar-collapse collapse padding-xs-0 padding" id="navbar-collapse-menu-top" aria-expanded="false">
                     <ul class="menu-list menu-list"><?php 
                         foreach ($variables['links'] as $link) { ?>
                             <li>
@@ -58,8 +58,7 @@ function qcsasia_links__system_menu_top($variables) {
                     </ul>
                 </div>
             </div>
-        </nav>
-            <?php
+        </nav><?php
         /*
         ?>
         <ul class="menu-list pull-right"><?php 
@@ -487,7 +486,7 @@ function displayLogoProcess($sIdLogoProcess, $term, $iPosition) {
     <div class="col-sm-3 thumbnail margin-top-20">
         <img src="<?= file_create_url($term->field_image_logo_process['und'][$iPosition]['uri']) ?>" alt="" title="" />
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-9 padding-xs-0">
         <h3 class=""><?= $oLogoProcess->name ?></h3>
         <div class="col-md-7 margin-bottom-sm-10">
             <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>

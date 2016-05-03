@@ -475,6 +475,9 @@ a {
     .margin-bottom-md-10 {
         margin-bottom: 10px;
     }
+    .padding-md-0 {
+        padding: 0;
+    }
 }
 @media (min-width: 1200px) {
     .line-height-lg-40 {
@@ -496,9 +499,11 @@ a {
     display: none;
 }
 @media (min-width: 640px) {
+    .node-search-gifts .hidden-text-area,
     .node-search-products .hidden-text-area {
         display: block;
     }
+    .node-search-gifts .btn-show-hide-text-area,
     .node-search-products .btn-show-hide-text-area {
         display: none;
     }
@@ -798,6 +803,13 @@ span.count.badge {
 .table-product>tbody>tr>th,
 .table-product>tbody>tr>td{
     vertical-align: middle;
+    text-align: justify;
+}
+@media (max-width: 320px) {
+    .table-product>tbody>tr>th,
+    .table-product>tbody>tr>td{
+        font-size: 12px;
+    }
 }
 .cell-key {
     font-weight: bold;

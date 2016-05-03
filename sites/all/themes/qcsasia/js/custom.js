@@ -49,12 +49,14 @@ $(function () {
         $('.group-' + $(this).data('group-title')).slideToggle();
     });
     $(window).scroll(function () {
-        if ($('.block-list-products').length && $(window).width() >= 768) {
+        if ($('.block-list-products').length && $(window).width() >= 667) {
             if (($(window).scrollTop() - $('.block-list-products').offset().top) > 0) {
                 $('.block-filter').addClass('fixed');
             } else {
                 $('.block-filter').removeClass('fixed');
             }
+        } else {
+            $('.block-filter').removeClass('fixed');
         }
     });
 });

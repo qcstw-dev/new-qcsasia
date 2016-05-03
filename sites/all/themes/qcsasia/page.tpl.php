@@ -73,10 +73,8 @@
     </div>
     <?php if ($page['footer']): ?>
             <div class="clearfix"></div>
-        <div id="footer" class="row">
-            <div class="col-md-12">
-                <?php print render($page['footer']); ?>
-            </div>
+        <div id="footer" class="col-xs-12">
+            <?php print render($page['footer']); ?>
         </div>
     <?php endif; ?>
     <div class="margin-bottom-20">
