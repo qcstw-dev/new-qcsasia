@@ -185,6 +185,8 @@ function getPotentialNumberForFilters() {
     }
     $aCurrentFilters = drupal_get_query_parameters();
     $aFiltersPotential = [];
+    
+    $iNumberProducts = getProducts($aCurrentFilters, true);
     foreach ($aAllFilters as $sKey => $mValue) {
         if (is_array($mValue)) {
             foreach ($mValue as $sValue) {
@@ -195,14 +197,16 @@ function getPotentialNumberForFilters() {
                     } else {
                         $aFiltersPotential[$sKey] = $sValue;
                     }
-                    $aFilterNumProducts[$sKey][$sValue] = getProducts($aFiltersPotential, true);
+                    $iNumberProductFiltrated = getProducts($aFiltersPotential, true);
+                    $aFilterNumProducts[$sKey][$sValue] = ($iNumberProductFiltrated > $iNumberProducts ? $iNumberProductFiltrated - $iNumberProducts : $iNumberProductFiltrated) ;
                 }
             }
         } else {
             if (!in_array($mValue, $aCurrentFilters)) {
                 $aFiltersPotential = $aCurrentFilters;
                 $aFiltersPotential[$mValue] = '';
-                $aFilterNumProducts[$mValue] = getProducts($aFiltersPotential, true);
+                $iNumberProductFiltrated = getProducts($aFiltersPotential, true);
+                $aFilterNumProducts[$mValue] = ($iNumberProductFiltrated > $iNumberProducts ? $iNumberProductFiltrated - $iNumberProducts : $iNumberProductFiltrated);
             }
         }
     }
@@ -452,7 +456,7 @@ function displayDocumentCenter($term) {
             if ($oFieldDocuments) {
                 ?>
                 <ul class="list-doc"><?php foreach ($oFieldDocuments as $oFieldDocument) { ?>
-                        <li><a target="blank" href="<?= $oFieldDocument->field_document_link['und'][0]['value'] ?>"><span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocument->field_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'download-alt') ?>"></span> <?= $oFieldDocument->field_document_title['und'][0]['value'] ?></a></li><?php }
+                        <li><a target="blank" href="<?= str_replace("www" , "dl", $oFieldDocument->field_document_link['und'][0]['value']) ?>"><span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocument->field_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'download-alt') ?>"></span> <?= getNameFromDocument($oFieldDocument->field_document_link['und'][0]['value']) ?></a></li><?php }
                 ?>
                 </ul><?php
             }
@@ -468,6 +472,19 @@ function displayDocumentCenter($term) {
         $iCounter++;
     }
 }
+function getNameFromDocument($file) {
+    $file = str_replace("?dl=0" , "" , $file);
+    
+    $tab = explode("/", $file);
+
+    $name = str_replace("%20", " ", $tab[count($tab) - 1]);
+
+    $name = urldecode($name);
+
+    $name = str_replace("?m=", " ", $name);
+
+    return $name;
+}
 
 function displayOption($aImageOption) {
     $aImageOptionEntity = array_shift(entity_load('field_collection_item', [$aImageOption['value']]));
@@ -481,12 +498,14 @@ function displayOption($aImageOption) {
 }
 
 function displayLogoProcess($sIdLogoProcess, $term, $iPosition) {
-    $oLogoProcess = taxonomy_term_load($sIdLogoProcess);
-    ?>
-    <div class="col-sm-3 thumbnail margin-top-20">
-        <img src="<?= file_create_url($term->field_image_logo_process['und'][$iPosition]['uri']) ?>" alt="" title="" />
-    </div>
-    <div class="col-sm-9 padding-xs-0">
+    $oLogoProcess = taxonomy_term_load($sIdLogoProcess); 
+    $sComplicatedDisplay = isset($term->field_image_logo_process['und'][$iPosition]['uri']);
+    if ($sComplicatedDisplay) { ?>
+        <div class="col-sm-3 thumbnail margin-top-20">
+            <img src="<?= file_create_url($term->field_image_logo_process['und'][$iPosition]['uri']) ?>" alt="" title="" />
+        </div><?php
+    } ?>
+    <div class="<?= $sComplicatedDisplay ? 'col-sm-9' : 'col-sm-12' ?> padding-xs-0">
         <h3 class=""><?= $oLogoProcess->name ?></h3>
         <div class="col-md-7 margin-bottom-sm-10">
             <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>
