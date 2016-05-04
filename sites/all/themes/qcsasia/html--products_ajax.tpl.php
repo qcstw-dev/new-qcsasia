@@ -2,7 +2,7 @@
 if ($aProducts) {
     $aLineProducts = [];
     $aUsedCategories = []; ?>
-    <div class="col-md-12 margin-bottom-10"><strong><?= count($aProducts) ?> Products</strong></div><?php
+    <div class="col-md-12 margin-bottom-10 number-products" data-num-prod="<?= count($aProducts) ?>"><strong><?= count($aProducts) ?> Products</strong></div><?php
     $i = 4;
     foreach ($aProducts as $oProduct) {
        /* if ($i % 4 == 0) {
@@ -34,7 +34,15 @@ if ($aProducts) {
             var url = baseUrl + '/products_line_ajax/';
             var query = '<?= ($sQueryNoCategory ? '?'.$sQueryNoCategory.'&' : '?') ?>' + 'category=' + $(this).data('reference');
             console.log(url + query);
-            $.ajax(url + query, {
+            displayLineProduct(url + query);
+        });<?php 
+        
+        if (array_key_exists('line', drupal_get_query_parameters())) { ?>
+            displayLineProduct('<?= $base_url.'products_line_ajax/?category='.drupal_get_query_parameters()['line'] ?>');<?php
+        } ?>
+        function displayLineProduct (url) {
+            console.log(url);
+            $.ajax(url, {
                 dataType: 'html',
                 success: function (data) {
                     $.magnificPopup.open({
@@ -45,7 +53,7 @@ if ($aProducts) {
                     });
                 }
             });
-        });
+        }
     </script><?php
 } else {
     ?>
