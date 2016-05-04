@@ -77,24 +77,25 @@
             <?php print render($page['footer']); ?>
         </div>
     <?php endif; ?>
+            <div class="clearfix"></div>
     <div class="margin-bottom-20">
-        <div class="footer-logo footer-logo-first min-width-15-percent">
-            <img src="<?= base_path() . path_to_theme() . "/images/footer/caefi.png" ?>">
+        <div class="col-sm-offset-1 col-sm-2 thumbnail border-none">
+            <img src="<?= base_path() . path_to_theme() . "/images/footer/caefi.jpg" ?>" alt="caefi" title="caefi" />
         </div>
 
-        <div class="footer-logo min-width-15-percent">
-            <img src="<?= base_path() . path_to_theme() . "/images/footer/eppa.png" ?>">
+        <div class="col-sm-2 thumbnail border-none">
+            <img src="<?= base_path() . path_to_theme() . "/images/footer/eppa.jpg" ?>" alt="eppa" title="eppa" />
         </div>
 
-        <div class="footer-logo min-width-10-percent">
-            <img src="<?= base_path() . path_to_theme() . "/images/footer/promota300.jpg" ?>">
+        <div class="col-sm-2 thumbnail border-none">
+            <img src="<?= base_path() . path_to_theme() . "/images/footer/promota300.jpg" ?>" alt="promota" title="promota" />
         </div>
 
-        <div class="footer-logo min-width-15-percent">
-            <img src="<?= base_path() . path_to_theme() . "/images/footer/sedex_trans.jpg" ?>">
+        <div class="col-sm-2 thumbnail border-none">
+            <img src="<?= base_path() . path_to_theme() . "/images/footer/sedex_trans.jpg" ?>" alt="sedex" title="sedex" />
         </div>
-        <div class="footer-logo min-width-20-percent">
-            <img src="<?= base_path() . path_to_theme() . "/images/footer/PPAI-logo-QCS.jpg" ?>">
+        <div class="col-sm-2 thumbnail border-none">
+            <img src="<?= base_path() . path_to_theme() . "/images/footer/PPAI-logo-QCS.jpg" ?>" alt="PPAI" title="PPAI" />
         </div>
     </div>
 </div>
