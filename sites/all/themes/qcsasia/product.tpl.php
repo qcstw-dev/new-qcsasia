@@ -114,9 +114,10 @@
                 <div class="col-md-12"><?php
                     displayLogoProcess($term->field_logo_process['und'][0]['tid'], $term, 0); ?>
                 </div><?php
-                if (isset($term->field_logo_process['und'][1])) { ?>
+                if (isset($term->field_logo_process['und'][1]) && $term->field_logo_process['und'][1]['tid'] != $term->field_logo_process['und'][0]['tid']) { ?>
                     <div class="col-md-12 hidden-text-area"><?php
                         $iPosition = 1;
+                        var_dump($term->field_logo_process);
                         foreach (array_slice($term->field_logo_process['und'], 1) as $aLogoProcess) { ?>
                         <div class="col-md-12 padding-0"><?php
                             displayLogoProcess($aLogoProcess['tid'], $term, $iPosition);
