@@ -112,12 +112,20 @@
         <div class="tab-block tab-block-1 block-logo border border-top-0 block-active"><?php
             if ($term->field_logo_process) { ?>
                 <div class="col-md-12"><?php
+                    foreach ($term->field_logo_process['und'] as $key => $aLogoProcess) {
+                        if (in_array('34', $aLogoProcess)) {
+                            unset($term->field_logo_process['und'][$key]);
+                            array_unshift($term->field_logo_process['und'], $aLogoProcess);
+                            
+                            array_unshift($term->field_image_logo_process['und'], $term->field_image_logo_process['und'][$key]);
+                            unset($term->field_image_logo_process['und'][$key+1]);
+                        }
+                    }
                     displayLogoProcess($term->field_logo_process['und'][0]['tid'], $term, 0); ?>
                 </div><?php
                 if (isset($term->field_logo_process['und'][1]) && $term->field_logo_process['und'][1]['tid'] != $term->field_logo_process['und'][0]['tid']) { ?>
                     <div class="col-md-12 hidden-text-area"><?php
                         $iPosition = 1;
-                        var_dump($term->field_logo_process);
                         foreach (array_slice($term->field_logo_process['und'], 1) as $aLogoProcess) { ?>
                         <div class="col-md-12 padding-0"><?php
                             displayLogoProcess($aLogoProcess['tid'], $term, $iPosition);
