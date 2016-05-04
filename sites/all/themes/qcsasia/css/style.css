@@ -768,6 +768,10 @@ a {
     color: #379453;
     height: 30px;
 }
+.block-line .ref-product,
+.block-line .title-product-ref {
+    height: auto;
+}
 .block-line-product .title-product-ref {
     font-size: 18px;
 }
