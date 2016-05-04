@@ -25,44 +25,58 @@
     </div>
     <div class="col-sm-9">
         <h2><?= $term->field_product_name['und'][0]['value']." ".$term->field_product_ref['und'][0]['value'] ?></h2>
-        <div class="panel panel-default">
+        <div class="panel panel-default"><?php
+            $sColspan = "";
+            if ($term->field_patent) {
+                $sColspan = "5";
+            } else {
+                $sColspan = "3";
+            } ?>
             <!-- Table -->
             <table class="table table-product">
                 <tbody class="border-none">
                     <tr>
                         <td class="border-right cell-key">Description</td>
-                        <td colspan="3"><?= $term->field_description['und'][0]['value'] ?></td>
+                        <td colspan="<?= $sColspan ?>"><?= $term->field_description['und'][0]['value'] ?></td>
                     </tr><?php
-//                    if ($term->field_technical_info) { ?>
+                    if ($term->field_technical_info) { ?>
                         <tr>
                             <td class="border-right cell-key">Technical info</td>
-                            <td colspan="3"><?= $term->field_technical_info['und'][0]['value'] ?></td>
+                            <td colspan="<?= $sColspan ?>"><?= $term->field_technical_info['und'][0]['value'] ?></td>
                         </tr><?php
-//                    }
-//                    if ($term->field_attachement) { ?>
+                    }
+                    if ($term->field_attachement) { ?>
                         <tr>
                             <td class="border-right cell-key">Attachement</td>
-                            <td colspan="3"><?= $term->field_attachement['und'][0]['value'] ?></td>
+                            <td colspan="<?= $sColspan ?>"><?= $term->field_attachement['und'][0]['value'] ?></td>
                         </tr><?php
-//                    } ?>
-                    <tr>
-                        <td class="border-right cell-key">Packaging</td>
-                        <td colspan="3"><?= $term->field_packaging['und'][0]['value'] ?></td>
-                    </tr>
-                    <tr>
-                        <td class="border-right cell-key">Logo size</td>
-                        <td><?= $term->field_logo_size['und'][0]['value'] ?></td>
-                        <td class="border-left border-right cell-key">Item size</td>
-                        <td><?= $term->field_item_size['und'][0]['value'] ?></td><?php
-                        if ($term->field_patent) { ?>
-                            <td class="border-left border-right cell-key">Patent</td>
-                            <td><?= $term->field_patent['und'][0]['value'] ?></td><?php
-                        } ?>
-                    </tr><?php
+                    }
+                    if ($term->field_attachement) { ?>
+                        <tr>
+                            <td class="border-right cell-key">Packaging</td>
+                            <td colspan="<?= $sColspan ?>"><?= $term->field_packaging['und'][0]['value'] ?></td>
+                        </tr><?php
+                    } 
+                    if ($term->field_logo_size['und'][0]['value'] || $term->field_item_size['und'][0]['value'] || $term->field_patent['und'][0]['value']) { ?>
+                        <tr><?php
+                            if ($term->field_logo_size['und'][0]['value']) { ?>
+                                <td class="border-right cell-key">Logo size</td>
+                                <td><?= $term->field_logo_size['und'][0]['value'] ?></td><?php
+                            } 
+                            if ($term->field_item_size['und'][0]['value']) { ?>
+                                <td class="border-left border-right cell-key">Item size</td>
+                                <td><?= $term->field_item_size['und'][0]['value'] ?></td><?php
+                            }
+                            if ($term->field_patent['und'][0]['value']) { ?>
+                                <td class="border-left border-right cell-key">Patent</td>
+                                <td><?= $term->field_patent['und'][0]['value'] ?></td><?php
+                            } ?>
+                        </tr><?php
+                    } 
                     if ($term->field_colors) { ?>
                         <tr>
                             <td class="border-right cell-key">Colors available</td>
-                            <td colspan="3"><?php
+                            <td colspan="<?= $sColspan ?>"><?php
                             if ($term->field_colors) {
                                 foreach ($term->field_colors['und'] as $value) {
                                     $sImageColor = taxonomy_term_load($value['tid'])->name.'.png'; ?>
@@ -110,7 +124,7 @@
                         </div><?php
                         } ?>
                     </div>
-            <div class="clearfix"></div>
+                    <div class="clearfix"></div>
                     <div class="col-md-12 padding-0">
                         <div class="btn-show-hide-text-area"><span class="glyphicon glyphicon-menu-down"></span> More logo processes <span class="glyphicon glyphicon-menu-down"></span></div>
                     </div>
