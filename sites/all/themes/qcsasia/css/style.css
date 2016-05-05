@@ -873,9 +873,6 @@ span.count.badge {
         width: calc(100%/4);
     }
 }
-@media (max-width: 768px) {
-
-}
 .block-tabs .navbar .navbar-collapse .nav li {
     font-weight: bold;
 }
@@ -935,6 +932,12 @@ span.count.badge {
 .big-slick .slick-prev:before,
 .big-slick .slick-next:before {
     font-size: 40px;
+}
+@media (min-width: 768px) {
+    .block-option .subtitle-pic {
+        height: 32px;
+        overflow: hidden;
+    }
 }
 .ymal-pics .subtitle-pic {
     background: none;

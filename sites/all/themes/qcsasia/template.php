@@ -487,9 +487,8 @@ function getNameFromDocument($file) {
 }
 
 function displayOption($aImageOption) {
-    $aImageOptionEntity = array_shift(entity_load('field_collection_item', [$aImageOption['value']]));
-    ?>
-    <div class="col-sm-3">
+    $aImageOptionEntity = array_shift(entity_load('field_collection_item', [$aImageOption['value']])); ?>
+    <div class="col-sm-3 margin-bottom-10 block-option">
         <div class="thumbnail margin-bottom-0">
             <img src="<?= file_create_url($aImageOptionEntity->field_image_option_img['und'][0]['uri']) ?>" alt="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" title="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" />
         </div>
