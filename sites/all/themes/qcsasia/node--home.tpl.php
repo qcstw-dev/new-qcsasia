@@ -206,75 +206,36 @@
         <div class="col-xs-12 padding-0">
             <h3>News</h3>
         </div>
-        <div class="col-md-6 border-right padding-0">
-            <div class="col-md-12 news-row">
-                <a href="#" title="">
-                    <div class="col-md-3 thumbnail">
-                        <img src="<?= url(path_to_theme() . "/images/home/logo-process/pvc-cloisonne.jpg") ?>" title="" alt="" />
-                    </div>
-                    <div class="col-md-9 news-text">
-                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
-                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-12 news-row">
-                <a href="#" title="">
-                    <div class="col-md-3 thumbnail">
-                        <img src="<?= url(path_to_theme() . "/images/home/category/pvc-cloisonne.jpg") ?>" title="" alt="" />
-                    </div>
-                    <div class="col-md-9 news-text">
-                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
-                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-12 news-row">
-                <a href="#" title="">
-                    <div class="col-md-3 thumbnail">
-                        <img src="<?= url(path_to_theme() . "/images/home/function/3c.jpg") ?>" title="" alt="" />
-                    </div>
-                    <div class="col-md-9 news-text">
-                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
-                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
-                    </div>
-                </a>
-            </div>
+        <div class="clearfix"></div>
+        <div class="col-md-6 border-right padding-0"><?php
+            for ($i = 1; $i <= 3; $i++) { ?>
+                <div class="col-xs-12 news-row border-md-bottom">
+                    <a href="#" title="">
+                        <div class="col-sm-3 thumbnail margin-bottom-sm-10">
+                            <img src="<?= url(path_to_theme() . "/images/home/logo-process/pvc-cloisonne.jpg") ?>" title="" alt="" />
+                        </div>
+                        <div class="col-sm-9 news-text">
+                            <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
+                            <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
+                        </div>
+                    </a>
+                </div><?php
+            } ?>
         </div>
-        <div class="col-md-6 padding-0">
-            <div class="col-md-12 news-row">
-                <a href="#" title="">
-                    <div class="col-md-3 thumbnail">
-                        <img src="<?= url(path_to_theme() . "/images/home/function/keychain.jpg") ?>" title="" alt="" />
-                    </div>
-                    <div class="col-md-9 news-text">
-                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
-                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-12 news-row">
-                <a href="#" title="">
-                    <div class="col-md-3 thumbnail">
-                        <img src="<?= url(path_to_theme() . "/images/home/function/bar.jpg") ?>" title="" alt="" />
-                    </div>
-                    <div class="col-md-9 news-text">
-                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
-                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-12 news-row">
-                <a href="#" title="">
-                    <div class="col-md-3 thumbnail">
-                        <img src="<?= url(path_to_theme() . "/images/home/function/trolley-token.jpg") ?>" title="" alt="" />
-                    </div>
-                    <div class="col-md-9 news-text">
-                        <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
-                        <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
-                    </div>
-                </a>
-            </div>
+        <div class="col-md-6 padding-0"><?php
+            for ($i = 1; $i <= 3; $i++) { ?>
+                <div class="col-xs-12 news-row border-md-bottom">
+                    <a href="#" title="">
+                        <div class="col-sm-3 thumbnail margin-bottom-sm-10">
+                            <img src="<?= url(path_to_theme() . "/images/home/function/keychain.jpg") ?>" title="" alt="" />
+                        </div>
+                        <div class="col-sm-9 news-text">
+                            <h4>Visit us at the Canton Fair 119th, Apr 23-27th, booth 11.1E26</h4>
+                            <p>You are welcome to visit us at Canton fair 119th (Guangzhou) from April 23rd – 27th. Booth no. 11.1E26 Check out our new catalog 2016 !...</p>
+                        </div>
+                    </a>
+                </div><?php
+            } ?>
         </div>
     </div>
 </div>
