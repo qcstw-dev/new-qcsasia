@@ -39,55 +39,63 @@
                         <td class="border-right cell-key">Description</td>
                         <td colspan="<?= $sColspan ?>"><?= $term->field_description['und'][0]['value'] ?></td>
                     </tr><?php
-                    if ($term->field_technical_info) { ?>
-                        <tr>
-                            <td class="border-right cell-key">Technical info</td>
-                            <td colspan="<?= $sColspan ?>"><?= $term->field_technical_info['und'][0]['value'] ?></td>
-                        </tr><?php
-                    }
-                    if ($term->field_attachement) { ?>
-                        <tr>
-                            <td class="border-right cell-key">Attachement</td>
-                            <td colspan="<?= $sColspan ?>"><?= $term->field_attachement['und'][0]['value'] ?></td>
-                        </tr><?php
-                    }
-                    if ($term->field_attachement) { ?>
-                        <tr>
-                            <td class="border-right cell-key">Packaging</td>
-                            <td colspan="<?= $sColspan ?>"><?= $term->field_packaging['und'][0]['value'] ?></td>
-                        </tr><?php
-                    } 
-                    if ($term->field_logo_size['und'][0]['value'] || $term->field_item_size['und'][0]['value'] || $term->field_patent['und'][0]['value']) { ?>
-                        <tr><?php
-                            if ($term->field_logo_size['und'][0]['value']) { ?>
-                                <td class="border-right cell-key">Logo size</td>
-                                <td><?= $term->field_logo_size['und'][0]['value'] ?></td><?php
-                            } 
-                            if ($term->field_item_size['und'][0]['value']) { ?>
-                                <td class="border-left border-right cell-key">Item size</td>
-                                <td><?= $term->field_item_size['und'][0]['value'] ?></td><?php
-                            }
-                            if ($term->field_patent['und'][0]['value']) { ?>
-                                <td class="border-left border-right cell-key">Patent</td>
-                                <td><?= $term->field_patent['und'][0]['value'] ?></td><?php
-                            } ?>
-                        </tr><?php
-                    } 
-                    if ($term->field_colors) { ?>
-                        <tr>
-                            <td class="border-right cell-key">Colors available</td>
-                            <td colspan="<?= $sColspan ?>"><?php
-                            if ($term->field_colors) {
-                                foreach ($term->field_colors['und'] as $value) {
-                                    $sImageColor = taxonomy_term_load($value['tid'])->name.'.png'; ?>
-                                    <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/$sImageColor") ?>" alt="" title="" /><?php
+                    if ($term->field_complicated['und'][0]['value']) {
+                        if ($term->field_technical_info) { ?>
+                            <tr>
+                                <td class="border-right cell-key">Technical info</td>
+                                <td colspan="<?= $sColspan ?>"><?= $term->field_technical_info['und'][0]['value'] ?></td>
+                            </tr><?php
+                        }
+                        if ($term->field_packing  || $term->field_attachement) { ?>
+                            <tr><?php
+                                if ($term->field_attachement) { ?>
+                                    <td class="border-right cell-key">Attachement</td>
+                                    <td <?= (!$term->field_packing ? "colspan='$sColspan'" : '') ?>><?= $term->field_attachement['und'][0]['value'] ?></td><?php
                                 }
-                            }
-                            if ($term->field_display_image_finishes['und'][0]['value']) { ?>
-                                    <img src="<?= url(path_to_theme() . "/images/colors/finishes.jpg") ?>" alt="" title="" /><?php
-                            } ?>
-                            </td>
-                        </tr><?php
+                                if ($term->field_packing) { ?>
+                                    <td class="border-right cell-key <?= ($term->field_attachement ? 'border-left': '') ?>">Packing</td>
+                                    <td><?= $term->field_packing ['und'][0]['value'] ?></td><?php
+                                } ?>
+                            </tr><?php
+                        }
+                        if ($term->field_packaging) { ?>
+                            <tr>
+                                <td class="border-right cell-key">Packaging</td>
+                                <td colspan="<?= $sColspan ?>"><?= $term->field_packaging['und'][0]['value'] ?></td>
+                            </tr><?php
+                        } 
+                        if ($term->field_logo_size['und'][0]['value'] || $term->field_item_size['und'][0]['value'] || $term->field_patent['und'][0]['value']) { ?>
+                            <tr><?php
+                                if ($term->field_logo_size['und'][0]['value']) { ?>
+                                    <td class="border-right cell-key">Logo size</td>
+                                    <td><?= $term->field_logo_size['und'][0]['value'] ?></td><?php
+                                } 
+                                if ($term->field_item_size['und'][0]['value']) { ?>
+                                    <td class="border-left border-right cell-key">Item size</td>
+                                    <td><?= $term->field_item_size['und'][0]['value'] ?></td><?php
+                                }
+                                if ($term->field_patent['und'][0]['value']) { ?>
+                                    <td class="border-left border-right cell-key">Patent</td>
+                                    <td><?= $term->field_patent['und'][0]['value'] ?></td><?php
+                                } ?>
+                            </tr><?php
+                        } 
+                        if ($term->field_colors) { ?>
+                            <tr>
+                                <td class="border-right cell-key">Colors available</td>
+                                <td colspan="<?= $sColspan ?>"><?php
+                                if ($term->field_colors) {
+                                    foreach ($term->field_colors['und'] as $value) {
+                                        $sImageColor = taxonomy_term_load($value['tid'])->name.'.png'; ?>
+                                        <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/$sImageColor") ?>" alt="" title="" /><?php
+                                    }
+                                }
+                                if ($term->field_display_image_finishes['und'][0]['value']) { ?>
+                                        <img src="<?= url(path_to_theme() . "/images/colors/finishes.jpg") ?>" alt="" title="" /><?php
+                                } ?>
+                                </td>
+                            </tr><?php
+                        } 
                     } ?>
                 </tbody>
             </table>
@@ -101,9 +109,11 @@
                     <li class="border-right active"><a class="tab" data-id-tab="1">Logo process</a></li><?php
                         if ($term->field_image_option) {?>
                             <li><a class="border-right tab" data-id-tab="2">Options</a></li><?php
-                        } ?>
-                    <li><a class="border-right tab" data-id-tab="3">Layout maker</a></li><?php
-                        if ($term->field_group_document) { ?>
+                        } 
+                        if ($term->field_complicated['und'][0]['value']) { ?>
+                            <li><a class="border-right tab" data-id-tab="3">Layout maker</a></li><?php
+                        } 
+                        if ($term->field_group_document && $term->field_complicated['und'][0]['value']) { ?>
                             <li><a class="tab" data-id-tab="4">Document center</a></li><?php
                         } ?>
                 </ul>
@@ -112,15 +122,15 @@
         <div class="tab-block tab-block-1 block-logo border border-top-0 block-active"><?php
             if ($term->field_logo_process) { ?>
                 <div class="col-md-12"><?php
-                    foreach ($term->field_logo_process['und'] as $key => $aLogoProcess) {
-                        if (in_array('34', $aLogoProcess)) {
-                            unset($term->field_logo_process['und'][$key]);
-                            array_unshift($term->field_logo_process['und'], $aLogoProcess);
-                            
-                            array_unshift($term->field_image_logo_process['und'], $term->field_image_logo_process['und'][$key]);
-                            unset($term->field_image_logo_process['und'][$key+1]);
-                        }
-                    }
+//                    foreach ($term->field_logo_process['und'] as $key => $aLogoProcess) {
+//                        if (in_array('34', $aLogoProcess)) {
+//                            unset($term->field_logo_process['und'][$key]);
+//                            array_unshift($term->field_logo_process['und'], $aLogoProcess);
+//                            
+//                            array_unshift($term->field_image_logo_process['und'], $term->field_image_logo_process['und'][$key]);
+//                            unset($term->field_image_logo_process['und'][$key+1]); 
+//                        }
+//                    }
                     displayLogoProcess($term->field_logo_process['und'][0]['tid'], $term, 0); ?>
                 </div><?php
                 if (isset($term->field_logo_process['und'][1]) && $term->field_logo_process['und'][1]['tid'] != $term->field_logo_process['und'][0]['tid']) { ?>
