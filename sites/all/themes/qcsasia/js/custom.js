@@ -18,6 +18,12 @@ $(function () {
         $(this).removeClass('focus');
     });
     $('.carousel-home').carousel();
+    $(".carousel-home").swiperight(function () {
+        $(this).carousel('prev');
+    });
+    $(".carousel-home").swipeleft(function () {
+        $(this).carousel('next');
+    });
     $('.carousel-category, .carousel-function, .carousel-logo-process').slick({
         infinite: true,
         slidesToShow: 4,
