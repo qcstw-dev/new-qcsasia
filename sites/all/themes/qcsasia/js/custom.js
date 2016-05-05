@@ -18,26 +18,37 @@ $(function () {
         $(this).removeClass('focus');
     });
     $('.carousel-home').carousel();
-    $('.carousel-category').slick({
+    $('.carousel-category, .carousel-function, .carousel-logo-process').slick({
         infinite: true,
         slidesToShow: 4,
-        slidesToScroll: 4
-    });
-    $('.carousel-function').slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 4
-    });
-    $('.carousel-logo-process').slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 4
-    });
+        slidesToScroll: 4,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }]});
     $('.gallery-container').magnificPopup({
-            delegate: 'a', // child items selector, by clicking on it popup will open
-            type: 'image',
-            gallery: {enabled: true}
-        });
+        delegate: 'a', // child items selector, by clicking on it popup will open
+        type: 'image',
+        gallery: {enabled: true}
+    });
     $('.filter-group-title').on('click', function () {
         if ($(this).find('span').hasClass('glyphicon-chevron-right')) {
             $(this).find('span').removeClass('glyphicon-chevron-right');
