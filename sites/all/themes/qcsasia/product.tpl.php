@@ -1,5 +1,5 @@
 <div class="product-page">
-    <div class="col-sm-3 main-picture-block margin-top-20">
+    <div class="col-sm-3 main-picture-block margin-top-20 padding-0">
         <div class="thumbnail thumb margin-bottom-10 event-enlarge"><?php 
             foreach ($term->field_main_photo['und'] as $aFieldMainPhoto) { ?>
                 <div><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php
@@ -50,7 +50,7 @@
                             <tr><?php
                                 if ($term->field_attachement) { ?>
                                     <td class="border-right cell-key">Attachement</td>
-                                    <td <?= (!$term->field_packing ? "colspan='$sColspan'" : '') ?>><?= $term->field_attachement['und'][0]['value'] ?></td><?php
+                                    <td colspan="3"><?= $term->field_attachement['und'][0]['value'] ?></td><?php
                                 }
                                 if ($term->field_packing) { ?>
                                     <td class="border-right cell-key <?= ($term->field_attachement ? 'border-left': '') ?>">Packing</td>
@@ -161,24 +161,17 @@
             </div><?php
         } ?>
         <div class="tab-block tab-block-3 border border-top-0 padding-20">
-            <div class="col-md-6 thumbnail margin-bottom-0">
-                <a href="#"><img src="<?= url(path_to_theme() . "/images/template/layout-maker.jpg") ?>" alt="" title="" /></a>
+            <div class="col-md-6 thumbnail margin-bottom-0 gallery-container">
+                <a href="<?= url(path_to_theme() . "/images/template/layout-maker-large.png") ?>" title="Layout maker">
+                    <img src="<?= url(path_to_theme() . "/images/template/layout-maker-large.png") ?>" alt="" title="" />
+                </a>
             </div>
             <div class="col-md-6">
-                <p class="text-justify margin-bottom-0">
-                    Aenean ultricies scelerisque ipsum, eget aliquam lorem pharetra 
-                    ac. Proin porttitor metus non diam euismod, nec dapibus nisi 
-                    elementum. Integer congue augue augue, eu rutrum est gravida ut.
-                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                    posuere cubilia.<br /><br />
-                    Aenean ultricies scelerisque ipsum, eget aliquam lorem pharetra 
-                    ac. Proin porttitor metus non diam euismod, nec dapibus nisi 
-                    elementum. Integer congue augue augue, eu rutrum est gravida ut.
-                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                    posuere cubilia.Integer congue augue augue, eu rutrum est gravida ut.
-                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                    posuere cubilia.</p>
-                <p class="text-right bold"><a href="#" ><span class="glyphicon glyphicon-edit"></span> Customise your product</a></p>
+                <h3>Under construction - coming soon</h3>
+                <div class="col-lg-5 margin-auto thumbnail border-none">
+                    <img src="<?= url(path_to_theme() . "/images/template/work-in-progress.png") ?>" title="work in progress" alt="" />
+                </div>
+                <!--<p class="text-right bold"><a href="#" ><span class="glyphicon glyphicon-edit"></span> Customise your product</a></p>-->
             </div>
             <div class="clearfix"></div>
         </div><?php

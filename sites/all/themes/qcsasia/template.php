@@ -1,5 +1,13 @@
 <?php
-
+function displaySocialMediaLogo(){ ?>
+    <div class="block-social-network">
+        <div class="social-network"><a href="https://www.facebook.com/pages/QCS-ASIA/182231511328?fref=ts"><span class="icomoon-facebook2"></span></a></div>
+        <div class="social-network"><a href="https://plus.google.com/105432120660907122700/posts?hl=fr&partnerid=gplp0"><span class="icomoon-google-plus2"></span></a></div>
+        <div class="social-network"><a href="http://www.linkedin.com/company/qcs-asia-co.-ltd"><span class="icomoon-linkedin"></span></a></div>
+        <div class="social-network"><a href=""><span class="icomoon-twitter"></span></a></div>
+        <div class="social-network"><a href=""><span class="icomoon-pinterest"></span></a></div>
+    </div><?php
+}
 function retrieveCategories($iStart = null, $iLength = null) {
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
@@ -44,7 +52,7 @@ function qcsasia_links__system_menu_top($variables) {
                         <span class="icon-bar"></span> 
                         <span class="icon-bar"></span>
                     </button>
-                    <span class="navbar-brand visible-xs"></span>
+                    <div class="visible-xs visible-sm pull-left margin-left-xs-20 margin-top-10"><?= displaySocialMediaLogo() ?></div>
                 </div>
                 <div class="navbar-collapse collapse padding-xs-0 padding" id="navbar-collapse-menu-top" aria-expanded="false">
                     <ul class="menu-list menu-list"><?php 
@@ -137,6 +145,12 @@ function qcsasia_breadcrumb($variables) {
                 case 'category':
                     $breadcrumb[] = '<a href="' . url('products') . '">Promotional products</a>';
                     break;
+            }
+        } else if (strchr($sNormalPath, "node")) {
+            $sNodeId = substr($sNormalPath, 5);
+            $aNode = entity_load('node', [$sNodeId]);
+            if ($aNode[$sNodeId]->type == 'news') {
+                $breadcrumb[] = '<a href="' . url('node/23') . '">News</a>';
             }
         }
         $title = drupal_get_title();

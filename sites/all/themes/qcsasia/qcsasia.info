@@ -13,7 +13,6 @@ stylesheets[all][] = css/flags/css/flag-icon.min.css
 stylesheets[all][] = css/style.css
 
 scripts[] = js/jquery-1.11.3.min.js
-scripts[] = js/jquery.mobile-1.4.5.min.js
 scripts[] = js/jquery-migrate-1.2.1.min.js
 scripts[] = js/bootstrap.min.js
 scripts[] = js/jquery.magnific-popup.min.js

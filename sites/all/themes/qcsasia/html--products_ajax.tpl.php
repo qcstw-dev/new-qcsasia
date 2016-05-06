@@ -85,7 +85,7 @@ function displayProductBlock($oProduct) {
     $sName = $oProduct->field_product_name['und'][0]['value'];
     $sRef = (isset($oProduct->field_product_ref['und'][0]['value']) ? $oProduct->field_product_ref['und'][0]['value'] : ''); ?>
     <div class = "block-product col-xs-6 col-md-3">
-        <div class = "thumbnail">
+        <div class = "thumbnail thumbnail-hover">
             <a href = "<?= url('taxonomy/term/' . $oProduct->tid) ?>" title = ""><?php
                 $sLogoProcessUri = (isset($oProduct->field_image_logo_process['und'][0]['uri']) ? $oProduct->field_image_logo_process['und'][0]['uri'] : ''); ?>
                 <img src = "<?= file_create_url(( $sLogoProcessUri ? : $oProduct->field_main_photo['und'][0]['uri'])) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
