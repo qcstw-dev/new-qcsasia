@@ -50,7 +50,7 @@
                             <tr><?php
                                 if ($term->field_attachement) { ?>
                                     <td class="border-right cell-key">Attachement</td>
-                                    <td colspan="3"><?= $term->field_attachement['und'][0]['value'] ?></td><?php
+                                    <td colspan="<?= ($term->field_packing ? '' : '3') ?>"><?= $term->field_attachement['und'][0]['value'] ?></td><?php
                                 }
                                 if ($term->field_packing) { ?>
                                     <td class="border-right cell-key <?= ($term->field_attachement ? 'border-left': '') ?>">Packing</td>
@@ -105,21 +105,23 @@
     <div class="col-md-12 block-tabs">
         <nav class="navbar navbar-default margin-bottom-0">
             <div class=" navbar-collapse padding-0 tabs" id="navbar-collapse-menu-tab">
-                <ul class="nav navbar-nav text-center">
-                    <li class="border-right active"><a class="tab" data-id-tab="1">Logo process</a></li><?php
-                        if ($term->field_image_option) {?>
-                            <li><a class="border-right tab" data-id-tab="2">Options</a></li><?php
-                        } 
-                        if ($term->field_complicated['und'][0]['value']) { ?>
-                            <li><a class="border-right tab" data-id-tab="3">Layout maker</a></li><?php
-                        } 
-                        if ($term->field_group_document && $term->field_complicated['und'][0]['value']) { ?>
-                            <li><a class="tab" data-id-tab="4">Document center</a></li><?php
-                        } ?>
+                <ul class="nav navbar-nav text-center"><?php
+                    if ($term->field_logo_process) { ?>
+                        <li class="border-right <?= ($term->field_logo_process ? "active" : '') ?>"><a class="tab" data-id-tab="1">Logo process</a></li><?php
+                    }
+                    if ($term->field_image_option) {?>
+                        <li <?= (!$term->field_logo_process ? 'class="active"' : '') ?>><a class="border-right tab" data-id-tab="2">Options</a></li><?php
+                    } 
+                    if ($term->field_complicated['und'][0]['value']) { ?>
+                        <li <?= (!$term->field_image_option && !$term->field_logo_process ? 'class="active"' : '') ?>><a class="border-right tab" data-id-tab="3">Layout maker</a></li><?php
+                    } 
+                    if ($term->field_group_document && $term->field_complicated['und'][0]['value']) { ?>
+                        <li><a class="tab" data-id-tab="4">Document center</a></li><?php
+                    } ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
-        <div class="tab-block tab-block-1 block-logo border border-top-0 block-active"><?php
+        <div class="tab-block tab-block-1 block-logo border border-top-0 <?= ($term->field_logo_process ? "block-active" : '') ?>"><?php
             if ($term->field_logo_process) { ?>
                 <div class="col-md-12"><?php
 //                    foreach ($term->field_logo_process['und'] as $key => $aLogoProcess) {
@@ -153,14 +155,14 @@
             <div class="clearfix"></div>
         </div><?php
         if ($term->field_image_option) { ?>
-            <div class="tab-block tab-block-2 border border-top-0 padding-top-10 padding-bottom-10"><?php
+            <div class="tab-block tab-block-2 border border-top-0 padding-top-10 padding-bottom-10 <?= (!$term->field_logo_process ? "block-active" : '') ?>"><?php
                 foreach ($term->field_image_option['und'] as $aImageOption) {
                     displayOption($aImageOption);
                 } ?>
                 <div class="clearfix"></div>
             </div><?php
         } ?>
-        <div class="tab-block tab-block-3 border border-top-0 padding-20">
+        <div class="tab-block tab-block-3 border border-top-0 padding-20 <?= (!$term->field_logo_process && !$term->field_image_option ? "block-active" : '') ?>">
             <div class="col-md-6 thumbnail margin-bottom-0 gallery-container">
                 <a href="<?= url(path_to_theme() . "/images/template/layout-maker-large.png") ?>" title="Layout maker">
                     <img src="<?= url(path_to_theme() . "/images/template/layout-maker-large.png") ?>" alt="" title="" />

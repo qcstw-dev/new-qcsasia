@@ -174,12 +174,63 @@ a {
 .well {
     background: none;
 }
+.checkbox-container.active, .checkbox-container:active {
+    box-shadow: none;
+}
 .visible {
     display: inherit;
     visibility: visible;
 }
 .thumbnail {
     border-radius: 0;
+}
+
+/****************************** MENU COLLAPSE iPad FIX ***************/
+@media (max-width: 991px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .tabs .navbar-nav {
+        margin: 0;
+    }
+    .block-tabs .navbar {
+        min-height: 43px;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .tabs .navbar-nav>li {
+        float: left;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
 }
 /***************** MAIN MENU *************/
 #menu .navbar {
@@ -379,6 +430,12 @@ a {
 }
 .border-right {
     border-right: 1px solid #ddd;
+}
+.border-right-bold {
+    border-right: 3px solid #ddd;
+}
+.border-left-bold {
+    border-left: 3px solid #ddd;
 }
 .no-background {
     background: none;
@@ -717,7 +774,6 @@ a {
     padding: 5px 30px 5px 30px;
     color: #777;
     text-align: center;
-    border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
     width: 100%;
@@ -836,6 +892,7 @@ a {
 .block-product {
     text-align: center;
 }
+.block-gift .ref-product,
 .block-product .ref-product,
 .block-line-product .title-product-ref {
     font-weight: bold;
@@ -1045,56 +1102,23 @@ span.count.badge {
 .slick-slider {
     margin-bottom: 20px;
 }
+/****************************** SEARCH THEME PAGE ***************/
+.node-search-themes .block-gift .thumbnail {
+    padding-left: 12px;
+}
+.node-search-themes .block-gift .checkbox-container {
+    padding: 5px;
+}
+.node-search-themes .block-gift .btn-group .checkbox-container {
+    position: absolute;
+}
+.node-search-themes .block-gift .ref-product {
+    font-size: 12px;
+    text-align: center;
+}
+
 /****************************** CAREER PAGE ***************/
 .node-career .filter-group-title{
     padding: 10px;
     background: #ddd;
-}
-
-/****************************** MENU COLLAPSE iPad FIX ***************/
-@media (max-width: 991px) {
-    .navbar-header {
-        float: none;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .tabs .navbar-nav {
-        margin: 0;
-    }
-    .block-tabs .navbar {
-        min-height: 43px;
-    }
-    .navbar-nav {
-        float: none!important;
-        margin: 7.5px -15px;
-    }
-    .navbar-nav>li {
-        float: none;
-    }
-    .tabs .navbar-nav>li {
-        float: left;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .navbar-text {
-        float: none;
-        margin: 15px 0;
-    }
-    /* since 3.1.0 */
-    .navbar-collapse.collapse.in { 
-        display: block!important;
-    }
-    .collapsing {
-        overflow: hidden!important;
-    }
 }

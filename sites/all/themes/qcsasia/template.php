@@ -1,5 +1,6 @@
 <?php
-function displaySocialMediaLogo(){ ?>
+
+function displaySocialMediaLogo() { ?>
     <div class="block-social-network">
         <div class="social-network"><a href="https://www.facebook.com/pages/QCS-ASIA/182231511328?fref=ts"><span class="icomoon-facebook2"></span></a></div>
         <div class="social-network"><a href="https://plus.google.com/105432120660907122700/posts?hl=fr&partnerid=gplp0"><span class="icomoon-google-plus2"></span></a></div>
@@ -8,6 +9,7 @@ function displaySocialMediaLogo(){ ?>
         <div class="social-network"><a href=""><span class="icomoon-pinterest"></span></a></div>
     </div><?php
 }
+
 function retrieveCategories($iStart = null, $iLength = null) {
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
@@ -42,7 +44,8 @@ function retrieveProducts($oTerm = null, $iStart = null, $iLength = null) {
 //}
 
 function qcsasia_links__system_menu_top($variables) {
-    if ($variables['links']) { ?>
+    if ($variables['links']) {
+        ?>
         <nav class="navbar navbar-default navbar-top">
             <div class="container-fluid padding-sm-0">
                 <div class="navbar-header">
@@ -55,29 +58,28 @@ function qcsasia_links__system_menu_top($variables) {
                     <div class="visible-xs visible-sm pull-left margin-left-xs-20 margin-top-10"><?= displaySocialMediaLogo() ?></div>
                 </div>
                 <div class="navbar-collapse collapse padding-xs-0 padding" id="navbar-collapse-menu-top" aria-expanded="false">
-                    <ul class="menu-list menu-list"><?php 
-                        foreach ($variables['links'] as $link) { ?>
+                    <ul class="menu-list menu-list"><?php foreach ($variables['links'] as $link) { ?>
                             <li>
                                 <a href="<?= url($link['link']['link_path']) ?>" >
                                     <?= $link['link']['link_title'] ?>
                                 </a>
-                            </li><?php
-                        } ?>
+                            </li><?php }
+                                ?>
                     </ul>
                 </div>
             </div>
         </nav><?php
         /*
-        ?>
-        <ul class="menu-list pull-right"><?php 
-            foreach ($variables['links'] as $link) { ?>
-                <li class="border-left">
-                    <a href="<?= url($link['link']['link_path']) ?>" >
-                        <?= $link['link']['link_title'] ?>
-                    </a>
-                </li><?php 
-            } ?>
-        </ul><?php */
+          ?>
+          <ul class="menu-list pull-right"><?php
+          foreach ($variables['links'] as $link) { ?>
+          <li class="border-left">
+          <a href="<?= url($link['link']['link_path']) ?>" >
+          <?= $link['link']['link_title'] ?>
+          </a>
+          </li><?php
+          } ?>
+          </ul><?php */
     }
 }
 
@@ -96,8 +98,7 @@ function qcsasia_links__system_main_menu($variables) {
                     <span class="navbar-brand visible-xs">Menu</span>
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-collapse-main-menu" aria-expanded="false">
-                    <ul class="nav navbar-nav"><?php 
-                        foreach ($variables['links'] as $link) { ?>
+                    <ul class="nav navbar-nav"><?php foreach ($variables['links'] as $link) { ?>
                             <li class="<?= ($link['below'] ? 'dropdown' : '') ?><?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>">
                                 <a <?= ($link['below'] ? 'role="button" aria-haspopup="true" aria-expanded="false"' : '') ?> href="<?= url($link['link']['link_path']) ?>" >
                                     <?= $link['link']['link_title'] ?>
@@ -115,9 +116,9 @@ function qcsasia_links__system_main_menu($variables) {
                                     </ul><?php } ?>
                             </li><?php } ?>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right search-form-content">
-                        <li><form><input class="margin-right-md-10" type="text" /><button class="btn btn-primary" type="submit">Search</button></form></li>
-                    </ul>
+                    <!--                    <ul class="nav navbar-nav navbar-right search-form-content">
+                                            <li><form><input class="margin-right-md-10" type="text" /><button class="btn btn-primary" type="submit">Search</button></form></li>
+                                        </ul>-->
                 </div>
             </div>
         </nav><?php
@@ -144,6 +145,9 @@ function qcsasia_breadcrumb($variables) {
                     break;
                 case 'category':
                     $breadcrumb[] = '<a href="' . url('products') . '">Promotional products</a>';
+                    break;
+                case 'theme':
+                    $breadcrumb[] = '<a href="' . url('search-theme') . '">Themes</a>';
                     break;
             }
         } else if (strchr($sNormalPath, "node")) {
@@ -181,6 +185,13 @@ function qcsasia_preprocess_node(&$vars) {
             $aGifts = getGifts(drupal_get_query_parameters());
             $vars['aGifts'] = taxonomy_term_load_multiple(array_keys($aGifts));
             break;
+        case 'search_themes' :
+            // retrieve gifts
+            $aGifts = getGifts();
+            $vars['aGifts'] = taxonomy_term_load_multiple(array_keys($aGifts));
+            $aThemes = getThemes(drupal_get_query_parameters());
+            $vars['aThemes'] = taxonomy_term_load_multiple(array_keys($aThemes));
+            break;
     }
 }
 
@@ -199,7 +210,7 @@ function getPotentialNumberForFilters() {
     }
     $aCurrentFilters = drupal_get_query_parameters();
     $aFiltersPotential = [];
-    
+
     $iNumberProducts = getProducts($aCurrentFilters, true);
     foreach ($aAllFilters as $sKey => $mValue) {
         if (is_array($mValue)) {
@@ -212,7 +223,7 @@ function getPotentialNumberForFilters() {
                         $aFiltersPotential[$sKey] = $sValue;
                     }
                     $iNumberProductFiltrated = getProducts($aFiltersPotential, true);
-                    $aFilterNumProducts[$sKey][$sValue] = ($iNumberProductFiltrated > $iNumberProducts ? $iNumberProductFiltrated - $iNumberProducts : $iNumberProductFiltrated) ;
+                    $aFilterNumProducts[$sKey][$sValue] = ($iNumberProductFiltrated > $iNumberProducts ? $iNumberProductFiltrated - $iNumberProducts : $iNumberProductFiltrated);
                 }
             }
         } else {
@@ -227,12 +238,12 @@ function getPotentialNumberForFilters() {
     return $aFilterNumProducts;
 }
 
-function getGifts($aQueryParameters) {
+function getGifts($aQueryParameters = null) {
     // retrieve gifts
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
             ->entityCondition('bundle', 'gift')
-            ->fieldOrderBy('field_date_gmt', 'value', 'DESC');
+            ->fieldOrderBy('field_product_name', 'value', 'ASC');
 
     $aResult = $oQuery->execute();
     $aGifts = $aResult['taxonomy_term'];
@@ -286,6 +297,31 @@ function getGifts($aQueryParameters) {
         $aGiftToDisplay = $aResult['taxonomy_term'];
     }
     return $aGiftToDisplay;
+}
+
+function getThemes($aQueryParameters) {
+    // retrieve themes
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'theme');
+
+    if ($aQueryParameters && isset($aQueryParameters['gift'])) {
+//            $oQuery->fieldCondition('field_gift', 'tid', (is_array($aQueryParameters['gift']) ? array_values($aQueryParameters['gift']) : $aQueryParameters['gift']));
+//        $oQuery->fieldCondition('field_theme_gift', 'field_gift', (is_array($aQueryParameters['gift']) ? array_values($aQueryParameters['gift']) : $aQueryParameters['gift']));
+        $inner = new EntityFieldQuery();
+        $inner_r = $inner->entityCondition('entity_type', 'field_collection_item')
+                ->entityCondition('bundle', 'field_theme_gift')
+                ->fieldCondition('field_gift', 'tid', (is_array($aQueryParameters['gift']) ? array_values($aQueryParameters['gift']) : $aQueryParameters['gift']))
+                ->execute();
+
+        $aFieldCollections = entity_load('field_collection_item', array_keys($inner_r['field_collection_item']));
+        if ($aFieldCollections) {
+            // retrieve themes
+            $oQuery->fieldCondition('field_theme_gift', 'value', array_keys($aFieldCollections));
+        }
+    }
+    $aResult = $oQuery->execute();
+    return $aResult['taxonomy_term'];
 }
 
 function getProducts($aQueryParameters, $bCount = false) {
@@ -443,6 +479,10 @@ function qcsasia_preprocess_html(&$vars) {
             $aProducts = getProducts(drupal_get_query_parameters());
             $vars['aProducts'] = taxonomy_term_load_multiple(array_keys($aProducts));
             break;
+        case 'html__themes_ajax' :
+            $aThemes = getThemes(drupal_get_query_parameters());
+            $vars['aThemes'] = taxonomy_term_load_multiple(array_keys($aThemes));
+            break;
         case 'html__products_number_ajax' :
             $vars['aFilterNumProducts'] = getPotentialNumberForFilters();
             break;
@@ -470,7 +510,7 @@ function displayDocumentCenter($term) {
             if ($oFieldDocuments) {
                 ?>
                 <ul class="list-doc"><?php foreach ($oFieldDocuments as $oFieldDocument) { ?>
-                        <li><a target="blank" href="<?= str_replace("www" , "dl", $oFieldDocument->field_document_link['und'][0]['value']) ?>"><span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocument->field_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'download-alt') ?>"></span> <?= getNameFromDocument($oFieldDocument->field_document_link['und'][0]['value']) ?></a></li><?php }
+                        <li><a target="blank" href="<?= str_replace("www", "dl", $oFieldDocument->field_document_link['und'][0]['value']) ?>"><span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocument->field_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'download-alt') ?>"></span> <?= getNameFromDocument($oFieldDocument->field_document_link['und'][0]['value']) ?></a></li><?php }
                 ?>
                 </ul><?php
             }
@@ -486,9 +526,10 @@ function displayDocumentCenter($term) {
         $iCounter++;
     }
 }
+
 function getNameFromDocument($file) {
-    $file = str_replace("?dl=0" , "" , $file);
-    
+    $file = str_replace("?dl=0", "", $file);
+
     $tab = explode("/", $file);
 
     $name = str_replace("%20", " ", $tab[count($tab) - 1]);
@@ -501,7 +542,8 @@ function getNameFromDocument($file) {
 }
 
 function displayOption($aImageOption) {
-    $aImageOptionEntity = array_shift(entity_load('field_collection_item', [$aImageOption['value']])); ?>
+    $aImageOptionEntity = array_shift(entity_load('field_collection_item', [$aImageOption['value']]));
+    ?>
     <div class="col-sm-3 margin-bottom-10 block-option">
         <div class="thumbnail margin-bottom-0">
             <img src="<?= file_create_url($aImageOptionEntity->field_image_option_img['und'][0]['uri']) ?>" alt="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" title="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" />
@@ -511,13 +553,14 @@ function displayOption($aImageOption) {
 }
 
 function displayLogoProcess($sIdLogoProcess, $term, $iPosition) {
-    $oLogoProcess = taxonomy_term_load($sIdLogoProcess); 
+    $oLogoProcess = taxonomy_term_load($sIdLogoProcess);
     $sComplicatedDisplay = isset($term->field_image_logo_process['und'][$iPosition]['uri']);
-    if ($sComplicatedDisplay) { ?>
+    if ($sComplicatedDisplay) {
+        ?>
         <div class="col-sm-3 thumbnail margin-top-20">
             <img src="<?= file_create_url($term->field_image_logo_process['und'][$iPosition]['uri']) ?>" alt="" title="" />
-        </div><?php
-    } ?>
+        </div><?php }
+    ?>
     <div class="<?= $sComplicatedDisplay ? 'col-sm-9' : 'col-sm-12' ?> padding-xs-0">
         <h3 class=""><?= $oLogoProcess->name ?></h3>
         <div class="col-md-7 margin-bottom-sm-10">

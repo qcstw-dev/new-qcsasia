@@ -12,17 +12,17 @@ if (isset($_GET['id']) && $_GET['id']) {
 $aResult = $oQuery->execute();
 foreach ($aResult['taxonomy_term'] as $result) {
     $oTerm = taxonomy_term_load($result->tid);
-    $response_xml_data = file_get_contents("https://qcsasia.com/xml-products/?id=" . $oTerm->field_old_id['und'][0]['value']);
-
-    $XMLposts = simplexml_load_string($response_xml_data)->posts->post or die("Error: Cannot create object");
-
-    var_dump($XMLposts);
+    
+    echo $oTerm->field_product_name['und'][0]['value']." ".$oTerm->field_product_ref['und'][0]['value']."<br />";
+    
+//    $response_xml_data = file_get_contents("https://qcsasia.com/xml-products/?id=" . $oTerm->field_old_id['und'][0]['value']);
+//
+//    $XMLposts = simplexml_load_string($response_xml_data)->posts->post or die("Error: Cannot create object");
+//
+//    var_dump($XMLposts);
 //    foreach ($XMLposts as $XMLpost) {
 //    }
-}
-
-/*
-?>
+//}
     
 //    preg_match('~<strong>Description:</strong>([\s\S]*?)<strong>Attachement:</strong>~', $oTerm->field_description['und'][0]['value'], $matches);
 //    preg_match('~Description:~', $oTerm->field_description['und'][0]['value'], $matches);
@@ -71,8 +71,10 @@ foreach ($aResult['taxonomy_term'] as $result) {
 //    $oTerm->field_category_description['und'][0]['value'] = $oTerm->description;
 //    $oTerm->field_rush['und'][0]['value'] = $oTerm->field_program_item['und'][0]['value'];
 //    
-//    
-//    taxonomy_term_save($oTerm);
-}
-?>*/
+//    $oTerm->field_product_name['und'][0]['value'] = str_replace('  GIFT', '', $oTerm->field_product_name['und'][0]['value']);
+//
+    
+
+//        taxonomy_term_save($oTerm);
+} ?>
 

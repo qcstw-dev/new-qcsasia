@@ -1,15 +1,15 @@
 <?php
-if (isset($_GET['delete_all'])) {
-    $oQuery = new EntityFieldQuery();
-    $oQuery->entityCondition('entity_type', 'taxonomy_term')
-            ->entityCondition('bundle', 'product');
-    $aResult = $oQuery->execute();
-    foreach ($aResult['taxonomy_term'] as $result) {
-        $oTerm = taxonomy_term_load($result->tid);
-        taxonomy_term_delete($oTerm->tid);
-    }
-    exit;
-}
+//if (isset($_GET['delete_all'])) {
+//    $oQuery = new EntityFieldQuery();
+//    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+//            ->entityCondition('bundle', 'product');
+//    $aResult = $oQuery->execute();
+//    foreach ($aResult['taxonomy_term'] as $result) {
+//        $oTerm = taxonomy_term_load($result->tid);
+//        taxonomy_term_delete($oTerm->tid);
+//    }
+//    exit;
+//}
 
 set_time_limit(0);
 $response_xml_data = file_get_contents("https://qcsasia.com/xml-products/" . (isset($_GET['id']) && $_GET['id'] ? '?id=' . $_GET['id'] : ''));
@@ -44,7 +44,7 @@ foreach ($XMLposts as $XMLpost) {
 
 function saveData($oTerm, $XMLpost) {
     // DATA
-    
+    /*
     $oTerm->field_description['und'][0]['value'] = (string) $XMLpost->description;
     
     preg_match('/(#[a-zA-Z0-9]+)/', (string) $XMLpost->name, $matches);
@@ -58,7 +58,9 @@ function saveData($oTerm, $XMLpost) {
     
     $oTerm->description = (string) $XMLpost->description;
     $oTerm->field_date_gmt['und'][0]['value'] = (string) $XMLpost->date_gmt;
+    */
     $oTerm->field_complicated['und'][0]['value'] = (string) $XMLpost->complicated;
+    /*
     $oTerm->field_item_size['und'][0]['value'] = (string) $XMLpost->item_size;
     $oTerm->field_logo_size['und'][0]['value'] = (string) $XMLpost->logo_size;
     $oTerm->field_packaging['und'][0]['value'] = (string) $XMLpost->packaging;
@@ -69,7 +71,6 @@ function saveData($oTerm, $XMLpost) {
     $oTerm->field_rush['und'][0]['value'] = (string) $XMLpost->program_item;
     $oTerm->field_activate_supplier_program['und'][0]['value'] = (string) $XMLpost->activate_supplier_program;
     $oTerm->field_activate_sales_program['und'][0]['value'] = (string) $XMLpost->activate_sales_program;
-    
     
 //     RELATION WITH OTHERS TAXONOMY TERMS
 //     RESET COLORS
@@ -105,19 +106,20 @@ function saveData($oTerm, $XMLpost) {
                 $oTerm->field_colors['und'][] = ['tid' => '312'];
                 break;
             case '10-pms116c' : 
-                $oTerm->field_colors['und'][] = ['tid' => '310'];
+                $oTerm->field_colors['und'][] = ['tid' => '313'];
                 break;
             case '11-pms032c' : 
-                $oTerm->field_colors['und'][] = ['tid' => '311'];
+                $oTerm->field_colors['und'][] = ['tid' => '314'];
                 break;
             case '12-pms367c' : 
-                $oTerm->field_colors['und'][] = ['tid' => '312'];
+                $oTerm->field_colors['und'][] = ['tid' => '315'];
                 break;
             case '13-pms349c' : 
-                $oTerm->field_colors['und'][] = ['tid' => '313'];
+                $oTerm->field_colors['und'][] = ['tid' => '316'];
                 break;
         }
     }
+    /*
     // RESET
     $oTerm->field_function['und'] = [];
 
@@ -375,7 +377,7 @@ function saveData($oTerm, $XMLpost) {
         }
         $field_collection_item->save();
     }
-    
+    */
     taxonomy_term_save($oTerm);
 }
 
