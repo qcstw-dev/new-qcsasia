@@ -4,8 +4,14 @@
     foreach ($term->field_theme_gift['und'] as $aFieldThemeGift) {
         $oFieldThemeGift = entity_load('field_collection_item', [$aFieldThemeGift['value']])[$aFieldThemeGift['value']];
         $oGift = $oFieldThemeGift->field_gift['und'][0]['taxonomy_term']; ?>
-        <div class="col-sm-12">
-            <h3><?= $oGift->field_product_name['und'][0]['value'].' '.$oGift->field_product_ref['und'][0]['value'] ?></h3><?php
+        <div class="col-sm-12"><?php
+            $sProductId = ($oGift->field_product['und'][0]['tid'] ? $oGift->field_product['und'][0]['tid'] : ''); ?>
+            <div class="title-block"><div class="title"><?= $oGift->field_product_name['und'][0]['value'].' '.$oGift->field_product_ref['und'][0]['value'] ?></div><?php 
+                if ($sProductId) { ?>
+                    <a class="font-size-18 right" href="<?= url('taxonomy/term/' . $sProductId) ?>" >Check product specifications <span class="glyphicon glyphicon-arrow-right"></span></a><?php 
+                } ?>
+                <div class="clearfix"></div>
+            </div><?php
             if ($oFieldThemeGift->field_gift_theme_image) { ?>
                 <div class="gallery gallery-container"><?php 
                 foreach ($oFieldThemeGift->field_gift_theme_image['und'] as $aPicture) { ?>

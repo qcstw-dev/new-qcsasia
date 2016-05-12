@@ -1,11 +1,11 @@
 <div class="product-page">
     <div class="col-sm-3 main-picture-block margin-top-20 padding-0">
-        <div class="thumbnail thumb margin-bottom-10 event-enlarge"><?php 
+        <div class="thumbnail thumb margin-bottom-10"><?php 
             foreach ($term->field_main_photo['und'] as $aFieldMainPhoto) { ?>
-                <div><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" data-large-picture="<?= ($term->field_large_main_photo‎  ? file_create_url($term->field_large_main_photo‎['und'][0]['uri']) : '') ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php
+            <div class="event-enlarge"><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" data-large-picture="<?= ($term->field_large_main_photo ? file_create_url($term->field_large_main_photo['und'][0]['uri']) : '') ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php
             }
             if ($term->field_photo_function) { ?>
-                <div><img src="<?= file_create_url($term->field_photo_function['und'][0]['uri']) ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php 
+            <div class="event-enlarge"><img src="<?= file_create_url($term->field_photo_function['und'][0]['uri']) ?>" data-large-picture="<?= file_create_url($term->field_photo_function['und'][0]['uri']) ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php 
             } ?>
         </div>
         <div class="padding-left-30 padding-right-30">
@@ -163,14 +163,24 @@
         </div>
         <div class="col-md-12">
             <div class="col-md-12 border padding-top-20 padding-0">
-                <div class="padding-left-50 padding-right-50">
+                <div class="padding-left-30 padding-right-30">
                     <div class="big-slick ymal-pics"><?php
                             foreach ($term->field_you_might_like['und'] as $aYouMightLike) { 
-                                $oYouMightLikeEntity = taxonomy_term_load($aYouMightLike['tid']); ?>
+                                $oYouMightLikeEntity = taxonomy_term_load($aYouMightLike['tid']);
+                                $aLogoProcesses = getLogoProcesses($oYouMightLikeEntity);
+                                $sProductYouMightLikeUrl = (!$aLogoProcesses 
+                                        ? $oYouMightLikeEntity->field_main_photo['und'][0]['uri'] 
+                                        : isset($aLogoProcesses['doming']['thumbnail']) && $aLogoProcesses['doming']['thumbnail'] 
+                                            ? $aLogoProcesses['doming']['thumbnail'] 
+                                            : (array_shift($aLogoProcesses)['thumbnail'] ?: $oYouMightLikeEntity->field_main_photo['und'][0]['uri'])); ?>
                                 <div>
                                     <a href="<?= url('taxonomy/term/' . $oYouMightLikeEntity->tid) ?>">
-                                        <img src="<?= file_create_url($oYouMightLikeEntity->field_main_photo['und'][0]['uri']) ?>" title="" alt="" />
-                                        <div class="subtitle-pic"><?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?></div>
+                                        <div class="col-md-12">
+                                            <div class="thumbnail margin-bottom-0">
+                                                <img src="<?= file_create_url($sProductYouMightLikeUrl) ?>" title="" alt="" />
+                                                <div class="subtitle-pic"><?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?></div>
+                                            </div>
+                                        </div>
                                     </a>
                                 </div><?php
                             } ?>
@@ -198,7 +208,7 @@
             $.magnificPopup.open({
                 items: [{
                         src: $('<div class="white-popup">' +
-                                '<div><img src="' + src + '" /></div>' +
+                                '<div class="thumbnail border-none"><img src="' + src + '" /></div>' +
                                 '</div>'),
                         type: 'inline'
 
@@ -238,7 +248,7 @@
     });
     $('.ymal-pics').slick({
         infinite: true,
-        slidesToShow: 5,
+        slidesToShow: 4,
         slidesToScroll: 1,
         responsive: [
             {

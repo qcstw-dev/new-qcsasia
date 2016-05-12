@@ -5,16 +5,28 @@
             <iframe width="100%" height="315" src="https://www.youtube.com/embed/M2IP43hdQDU?showinfo=0" frameborder="0" allowfullscreen></iframe>
         </div>
         <div class="col-md-6">
+            <h3>Digital printing and doming process</h3>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/rJy6Vui5Inw?showinfo=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="col-md-6">
+            <h3>Plastic injection setup</h3>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/edklHfsLO-Q?showinfo=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="col-md-6">
+            <h3>Metal injection and polish</h3>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/sgSuAvxgHSk?showinfo=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="col-md-6">
+            <h3>SOFT PVC - Automatic color filling at QCS Asia</h3>
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/CEXj59NfZDg?showinfo=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="col-md-6">
             <h3>Soft PVC processing</h3>
             <iframe width="100%" height="315" src="https://www.youtube.com/embed/oCPbSKkkJDY?showinfo=0" frameborder="0" allowfullscreen></iframe>
         </div>
         <div class="col-md-6">
             <h3>Offset printing</h3>
             <iframe width="100%" height="315" src="https://www.youtube.com/embed/Nm3cUsvBIiU?showinfo=0" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <div class="col-md-6">
-            <h3>Metal injection and polish</h3>
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/sgSuAvxgHSk?showinfo=0" frameborder="0" allowfullscreen></iframe>
         </div>
         <div class="col-xs-12 padding-0">
             <h3>Factory's gallery</h3>

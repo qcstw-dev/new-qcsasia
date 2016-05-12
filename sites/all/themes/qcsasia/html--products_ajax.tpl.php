@@ -80,7 +80,13 @@ function displayProductBlock($oProduct) {
         <div class = "thumbnail thumbnail-hover">
             <a href = "<?= url('taxonomy/term/' . $oProduct->tid) ?>" title = ""><?php
                 $aLogoPorcesses = getLogoProcesses($oProduct);
-                $sLogoProcessUri = ($aLogoPorcesses ? (isset($aLogoPorcesses['doming']) ? $aLogoPorcesses['doming']['thumbnail'] : (array_shift($aLogoPorcesses)['thumbnail']?: $oProduct->field_main_photo['und'][0]['uri'])) : $oProduct->field_main_photo['und'][0]['uri']); ?>
+                $sLogoProcessUri = (!$aLogoPorcesses 
+                        ? $oProduct->field_main_photo['und'][0]['uri']
+                        : (isset($aLogoPorcesses['doming']) 
+                            ? $aLogoPorcesses['doming']['thumbnail'] 
+                            : (isset(array_shift($aLogoPorcesses)['thumbnail']) && array_shift($aLogoPorcesses)['thumbnail']
+                                ? array_shift($aLogoPorcesses)['thumbnail'] 
+                                : $oProduct->field_main_photo['und'][0]['uri']))); ?>
                 <img src = "<?= file_create_url($sLogoProcessUri) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
                 <div class = "ref-product"><?= ($sRef ? : '') ?></div>
                 <div class = "title-product"><?= $sName ?></div>

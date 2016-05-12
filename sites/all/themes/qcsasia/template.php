@@ -116,9 +116,9 @@ function qcsasia_links__system_main_menu($variables) {
                                     </ul><?php } ?>
                             </li><?php } ?>
                     </ul>
-                    <!--                    <ul class="nav navbar-nav navbar-right search-form-content">
-                                            <li><form><input class="margin-right-md-10" type="text" /><button class="btn btn-primary" type="submit">Search</button></form></li>
-                                        </ul>-->
+                    <ul class="nav navbar-nav navbar-right search-form-content">
+                        <li><form action="/search" method="get"><input class="margin-right-md-10" name="keyword" type="text" autocomplete="off" /><button class="btn btn-primary" type="submit">Search</button></form></li>
+                    </ul>
                 </div>
             </div>
         </nav><?php
@@ -373,12 +373,13 @@ function getProducts($aQueryParameters, $bCount = false) {
             switch ($sKey) {
                 case 'keyword':
                     $sKeyword = $mValue;
-                    preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matches);
-                    if ($matches) {
-                        $oQuery->fieldCondition('field_product_ref', 'value', $sKeyword, 'CONTAINS');
-                    } else {
-                        $oQuery->fieldCondition('field_product_name', 'value', $sKeyword, 'CONTAINS');
-                    }
+                        $oQuery->propertyCondition('name', $sKeyword, 'CONTAINS');
+//                    preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matches);
+//                    if ($matches) {
+//                        $oQuery->fieldCondition('field_product_ref', 'value', $sKeyword, 'CONTAINS');
+//                    } else {
+//                        $oQuery->fieldCondition('field_product_name', 'value', $sKeyword, 'CONTAINS');
+//                    }
 //                    $mValue = explode(' ', $mValue);
 //                    foreach ($mValue as $sKeyword) {
 //                        preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matches);
@@ -599,17 +600,19 @@ function displayOption($aImageOption) {
 
 function getLogoProcesses ($oTerm) {
     $aIds = [];
-    foreach ($oTerm->field_logo_process_block['und'] as $aLogoProcess) {
-        $aIds[] = $aLogoProcess['value'];
-    }
     $aLogoProcess = [];
-    foreach ($aIds as $sId) {
-        $oFieldLogoProcess = entity_load('field_collection_item', [$sId]);
-        $oLogoProcess = taxonomy_term_load($oFieldLogoProcess[$sId]->field_logo_process['und'][0]['tid']);
-        $sRefLogoProcess = $oLogoProcess->field_reference['und'][0]['value'];
-        $aLogoProcess[$sRefLogoProcess]['id'] = $oLogoProcess->tid;
-        $aLogoProcess[$sRefLogoProcess]['thumbnail'] = $oFieldLogoProcess[$sId]->field_logo_process_thumbnail['und'][0]['uri'];
-        $aLogoProcess[$sRefLogoProcess]['large'] = $oFieldLogoProcess[$sId]->field_logo_process_large_picture['und'][0]['uri'];
+    if (isset($oTerm->field_logo_process_block['und'])) {
+        foreach ($oTerm->field_logo_process_block['und'] as $aLogoProcessBlock) {
+            $aIds[] = $aLogoProcessBlock['value'];
+        }
+        foreach ($aIds as $sId) {
+            $oFieldLogoProcess = array_shift(entity_load('field_collection_item', [$sId]));
+            $oLogoProcess = taxonomy_term_load($oFieldLogoProcess->field_logo_process['und'][0]['tid']);
+            $sRefLogoProcess = isset($oLogoProcess->field_reference['und'][0]['value']) ? $oLogoProcess->field_reference['und'][0]['value'] : '';
+            $aLogoProcess[$sRefLogoProcess]['id'] = $oLogoProcess->tid;
+            $aLogoProcess[$sRefLogoProcess]['thumbnail'] = isset($oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri'] : '';
+            $aLogoProcess[$sRefLogoProcess]['large'] = isset($oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri'] : '';
+        }
     }
      return $aLogoProcess;
 }
@@ -643,13 +646,14 @@ function displayLogoProcess($term) { ?>
 
 function displayLogoProcessBlock($aLogoProcess) {
     $oLogoProcess = taxonomy_term_load($aLogoProcess['id']);
-    $sComplicatedDisplay = isset($aLogoProcess['thumbnail']);
-    if ($sComplicatedDisplay) { ?>
-        <div class="col-sm-3 thumbnail margin-top-20">
-            <img src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" alt="" title="" />
+    $bComplicatedDisplay = $aLogoProcess['thumbnail'];
+    $bLargePicture = $aLogoProcess['large'];
+    if ($bComplicatedDisplay) { ?>
+        <div class="col-sm-3 thumbnail margin-top-20 <?= ($bLargePicture ? 'pointer event-enlarge' : '') ?>">
+            <img src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" />
         </div><?php 
     } ?>
-    <div class="<?= $sComplicatedDisplay ? 'col-sm-9' : 'col-sm-12' ?> padding-xs-0">
+    <div class="<?= $bComplicatedDisplay ? 'col-sm-9' : 'col-sm-12' ?> padding-xs-0">
         <h3 class=""><?= $oLogoProcess->name ?></h3>
         <div class="col-md-7 margin-bottom-sm-10">
             <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>

@@ -139,6 +139,12 @@ label input[type="checkbox"] {
 #logo {
     padding-top: 20px;
 }
+.right {
+    float: right;
+}
+.left {
+    float: left;
+}
 .main-title {
     color: inherit;
 }
@@ -154,6 +160,13 @@ ol, .breadcrumb {
 }
 a {
     color: #38B15D;
+    cursor: pointer;
+}
+a:focus, a:hover {
+     color: #38B15D; 
+     text-decoration: none; 
+}
+.pointer {
     cursor: pointer;
 }
 .navbar-default {
@@ -186,6 +199,12 @@ a {
 }
 
 /****************************** MENU COLLAPSE iPad FIX ***************/
+@media (min-width: 991px) {
+    .navbar-collapse {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
 @media (max-width: 991px) {
     .navbar-header {
         float: none;
@@ -363,6 +382,14 @@ a {
 }
 .input-group-addon, .form-control, .btn {
     border-radius: 0;
+}
+.title-block {
+    background: #ddd;
+    padding: 7px;
+    color: #777;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active,
@@ -960,8 +987,8 @@ span.count.badge {
 }
 .enlarge {
     position: absolute;    
-    bottom: 110px;
-    right: 30px;
+    bottom: 108px;
+    right: 6px;
     cursor: pointer;
     font-size: 20px;
 }
@@ -1075,9 +1102,9 @@ span.count.badge {
         overflow: hidden;
     }
 }
-.ymal-pics .subtitle-pic {
+/*.ymal-pics .subtitle-pic {
     background: none;
-}
+}*/
 /******** SLICK *********/
 .slick-prev,
 .slick-next,
@@ -1105,6 +1132,14 @@ span.count.badge {
 .slick-slider {
     margin-bottom: 20px;
 }
+/****************************** THEME PAGE ***************/
+.title-block a{
+    margin-top: 3px;
+}
+.title-block .title {
+    float: left;
+    text-align: left;
+}
 /****************************** SEARCH THEME PAGE ***************/
 .node-search-themes .block-gift {
     cursor: pointer;
@@ -1122,7 +1157,6 @@ span.count.badge {
     font-size: 12px;
     text-align: center;
 }
-
 /****************************** CAREER PAGE ***************/
 .node-career .filter-group-title{
     padding: 10px;
