@@ -411,10 +411,13 @@ a {
     margin-left: 7%;
 }
 .font-size-24 {
-    font-size: 24px;
+    font-size: 24px !important;
 }
 .font-size-20 {
-    font-size: 20px;
+    font-size: 20px !important;
+}
+.font-size-18 {
+    font-size: 18px !important;
 }
 .font-size-65 {
     font-size: 65px;
@@ -439,6 +442,10 @@ a {
 }
 .no-background {
     background: none;
+}
+.padding {
+    padding-right: 15px;
+    padding-left: 15px;
 }
 .padding-0 {
     padding: 0;
@@ -484,10 +491,6 @@ a {
 }
 .padding-20 {
     padding: 20px;
-}
-.padding {
-    padding-right: 15px;
-    padding-left: 15px;
 }
 .cursor-pointer {
     cursor: pointer;
@@ -1103,6 +1106,9 @@ span.count.badge {
     margin-bottom: 20px;
 }
 /****************************** SEARCH THEME PAGE ***************/
+.node-search-themes .block-gift {
+    cursor: pointer;
+}
 .node-search-themes .block-gift .thumbnail {
     padding-left: 12px;
 }

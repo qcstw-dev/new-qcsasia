@@ -34,8 +34,8 @@
     </div>
 </div>
 <script>
-    $('.checkbox-container').on('click', function (){
-        checkUncheck($(this));
+    $('.block-gift').on('click', function (){
+        checkUncheck($(this).find('.checkbox-container'));
         updateSearchResults();
     });
     function updateSearchResults () {

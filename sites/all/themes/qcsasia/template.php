@@ -237,6 +237,44 @@ function getPotentialNumberForFilters() {
     }
     return $aFilterNumProducts;
 }
+function getAddons() {
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'add_on');
+
+    $aResult = $oQuery->execute();
+    if ($aResult) {
+        return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
+    } else {
+        return false;
+    }
+}
+function retrieveDisplayByRefMultiple ($aRef){
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'display')
+            ->fieldCondition('field_display_ref', 'value', $aRef);
+
+    $aResult = $oQuery->execute();
+    if ($aResult) {
+        return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
+    } else {
+        return false;
+    }
+}
+function retrieveDisplayByRef ($sRef){
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'display')
+            ->fieldCondition('field_display_ref', 'value', $sRef);
+
+    $aResult = $oQuery->execute();
+    if ($aResult) {
+        return taxonomy_term_load(strval(array_shift($aResult['taxonomy_term'])->tid));
+    } else {
+        return false;
+    }
+}
 
 function getGifts($aQueryParameters = null) {
     // retrieve gifts
@@ -334,15 +372,22 @@ function getProducts($aQueryParameters, $bCount = false) {
         foreach ($aQueryParameters as $sKey => $mValue) {
             switch ($sKey) {
                 case 'keyword':
-                    $mValue = explode(' ', $mValue);
-                    foreach ($mValue as $sKeyword) {
-                        preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matches);
-                        if ($matches) {
-                            $oQuery->fieldCondition('field_product_ref', 'value', $sKeyword, 'CONTAINS');
-                        } else {
-                            $oQuery->fieldCondition('field_description', 'value', $sKeyword, 'CONTAINS');
-                        }
+                    $sKeyword = $mValue;
+                    preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matches);
+                    if ($matches) {
+                        $oQuery->fieldCondition('field_product_ref', 'value', $sKeyword, 'CONTAINS');
+                    } else {
+                        $oQuery->fieldCondition('field_product_name', 'value', $sKeyword, 'CONTAINS');
                     }
+//                    $mValue = explode(' ', $mValue);
+//                    foreach ($mValue as $sKeyword) {
+//                        preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matches);
+//                        if ($matches) {
+//                            $oQuery->fieldCondition('field_product_ref', 'value', $sKeyword, 'CONTAINS');
+//                        } else {
+//                            $oQuery->fieldCondition('field_description', 'value', $sKeyword, 'CONTAINS');
+//                        }
+//                    }
                     break;
                 case 'new':
                     $oQuery->fieldCondition('field_new_product', 'value', '1');
@@ -552,15 +597,58 @@ function displayOption($aImageOption) {
     </div><?php
 }
 
-function displayLogoProcess($sIdLogoProcess, $term, $iPosition) {
-    $oLogoProcess = taxonomy_term_load($sIdLogoProcess);
-    $sComplicatedDisplay = isset($term->field_image_logo_process['und'][$iPosition]['uri']);
-    if ($sComplicatedDisplay) {
-        ?>
+function getLogoProcesses ($oTerm) {
+    $aIds = [];
+    foreach ($oTerm->field_logo_process_block['und'] as $aLogoProcess) {
+        $aIds[] = $aLogoProcess['value'];
+    }
+    $aLogoProcess = [];
+    foreach ($aIds as $sId) {
+        $oFieldLogoProcess = entity_load('field_collection_item', [$sId]);
+        $oLogoProcess = taxonomy_term_load($oFieldLogoProcess[$sId]->field_logo_process['und'][0]['tid']);
+        $sRefLogoProcess = $oLogoProcess->field_reference['und'][0]['value'];
+        $aLogoProcess[$sRefLogoProcess]['id'] = $oLogoProcess->tid;
+        $aLogoProcess[$sRefLogoProcess]['thumbnail'] = $oFieldLogoProcess[$sId]->field_logo_process_thumbnail['und'][0]['uri'];
+        $aLogoProcess[$sRefLogoProcess]['large'] = $oFieldLogoProcess[$sId]->field_logo_process_large_picture['und'][0]['uri'];
+    }
+     return $aLogoProcess;
+}
+
+function displayLogoProcess($term) { ?>
+    <div class="col-md-12"><?php
+        $aLogoProcesses = getLogoProcesses($term);
+        $bIssetDoming = isset($aLogoProcesses['doming']);
+        displayLogoProcessBlock(($bIssetDoming ? $aLogoProcesses['doming'] : array_shift($aLogoProcesses))); ?>
+    </div><?php
+    if (count($aLogoProcesses) > 1) { ?>
+        <div class="col-md-12 hidden-text-area"><?php
+        $count = 0;
+            foreach ($aLogoProcesses as $key => $aLogoProcess) {
+                if (($bIssetDoming && $key != 'doming') || (!$bIssetDoming && $count > 1 )) { ?>
+                    <div class="col-md-12 padding-0"><?php
+                        displayLogoProcessBlock($aLogoProcess); ?>
+                    </div><?php
+                } 
+                $count++;
+            } ?>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-12 padding-0">
+            <div class="btn-show-hide-text-area"><span class="glyphicon glyphicon-menu-down"></span> More logo processes <span class="glyphicon glyphicon-menu-down"></span></div>
+        </div>
+        <div class="clearfix"></div><?php
+    }
+}
+
+
+function displayLogoProcessBlock($aLogoProcess) {
+    $oLogoProcess = taxonomy_term_load($aLogoProcess['id']);
+    $sComplicatedDisplay = isset($aLogoProcess['thumbnail']);
+    if ($sComplicatedDisplay) { ?>
         <div class="col-sm-3 thumbnail margin-top-20">
-            <img src="<?= file_create_url($term->field_image_logo_process['und'][$iPosition]['uri']) ?>" alt="" title="" />
-        </div><?php }
-    ?>
+            <img src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" alt="" title="" />
+        </div><?php 
+    } ?>
     <div class="<?= $sComplicatedDisplay ? 'col-sm-9' : 'col-sm-12' ?> padding-xs-0">
         <h3 class=""><?= $oLogoProcess->name ?></h3>
         <div class="col-md-7 margin-bottom-sm-10">

@@ -58,9 +58,7 @@ function saveData($oTerm, $XMLpost) {
     
     $oTerm->description = (string) $XMLpost->description;
     $oTerm->field_date_gmt['und'][0]['value'] = (string) $XMLpost->date_gmt;
-    */
     $oTerm->field_complicated['und'][0]['value'] = (string) $XMLpost->complicated;
-    /*
     $oTerm->field_item_size['und'][0]['value'] = (string) $XMLpost->item_size;
     $oTerm->field_logo_size['und'][0]['value'] = (string) $XMLpost->logo_size;
     $oTerm->field_packaging['und'][0]['value'] = (string) $XMLpost->packaging;
@@ -271,49 +269,78 @@ function saveData($oTerm, $XMLpost) {
                 break;
         }
     }
-
+*/
+    
+    $aLogoImages = [];
+    foreach ($XMLpost->images->image as $aImage) {
+        if ($aImage->title == 'image_logo_process') {
+            $aLogoImages[] = $aImage->url;
+        }
+    }
+    $aLargeImage = [];
+    foreach ($XMLpost->slideshow->slide as $aSlide) {
+       if (strposa(strtolower($aSlide->slide_title), ['doming',
+           'laser engraving', 
+           'pvc', 
+           'silk',
+           'digital',
+           'offset printing',
+           'epoxy', 
+           'blind',
+           'soft',
+           'woven',
+           'offset',
+           'iron',
+           'brass',
+           'zamac',
+           ])) {
+           $aLargeImage[] = $aSlide;
+       }
+    }
+    
+    
     // RESET
-    $oTerm->field_logo_process['und'] = [];
-    foreach ((array) $XMLpost->logo_process as $sValue) {
+    $oTerm->field_logo_process_block['und'] = [];
+    foreach ((array) $XMLpost->logo_process as $key => $sValue) {
         switch ($sValue) {
             case '2D-PVC-Cloisonne': // PVC Cloisonne
             case '3D-PVC-Cloisonne': // PVC Cloisonne
-                $oTerm->field_logo_process['und'][] = ['tid' => '29'];
+                add_field_collection_image_logo('29', $aLogoImages[$key], $oTerm);
                 break;
             case 'Laser-engraving': // laser engraving
-                $oTerm->field_logo_process['und'][] = ['tid' => '31'];
+                add_field_collection_image_logo('31', $aLogoImages[$key], $oTerm);
                 break;
             case 'Silk-screen-printing': // silk screen printing
-                $oTerm->field_logo_process['und'][] = ['tid' => '32'];
+                add_field_collection_image_logo('32', $aLogoImages[$key], $oTerm);
                 break;
             case 'Digitel-printing': // digital printing
-                $oTerm->field_logo_process['und'][] = ['tid' => '33'];
+                add_field_collection_image_logo('33', $aLogoImages[$key], $oTerm);
                 break;
             case 'Doming': // doming
-                $oTerm->field_logo_process['und'][] = ['tid' => '34'];
+                add_field_collection_image_logo('34', $aLogoImages[$key], $oTerm);
                 break;
             case 'Offset-printing': // offset printing
             case 'Epoxy': // offset printing
-                $oTerm->field_logo_process['und'][] = ['tid' => '36'];
+                add_field_collection_image_logo('36', $aLogoImages[$key], $oTerm);
                 break;
             case 'Blind-stamping':
                 break;
             case 'Soft-enamel': // enamel
             case 'Woven-enamel': // enamel
-                $oTerm->field_logo_process['und'][] = ['tid' => '27'];
-                break;
-            case 'Pvc-label': // PVC Cloisonne
-                $oTerm->field_logo_process['und'][] = ['tid' => '29'];
-                break;
             case 'Zamac':
             case 'Brass':
             case 'Iron':
             case 'Offset':
-                $oTerm->field_logo_process['und'][] = ['tid' => '27'];
+                add_field_collection_image_logo('27', $aLogoImages[$key], $oTerm);
+                break;
+            case 'Pvc-label': // PVC Cloisonne
+                add_field_collection_image_logo('29', $aLogoImages[$key], $oTerm);
                 break;
         }
     }
-
+    
+    
+/*
     // IMAGES
     $bAlreadyAdd = [
         'field_image_option' => false,
@@ -497,11 +524,35 @@ function add_field_collection_image_option($sTitle, $sUrl, $oTerm) {
 
     saveImageOption($sUrl, $oTerm, $field_collection_item);
 
-// Save field collection item
+    // Save field collection item
     $field_collection_item->setHostEntity('taxonomy_term', $oTerm);
     $field_collection_item->save();
 }
 
+
+function add_field_collection_image_logo($sLogoId, $sUrl, $oTerm) {
+    $field_collection_item = entity_create('field_collection_item', array('field_name' => 'field_logo_process_block'));
+    $field_collection_item->field_logo_process[LANGUAGE_NONE][0] = ['tid' => $sLogoId];
+
+    saveImageLogoProcess($sUrl, $oTerm, $field_collection_item);
+
+    // Save field collection item
+    $field_collection_item->setHostEntity('taxonomy_term', $oTerm);
+    $field_collection_item->save();
+}
+
+
+function saveImageLogoProcess($sUrl, $oTerm, $field_collection_item) {
+    $sTargetPath = 'products/logo-process';
+
+    $file_temp = file_get_contents($sUrl);
+    $file_temp = file_save_data($file_temp, 'public://' . $sTargetPath . '/' . basename($sUrl), FILE_EXISTS_REPLACE);
+
+    $file_temp->title = $oTerm->name;
+    $file_temp->alt = $oTerm->name;
+
+    $field_collection_item->field_logo_process_thumbnail['und'][0] = (array) $file_temp;
+}
 function saveImageOption($sUrl, $oTerm, $field_collection_item) {
     $sTargetPath = 'products/option';
 
@@ -515,3 +566,12 @@ function saveImageOption($sUrl, $oTerm, $field_collection_item) {
 }
 
 
+function strposa($haystack, $needles=array(), $offset=0) {
+    $chr = array();
+    foreach($needles as $needle) {
+        $res = strpos($haystack, $needle, $offset);
+        if ($res !== false) $chr[$needle] = $res;
+    }
+    if(empty($chr)) return false;
+    return min($chr);
+}

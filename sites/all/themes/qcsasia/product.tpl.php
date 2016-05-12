@@ -2,7 +2,7 @@
     <div class="col-sm-3 main-picture-block margin-top-20 padding-0">
         <div class="thumbnail thumb margin-bottom-10 event-enlarge"><?php 
             foreach ($term->field_main_photo['und'] as $aFieldMainPhoto) { ?>
-                <div><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php
+                <div><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" data-large-picture="<?= ($term->field_large_main_photo‎  ? file_create_url($term->field_large_main_photo‎['und'][0]['uri']) : '') ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php
             }
             if ($term->field_photo_function) { ?>
                 <div><img src="<?= file_create_url($term->field_photo_function['und'][0]['uri']) ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php 
@@ -106,14 +106,14 @@
         <nav class="navbar navbar-default margin-bottom-0">
             <div class=" navbar-collapse padding-0 tabs" id="navbar-collapse-menu-tab">
                 <ul class="nav navbar-nav text-center"><?php
-                    if ($term->field_logo_process) { ?>
-                        <li class="border-right <?= ($term->field_logo_process ? "active" : '') ?>"><a class="tab" data-id-tab="1">Logo process</a></li><?php
+                    if ($term->field_logo_process_block) { ?>
+                        <li class="border-right <?= ($term->field_logo_process_block ? "active" : '') ?>"><a class="tab" data-id-tab="1">Logo process</a></li><?php
                     }
                     if ($term->field_image_option) {?>
-                        <li <?= (!$term->field_logo_process ? 'class="active"' : '') ?>><a class="border-right tab" data-id-tab="2">Options</a></li><?php
+                        <li <?= (!$term->field_logo_process_block ? 'class="active"' : '') ?>><a class="border-right tab" data-id-tab="2">Options</a></li><?php
                     } 
                     if ($term->field_complicated['und'][0]['value']) { ?>
-                        <li <?= (!$term->field_image_option && !$term->field_logo_process ? 'class="active"' : '') ?>><a class="border-right tab" data-id-tab="3">Layout maker</a></li><?php
+                        <li <?= (!$term->field_image_option && !$term->field_logo_process_block ? 'class="active"' : '') ?>><a class="border-right tab" data-id-tab="3">Layout maker</a></li><?php
                     } 
                     if ($term->field_group_document && $term->field_complicated['und'][0]['value']) { ?>
                         <li><a class="tab" data-id-tab="4">Document center</a></li><?php
@@ -121,48 +121,21 @@
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
-        <div class="tab-block tab-block-1 block-logo border border-top-0 <?= ($term->field_logo_process ? "block-active" : '') ?>"><?php
-            if ($term->field_logo_process) { ?>
-                <div class="col-md-12"><?php
-//                    foreach ($term->field_logo_process['und'] as $key => $aLogoProcess) {
-//                        if (in_array('34', $aLogoProcess)) {
-//                            unset($term->field_logo_process['und'][$key]);
-//                            array_unshift($term->field_logo_process['und'], $aLogoProcess);
-//                            
-//                            array_unshift($term->field_image_logo_process['und'], $term->field_image_logo_process['und'][$key]);
-//                            unset($term->field_image_logo_process['und'][$key+1]); 
-//                        }
-//                    }
-                    displayLogoProcess($term->field_logo_process['und'][0]['tid'], $term, 0); ?>
-                </div><?php
-                if (isset($term->field_logo_process['und'][1]) && $term->field_logo_process['und'][1]['tid'] != $term->field_logo_process['und'][0]['tid']) { ?>
-                    <div class="col-md-12 hidden-text-area"><?php
-                        $iPosition = 1;
-                        foreach (array_slice($term->field_logo_process['und'], 1) as $aLogoProcess) { ?>
-                        <div class="col-md-12 padding-0"><?php
-                            displayLogoProcess($aLogoProcess['tid'], $term, $iPosition);
-                            $iPosition++; ?>
-                        </div><?php
-                        } ?>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="col-md-12 padding-0">
-                        <div class="btn-show-hide-text-area"><span class="glyphicon glyphicon-menu-down"></span> More logo processes <span class="glyphicon glyphicon-menu-down"></span></div>
-                    </div>
-                    <div class="clearfix"></div><?php
-                }
+        <div class="tab-block tab-block-1 block-logo border border-top-0 <?= ($term->field_logo_process_block ? "block-active" : '') ?>"><?php
+            if ($term->field_logo_process_block) { 
+                displayLogoProcess($term);
             } ?>
             <div class="clearfix"></div>
         </div><?php
         if ($term->field_image_option) { ?>
-            <div class="tab-block tab-block-2 border border-top-0 padding-top-10 padding-bottom-10 <?= (!$term->field_logo_process ? "block-active" : '') ?>"><?php
+            <div class="tab-block tab-block-2 border border-top-0 padding-top-10 padding-bottom-10 <?= (!$term->field_logo_process_block ? "block-active" : '') ?>"><?php
                 foreach ($term->field_image_option['und'] as $aImageOption) {
                     displayOption($aImageOption);
                 } ?>
                 <div class="clearfix"></div>
             </div><?php
         } ?>
-        <div class="tab-block tab-block-3 border border-top-0 padding-20 <?= (!$term->field_logo_process && !$term->field_image_option ? "block-active" : '') ?>">
+        <div class="tab-block tab-block-3 border border-top-0 padding-20 <?= (!$term->field_logo_process_block && !$term->field_image_option ? "block-active" : '') ?>">
             <div class="col-md-6 thumbnail margin-bottom-0 gallery-container">
                 <a href="<?= url(path_to_theme() . "/images/template/layout-maker-large.png") ?>" title="Layout maker">
                     <img src="<?= url(path_to_theme() . "/images/template/layout-maker-large.png") ?>" alt="" title="" />
@@ -216,10 +189,16 @@
     });
     $('.event-enlarge').on('click', function () {
         if ($(window).width() >= 768) {
+            var src = '';
+            if ($(this).find('img').data('large-picture')) {
+                src = $(this).find('img').data('large-picture');
+            } else {
+                src = $(this).find('img').attr('src');
+            }
             $.magnificPopup.open({
                 items: [{
                         src: $('<div class="white-popup">' +
-                                '<div><img src="' + $('.thumb .slick-current img').attr('src') + '" /></div>' +
+                                '<div><img src="' + src + '" /></div>' +
                                 '</div>'),
                         type: 'inline'
 

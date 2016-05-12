@@ -5,30 +5,21 @@ if ($aProducts) {
     <div class="col-md-12 margin-bottom-10 number-products" data-num-prod="<?= count($aProducts) ?>"><strong><?= count($aProducts) ?> Products</strong></div><?php
     $i = 4;
     foreach ($aProducts as $oProduct) {
-       /* if ($i % 4 == 0) {
-            ?>
-            <div class = "col-md-12 padding-0"><?php
-            } */
-            if (isset($oProduct->field_category['und'][0]['tid']) && taxonomy_get_parents($oProduct->field_category['und'][0]['tid'])) {
-                $oCategory = taxonomy_term_load($oProduct->field_category['und'][0]['tid']);
-                if (!in_array($oCategory->field_reference['und'][0]['value'], $aUsedCategories)) {
-                    displayLineBlock($oCategory, $aLineProducts);
-                    $aUsedCategories[] = $oCategory->field_reference['und'][0]['value'];
-                    $i++;
-                }
-            } else {
-                displayProductBlock($oProduct);
+        if (isset($oProduct->field_category['und'][0]['tid']) && taxonomy_get_parents($oProduct->field_category['und'][0]['tid'])) {
+            $oCategory = taxonomy_term_load($oProduct->field_category['und'][0]['tid']);
+            if (!in_array($oCategory->field_reference['und'][0]['value'], $aUsedCategories)) {
+                displayLineBlock($oCategory, $aLineProducts);
+                $aUsedCategories[] = $oCategory->field_reference['und'][0]['value'];
                 $i++;
             }
-            /* if ($i % 4 == 0) {
-                ?>
-            </div><?php
-        } */
+        } else {
+            displayProductBlock($oProduct);
+            $i++;
+        }
     }
     parse_str($_SERVER['QUERY_STRING'], $aQuery);
     unset($aQuery['category']);
-    $sQueryNoCategory = http_build_query($aQuery);
-    ?>
+    $sQueryNoCategory = http_build_query($aQuery); ?>
     <script>
         $('.block-category').on('click', function () {
             var url = baseUrl + '/products_line_ajax/';
@@ -63,16 +54,17 @@ if ($aProducts) {
 function displayLineBlock($oCategory, $aLineProducts) {
     $sName = $oCategory->field_category_title['und'][0]['value'];
     $sRef = (isset($oCategory->field_category_reference['und'][0]['value']) ? $oCategory->field_category_reference['und'][0]['value'] : '');
-    $aLineProducts[$oCategory->field_reference['und'][0]['value']] = [];
-    ?>
+    $aLineProducts[$oCategory->field_reference['und'][0]['value']] = []; ?>
     <div class = "block-product block-category col-xs-6 col-md-3" data-reference="<?= $oCategory->field_reference['und'][0]['value'] ?>">
         <div class = "thumbnail thumbnail-hover">
             <div class="col-md-12 padding-0 products-thumbnails"><?php 
+            if ($oCategory->field_category_thumbnail) {
                 foreach ($oCategory->field_category_thumbnail['und'] as $aThumbnail) { ?>
-                <div class="col-xs-6 padding-0 thumbnail margin-0 border-none">
-                    <img class="" src = "<?= file_create_url($aThumbnail['uri']) ?>" alt = "" title = "" />
-                </div><?php
-                }?>
+                    <div class="col-xs-6 padding-0 thumbnail margin-0 border-none">
+                        <img class="" src = "<?= file_create_url($aThumbnail['uri']) ?>" alt = "" title = "" />
+                    </div><?php
+                }
+            } ?>
             </div>
             <div class="clearfix"></div>
             <div class = "ref-product"><?= ($sRef ? $sRef . ' Line' : 'Product line') ?></div>
@@ -87,8 +79,9 @@ function displayProductBlock($oProduct) {
     <div class = "block-product col-xs-6 col-md-3">
         <div class = "thumbnail thumbnail-hover">
             <a href = "<?= url('taxonomy/term/' . $oProduct->tid) ?>" title = ""><?php
-                $sLogoProcessUri = (isset($oProduct->field_image_logo_process['und'][0]['uri']) ? $oProduct->field_image_logo_process['und'][0]['uri'] : ''); ?>
-                <img src = "<?= file_create_url(( $sLogoProcessUri ? : $oProduct->field_main_photo['und'][0]['uri'])) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
+                $aLogoPorcesses = getLogoProcesses($oProduct);
+                $sLogoProcessUri = ($aLogoPorcesses ? (isset($aLogoPorcesses['doming']) ? $aLogoPorcesses['doming']['thumbnail'] : (array_shift($aLogoPorcesses)['thumbnail']?: $oProduct->field_main_photo['und'][0]['uri'])) : $oProduct->field_main_photo['und'][0]['uri']); ?>
+                <img src = "<?= file_create_url($sLogoProcessUri) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
                 <div class = "ref-product"><?= ($sRef ? : '') ?></div>
                 <div class = "title-product"><?= $sName ?></div>
             </a>
