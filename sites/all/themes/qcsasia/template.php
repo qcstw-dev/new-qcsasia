@@ -5,8 +5,8 @@ function displaySocialMediaLogo() { ?>
         <div class="social-network"><a href="https://www.facebook.com/pages/QCS-ASIA/182231511328?fref=ts"><span class="icomoon-facebook2"></span></a></div>
         <div class="social-network"><a href="https://plus.google.com/105432120660907122700/posts?hl=fr&partnerid=gplp0"><span class="icomoon-google-plus2"></span></a></div>
         <div class="social-network"><a href="http://www.linkedin.com/company/qcs-asia-co.-ltd"><span class="icomoon-linkedin"></span></a></div>
-        <div class="social-network"><a href=""><span class="icomoon-twitter"></span></a></div>
-        <div class="social-network"><a href=""><span class="icomoon-pinterest"></span></a></div>
+<!--        <div class="social-network"><a href=""><span class="icomoon-twitter"></span></a></div>
+        <div class="social-network"><a href=""><span class="icomoon-pinterest"></span></a></div>-->
     </div><?php
 }
 
@@ -117,7 +117,7 @@ function qcsasia_links__system_main_menu($variables) {
                             </li><?php } ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right search-form-content">
-                        <li><form action="/search" method="get"><input class="margin-right-md-10" name="keyword" type="text" autocomplete="off" /><button class="btn btn-primary" type="submit">Search</button></form></li>
+                        <li><form action="/search" method="get"><input class="margin-right-xs-10" placeholder="Search Products" name="keyword" type="text" autocomplete="off" /><button class="btn btn-primary" type="submit">Search</button></form></li>
                     </ul>
                 </div>
             </div>
@@ -367,7 +367,8 @@ function getProducts($aQueryParameters, $bCount = false) {
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
             ->entityCondition('bundle', 'product')
-            ->fieldOrderBy('field_date_gmt', 'value', 'DESC');
+            ->fieldOrderBy('field_date_gmt', 'value', 'DESC')
+            ->fieldCondition('field_old_id', 'value', NULL, 'IS NOT NULL');
     if ($aQueryParameters) {
         foreach ($aQueryParameters as $sKey => $mValue) {
             switch ($sKey) {
@@ -431,7 +432,19 @@ function getProducts($aQueryParameters, $bCount = false) {
                     break;
                 case 'logo-process':
                     $aLogoProcesses = getTermByRef($mValue, 'logo_process');
-                    $oQuery->fieldCondition('field_logo_process', 'tid', array_keys($aLogoProcesses));
+                    $inner = new EntityFieldQuery();
+                    $inner_r = $inner->entityCondition('entity_type', 'field_collection_item')
+                            ->entityCondition('bundle', 'field_logo_process_block')
+                            ->fieldCondition('field_logo_process', 'tid', array_keys($aLogoProcesses))
+                            ->execute();
+                    $aFieldCollections = entity_load('field_collection_item', array_keys($inner_r['field_collection_item']));
+                    if ($aFieldCollections) {
+                        // retrieve logo
+                        $oQuery->fieldCondition('field_logo_process_block', 'value', array_keys($aFieldCollections));
+                    }
+
+
+//                    $oQuery->fieldCondition('field_logo_process', 'tid', array_keys($aLogoProcesses));
                     break;
             }
         }
@@ -588,8 +601,7 @@ function getNameFromDocument($file) {
 }
 
 function displayOption($aImageOption) {
-    $aImageOptionEntity = array_shift(entity_load('field_collection_item', [$aImageOption['value']]));
-    ?>
+    $aImageOptionEntity = array_shift(entity_load('field_collection_item', [$aImageOption['value']])); ?>
     <div class="col-sm-3 margin-bottom-10 block-option">
         <div class="thumbnail margin-bottom-0">
             <img src="<?= file_create_url($aImageOptionEntity->field_image_option_img['und'][0]['uri']) ?>" alt="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" title="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" />
@@ -606,12 +618,14 @@ function getLogoProcesses ($oTerm) {
             $aIds[] = $aLogoProcessBlock['value'];
         }
         foreach ($aIds as $sId) {
-            $oFieldLogoProcess = array_shift(entity_load('field_collection_item', [$sId]));
-            $oLogoProcess = taxonomy_term_load($oFieldLogoProcess->field_logo_process['und'][0]['tid']);
-            $sRefLogoProcess = isset($oLogoProcess->field_reference['und'][0]['value']) ? $oLogoProcess->field_reference['und'][0]['value'] : '';
-            $aLogoProcess[$sRefLogoProcess]['id'] = $oLogoProcess->tid;
-            $aLogoProcess[$sRefLogoProcess]['thumbnail'] = isset($oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri'] : '';
-            $aLogoProcess[$sRefLogoProcess]['large'] = isset($oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri'] : '';
+            $oFieldLogoProcess = array_values(entity_load('field_collection_item', [$sId]))[0];
+            if (isset($oFieldLogoProcess->field_logo_process['und'][0]['tid'])) {
+                $oLogoProcess = taxonomy_term_load($oFieldLogoProcess->field_logo_process['und'][0]['tid']);
+                $sRefLogoProcess = isset($oLogoProcess->field_reference['und'][0]['value']) ? $oLogoProcess->field_reference['und'][0]['value'] : '';
+                $aLogoProcess[$sRefLogoProcess]['id'] = $oLogoProcess->tid;
+                $aLogoProcess[$sRefLogoProcess]['thumbnail'] = isset($oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri'] : '';
+                $aLogoProcess[$sRefLogoProcess]['large'] = isset($oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri'] : '';
+            }
         }
     }
      return $aLogoProcess;

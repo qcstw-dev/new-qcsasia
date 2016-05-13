@@ -282,6 +282,9 @@ a:focus, a:hover {
     padding: 9px;
     margin: 0;
 }
+#menu .search-form-content input {
+    padding: 3px 12px;
+}
 /***************** MENU TOP *************/
 #menu-top {
     background: #38B15D;
@@ -556,7 +559,7 @@ a:focus, a:hover {
 .min-height-40 {
     min-height: 40px;
 }
-@media (min-width: 320px) and (max-width: 768px) {
+@media (min-width: 320px) {
     .margin-top-xs-10 {
         margin-top: 10px;
     }
@@ -678,11 +681,11 @@ a:focus, a:hover {
     display: none;
 }
 @media (min-width: 640px) {
-    .node-search-gifts .hidden-text-area,
+    .node-search-themes .hidden-text-area,
     .node-search-products .hidden-text-area {
         display: block;
     }
-    .node-search-gifts .btn-show-hide-text-area,
+    .node-search-themes .btn-show-hide-text-area,
     .node-search-products .btn-show-hide-text-area {
         display: none;
     }
@@ -773,7 +776,7 @@ a:focus, a:hover {
     margin: 20px auto;
 }
 .white-popup {
-    max-width: 700px;
+    max-width: 960px;
 }
 @media (max-width: 640px) {
     .white-popup {
@@ -881,6 +884,11 @@ a:focus, a:hover {
 }
 .news-content .news-text h4{
     margin-top: 0;
+}
+@media (max-width: 768px) {
+    .news-content .news-row {
+        height: auto;
+    }
 }
 /****************** SEARCH PAGE *******************/
 .block-filter {
@@ -1102,9 +1110,9 @@ span.count.badge {
         overflow: hidden;
     }
 }
-/*.ymal-pics .subtitle-pic {
-    background: none;
-}*/
+.ymal-pics .subtitle-pic {
+    min-height: 54px;
+}
 /******** SLICK *********/
 .slick-prev,
 .slick-next,

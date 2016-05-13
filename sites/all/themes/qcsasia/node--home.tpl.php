@@ -11,12 +11,6 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <a href="<?= url('taxonomy/term/337') ?>" title="Zamac bottle opener keychain #ZOP8">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/zop.jpg") ?>" alt="Zamac bottle opener keychain #ZOP8" title="Zamac bottle opener keychain #ZOP8" />
-                        <div class="slide-text">Zamac bottle opener keychain #ZOP8</div>
-                    </a>
-                </div>
-                <div class="item">
                     <a href="search?line=metal-fridge-magnet-mfm" title="Metal fridge magnet #MFM line">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/mfm-line.jpg") ?>" alt="Metal fridge magnet #MFM line" title="Metal fridge magnet #MFM line" />
                         <div class="slide-text">Metal fridge magnet #MFM line</div>
@@ -44,24 +38,6 @@
                     <a href="search?line=doming-patch-with-scratch-lpodd" title="Doming magnet #MGODD">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/mgodd-line.jpg") ?>" alt="Doming magnet #MGODD" title="Doming magnet #MGODD" />
                         <div class="slide-text">Doming magnet #MGODD</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/345') ?>" title="">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/zum.jpg") ?>" alt="Zamac coin holder keychain #ZUM01302" title="Zamac coin holder keychain #ZUM01302" />
-                        <div class="slide-text">Zamac coin holder keychain #ZUM01302</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/348') ?>" title="Plastic keychain tag with magnet #PKM205">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/pkm.jpg") ?>" alt="Plastic keychain tag with magnet #PKM205" title="Plastic keychain tag with magnet #PKM205" />
-                        <div class="slide-text">Plastic keychain tag with magnet #PKM205</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/350') ?>" title="Plastic loop keychain #PSR205">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/psr.jpg") ?>" alt="Plastic loop keychain #PSR205" title="Plastic loop keychain #PSR205" />
-                        <div class="slide-text">Plastic loop keychain #PSR205</div>
                     </a>
                 </div>
                 <div class="item">
@@ -114,9 +90,9 @@
                     </a>
                 </div>
                 <div>
-                    <a href="#">
+                    <a href="<?= url('search-theme') ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/gift.jpg") ?>" alt="" title="" />
-                        <div class="subtitle-pic">Gift</div>
+                        <div class="subtitle-pic">Gift & souvenirs</div>
                     </a>
                 </div>
             </div>

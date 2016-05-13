@@ -44,6 +44,7 @@ foreach ($XMLposts as $XMLpost) {
 
 function saveData($oTerm, $XMLpost) {
     // DATA
+    $oTerm->field_display_image_finishes['und'][0]['value'] = (string) $XMLpost->display_image_finishes;
     /*
     $oTerm->field_description['und'][0]['value'] = (string) $XMLpost->description;
     
@@ -269,7 +270,7 @@ function saveData($oTerm, $XMLpost) {
                 break;
         }
     }
-*/
+
     
     $aLogoImages = [];
     foreach ($XMLpost->images->image as $aImage) {
@@ -340,7 +341,7 @@ function saveData($oTerm, $XMLpost) {
     }
     
     
-/*
+
     // IMAGES
     $bAlreadyAdd = [
         'field_image_option' => false,

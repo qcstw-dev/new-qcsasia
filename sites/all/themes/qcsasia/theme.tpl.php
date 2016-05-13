@@ -23,7 +23,8 @@
                         </div>
                     </div><?php 
                 } ?>
-                </div><?php 
+                </div>
+                <div class="clearfix"></div><?php 
             } ?>
         </div><?php
     }?>
@@ -38,18 +39,19 @@
         $count = 1;
         foreach ($aDisplays as $key => $oDisplay) { ?>
             <div class="col-md-6 gallery gallery-container margin-bottom-10">
-                <div class="col-sm-12 border padding-0">
+                <div class="col-sm-12 border padding-0 margin-bottom-10">
                     <div class="col-sm-4 thumbnail border-none margin-bottom-0 padding-top-10">
                         <a href="<?= file_create_url($oDisplay->field_thumbnail['und'][0]['uri']) ?>" title="<?= $oDisplay->field_display_title['und'][0]['value'] ?>">
                             <img src="<?= file_create_url($oDisplay->field_thumbnail['und'][0]['uri']) ?>" title="<?= $oDisplay->field_display_title['und'][0]['value'] ?>" alt="<?= $oDisplay->field_display_title['und'][0]['value'] ?>" />
                         </a>
                     </div>
                     <div class="col-sm-8 padding-0">
-                        <div class="padding padding-left-0">
-                            <h3 class="font-size-18"><?= $oDisplay->field_display_title['und'][0]['value'].' '.$oDisplay->field_display_ref['und'][0]['value'] ?></h3>
+                        <h3 class="font-size-18"><?= $oDisplay->field_display_title['und'][0]['value'].' '.$oDisplay->field_display_ref['und'][0]['value'] ?></h3>
+                        <div class="col-xs-12 margin-bottom-10">
+                            <?= $oDisplay->field_description['und'][0]['value'] ?>
                         </div>
-                        <?= $oDisplay->field_description['und'][0]['value'] ?>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
             </div><?php
             if ($count % 2 == 0) { ?>
@@ -62,7 +64,7 @@
         <h2>Add-on</h2><?php
         $aAddons = getAddons();
             foreach ($aAddons as $oAddon) {?>
-                <div class="col-xs-4 col-md-3 gallery gallery-container">
+                <div class="col-xs-6 col-md-3 gallery gallery-container">
                     <a class="thumbnail" href="<?= file_create_url($oAddon->field_thumbnail['und'][0]['uri']) ?>" title="<?= $oAddon->field_add_on_title['und'][0]['value'] ?>">
                         <img  src="<?= file_create_url($oAddon->field_thumbnail['und'][0]['uri']) ?>" title="<?= $oAddon->field_add_on_title['und'][0]['value'] ?>" alt="<?= $oAddon->field_add_on_title['und'][0]['value'] ?>" />
                         <div class="subtitle-pic"><?= $oAddon->field_add_on_title['und'][0]['value'].' '.$oAddon->field_add_on_ref['und'][0]['value'] ?></div>

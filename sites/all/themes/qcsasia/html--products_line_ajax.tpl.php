@@ -1,18 +1,19 @@
 <div class="block-line text-left"><?php
-    foreach (getProducts(drupal_get_query_parameters()) as $oProduct) {
+    $aProductsLine = getProducts(drupal_get_query_parameters());
+    $iNumberProducts = count($aProductsLine);
+    $count = 1;
+    foreach ($aProductsLine as $key => $oProduct) {
         $oLineProduct = taxonomy_term_load($oProduct->tid); ?>
-        <div class="col-xs-12 block-line-product padding-0 padding-bottom-10 padding-top-10 border-bottom">
+        <div class="col-xs-12 block-line-product padding-0 padding-bottom-10 padding-top-10 toto <?= ($count == $iNumberProducts ? '' : 'border-bottom') ?>">
             <a href="<?= url('taxonomy/term/' . $oProduct->tid) ?>" title="<?= $oLineProduct->field_product_name['und'][0]['value'] ?>">
                 <div class="col-xs-4 col-md-3 thumbnail margin-top-xs-20"><?php
                     $sPictureUri = '';
-                    if ($oLineProduct->field_logo_process) {
-                        foreach ($oLineProduct->field_logo_process['und'] as $key => $aLogoProcess) {
-                            $oLogoProcess = taxonomy_term_load($aLogoProcess['tid']);
-                            if ($oLogoProcess->field_reference['und'][0]['value'] == "doming") {
-                                $sPictureUri = $oLineProduct->field_image_logo_process['und'][$key]['uri'];
-                            } else {
-                                $sPictureUri = $oLineProduct->field_image_logo_process['und'][0]['uri'];
-                            }
+                    if ($oLineProduct->field_logo_process_block) {
+                        $aLogoProcesses = getLogoProcesses($oLineProduct);
+                        if (isset($aLogoProcesses['doming']) && $aLogoProcesses['doming']['thumbnail']) {
+                            $sPictureUri = $aLogoProcesses['doming']['thumbnail'];
+                        } else {
+                            $sPictureUri = array_values($aLogoProcesses)[0]['thumbnail'];
                         }
                     } ?>
                     <img src="<?= file_create_url(($sPictureUri ?: $oLineProduct->field_main_photo['und'][0]['uri'])) ?>" alt="" title="" />
@@ -33,5 +34,6 @@
             </a>
         </div>
         <div class="clearfix"></div><?php 
+        $count++;
     }?>
 </div>

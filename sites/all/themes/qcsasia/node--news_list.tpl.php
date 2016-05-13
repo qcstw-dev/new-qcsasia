@@ -4,8 +4,7 @@
     $oQuery->entityCondition('entity_type', 'node')
             ->propertyCondition('status', 1)
             ->propertyCondition('type', 'news')
-            ->propertyOrderBy('created', 'DESC')
-            ->range(0, 6);
+            ->propertyOrderBy('created', 'DESC');
     $aResult = $oQuery->execute();
     if ($aResult) {
         $aNewsList = node_load_multiple(array_keys($aResult['node'])); 

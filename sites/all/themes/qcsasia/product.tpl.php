@@ -27,7 +27,7 @@
         <h2><?= $term->field_product_name['und'][0]['value']." ".$term->field_product_ref['und'][0]['value'] ?></h2>
         <div class="panel panel-default"><?php
             $sColspan = "";
-            if ($term->field_patent) {
+            if ($term->field_patent || $term->field_packing || $term->field_item_size) {
                 $sColspan = "5";
             } else {
                 $sColspan = "3";
@@ -50,7 +50,7 @@
                             <tr><?php
                                 if ($term->field_attachement) { ?>
                                     <td class="border-right cell-key">Attachement</td>
-                                    <td colspan="<?= ($term->field_packing ? '' : '3') ?>"><?= $term->field_attachement['und'][0]['value'] ?></td><?php
+                                    <td colspan="<?= ($term->field_patent || $term->field_packing || $term->field_item_size ? '3' : '4') ?>"><?= $term->field_attachement['und'][0]['value'] ?></td><?php
                                 }
                                 if ($term->field_packing) { ?>
                                     <td class="border-right cell-key <?= ($term->field_attachement ? 'border-left': '') ?>">Packing</td>
@@ -65,7 +65,7 @@
                             </tr><?php
                         } 
                         if ($term->field_logo_size['und'][0]['value'] || $term->field_item_size['und'][0]['value'] || $term->field_patent['und'][0]['value']) { ?>
-                            <tr><?php
+                            <tr class="visible-sm visible-md visible-lg"><?php
                                 if ($term->field_logo_size['und'][0]['value']) { ?>
                                     <td class="border-right cell-key">Logo size</td>
                                     <td><?= $term->field_logo_size['und'][0]['value'] ?></td><?php
@@ -78,21 +78,42 @@
                                     <td class="border-left border-right cell-key">Patent</td>
                                     <td><?= $term->field_patent['und'][0]['value'] ?></td><?php
                                 } ?>
-                            </tr><?php
+                            </tr><?php // version mobile responsive, several rows
+                                if ($term->field_logo_size['und'][0]['value']) { ?>
+                                    <tr class="visible-xs">
+                                        <td class="border-right cell-key">Logo size</td>
+                                        <td><?= $term->field_logo_size['und'][0]['value'] ?></td>
+                                    </tr><?php
+                                } 
+                                if ($term->field_item_size['und'][0]['value']) { ?>
+                                    <tr class="visible-xs">
+                                        <td class="border-left border-right cell-key">Item size</td>
+                                        <td><?= $term->field_item_size['und'][0]['value'] ?></td>
+                                    </tr><?php
+                                }
+                                if ($term->field_patent['und'][0]['value']) { ?>
+                                    <tr class="visible-xs">
+                                        <td class="border-left border-right cell-key">Patent</td>
+                                        <td><?= $term->field_patent['und'][0]['value'] ?></td>
+                                    </tr><?php
+                                } 
                         } 
                         if ($term->field_colors) { ?>
                             <tr>
                                 <td class="border-right cell-key">Colors available</td>
                                 <td colspan="<?= $sColspan ?>"><?php
-                                if ($term->field_colors) {
                                     foreach ($term->field_colors['und'] as $value) {
                                         $sImageColor = taxonomy_term_load($value['tid'])->name.'.png'; ?>
                                         <img class="pull-left margin-right-md-10" src="<?= url(path_to_theme() . "/images/colors/$sImageColor") ?>" alt="" title="" /><?php
-                                    }
-                                }
-                                if ($term->field_display_image_finishes['und'][0]['value']) { ?>
-                                        <img src="<?= url(path_to_theme() . "/images/colors/finishes.jpg") ?>" alt="" title="" /><?php
-                                } ?>
+                                    } ?>
+                                </td>
+                            </tr><?php
+                        } 
+                        if ($term->field_display_image_finishes['und'][0]['value']) { ?>
+                            <tr>
+                                <td class="border-right cell-key">Colors available</td>
+                                <td colspan="<?= $sColspan ?>">
+                                    <img src="<?= url(path_to_theme() . "/images/colors/finishes.jpg") ?>" alt="" title="" />
                                 </td>
                             </tr><?php
                         } 
@@ -115,9 +136,9 @@
                     if ($term->field_complicated['und'][0]['value']) { ?>
                         <li <?= (!$term->field_image_option && !$term->field_logo_process_block ? 'class="active"' : '') ?>><a class="border-right tab" data-id-tab="3">Layout maker</a></li><?php
                     } 
-                    if ($term->field_group_document && $term->field_complicated['und'][0]['value']) { ?>
-                        <li><a class="tab" data-id-tab="4">Document center</a></li><?php
-                    } ?>
+                    /*if ($term->field_group_document && $term->field_complicated['und'][0]['value']) { ?>
+                        <li><a class="tab" data-id-tab="4">Document center</a></li>////<?php
+                    }*/ ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -150,12 +171,12 @@
             </div>
             <div class="clearfix"></div>
         </div><?php
-        if ($term->field_group_document) { ?>
+       /* if ($term->field_group_document) { ?>
             <div class="tab-block tab-block-4 border border-top-0 padding-20 document-center padding-top-20"><?php
                  displayDocumentCenter($term); ?>
                 <div class="clearfix"></div>
             </div><?php
-        } ?>
+        } */?>
     </div><?php
     if ($term->field_you_might_like) { ?>
         <div class="col-md-12 margin-top-20 ymal">

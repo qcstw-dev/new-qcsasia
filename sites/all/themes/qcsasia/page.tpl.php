@@ -83,22 +83,22 @@
     <?php endif; ?>
             <div class="clearfix"></div>
     <div class="margin-bottom-20">
-        <div class="col-sm-offset-1 col-sm-2 thumbnail border-none">
+        <div class="col-xs-offset-1 col-xs-2 thumbnail border-none">
             <img src="<?= base_path() . path_to_theme() . "/images/footer/caefi.jpg" ?>" alt="caefi" title="caefi" />
         </div>
 
-        <div class="col-sm-2 thumbnail border-none">
+        <div class="col-xs-2 thumbnail border-none">
             <img src="<?= base_path() . path_to_theme() . "/images/footer/eppa.jpg" ?>" alt="eppa" title="eppa" />
         </div>
 
-        <div class="col-sm-2 thumbnail border-none">
+        <div class="col-xs-2 thumbnail border-none">
             <img src="<?= base_path() . path_to_theme() . "/images/footer/promota300.jpg" ?>" alt="promota" title="promota" />
         </div>
 
-        <div class="col-sm-2 thumbnail border-none">
+        <div class="col-xs-2 thumbnail border-none">
             <img src="<?= base_path() . path_to_theme() . "/images/footer/sedex_trans.jpg" ?>" alt="sedex" title="sedex" />
         </div>
-        <div class="col-sm-2 thumbnail border-none">
+        <div class="col-xs-2 thumbnail border-none">
             <img src="<?= base_path() . path_to_theme() . "/images/footer/PPAI-logo-QCS.jpg" ?>" alt="PPAI" title="PPAI" />
         </div>
     </div>

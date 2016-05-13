@@ -1,13 +1,14 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
     <h2><?= $node->title ?></h2>
-    <div class="col-sm-3 padding-0 border-right-bold">
+    <div class="btn-show-hide-text-area margin-bottom-10"><span class="glyphicon glyphicon-menu-down"></span> Browse by product <span class="glyphicon glyphicon-menu-down"></span></div>
+    <div class="col-sm-3 padding-0 border-right-bold hidden-text-area">
         <div class="col-md-12">
             <h3>Browse by product</h3>
         </div><?php
         $count = 0;
             foreach ($aGifts as $key => $oGift) { 
                 $bChecked = (isset(drupal_get_query_parameters()['gift']) && in_array($oGift->tid, (is_array(drupal_get_query_parameters()['gift']) ? array_values(drupal_get_query_parameters()['gift']) : [drupal_get_query_parameters()['gift']])) ? 'checked' : '' ) ;?>
-                <div class="block-gift col-sm-4 padding-0">
+                <div class="block-gift col-xs-4 padding-0">
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn checkbox-container">
                             <input class="filter" data-id="<?= $oGift->tid ?>" type="checkbox" autocomplete="off" <?= $bChecked ?> ><span class="glyphicon glyphicon-<?= ($bChecked ? 'check' : 'unchecked') ?>"></span>
@@ -22,7 +23,9 @@
                 if ($count % 3 == 0) { ?>
                     <div class="clearfix"></div><?php
                 }
-            } ?>
+            } ?>   
+        <div class="clearfix"></div>
+        <div class="btn-show-hide-text-area margin-bottom-10"><span class="glyphicon glyphicon-menu-down"></span> Browse by product <span class="glyphicon glyphicon-menu-down"></span></div>
     </div>
     <div class="col-sm-9 padding-0">
         <div class="col-md-12">
@@ -58,7 +61,9 @@
         $.ajax(url + query, {
             dataType: 'html',
             beforeSend: function () {
-                $('html,body').animate({scrollTop: $('#menu-top').offset().top}, 200);
+                if($(window).width() >= 667) {
+                    $('html,body').animate({scrollTop: $('#menu-top').offset().top}, 200);
+                }
                 $('.themes_list').html('<div class="col-sm-12 text-center margin-top-70"><img src="<?= url(path_to_theme() . "/images/template/loader.gif") ?>" /></div>');
             },
             success: function (data) {
