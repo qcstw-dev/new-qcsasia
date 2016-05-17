@@ -11,13 +11,13 @@
         <div class="padding-left-30 padding-right-30">
             <div class="thumbnails"><?php 
                 foreach ($term->field_main_photo['und'] as $aFieldMainPhoto) { ?>
-                    <div><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" title="" alt="" /></div><?php
+                    <div class="padding-5"><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" title="<?= ($aFieldMainPhoto['title'] ?: $term->field_product_name['und'][0]['value']) ?>" alt="<?= ($aFieldMainPhoto['uri'] ?: $term->field_product_name['und'][0]['value']) ?>" /></div><?php
                 }
                 if ($term->field_photo_function) { ?>
-                    <div><img src="<?= file_create_url($term->field_photo_function['und'][0]['uri']) ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php 
+                    <div class="padding-5"><img src="<?= file_create_url($term->field_photo_function['und'][0]['uri']) ?>" title="<?= ($term->field_photo_function['und'][0]['title'] ?: $term->field_product_name['und'][0]['value']) ?>" alt="<?= ($term->field_photo_function['und'][0]['title'] ?: $term->field_product_name['und'][0]['value']) ?>" /></div><?php 
                 }
                 if ($term->field_youtube_video) { ?>
-                    <div><span class="glyphicon glyphicon-play-circle font-size-65 play-video" ></span></div><?php
+                    <div class="padding-5"><span class="glyphicon glyphicon-play-circle font-size-65 play-video" ></span></div><?php
                 } ?>
             </div>
         </div>
@@ -113,7 +113,9 @@
                             <tr>
                                 <td class="border-right cell-key">Colors available</td>
                                 <td colspan="<?= $sColspan ?>">
-                                    <img src="<?= url(path_to_theme() . "/images/colors/finishes.jpg") ?>" alt="" title="" />
+                                    <div class="thumbnail border-none margin-bottom-0 event-enlarge">
+                                        <img src="<?= url(path_to_theme() . "/images/colors/finishes.jpg") ?>" data-large-picture="<?= url(path_to_theme() . "/images/colors/finishes-large.jpg") ?>" alt="Finishes available" title="Finishes available" />
+                                    </div>
                                 </td>
                             </tr><?php
                         } 

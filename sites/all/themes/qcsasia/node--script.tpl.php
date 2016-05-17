@@ -3,18 +3,39 @@
 set_time_limit(0);
 
 $oQuery = new EntityFieldQuery();
+//$oQuery->entityCondition('entity_type', 'taxonomy_term')
+//        ->entityCondition('bundle', 'product')
+//        ->fieldCondition('field_category', 'tid', 'NULL', '!=');
+
 $oQuery->entityCondition('entity_type', 'taxonomy_term')
-        ->entityCondition('bundle', 'product');
+        ->entityCondition('bundle', 'product')
+        ->fieldCondition('field_youtube_video', 'value', 'NULL', '!=');
+
+
+
+
+  $result = $oQuery->execute();
+//if (is_array(@$result['taxonomy_term'])) {
+//    //Now get all the other entities, that aren't in the list you just retrieved
+//    $query = new EntityFieldQuery();
+//    $query->entityCondition('entity_type', 'taxonomy_term')
+//        ->entityCondition('bundle', 'product')
+//      ->entityCondition('entity_id', array_keys($result['taxonomy_term']), 'NOT IN');
+//    $result_two = $query->execute(); 
+//  }
+
 if (isset($_GET['id']) && $_GET['id']) {
     $oQuery->fieldCondition('field_old_id', 'value', $_GET['id']);
 }
 
-$aResult = $oQuery->execute();
-foreach ($aResult['taxonomy_term'] as $result) {
+//$result_two = $query->execute();
+foreach ($result['taxonomy_term'] as $result) {
     $oTerm = taxonomy_term_load($result->tid);
+//        taxonomy_term_delete($oTerm->tid);
+    var_dump($oTerm->name);
     
-    echo $oTerm->field_product_name['und'][0]['value']." ".$oTerm->field_product_ref['und'][0]['value']."<br />";
-    
+//    echo $oTerm->field_product_name['und'][0]['value']." ".$oTerm->field_product_ref['und'][0]['value']."<br />";
+//    
 //    $response_xml_data = file_get_contents("https://qcsasia.com/xml-products/?id=" . $oTerm->field_old_id['und'][0]['value']);
 //
 //    $XMLposts = simplexml_load_string($response_xml_data)->posts->post or die("Error: Cannot create object");

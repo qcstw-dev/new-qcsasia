@@ -291,10 +291,10 @@ function getGifts($aQueryParameters = null) {
         switch (key($aQueryParameters)) {
             case 'theme':
                 // retrieve theme
-                $oTheme = array_shift(getTermByRef($aQueryParameters['theme'], 'theme'));
+                $oTheme = array_values(getTermByRef($aQueryParameters['theme'], 'theme')[0]);
                 break;
             case 'display':
-                $oDisplay = array_shift(getTermByRef($aQueryParameters['display'], 'display'));
+                $oDisplay = array_values(getTermByRef($aQueryParameters['display'], 'display')[0]);
                 break;
         }
     }
@@ -373,23 +373,26 @@ function getProducts($aQueryParameters, $bCount = false) {
         foreach ($aQueryParameters as $sKey => $mValue) {
             switch ($sKey) {
                 case 'keyword':
-                    $sKeyword = $mValue;
-                        $oQuery->propertyCondition('name', $sKeyword, 'CONTAINS');
+//                    $aKeyword = explode(" ", $mValue);
+//                        $oQuery->propertyCondition('name', $sKeyword, 'CONTAINS');
+//                        $oQuery->propertyCondition('name', $sKeyword, 'CONTAINS');
 //                    preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matches);
 //                    if ($matches) {
 //                        $oQuery->fieldCondition('field_product_ref', 'value', $sKeyword, 'CONTAINS');
 //                    } else {
 //                        $oQuery->fieldCondition('field_product_name', 'value', $sKeyword, 'CONTAINS');
 //                    }
-//                    $mValue = explode(' ', $mValue);
-//                    foreach ($mValue as $sKeyword) {
-//                        preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matches);
-//                        if ($matches) {
-//                            $oQuery->fieldCondition('field_product_ref', 'value', $sKeyword, 'CONTAINS');
-//                        } else {
-//                            $oQuery->fieldCondition('field_description', 'value', $sKeyword, 'CONTAINS');
-//                        }
-//                    }
+                    $mValue = explode(' ', $mValue);
+                    foreach ($mValue as $sKeyword) {
+                        $sKeyword = rtrim($sKeyword);
+                        preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matches);
+                        if ($matches) {
+                            $oQuery->fieldCondition('field_product_ref', 'value', $sKeyword, 'CONTAINS');
+                        } else {
+                            $oQuery->propertyCondition('name', $sKeyword, 'CONTAINS');
+//                            $oQuery->fieldCondition('field_product_name', 'value', $sKeyword, 'CONTAINS');
+                        }
+                    }
                     break;
                 case 'new':
                     $oQuery->fieldCondition('field_new_product', 'value', '1');
@@ -601,7 +604,7 @@ function getNameFromDocument($file) {
 }
 
 function displayOption($aImageOption) {
-    $aImageOptionEntity = array_shift(entity_load('field_collection_item', [$aImageOption['value']])); ?>
+    $aImageOptionEntity = array_values(entity_load('field_collection_item', [$aImageOption['value']]))[0]; ?>
     <div class="col-sm-3 margin-bottom-10 block-option">
         <div class="thumbnail margin-bottom-0">
             <img src="<?= file_create_url($aImageOptionEntity->field_image_option_img['und'][0]['uri']) ?>" alt="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" title="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" />
@@ -635,11 +638,11 @@ function displayLogoProcess($term) { ?>
     <div class="col-md-12"><?php
         $aLogoProcesses = getLogoProcesses($term);
         $bIssetDoming = isset($aLogoProcesses['doming']);
-        displayLogoProcessBlock(($bIssetDoming ? $aLogoProcesses['doming'] : array_shift($aLogoProcesses))); ?>
+        displayLogoProcessBlock(($bIssetDoming ? $aLogoProcesses['doming'] : array_values($aLogoProcesses)[0])); ?>
     </div><?php
     if (count($aLogoProcesses) > 1) { ?>
         <div class="col-md-12 hidden-text-area"><?php
-        $count = 0;
+        $count = 1;
             foreach ($aLogoProcesses as $key => $aLogoProcess) {
                 if (($bIssetDoming && $key != 'doming') || (!$bIssetDoming && $count > 1 )) { ?>
                     <div class="col-md-12 padding-0"><?php
@@ -663,8 +666,10 @@ function displayLogoProcessBlock($aLogoProcess) {
     $bComplicatedDisplay = $aLogoProcess['thumbnail'];
     $bLargePicture = $aLogoProcess['large'];
     if ($bComplicatedDisplay) { ?>
-        <div class="col-sm-3 thumbnail margin-top-20 <?= ($bLargePicture ? 'pointer event-enlarge' : '') ?>">
-            <img src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" />
+        <div class="col-sm-3 margin-top-20 <?= ($bLargePicture ? 'pointer event-enlarge' : '') ?>">
+            <div class="thumbnail">
+                <img src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" />
+            </div>
         </div><?php 
     } ?>
     <div class="<?= $bComplicatedDisplay ? 'col-sm-9' : 'col-sm-12' ?> padding-xs-0">

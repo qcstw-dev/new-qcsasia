@@ -67,7 +67,7 @@ function displayLineBlock($oCategory, $aLineProducts) {
             } ?>
             </div>
             <div class="clearfix"></div>
-            <div class = "ref-product"><?= ($sRef ? $sRef . ' Line' : 'Product line') ?></div>
+            <div class = "ref-product"><?= ($sRef ? $sRef . ' Line' : (strpos(strtolower($sName), 'metal') !== false ? 'Metal Product line' : 'Product Line')) ?></div>
             <div class = "title-product"><?= $sName ?></div>
         </div>
     </div><?php

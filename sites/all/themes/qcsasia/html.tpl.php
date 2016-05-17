@@ -1,5 +1,5 @@
 <?php
-/*    if (!isset($_SESSION['country']) || !$_SESSION['country']) {
+    if (!isset($_SESSION['country']) || !$_SESSION['country']) {
         $ip = '';
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR']) {
             $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -34,9 +34,9 @@
                 $_SESSION['country'] = '';
             }
             if (in_array($_SESSION['country'], ['CN', 'KR', 'KP', 'TR', 'IN'])) {
-                $sqlQuery = "INSERT INTO ip_blocked (ip, country, date) VALUES ('".$ip."', '".$_SESSION['country']."', CURRENT_TIME)";
+                $sqlQuery = "INSERT IGNORE INTO ip_blocked (ip, country) VALUES ('".$ip."', '".$_SESSION['country']."')";
             } else {
-                $sqlQuery = "INSERT INTO ip_unblocked (ip, country, date) VALUES ('".$ip."', '".$_SESSION['country']."', CURRENT_TIME)";
+                $sqlQuery = "INSERT IGNORE INTO ip_unblocked (ip, country) VALUES ('".$ip."', '".$_SESSION['country']."')";
             }
             db_query($sqlQuery);
             
@@ -47,7 +47,7 @@
     if (in_array($_SESSION['country'], ['CN', 'KR', 'KP', 'TR', 'IN'])) {
         echo 'This website is not available in your country';
         exit;
-    } */ ?>
+    }  ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
   "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>

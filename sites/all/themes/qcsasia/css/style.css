@@ -163,8 +163,11 @@ a {
     cursor: pointer;
 }
 a:focus, a:hover {
-     color: #38B15D; 
-     text-decoration: none; 
+    color: #38B15D; 
+    text-decoration: none; 
+}
+.event-enlarge {
+    cursor: pointer;
 }
 .pointer {
     cursor: pointer;
@@ -516,6 +519,9 @@ a:focus, a:hover {
 .padding-right-0 {
     padding-right: 0;
 }
+.padding-5 {
+    padding: 5px;
+}
 .padding-10 {
     padding: 10px;
 }
@@ -713,7 +719,6 @@ a:focus, a:hover {
     margin-top: 4px;
     background: rgba(221, 221, 221, 0.77);
 }
-
 /****************** SLIDER ********************************/
 .carousel-control.left, .carousel-control.right {
     background-image: none;
@@ -899,6 +904,9 @@ a:focus, a:hover {
     position: fixed;
     top: 10px;
 }
+.block-filter-bottom {
+    bottom: 0;
+}
 .block-filter-group {
     padding-left: 20px;
     /*display: none;*/
@@ -959,11 +967,10 @@ a:focus, a:hover {
     text-decoration: none;
     color: inherit;
 }
-.node-search-gifts .block-product .subtitle-pic,
 .node-search-products .block-product .subtitle-pic {
     border-top: 1px solid #ddd;
 }
-.node-search-gifts .block-list-products,
+.node-search-themes .block-list-products,
 .node-search-products .block-list-products {
     margin-left: 280px;
     min-height: 850px;
@@ -995,7 +1002,7 @@ span.count.badge {
 }
 .enlarge {
     position: absolute;    
-    bottom: 108px;
+    bottom: 125px;
     right: 6px;
     cursor: pointer;
     font-size: 20px;
