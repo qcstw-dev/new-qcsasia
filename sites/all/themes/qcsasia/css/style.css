@@ -738,7 +738,7 @@ a:focus, a:hover {
 }
 
 /****************** CONTACT US *******************/
-.node-contact-us .input-group-addon {
+.input-group-addon {
     min-width: 139px;
 }
 /****************** FOOTER *******************/
@@ -793,16 +793,19 @@ a:focus, a:hover {
     }
 }
 
-.error-message,
-.error-message-email {
-    border: 2px solid #38B15D;
+.error-message, .success-message {
+    border: 2px solid #F44336;
     display: none;
     padding: 5px;
     text-align: center;
-    color: #38B15D;
+    color: #F44336;
     font-weight: bold;
     margin-bottom: 5px;
     margin-top: 5px;
+}
+.success-message {
+    color: #38B15D;
+    border: 2px solid #38B15D;
 }
 /****************** HOMEPAGE ***********************/
 #carousel-home-2 {

@@ -70,10 +70,62 @@ $(function () {
                 }
             } else {
                 $('.block-filter').removeClass('fixed');
-                    $('.block-filter').removeClass('block-filter-bottom');
+                $('.block-filter').removeClass('block-filter-bottom');
             }
         } else {
             $('.block-filter').removeClass('fixed');
         }
     });
 });
+function formValidators(form) {
+    $('.' + form + ' .email').on('focusout', function () {
+        if ($(this).prop('type') == 'email') {
+            if (isEmail($(this).val())) {
+                $(this).removeClass('form-control-danger');
+                $('.' + form + ' .error-message-email').slideUp();
+            } else {
+                $(this).addClass('form-control-danger');
+                $('.' + form + ' .error-message-email').slideDown();
+            }
+        }
+    });
+    $('.' + form + ' .required').on('keyup', function () {
+        if ($(this).val()) {
+            $(this).removeClass('form-control-danger');
+        }
+        $('.' + form + ' .required').each(function () {
+            if ($('.' + form + ' .form-control-danger').length == 0 && $('.' + form + ' .error-message-empty-field').css('display') == 'block') {
+                $('.' + form + ' .error-message-empty-field').slideUp();
+            }
+        });
+    });
+}
+function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+}
+function formSubmitValidator(form) {
+    var valid = true;
+    
+    $('.' + form + ' .error-message').slideUp();
+    $('.' + form + ' .required').each(function () {
+        if ($(this).hasClass('required') && !$(this).val()) {
+            $(this).addClass('form-control-danger');
+            $('.' + form + ' .error-message-empty-field').slideDown();
+            valid = false;
+        } else if ($(this).prop('type') == 'email' && !isEmail($(this).val())) {
+            $(this).addClass('form-control-danger');
+            $('.' + form + ' .error-message-email').slideDown();
+            valid = false;
+        } else {
+            $(this).removeClass('form-control-danger');
+        }
+    });
+    if (!valid) {
+        $('.' + form + ' .error-message-general').slideDown();
+        return false;
+    } else {
+        return true;
+    }
+}
+

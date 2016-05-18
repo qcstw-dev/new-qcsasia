@@ -8,13 +8,15 @@ $oQuery = new EntityFieldQuery();
 //        ->fieldCondition('field_category', 'tid', 'NULL', '!=');
 
 $oQuery->entityCondition('entity_type', 'taxonomy_term')
-        ->entityCondition('bundle', 'product')
-        ->fieldCondition('field_youtube_video', 'value', 'NULL', '!=');
+        ->entityCondition('bundle', 'member')
+        ->propertyCondition('tid', 300, '=');
 
 
 
 
   $result = $oQuery->execute();
+  var_dump($result);
+  exit;
 //if (is_array(@$result['taxonomy_term'])) {
 //    //Now get all the other entities, that aren't in the list you just retrieved
 //    $query = new EntityFieldQuery();

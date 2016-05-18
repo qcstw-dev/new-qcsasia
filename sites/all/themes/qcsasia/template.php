@@ -1,4 +1,69 @@
 <?php
+function verifyMemberConnection() {
+    if (isset($_GET['logout'])) {
+        disconnectUser();
+        return;
+    }
+    if (isset($_SESSION['user']) && $_SESSION['user']) {
+        $oUser = $_SESSION['user'];
+        $oQuery = new EntityFieldQuery();
+        $oQuery->entityCondition('entity_type', 'taxonomy_term')
+                ->entityCondition('bundle', 'member')
+                ->propertyCondition('tid', $oUser->tid, '=')
+                ->fieldCondition('field_member_status', 'tid', 684);
+        $aResult = $oQuery->execute();
+        if (!$aResult) {
+            disconnectUser();
+        }
+    }
+}
+function disconnectUser() {
+    global $base_url;
+    session_destroy();
+    header('Location: '.$base_url);
+}
+
+function connectMember($sEmail, $sPassword) {
+    $aReturn = [];
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'member')
+            ->fieldCondition('field_member_email', 'value', $sEmail);
+    $aResult = $oQuery->execute();
+    $oUser = taxonomy_term_load(array_keys($aResult['taxonomy_term'])[0]);
+    if ($oUser) {
+        if ($oUser->field_member_status['und'][0]['tid'] == 684) {
+            if ($oUser->field_password['und'][0]['value'] == md5(md5($sPassword).substr($oUser->field_membrer_registration_date['und'][0]['value'], 0, 10))) {
+                $_SESSION['user'] = $oUser;
+                $aReturn['success'] = true;
+                return $aReturn;
+            } else {
+                $aReturn['success'] = false;
+                $aReturn['error'] = 'Wrong password';
+                return $aReturn;
+            }
+        } else {
+            $aReturn['success'] = false;
+            $aReturn['error'] = 'Your account has not been validated yet';
+            return $aReturn;
+        }
+    } else {
+        $aReturn['success'] = false;
+        $aReturn['error'] = 'Wrong email';
+        return $aReturn;
+    }
+}
+
+function registration () {
+    
+}
+function getCompanyType () {
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'member_company_type');
+    $aResult = $oQuery->execute();
+    return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
+}
 
 function displaySocialMediaLogo() { ?>
     <div class="block-social-network">
