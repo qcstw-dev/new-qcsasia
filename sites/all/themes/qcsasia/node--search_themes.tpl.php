@@ -15,7 +15,7 @@
                         </label>
                     </div>
                     <div class="thumbnail border-none margin-bottom-0">
-                        <img class="" src="<?= (isset($oGift->field_thumbnail['und'][0]['uri']) ? image_style_url('thumbnail', $oGift->field_thumbnail['und'][0]['uri']) : url(path_to_theme() . "/images/POP8S-BLK-BMW5.jpg") ) ?>" alt="<?= (isset($oGift->field_thumbnail['und'][0]['alt']) ?: $oGift->field_product_name['und'][0]['value']) ?>" title="<?= (isset($oGift->field_thumbnail['und'][0]['title']) ?:$oGift->field_product_name['und'][0]['value']) ?>" />
+                        <img class="" src="<?= (isset($oGift->field_thumbnail['und'][0]['uri']) ? image_style_url('thumbnail', $oGift->field_thumbnail['und'][0]['uri']) : url(path_to_theme() . "/images/POP8S-BLK-BMW5.jpg") ) ?>" alt="<?= (isset($oGift->field_thumbnail['und'][0]['alt']) ? $oGift->field_thumbnail['und'][0]['alt'] : $oGift->field_product_name['und'][0]['value']) ?>" title="<?= (isset($oGift->field_thumbnail['und'][0]['title']) ?$oGift->field_thumbnail['und'][0]['title']:$oGift->field_product_name['und'][0]['value']) ?>" />
                     </div>
                     <div class = "ref-product"><?= $oGift->field_product_ref['und'][0]['value'] ?></div>
                 </div><?php
@@ -38,6 +38,7 @@
 </div>
 <script>
     $('.block-gift').on('click', function (){
+        event.stopPropagation();
         checkUncheck($(this).find('.checkbox-container'));
         updateSearchResults();
     });
@@ -49,11 +50,10 @@
                 aFilterGift.push($(this).data('id'));
             }
         });
-        var url = baseUrl + '/themes_ajax/';
+        var url = baseUrl + 'themes_ajax/';
         var query = '';
         $.each(aFilterGift, function (index, value) {
             query = query + (bIssetGetVars ? '&' : '?')+ 'gift[]=' + value;
-            console.log(query);
             bIssetGetVars = true;
         });
         

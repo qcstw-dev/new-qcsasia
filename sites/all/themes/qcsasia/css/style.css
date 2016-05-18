@@ -184,6 +184,9 @@ a:focus, a:hover {
 .color-green {
     color: #38B15D;
 }
+.color-dark-green {
+    color: #379453;
+}
 .color-red {
     color: #d9534f;
 }
@@ -200,6 +203,7 @@ a:focus, a:hover {
 .thumbnail {
     border-radius: 0;
 }
+
 
 /****************************** MENU COLLAPSE iPad FIX ***************/
 @media (min-width: 991px) {

@@ -216,7 +216,7 @@ function getPotentialNumberForFilters() {
         if (is_array($mValue)) {
             foreach ($mValue as $sValue) {
                 $aFiltersPotential = $aCurrentFilters;
-                if (!isset($aCurrentFilters[$sKey]) || !in_array($sValue, $aCurrentFilters[$sKey])) {
+                if (!isset($aCurrentFilters[$sKey]) || (is_array($aCurrentFilters[$sKey]) && !in_array($sValue, $aCurrentFilters[$sKey]))) {
                     if (isset($aFiltersPotential[$sKey]) && count($aFiltersPotential[$sKey]) > 1) {
                         $aFiltersPotential[$sKey][] = $sValue;
                     } else {
@@ -667,8 +667,8 @@ function displayLogoProcessBlock($aLogoProcess) {
     $bLargePicture = $aLogoProcess['large'];
     if ($bComplicatedDisplay) { ?>
         <div class="col-sm-3 margin-top-20 <?= ($bLargePicture ? 'pointer event-enlarge' : '') ?>">
-            <div class="thumbnail">
-                <img src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" />
+            <div class="col-xs-12 thumbnail">
+                <img class="" src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" />
             </div>
         </div><?php 
     } ?>

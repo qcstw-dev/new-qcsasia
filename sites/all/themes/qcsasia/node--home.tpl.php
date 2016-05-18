@@ -217,10 +217,10 @@
             <div class="col-md-6 border-right padding-0"><?php
                 $iCounter = 1;
                 foreach ($aNewsList as $oNews) { ?>
-                    <div class="col-xs-12 news-row border-md-bottom">
+                    <div class="col-xs-12 news-row">
                         <a href="<?= url('node/'.$oNews->nid) ?>" title="">
                             <div class="col-sm-5 thumbnail margin-bottom-sm-10">
-                                <img src="<?= file_create_url($oNews->field_news_thumbnail['und'][0]['uri']) ?>" title="<?= ($oNews->field_news_thumbnail['und'][0]['title'] ?: $oNews->title) ?>" alt="<?= ($oNews->field_news_thumbnail['und'][0]['alt'] ?: $oNews->title) ?>" />
+                                <img class="width-100" src="<?= file_create_url($oNews->field_news_thumbnail['und'][0]['uri']) ?>" title="<?= ($oNews->field_news_thumbnail['und'][0]['title'] ?: $oNews->title) ?>" alt="<?= ($oNews->field_news_thumbnail['und'][0]['alt'] ?: $oNews->title) ?>" />
                             </div>
                             <div class="col-sm-7 news-text">
                                 <h4><?= $oNews->title ?></h4>
