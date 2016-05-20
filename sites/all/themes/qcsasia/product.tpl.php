@@ -138,9 +138,9 @@
                     if ($term->field_complicated['und'][0]['value']) { ?>
                         <li <?= (!$term->field_image_option && !$term->field_logo_process_block ? 'class="active"' : '') ?>><a class="border-right tab" data-id-tab="3">Layout maker</a></li><?php
                     } 
-                    /*if ($term->field_group_document && $term->field_complicated['und'][0]['value']) { ?>
-                        <li><a class="tab" data-id-tab="4">Document center</a></li>////<?php
-                    }*/ ?>
+                    if ($term->field_group_document && $term->field_complicated['und'][0]['value']) { ?>
+                        <li><a class="tab" data-id-tab="4">Document center</a></li><?php
+                    } ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -173,12 +173,12 @@
             </div>
             <div class="clearfix"></div>
         </div><?php
-       /* if ($term->field_group_document) { ?>
+        if ($term->field_group_document) { ?>
             <div class="tab-block tab-block-4 border border-top-0 padding-20 document-center padding-top-20"><?php
                  displayDocumentCenter($term); ?>
                 <div class="clearfix"></div>
             </div><?php
-        } */?>
+        } ?>
     </div><?php
     if ($term->field_you_might_like) { ?>
         <div class="col-md-12 margin-top-20 ymal">

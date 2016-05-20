@@ -1,4 +1,95 @@
 <?php
+
+function registerMember ($aFields) {
+    $aResult = [];
+    if (isset(
+        $aFields['first_name'],
+        $aFields['last_name'],
+        $aFields['company_name'],
+        $aFields['company_address'],
+        $aFields['country'],
+        $aFields['company_phone'],
+        $aFields['company_website'],
+        $aFields['company_type'],
+        $aFields['password'],
+        $aFields['password_confirm'],
+        $aFields['email']) 
+        && $aFields['first_name']
+        && $aFields['last_name']
+        && $aFields['company_name']
+        && $aFields['company_address']
+        && $aFields['country']
+        && $aFields['company_phone']
+        && $aFields['company_website']
+        && $aFields['company_type']
+        && $aFields['password']
+        && $aFields['password_confirm']) {
+            $oQuery = new EntityFieldQuery();
+            $oQuery->entityCondition('entity_type', 'taxonomy_term')
+                    ->entityCondition('bundle', 'member')
+                    ->fieldCondition('field_member_email', 'value', $aFields['email']);
+            $aResultQuery = $oQuery->execute();
+            if ($aResultQuery) {
+                $aResult['success'] = false;
+                $aResult['error'] = "This email is already used";
+                return $aResult;
+            }
+            if (strlen($aFields['password']) < 6) {
+                $aResult['success'] = false;
+                $aResult['error'] = "Password must be at least 6 characters long";
+                return $aResult;
+            }
+            if ($aFields['password'] != $aFields['password_confirm']) {
+                $aResult['success'] = false;
+                $aResult['error'] = "Confirmation password is different";
+                return $aResult;
+            }
+            $oTerm = new stdClass();
+            $oTerm->name = $aFields['first_name'].' '.$aFields['last_name'];
+            $oTerm->vid = taxonomy_vocabulary_machine_name_load('member')->vid;
+            $oTerm->language = 'und';
+            $oTerm->field_membrer_registration_date['und'][0]['value'] = date("Y-m-d");
+            $oTerm->field_country['und'][0]['iso2'] = $aFields['country'];
+            $oTerm->field_password['und'][0]['value'] = md5(md5($aFields['password']).substr($oTerm->field_membrer_registration_date['und'][0]['value'], 0, 10));
+            $oTerm->field_member_first_name['und'][0]['value'] = $aFields['first_name'];
+            $oTerm->field_member_last_name['und'][0]['value'] = $aFields['last_name'];
+            $oTerm->field_member_email['und'][0]['value'] = $aFields['email'];
+            $oTerm->field_member_company_name['und'][0]['value'] = $aFields['company_name'];
+            $oTerm->field_member_address['und'][0]['value'] = $aFields['company_address'];
+            $oTerm->field_member_phone['und'][0]['value'] = $aFields['company_phone'];
+            $oTerm->field_member_website['und'][0]['value'] = $aFields['company_website'];
+            $oTerm->field_member_company_type['und'][0]['tid'] = $aFields['company_type']; 
+            // Pending status
+            $oTerm->field_member_status['und'][0]['tid'] = '682';            
+            
+            // IP country
+            $ip = '';
+            if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR']) {
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
+            if ($_SERVER["HTTP_HOST"] == 'localhost') {
+                $ip = "61.220.251.250";
+            }
+            
+            $url = "http://ip2c.org/" . $ip;
+            set_time_limit(10);
+            $data = file_get_contents($url);
+            $reply = explode(';',$data);
+            
+            $oTerm->field_member_country_ip['und'][0]['value'] = $reply[3];
+            
+            taxonomy_term_save($oTerm);
+            $aResult['success'] = true;
+            return $aResult;
+    } else {
+        $aResult['success'] = false;
+        $aResult['error'] = "Information missing";
+        return $aResult;
+    }
+}
+
 function verifyMemberConnection() {
     if (isset($_GET['logout'])) {
         disconnectUser();
@@ -19,37 +110,45 @@ function verifyMemberConnection() {
 }
 function disconnectUser() {
     global $base_url;
-    session_destroy();
+    unset($_SESSION['user']);
     header('Location: '.$base_url);
 }
 
-function connectMember($sEmail, $sPassword) {
+function connectMember($aFields) {
     $aReturn = [];
-    $oQuery = new EntityFieldQuery();
-    $oQuery->entityCondition('entity_type', 'taxonomy_term')
-            ->entityCondition('bundle', 'member')
-            ->fieldCondition('field_member_email', 'value', $sEmail);
-    $aResult = $oQuery->execute();
-    $oUser = taxonomy_term_load(array_keys($aResult['taxonomy_term'])[0]);
-    if ($oUser) {
-        if ($oUser->field_member_status['und'][0]['tid'] == 684) {
-            if ($oUser->field_password['und'][0]['value'] == md5(md5($sPassword).substr($oUser->field_membrer_registration_date['und'][0]['value'], 0, 10))) {
-                $_SESSION['user'] = $oUser;
-                $aReturn['success'] = true;
-                return $aReturn;
+    if (isset($aFields['password'], $aFields['email']) && $aFields['password'] && $aFields['email']) {
+        $sEmail = $aFields['email'];
+        $sPassword = $aFields['password'];
+        $oQuery = new EntityFieldQuery();
+        $oQuery->entityCondition('entity_type', 'taxonomy_term')
+                ->entityCondition('bundle', 'member')
+                ->fieldCondition('field_member_email', 'value', $sEmail);
+        $aResult = $oQuery->execute();
+        $oUser = taxonomy_term_load(array_keys($aResult['taxonomy_term'])[0]);
+        if ($oUser) {
+            if ($oUser->field_member_status['und'][0]['tid'] == 684) {
+                if ($oUser->field_password['und'][0]['value'] == md5(md5($sPassword).substr($oUser->field_membrer_registration_date['und'][0]['value'], 0, 10))) {
+                    $_SESSION['user'] = $oUser;
+                    $aReturn['success'] = true;
+                    return $aReturn;
+                } else {
+                    $aReturn['success'] = false;
+                    $aReturn['error'] = 'Wrong password';
+                    return $aReturn;
+                }
             } else {
                 $aReturn['success'] = false;
-                $aReturn['error'] = 'Wrong password';
+                $aReturn['error'] = 'Your account has not been validated yet';
                 return $aReturn;
             }
         } else {
             $aReturn['success'] = false;
-            $aReturn['error'] = 'Your account has not been validated yet';
+            $aReturn['error'] = 'Wrong email';
             return $aReturn;
         }
     } else {
         $aReturn['success'] = false;
-        $aReturn['error'] = 'Wrong email';
+        $aReturn['error'] = 'Information missing';
         return $aReturn;
     }
 }
@@ -109,10 +208,9 @@ function retrieveProducts($oTerm = null, $iStart = null, $iLength = null) {
 //}
 
 function qcsasia_links__system_menu_top($variables) {
-    if ($variables['links']) {
-        ?>
+    if ($variables['links']) { ?>
         <nav class="navbar navbar-default navbar-top">
-            <div class="container-fluid padding-sm-0">
+            <div class="container-fluid padding-md-0">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-menu-top" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -122,14 +220,15 @@ function qcsasia_links__system_menu_top($variables) {
                     </button>
                     <div class="visible-xs visible-sm pull-left margin-left-xs-20 margin-top-10"><?= displaySocialMediaLogo() ?></div>
                 </div>
-                <div class="navbar-collapse collapse padding-xs-0 padding" id="navbar-collapse-menu-top" aria-expanded="false">
-                    <ul class="menu-list menu-list"><?php foreach ($variables['links'] as $link) { ?>
-                            <li>
-                                <a href="<?= url($link['link']['link_path']) ?>" >
-                                    <?= $link['link']['link_title'] ?>
-                                </a>
-                            </li><?php }
-                                ?>
+                <div class="navbar-collapse collapse padding-sm-0" id="navbar-collapse-menu-top" aria-expanded="false">
+                    <ul class="menu-list menu-list"><?php 
+                        foreach ($variables['links'] as $link) { ?>
+                                <li>
+                                    <a href="<?= url($link['link']['link_path']) ?>" >
+                                        <?= $link['link']['link_title'] ?>
+                                    </a>
+                                </li><?php 
+                        } ?>
                     </ul>
                 </div>
             </div>
@@ -149,10 +248,9 @@ function qcsasia_links__system_menu_top($variables) {
 }
 
 function qcsasia_links__system_main_menu($variables) {
-    if ($variables['links']) {
-        ?>
+    if ($variables['links']) { ?>
         <nav class="navbar navbar-default">
-            <div class="container-fluid padding-sm-0">
+            <div class="container-fluid padding-md-0">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-main-menu" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -162,24 +260,29 @@ function qcsasia_links__system_main_menu($variables) {
                     </button>
                     <span class="navbar-brand visible-xs">Menu</span>
                 </div>
-                <div class="navbar-collapse collapse" id="navbar-collapse-main-menu" aria-expanded="false">
-                    <ul class="nav navbar-nav"><?php foreach ($variables['links'] as $link) { ?>
+                <div class="navbar-collapse collapse padding-sm-0" id="navbar-collapse-main-menu" aria-expanded="false">
+                    <ul class="nav navbar-nav"><?php 
+                        foreach ($variables['links'] as $link) { ?>
                             <li class="<?= ($link['below'] ? 'dropdown' : '') ?><?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>">
                                 <a <?= ($link['below'] ? 'role="button" aria-haspopup="true" aria-expanded="false"' : '') ?> href="<?= url($link['link']['link_path']) ?>" >
                                     <?= $link['link']['link_title'] ?>
-                                </a><?php if ($link['below']) { ?>
-                                    <ul class="dropdown-menu hidden-xs"><?php
-                                        foreach ($link['below'] as $below) {
-                                            if (isset($below['link'])) {
-                                                ?>
-                                                <li>
-                                                    <a href="<?= url($below['link']['link_path']) . (isset($below['link']['localized_options']['query']) ? "?" . drupal_http_build_query($below['link']['localized_options']['query']) : '') ?>"><?= $below['link']['link_title'] ?></a>
-                                                </li><?php
-                                            }
-                                        }
-                                        ?>
-                                    </ul><?php } ?>
-                            </li><?php } ?>
+                                </a><?php 
+                                if ($link['below']) {
+                                    $bIsConnected = isset($_SESSION['user']) && $_SESSION['user'];
+                                    if (($link['link']['link_title'] == 'Member area' && $bIsConnected) || $link['link']['link_title'] != 'Member area') { ?>
+                                        <ul class="dropdown-menu hidden-xs"><?php
+                                            foreach ($link['below'] as $below) {
+                                                if (isset($below['link'])) { ?>
+                                                    <li>
+                                                        <a href="<?= url($below['link']['link_path']) . (isset($below['link']['localized_options']['query']) ? "?" . drupal_http_build_query($below['link']['localized_options']['query']) : '') ?>"><?= $below['link']['link_title'] ?></a>
+                                                    </li><?php
+                                                }
+                                            } ?>
+                                        </ul><?php 
+                                    }
+                                } ?>
+                            </li><?php 
+                        } ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right search-form-content">
                         <li><form action="/search" method="get"><input class="margin-right-xs-10" placeholder="Search Products" name="keyword" type="text" autocomplete="off" /><button class="btn btn-primary" type="submit">Search</button></form></li>
@@ -599,8 +702,26 @@ function getTermByRef($mReferences, $sType) {
     return taxonomy_term_load_multiple($aTermsIds);
 }
 
+function confirmEmail($sAddressEmail) {
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+        ->entityCondition('bundle', 'member')
+        ->fieldCondition('field_member_email', 'value', $sAddressEmail)
+        ->fieldCondition('field_member_status', 'tid', '682');
+    $aResult = $oQuery->execute();
+    if ($aResult) {
+        $oMember = taxonomy_term_load(array_keys($aResult['taxonomy_term'])[0]);
+        $oMember->field_member_status['und'][0]['tid'] = '683';
+        taxonomy_term_save($oMember);
+    }
+}
+
 function qcsasia_preprocess_html(&$vars) {
     header('HTTP/1.1 200 OK');
+    // confirmation email
+    if (isset(drupal_get_query_parameters()['confirm_email']) && drupal_get_query_parameters()['confirm_email']) {
+        confirmEmail(drupal_get_query_parameters()['confirm_email']);
+    }
     switch ($vars['theme_hook_suggestions'][0]) {
         case 'html__products_ajax' :
             $aProducts = getProducts(drupal_get_query_parameters());
@@ -626,31 +747,33 @@ function displayDocumentCenter($term) {
     foreach ($oFieldDocumentsGroups as $oFieldDocumentsGroup) {
         if (count($term->field_group_document['und']) > 2 && $iCounter == 1) {
             ?>
-            <div class="col-sm-6 border-sm-right"><?php }
-        ?>
-            <div class="list-title" data-id-doc="1"><span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocumentsGroup->field_group_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'file') ?>"></span> <?= $oFieldDocumentsGroup->field_group_document_title['und'][0]['value'] ?></div><?php
-            $aIdDocumentsEntities = [];
-            foreach ($oFieldDocumentsGroup->field_document['und'] as $aDocument) {
-                $aIdDocumentsEntities[] = $aDocument['value'];
-            }
-            $oFieldDocuments = entity_load('field_collection_item', $aIdDocumentsEntities);
-            if ($oFieldDocuments) {
-                ?>
-                <ul class="list-doc"><?php foreach ($oFieldDocuments as $oFieldDocument) { ?>
-                        <li><a target="blank" href="<?= str_replace("www", "dl", $oFieldDocument->field_document_link['und'][0]['value']) ?>"><span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocument->field_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'download-alt') ?>"></span> <?= getNameFromDocument($oFieldDocument->field_document_link['und'][0]['value']) ?></a></li><?php }
-                ?>
-                </ul><?php
-            }
-            if ($iCounter == 2) {
-                ?>
+            <div class="col-sm-6 border-sm-right"><?php 
+        } ?>
+        <div class="list-title" data-id-doc="1"><span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocumentsGroup->field_group_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'file') ?>"></span> <?= $oFieldDocumentsGroup->field_group_document_title['und'][0]['value'] ?></div><?php
+        $aIdDocumentsEntities = [];
+        foreach ($oFieldDocumentsGroup->field_document['und'] as $aDocument) {
+            $aIdDocumentsEntities[] = $aDocument['value'];
+        }
+        $oFieldDocuments = entity_load('field_collection_item', $aIdDocumentsEntities);
+        $bIsConnected = isset($_SESSION['user']) && $_SESSION['user'];
+        if ($oFieldDocuments) { ?>
+            <ul class="list-doc"><?php 
+                foreach ($oFieldDocuments as $oFieldDocument) { ?>
+                        <li>
+                            <a target="blank" <?= (!$bIsConnected ? 'class="disabled_link"' : '') ?> href="<?= (!$bIsConnected ? url('member-area') : str_replace("www", "dl", $oFieldDocument->field_document_link['und'][0]['value'])) ?>">
+                                <span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocument->field_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'download-alt') ?>"></span> <?= getNameFromDocument($oFieldDocument->field_document_link['und'][0]['value']) ?></a>
+                        </li><?php 
+                } ?>
+            </ul><?php
+        }
+        if ($iCounter == 2) { ?>
             </div>
             <div class="col-sm-6"><?php
-            }
-            if (count($term->field_group_document['und']) == $iCounter) {
-                ?>
+        }
+        if (count($term->field_group_document['und']) == $iCounter) { ?>
             </div><?php
         }
-        $iCounter++;
+    $iCounter++;
     }
 }
 

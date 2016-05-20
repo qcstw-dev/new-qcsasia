@@ -158,6 +158,9 @@ ol, .breadcrumb {
 .breadcrumb {
     background-color: #E8E8E8;
 }
+.disabled_link {
+    cursor: not-allowed;
+}
 a {
     color: #38B15D;
     cursor: pointer;
@@ -592,7 +595,7 @@ a:focus, a:hover {
         padding: 0;
     }
 }
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .col-sm-20-percent {
         width: 20%;
     }
@@ -740,6 +743,13 @@ a:focus, a:hover {
 /****************** CONTACT US *******************/
 .input-group-addon {
     min-width: 139px;
+}
+/****************** MEMBER AREA *******************/
+.member-area-login .input-group-addon {
+    min-width: 87px;
+}
+.member-area-register .input-group-addon {
+    min-width: 146px;
 }
 /****************** FOOTER *******************/
 #footer {
