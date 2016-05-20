@@ -193,6 +193,15 @@ a:focus, a:hover {
 .color-red {
     color: #d9534f;
 }
+.panel-title {
+    font-size: 20px;
+}
+.panel-body {
+    color: #777;
+}
+.alert {
+    border-radius: 0;
+}
 .well {
     background: none;
 }
@@ -804,18 +813,18 @@ a:focus, a:hover {
 }
 
 .error-message, .success-message {
-    border: 2px solid #F44336;
     display: none;
+/*    border: 2px solid #F44336;
     padding: 5px;
     text-align: center;
     color: #F44336;
     font-weight: bold;
     margin-bottom: 5px;
-    margin-top: 5px;
+    margin-top: 5px;*/
 }
 .success-message {
-    color: #38B15D;
-    border: 2px solid #38B15D;
+/*    color: #38B15D;
+    border: 2px solid #38B15D;*/
 }
 /****************** HOMEPAGE ***********************/
 #carousel-home-2 {

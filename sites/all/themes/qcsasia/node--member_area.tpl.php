@@ -6,12 +6,12 @@
         <div class="col-sm-7">
             <h3>Register</h3>
                 <form class="form member-area-register">
-                    <div class="error-message error-message-custom"></div>
-                    <div class="success-message">Success ! Connection...</div>
-                    <div class="error-message error-message-password">Confirmation password different</div>
-                    <div class="error-message error-message-password-length">Password must be at least 6 characters long</div>
-                    <div class="error-message error-message-empty-field">Please inform fields marked in red</div>
-                    <div class="error-message error-message-email">Please enter a valid email address</div>
+                    <div class="alert alert-success success-message">Success ! Connection...</div>
+                    <div class="alert alert-danger error-message error-message-custom"></div>
+                    <div class="alert alert-danger error-message error-message-password">Confirmation password different</div>
+                    <div class="alert alert-danger error-message error-message-password-length">Password must be at least 6 characters long</div>
+                    <div class="alert alert-danger error-message error-message-empty-field">Please inform fields marked in red</div>
+                    <div class="alert alert-danger error-message error-message-email">Please enter a valid email address</div>
                     <div class="col-md-6 padding-left-0">
                         <div class="input-group">
                             <span class="input-group-addon">Firstname*</span>
@@ -76,10 +76,9 @@
         <div class="col-sm-5">
             <h3>Login</h3>
             <form class="form member-area-login">
-                <div class="error-message error-message-custom"></div>
-                <div class="success-message">Success ! Connection...</div>
-                <div class="error-message error-message-empty-field">Please inform fields marked in red</div>
-                <div class="error-message error-message-email">Please enter a valid email address</div>
+                <div class="alert alert-danger error-message error-message-custom"></div>
+                <div class="alert alert-danger error-message error-message-empty-field">Please inform fields marked in red</div>
+                <div class="alert alert-danger error-message error-message-email">Please enter a valid email address</div>
                 <div class="input-group">
                     <span class="input-group-addon">Email</span>
                     <input class="form-control email required" type="email" name="email" autocomplete="off"/>
@@ -118,6 +117,7 @@
                             items: [{
                                 src: $('<div class="white-popup">\n\
                                             <div class="col-md-12 text-center">\n\
+                                                <div class="alert alert-success success-message">Success ! Redirect...</div>\n\
                                                 <div class="col-xs-12 bold font-size-18">'+text+'</div>\n\
                                                 <img src="<?= url(path_to_theme() . "/images/template/loader.gif") ?>" />\n\
                                             </div>\n\
@@ -128,12 +128,14 @@
                         });
                     },
                     success: function (data) {
-                        $.magnificPopup.close();
+                        if (form === 'member-area-register') {
+                            $.magnificPopup.close();
+                        }
                         if (!data.success) {
                             $('.'+form+' .error-message-custom').html(data.error).slideDown();
                         } else {
                             if (form === 'member-area-login') {
-                                $('.'+form+' .success-message').html(data.error).slideDown();
+                                $('.white-popup .success-message').html(data.error).slideDown();
                                 window.location.replace(baseUrl+'/member-area');
                             } else {
                             $('.registration-login-area').html('\
@@ -146,9 +148,37 @@
                 });
             }
         </script><?php
-    } else { ?> 
-        <div class="col-xs-12 text-right">
-            <a class="bold" href="<?= $baseUrl ?>?logout" >Logout <span class="glyphicon glyphicon-log-out"></span></a>
+    } else {
+        $oUser = $_SESSION['user']; ?> 
+        <div class="col-xs-12 padding-0">
+            <div class="alert alert-success" role="alert">
+                <strong>Hello <?= $oUser->name ?> !</strong> Welcome to your member area
+                <a  class="bold pull-right" href="<?= $baseUrl ?>?logout" >Logout <span class="glyphicon glyphicon-log-out"></span></a>
+                <div class="clearfix"></div>
+            </div>
+            <a href="<?= url('search', ['query' => ['document_center' => null]]) ?>">
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Document center</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-2 thumbnail border-none margin-bottom-0">
+                                <img src="<?= url(path_to_theme() . "/images/member/document-center.png") ?>" alt="Document center" title="Document center" />
+                            </div>
+                            <div class="col-md-10">
+                                <p>In this area, you can download our standard documents in editable high definition to use as sales tools :</p>
+                                <ul>
+                                    <li style="padding:1px;">Product picture high definition (.psd/photoshop)</li>
+                                    <li style="padding:1px;">Price list (.ai/Illustrator)</li>
+                                    <li style="padding:1px;">Digital drawing (.cdr/corel draw)</li>
+                                    <li style="padding:1px;">Certification (.pdf)</li>
+                                    <li style="padding:1px;">Patent (.pdf)</li>
+                                    <li style="padding:1px;">Logo standard (.crd/corel draw)</li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+            </a>
         </div><?php
     } ?>
 </div>

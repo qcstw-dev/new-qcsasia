@@ -722,6 +722,9 @@ function qcsasia_preprocess_html(&$vars) {
     if (isset(drupal_get_query_parameters()['confirm_email']) && drupal_get_query_parameters()['confirm_email']) {
         confirmEmail(drupal_get_query_parameters()['confirm_email']);
     }
+    if (isset($_SESSION['user']) && $_SESSION['user']) {
+        $vars['oUser'] = $_SESSION['user'];
+    }
     switch ($vars['theme_hook_suggestions'][0]) {
         case 'html__products_ajax' :
             $aProducts = getProducts(drupal_get_query_parameters());
