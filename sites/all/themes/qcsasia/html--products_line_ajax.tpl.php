@@ -1,12 +1,13 @@
 <div class="block-line text-left"><?php
+    $bIsDocCenter = isset($_GET['document_center']);
     $aProductsLine = getProducts(drupal_get_query_parameters());
     $iNumberProducts = count($aProductsLine);
     $count = 1;
     foreach ($aProductsLine as $key => $oProduct) {
         $oLineProduct = taxonomy_term_load($oProduct->tid); ?>
-        <div class="col-xs-12 block-line-product padding-0 padding-bottom-10 padding-top-10 toto <?= ($count == $iNumberProducts ? '' : 'border-bottom') ?>">
-            <a href="<?= url('taxonomy/term/' . $oProduct->tid) ?>" title="<?= $oLineProduct->field_product_name['und'][0]['value'] ?>">
-                <div class="col-xs-4 col-md-3 thumbnail margin-top-xs-20"><?php
+        <div class="col-xs-12 block-line-product padding-0 padding-bottom-10 padding-top-10 <?= ($count == $iNumberProducts ? '' : 'border-bottom') ?>">
+            <a href="<?= url('taxonomy/term/' . $oProduct->tid).($bIsDocCenter ? '?document_center' : '') ?>" title="<?= $oLineProduct->field_product_name['und'][0]['value'] ?>">
+                <div class="col-xs-4 col-md-3 thumbnail"><?php
                     $sPictureUri = '';
                     if ($oLineProduct->field_logo_process_block) {
                         $aLogoProcesses = getLogoProcesses($oLineProduct);

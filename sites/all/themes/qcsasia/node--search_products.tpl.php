@@ -1,4 +1,8 @@
-<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>><?php
+    $bIsDocCenter = isset($_GET['document_center']); 
+    if ($bIsDocCenter) { ?>
+        <h2>Document center</h2><?php
+    } ?>
     <div class="btn-show-hide-text-area margin-bottom-10"><span class="glyphicon glyphicon-menu-down"></span> Filter <span class="glyphicon glyphicon-menu-down"></span></div>
     <div class="block-filter col-md-3 thumbnail padding hidden-text-area">
         <h4>Filter by:</h4>
@@ -134,8 +138,12 @@
         });
         if ($('.search-field').val()) {
             query = query + (bIssetGetVars ? '&' : '?') + $.param({keyword: $('.search-field').val()});
+            bIssetGetVars = true;
         }
-
+        var bIsDocCenter = <?= ($bIsDocCenter ? 'true' : 'false') ?>;
+        if (bIsDocCenter) {
+            query = query + (bIssetGetVars ? '&' : '?') + 'document_center';
+        }
         console.log(url + query);
         $.ajax(url + query, {
             dataType: 'html',

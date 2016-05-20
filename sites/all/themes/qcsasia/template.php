@@ -613,9 +613,9 @@ function getProducts($aQueryParameters, $bCount = false) {
                         // retrieve logo
                         $oQuery->fieldCondition('field_logo_process_block', 'value', array_keys($aFieldCollections));
                     }
-
-
-//                    $oQuery->fieldCondition('field_logo_process', 'tid', array_keys($aLogoProcesses));
+                    break;
+                case 'document_center':
+                    $oQuery->fieldCondition('field_group_document', 'value', '', '<>');
                     break;
             }
         }

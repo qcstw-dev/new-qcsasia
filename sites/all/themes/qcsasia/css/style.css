@@ -279,7 +279,7 @@ a:focus, a:hover {
 #menu ul.dropdown-menu {
     margin-top: -1px;
     padding: 0;
-    min-width: 276px;
+    min-width: 216px;
 }
 #menu ul.dropdown-menu li a{
     height: 35px;
@@ -1081,7 +1081,7 @@ span.count.badge {
     display: block;
 }
 
-.tab-block .glyphicon{
+.document-center .glyphicon{
     font-size: 22px;
     top: 4px;
     margin-right: 8px;
