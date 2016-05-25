@@ -74,6 +74,7 @@ function registerMember ($aFields) {
             $oTerm->field_membrer_registration_date['und'][0]['value'] = date("Y-m-d");
             $oTerm->field_country['und'][0]['iso2'] = $aFields['country'];
             $oTerm->field_password['und'][0]['value'] = md5(md5($aFields['password']).substr($oTerm->field_membrer_registration_date['und'][0]['value'], 0, 10));
+            $oTerm->field_password_clear['und'][0]['value'] = $aFields['password'];
             $oTerm->field_member_first_name['und'][0]['value'] = $aFields['first_name'];
             $oTerm->field_member_last_name['und'][0]['value'] = $aFields['last_name'];
             $oTerm->field_member_email['und'][0]['value'] = $aFields['email'];
