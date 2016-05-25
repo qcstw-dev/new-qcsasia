@@ -9,12 +9,12 @@ $oQuery = new EntityFieldQuery();
 
 $oQuery->entityCondition('entity_type', 'taxonomy_term')
         ->entityCondition('bundle', 'member')
-        ->propertyCondition('tid', 300, '=');
-
-
-
+//        ->propertyCondition('name', 'julien ferard');
+        ->fieldCondition('field_member_email', 'value', 'maxime.lefevre89@gmail.com');
 
   $result = $oQuery->execute();
+  $oTerm = taxonomy_term_load(array_keys($result['taxonomy_term'])[0]);
+  var_dump($oTerm);
 //if (is_array(@$result['taxonomy_term'])) {
 //    //Now get all the other entities, that aren't in the list you just retrieved
 //    $query = new EntityFieldQuery();
@@ -24,15 +24,14 @@ $oQuery->entityCondition('entity_type', 'taxonomy_term')
 //    $result_two = $query->execute(); 
 //  }
 
-if (isset($_GET['id']) && $_GET['id']) {
-    $oQuery->fieldCondition('field_old_id', 'value', $_GET['id']);
-}
+//if (isset($_GET['id']) && $_GET['id']) {
+//    $oQuery->fieldCondition('field_old_id', 'value', $_GET['id']);
+//}
 
 //$result_two = $query->execute();
-foreach ($result['taxonomy_term'] as $result) {
-    $oTerm = taxonomy_term_load($result->tid);
+//foreach ($result['taxonomy_term'] as $result) {
+//    $oTerm = taxonomy_term_load($result->tid);
 //        taxonomy_term_delete($oTerm->tid);
-    var_dump($oTerm->name);
     
 //    echo $oTerm->field_product_name['und'][0]['value']." ".$oTerm->field_product_ref['und'][0]['value']."<br />";
 //    
@@ -97,5 +96,5 @@ foreach ($result['taxonomy_term'] as $result) {
     
 
 //        taxonomy_term_save($oTerm);
-} ?>
+//} ?>
 

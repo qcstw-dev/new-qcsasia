@@ -10,7 +10,6 @@ function registerMember ($aFields) {
         $aFields['country'],
         $aFields['company_phone'],
         $aFields['company_website'],
-        $aFields['company_type'],
         $aFields['password'],
         $aFields['password_confirm'],
         $aFields['email']) 
@@ -21,9 +20,31 @@ function registerMember ($aFields) {
         && $aFields['country']
         && $aFields['company_phone']
         && $aFields['company_website']
-        && $aFields['company_type']
         && $aFields['password']
         && $aFields['password_confirm']) {
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+            curl_setopt($ch, CURLOPT_POST, 1);
+
+             curl_setopt($ch, CURLOPT_POSTFIELDS, 
+                      http_build_query(array(
+                          'response' => $aFields['g-recaptcha-response'],
+                          'secret' => '6Ld-GBATAAAAAIvB5kbSL3qzIxuWgp3j9E9PKzx7'
+                          )));
+
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $server_output = json_decode(curl_exec ($ch));
+
+            curl_close ($ch);
+            
+            if (!$server_output->success) {
+                $aResult['success'] = false;
+                $aResult['error'] = "Wrong captcha";
+                return $aResult;
+            }   
+        
             $oQuery = new EntityFieldQuery();
             $oQuery->entityCondition('entity_type', 'taxonomy_term')
                     ->entityCondition('bundle', 'member')
@@ -58,7 +79,9 @@ function registerMember ($aFields) {
             $oTerm->field_member_address['und'][0]['value'] = $aFields['company_address'];
             $oTerm->field_member_phone['und'][0]['value'] = $aFields['company_phone'];
             $oTerm->field_member_website['und'][0]['value'] = $aFields['company_website'];
-            $oTerm->field_member_company_type['und'][0]['tid'] = $aFields['company_type']; 
+            if (isset($aFields['company_type']) && $aFields['company_type']) {
+                $oTerm->field_member_company_type['und'][0]['tid'] = $aFields['company_type']; 
+            }
             // Pending status
             $oTerm->field_member_status['und'][0]['tid'] = '682';            
             
@@ -78,7 +101,7 @@ function registerMember ($aFields) {
             $data = file_get_contents($url);
             $reply = explode(';',$data);
             
-            $oTerm->field_member_country_ip['und'][0]['value'] = $reply[3];
+            $oTerm->field_member_country_ip['und'][0]['iso2'] = $reply[1];
             
             taxonomy_term_save($oTerm);
             $aResult['success'] = true;
@@ -220,7 +243,7 @@ function qcsasia_links__system_menu_top($variables) {
                     </button>
                     <div class="visible-xs visible-sm pull-left margin-left-xs-20 margin-top-10"><?= displaySocialMediaLogo() ?></div>
                 </div>
-                <div class="navbar-collapse collapse padding-sm-0" id="navbar-collapse-menu-top" aria-expanded="false">
+                <div class="navbar-collapse collapse padding-lg-0" id="navbar-collapse-menu-top" aria-expanded="false">
                     <ul class="menu-list menu-list"><?php 
                         foreach ($variables['links'] as $link) { ?>
                                 <li>
@@ -260,8 +283,8 @@ function qcsasia_links__system_main_menu($variables) {
                     </button>
                     <span class="navbar-brand visible-xs">Menu</span>
                 </div>
-                <div class="navbar-collapse collapse padding-sm-0" id="navbar-collapse-main-menu" aria-expanded="false">
-                    <ul class="nav navbar-nav"><?php 
+                <div class="navbar-collapse collapse padding-lg-0" id="navbar-collapse-main-menu" aria-expanded="false">
+                    <ul class="nav navbar-nav padding-xs padding-lg-0"><?php 
                         foreach ($variables['links'] as $link) { ?>
                             <li class="<?= ($link['below'] ? 'dropdown' : '') ?><?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>">
                                 <a <?= ($link['below'] ? 'role="button" aria-haspopup="true" aria-expanded="false"' : '') ?> href="<?= url($link['link']['link_path']) ?>" >
@@ -359,6 +382,14 @@ function qcsasia_preprocess_node(&$vars) {
             $vars['aGifts'] = taxonomy_term_load_multiple(array_keys($aGifts));
             $aThemes = getThemes(drupal_get_query_parameters());
             $vars['aThemes'] = taxonomy_term_load_multiple(array_keys($aThemes));
+            break;
+        case 'confirm_email' :
+            // confirmation email
+            if (isset(drupal_get_query_parameters()['email']) && drupal_get_query_parameters()['email']) {
+                $vars['bIsConfirmed'] = confirmEmail(drupal_get_query_parameters()['email']);
+            } else {
+                $vars['bIsConfirmed'] = false;
+            }
             break;
     }
 }
@@ -713,15 +744,14 @@ function confirmEmail($sAddressEmail) {
         $oMember = taxonomy_term_load(array_keys($aResult['taxonomy_term'])[0]);
         $oMember->field_member_status['und'][0]['tid'] = '683';
         taxonomy_term_save($oMember);
+        return true;
+    } else {
+        return false;
     }
 }
 
 function qcsasia_preprocess_html(&$vars) {
     header('HTTP/1.1 200 OK');
-    // confirmation email
-    if (isset(drupal_get_query_parameters()['confirm_email']) && drupal_get_query_parameters()['confirm_email']) {
-        confirmEmail(drupal_get_query_parameters()['confirm_email']);
-    }
     if (isset($_SESSION['user']) && $_SESSION['user']) {
         $vars['oUser'] = $_SESSION['user'];
     }
@@ -858,12 +888,13 @@ function displayLogoProcessBlock($aLogoProcess) {
     $bLargePicture = $aLogoProcess['large'];
     if ($bComplicatedDisplay) { ?>
         <div class="col-sm-3 margin-top-20 <?= ($bLargePicture ? 'pointer event-enlarge' : '') ?>">
-            <div class="col-xs-12 thumbnail">
-                <img class="" src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" />
+            <div class="col-xs-12">
+                <img class="thumbnail" src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" />
             </div>
         </div><?php 
     } ?>
     <div class="<?= $bComplicatedDisplay ? 'col-sm-9' : 'col-sm-12' ?> padding-xs-0">
+        <div class="clearfix"></div>
         <h3 class=""><?= $oLogoProcess->name ?></h3>
         <div class="col-md-7 margin-bottom-sm-10">
             <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>

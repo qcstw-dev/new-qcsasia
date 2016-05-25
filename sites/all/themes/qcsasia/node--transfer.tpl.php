@@ -44,8 +44,19 @@ foreach ($XMLposts as $XMLpost) {
 
 function saveData($oTerm, $XMLpost) {
     // DATA
-    $oTerm->field_display_image_finishes['und'][0]['value'] = (string) $XMLpost->display_image_finishes;
+    if ((string) $XMLpost->path) {
+        $update_db = db_update('url_alias')
+          ->fields(array('alias' => 'product/'.(string) $XMLpost->path))
+          ->condition('source', 'taxonomy/term/'.$oTerm->tid, '=')
+          ->execute();
+    }
+    
+    
+    
+    
+    
     /*
+    $oTerm->field_display_image_finishes['und'][0]['value'] = (string) $XMLpost->display_image_finishes;
     $oTerm->field_description['und'][0]['value'] = (string) $XMLpost->description;
     
     preg_match('/(#[a-zA-Z0-9]+)/', (string) $XMLpost->name, $matches);

@@ -2,95 +2,119 @@
     <h2 class="margin-top-0">Member area</h3><?php
     $bIsConnected = isset($_SESSION['user']) && $_SESSION['user'];
     if (!$bIsConnected) { ?>
-    <div class="registration-login-area">
-        <div class="col-sm-7">
-            <h3>Register</h3>
-                <form class="form member-area-register">
-                    <div class="alert alert-success success-message">Success ! Connection...</div>
+        <div class="registration-login-area">
+            <div class="col-sm-7">
+                <h3 class="title-orange">Register</h3>
+                    <form class="form member-area-register">
+                        <div class="alert alert-success success-message">Success ! Connection...</div>
+                        <div class="alert alert-danger error-message error-message-custom"></div>
+                        <div class="alert alert-danger error-message error-message-password">Confirmation password different</div>
+                        <div class="alert alert-danger error-message error-message-password-length">Password must be at least 6 characters long</div>
+                        <div class="alert alert-danger error-message error-message-empty-field">Please inform fields marked in red</div>
+                        <div class="alert alert-danger error-message error-message-email">Please enter a valid email address</div>
+                        <div class="col-md-6 padding-left-lg-0">
+                            <div class="input-group">
+                                <span class="input-group-addon">Firstname*</span>
+                                <input class="form-control required" type="text" name="first_name" autocomplete="off"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Lastname*</span>
+                                <input class="form-control required" type="text" name="last_name" autocomplete="off"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Company name*</span>
+                                <input class="form-control required" type="text" name="company_name" autocomplete="off"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Company address*</span>
+                                <input class="form-control required" type="text" name="company_address" autocomplete="off"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Country*</span>
+                                <select class="form-control required" name="country">
+                                    <option></option><?php
+                                    foreach(country_get_list() as $key => $aCountry) { ?>
+                                        <option value="<?= $key ?>"><?= $aCountry ?></option><?php
+                                    } ?>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Company phone*</span>
+                                <input class="form-control required" type="text" name="company_phone" autocomplete="off"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Company website*</span>
+                                <input class="form-control required" type="text" name="company_website" autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 padding-right-lg-0">
+                            <div class="input-group">
+                                <span class="input-group-addon">Company type</span>
+                                <select class="form-control" name="company_type">
+                                    <option></option><?php
+                                    foreach(getCompanyType() as $oCompanyType) { ?>
+                                        <option value="<?= $oCompanyType->tid ?>"><?= $oCompanyType->name ?></option><?php
+                                    } ?>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Email*</span>
+                                <input class="form-control email required" type="email" name="email" autocomplete="off"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Password*</span>
+                                <input class="form-control password required" type="password" name="password" autocomplete="off"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Confirm password*</span>
+                                <input class="form-control password_confirm required" type="password" name="password_confirm" autocomplete="off"/>
+                            </div>
+                            <div class="input-group">
+                                <div class="g-recaptcha" data-sitekey="6Ld-GBATAAAAAExjGxG_83RXLJR-v8mxlHrIvJiQ"></div>
+                            </div>
+                        </div>
+                        <input type="button" class="btn btn-primary pull-right btn-submit" data-form="member-area-login" value="Submit"/>
+                    </form>
+                </div>
+            <div class="col-sm-5">
+                <h3 class="title-blue">Login</h3>
+                <form class="form member-area-login">
                     <div class="alert alert-danger error-message error-message-custom"></div>
-                    <div class="alert alert-danger error-message error-message-password">Confirmation password different</div>
-                    <div class="alert alert-danger error-message error-message-password-length">Password must be at least 6 characters long</div>
                     <div class="alert alert-danger error-message error-message-empty-field">Please inform fields marked in red</div>
                     <div class="alert alert-danger error-message error-message-email">Please enter a valid email address</div>
-                    <div class="col-md-6 padding-left-0">
-                        <div class="input-group">
-                            <span class="input-group-addon">Firstname*</span>
-                            <input class="form-control required" type="text" name="first_name" value="Jean" autocomplete="off"/>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Lastname*</span>
-                            <input class="form-control required" type="text" name="last_name" value="Dupont" autocomplete="off"/>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Company name*</span>
-                            <input class="form-control required" type="text" name="company_name" value="qcs" autocomplete="off"/>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Company address*</span>
-                            <input class="form-control required" type="text" name="company_address" value="22 rue toto" autocomplete="off"/>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Country*</span>
-                            <select class="form-control required" name="country">
-                                <option></option><?php
-                                foreach(country_get_list() as $key => $aCountry) { ?>
-                                    <option value="<?= $key ?>"><?= $aCountry ?></option><?php
-                                } ?>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Company phone*</span>
-                            <input class="form-control required" type="text" name="company_phone" value="0909699418" autocomplete="off"/>
-                        </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Email</span>
+                        <input class="form-control email required" type="email" name="email" autocomplete="off"/>
                     </div>
-                    <div class="col-md-6 padding-right-0">
-                        <div class="input-group">
-                            <span class="input-group-addon">Company website*</span>
-                            <input class="form-control required" type="text" name="company_website" value="website" autocomplete="off"/>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Company type*</span>
-                            <select class="form-control required" name="company_type">
-                                <option></option><?php
-                                foreach(getCompanyType() as $oCompanyType) { ?>
-                                    <option value="<?= $oCompanyType->tid ?>"><?= $oCompanyType->name ?></option><?php
-                                } ?>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Email*</span>
-                            <input class="form-control email required" type="email" name="email" value="maxime.lefevre89@gmail.com" autocomplete="off"/>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Password*</span>
-                            <input class="form-control password required" type="password" name="password" value="totototo" autocomplete="off"/>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Confirm password*</span>
-                            <input class="form-control password_confirm required" type="password" name="password_confirm" value="totototo" autocomplete="off"/>
-                        </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Password</span>
+                        <input class="form-control required" type="password" name="password" autocomplete="off"/>
                     </div>
-                    <input type="button" class="btn btn-primary pull-right btn-submit" data-form="member-area-login" value="Submit"/>
+                    <input type="button" class="btn btn-primary pull-right btn-submit" data-form="member-area-login" value="Login"/>
                 </form>
+                <div class="clearfix"></div>
+                <div class="well col-md-12 margin-top-10 padding-10">
+                    <p><strong>By registering on our member area, you will get full access to:</strong></p>
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-2">
+                            <span class="font-size-40 glyphicon glyphicon-file"></span>
+                        </div>
+                        <div class="col-md-10">
+                            <p><strong>Our document center</strong> (High definition pictures, price lists, certification, logo standard, digital drawing...)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 padding-0 margin-top-10">
+                        <div class="col-md-2">
+                            <span class="font-size-44 icomoon icomoon-truck"></span>
+                        </div>
+                        <div class="col-md-10">
+                            <p><strong>Our Rush Service</strong> offering great advantages for more flexibility and efficiency of the sales process.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        <div class="col-sm-5">
-            <h3>Login</h3>
-            <form class="form member-area-login">
-                <div class="alert alert-danger error-message error-message-custom"></div>
-                <div class="alert alert-danger error-message error-message-empty-field">Please inform fields marked in red</div>
-                <div class="alert alert-danger error-message error-message-email">Please enter a valid email address</div>
-                <div class="input-group">
-                    <span class="input-group-addon">Email</span>
-                    <input class="form-control email required" type="email" name="email" autocomplete="off"/>
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">Password</span>
-                    <input class="form-control required" type="password" name="password" autocomplete="off"/>
-                </div>
-                <input type="button" class="btn btn-primary pull-right btn-submit" data-form="member-area-login" value="Login"/>
-            </form>
         </div>
-    </div>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         <script>
             formValidators('member-area-login');
             formValidators('member-area-register');
@@ -128,9 +152,6 @@
                         });
                     },
                     success: function (data) {
-                        if (form === 'member-area-register') {
-                            $.magnificPopup.close();
-                        }
                         if (!data.success) {
                             $('.'+form+' .error-message-custom').html(data.error).slideDown();
                         } else {
@@ -141,9 +162,14 @@
                             $('.registration-login-area').html('\
                                     <div class="text-center thumbnail border-none">\n\
                                         <img src="<?= url(path_to_theme() . "/images/registration/registration-step-2.jpg") ?>" title="Scheme" alt="Scheme" />\n\
+                                        <div class="well margin-top-20">\n\
+                                            <h4>Application form is completed.</h4>\n\
+                                            <p>You will receive shortly an e-mail with a link to click to confirm your e-mail address.</p>\n\
+                                        </div>\n\
                                     </div>');
                             }
                         }
+                        $.magnificPopup.close();
                     }
                 });
             }
