@@ -154,6 +154,7 @@
                     success: function (data) {
                         if (!data.success) {
                             $('.'+form+' .error-message-custom').html(data.error).slideDown();
+                            $( '.g-recaptcha iframe' ).attr( 'src', function ( i, val ) { return val; });
                         } else {
                             if (form === 'member-area-login') {
                                 $('.white-popup .success-message').html(data.error).slideDown();

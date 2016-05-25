@@ -22,28 +22,30 @@ function registerMember ($aFields) {
         && $aFields['company_website']
         && $aFields['password']
         && $aFields['password_confirm']) {
-            $ch = curl_init();
+            if ($_SERVER["HTTP_HOST"] != 'localhost') {
+                $ch = curl_init();
 
-            curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
-            curl_setopt($ch, CURLOPT_POST, 1);
+                    curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+                    curl_setopt($ch, CURLOPT_POST, 1);
 
-             curl_setopt($ch, CURLOPT_POSTFIELDS, 
-                      http_build_query(array(
-                          'response' => $aFields['g-recaptcha-response'],
-                          'secret' => '6Ld-GBATAAAAAIvB5kbSL3qzIxuWgp3j9E9PKzx7'
-                          )));
+                     curl_setopt($ch, CURLOPT_POSTFIELDS, 
+                              http_build_query(array(
+                                  'response' => $aFields['g-recaptcha-response'],
+                                  'secret' => '6Ld-GBATAAAAAIvB5kbSL3qzIxuWgp3j9E9PKzx7'
+                                  )));
 
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-            $server_output = json_decode(curl_exec ($ch));
+                    $server_output = json_decode(curl_exec ($ch));
 
-            curl_close ($ch);
-            
-            if (!$server_output->success) {
-                $aResult['success'] = false;
-                $aResult['error'] = "Wrong captcha";
-                return $aResult;
-            }   
+                    curl_close ($ch);
+
+                    if (!$server_output->success) {
+                        $aResult['success'] = false;
+                        $aResult['error'] = "Wrong captcha";
+                        return $aResult;
+                    }   
+            }
         
             $oQuery = new EntityFieldQuery();
             $oQuery->entityCondition('entity_type', 'taxonomy_term')
