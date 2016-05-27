@@ -7,14 +7,17 @@ $oQuery = new EntityFieldQuery();
 //        ->entityCondition('bundle', 'product')
 //        ->fieldCondition('field_category', 'tid', 'NULL', '!=');
 
-$oQuery->entityCondition('entity_type', 'taxonomy_term')
-        ->entityCondition('bundle', 'member')
-//        ->propertyCondition('name', 'julien ferard');
-        ->fieldCondition('field_member_email', 'value', 'maxime.lefevre89@gmail.com');
-
-  $result = $oQuery->execute();
-  $oTerm = taxonomy_term_load(array_keys($result['taxonomy_term'])[0]);
-  var_dump($oTerm);
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'product')
+            ->fieldCondition('field_complicated', 'value', '1');
+    
+    $aResults = $oQuery->execute()['taxonomy_term'];
+    $aProducts = [];
+    foreach ($aResults as $oResult) {
+        $aProducts[] = taxonomy_term_load($oResult->tid);
+    }
+    var_dump($aProducts);
+    
 //if (is_array(@$result['taxonomy_term'])) {
 //    //Now get all the other entities, that aren't in the list you just retrieved
 //    $query = new EntityFieldQuery();
