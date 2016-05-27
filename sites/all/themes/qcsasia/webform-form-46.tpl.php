@@ -39,12 +39,6 @@
         foreach ($form['submitted'] as $key => $field) {
             if (strpos($key, "#") === false) {
                 if  ($field['#webform_component']['form_key'] == 'product') {
-//                  preg_match_all('~([0-9]*)\|(#[A-Z0-9]*)~', $field['#webform_component']['extra']['items'], $match);
-//                  $aProducts = [];
-//                  foreach ($match[0] as $sMatch) {
-//                      list($sKey, $sValue) = explode('|', $sMatch);
-//                      $aProducts[$sKey] = $sValue;
-//                  }
                     $aProductValues = [];
                     foreach ($field['#options'] as $sKey => $sValue) {
                         $aProductValues[substr($sKey, 0, -1)][$sKey] = $sValue;

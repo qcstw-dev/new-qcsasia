@@ -211,7 +211,17 @@ a:focus, a:hover {
 }
 .thumbnail-hover:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 8px 0 rgba(0, 0, 0, 0.19);
-    cursor: pointer;
+}
+.subtitle-pic {
+    font-weight: bold;
+    color: #777;
+    width: 100%;
+    text-align: center;
+    clear: left;
+    padding: 7px;
+    font-size: 18px;
+    margin-top: 4px;
+    background: rgba(221, 221, 221, 0.77);
 }
 .checkbox-container.active, .checkbox-container:active {
     box-shadow: none;
@@ -308,6 +318,7 @@ a:focus, a:hover {
 #menu .search-form-content {
     padding: 9px;
     margin: 0;
+    max-width: 284px;
 }
 #menu .search-form-content input {
     padding: 3px 12px;
@@ -482,6 +493,12 @@ a:focus, a:hover {
 .font-size-18 {
     font-size: 18px !important;
 }
+.font-size-15 {
+    font-size: 15px !important;
+}
+.font-size-13 {
+    font-size: 13px !important;
+}
 .font-size-65 {
     font-size: 65px;
 }
@@ -617,8 +634,11 @@ a:focus, a:hover {
     .padding-xs-0 {
         padding: 0;
     }
+    .subtitle-pic {
+        font-size: 12px;
+    }
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .col-sm-20-percent {
         width: 20%;
     }
@@ -660,6 +680,9 @@ a:focus, a:hover {
     }
     .border-sm-top {
         border-top: 1px solid #ddd;
+    }
+    .subtitle-pic {
+        font-size: 18px;
     }
 }
 @media (min-width: 992px) {
@@ -750,17 +773,6 @@ a:focus, a:hover {
 }
 .node-factory-tour .subtitle-pic {
     font-size: 14px;
-}
-.subtitle-pic {
-    font-weight: bold;
-    color: #777;
-    width: 100%;
-    text-align: center;
-    clear: left;
-    padding: 7px;
-    font-size: 18px;
-    margin-top: 4px;
-    background: rgba(221, 221, 221, 0.77);
 }
 /****************** SLIDER ********************************/
 .carousel-control.left, .carousel-control.right {
