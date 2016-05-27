@@ -38,3 +38,7 @@ function customform_pre_build_list_products() {
 
     return $contentarray;
 }
+function customform_mail_alter(&$message) {
+  unset($message['headers']['Sender']);
+  unset($message['headers']['Errors-To']);
+}
