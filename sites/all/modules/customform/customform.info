@@ -1,0 +1,5 @@
+name = Customform
+description = create a pre built list for webform
+core = 7.x
+package = Webform
+files[] = customform.module

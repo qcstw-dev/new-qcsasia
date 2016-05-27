@@ -907,3 +907,55 @@ function displayLogoProcessBlock($aLogoProcess) {
         </div>
     </div><?php
 }
+function displayProductCheckbox($aProducts){
+        foreach ($aProducts as $sId => $aProductOption) { 
+            $oProduct = taxonomy_term_load($sId); ?>
+                <div class="col-xs-6 col-sm-2">
+                    <div class="col-xs-12 thumbnail thumbnail-hover padding-0"><?php
+                        $aLogoProcesses = getLogoProcesses($oProduct);
+                        $sLogoProcessUri = (!$aLogoProcesses 
+                                ? $oProduct->field_main_photo['und'][0]['uri']
+                                : (isset($aLogoProcesses['doming']) && $aLogoProcesses['doming']['thumbnail']
+                                    ? $aLogoProcesses['doming']['thumbnail'] 
+                                    : (isset(array_values($aLogoProcesses)[0]['thumbnail']) && array_values($aLogoProcesses)[0]['thumbnail']
+                                        ? array_values($aLogoProcesses)[0]['thumbnail'] 
+                                        : $oProduct->field_main_photo['und'][0]['uri']))); ?>
+                        <a href="<?= url('taxonomy/term/'.$oProduct->tid) ?>" target="_blank" title="<?= $oProduct->field_product_name['und'][0]['value'] ?>">
+                            <img src="<?= file_create_url($sLogoProcessUri) ?>" title="<?= $oProduct->field_product_name['und'][0]['value'] ?>" alt="<?= $oProduct->field_product_name['und'][0]['value'] ?>" />
+                            <div class="col-xs-12 subtitle-pic"><?= (isset($oProduct->field_product_ref['und'][0]['value']) ? $oProduct->field_product_ref['und'][0]['value'] : '')?></div>
+                        </a><?php
+                        if (isset($aProductOption[$sId.'L'])) { ?>
+                            <div class="col-xs-12 padding-0 margin-bottom-0 border-bottom">
+                                <div class="border-right padding-0 col-xs-2 background-grey text-center">
+                                    <input type="checkbox" name="submitted[product][]" value="<?= $sId.'L' ?>" id="logotyped_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" aria-label="...">
+                                </div>
+                                <div class="col-xs-10">
+                                    <label for="logotyped_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" class="margin-bottom-0 cursor-pointer">Logotyped</label>
+                                </div>
+                            </div><?php
+                        }
+                        if (isset($aProductOption[$sId.'B'])) { ?>
+                            <div class="col-xs-12 padding-0 margin-bottom-0">
+                                <div class="border-right padding-0 col-xs-2 background-grey text-center">
+                                    <input type="checkbox" name="submitted[product][]" value="<?= $sId.'B' ?>" id="blank_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" aria-label="...">
+                                </div>
+                                <div class="col-xs-10">
+                                    <label for="blank_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" class="margin-bottom-0 cursor-pointer">Blank no logo</label>
+                                </div>
+                            </div><?php
+                        } ?>
+                    </div>
+                </div>
+            <?php
+        }
+    }
+    function displaySelectCountry($aCountries, $bIsRequired){ ?>
+        <div class="input-group">
+            <span class="input-group-addon">Country<?= ($bIsRequired ? '*' : '') ?></span>
+            <select class="form-control <?= ($bIsRequired ? 'required' : '') ?>" name="submitted[country]" ><?php
+                foreach ($aCountries as $sIso => $sName) { ?>
+                    <option value="<?= $sIso ?>"><?= $sName ?></option><?php
+                } ?>
+            </select>
+        </div><?php
+    }

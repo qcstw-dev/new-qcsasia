@@ -99,6 +99,9 @@ ul{
     float: left;
     margin-left: -20px;
 }
+.background-grey {
+    background: #eee;
+}
 .background-light {
     background: rgb(243, 243, 243);
 }
@@ -204,6 +207,11 @@ a:focus, a:hover {
 }
 .well {
     background: none;
+    border-radius: 0;
+}
+.thumbnail-hover:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 8px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
 }
 .checkbox-container.active, .checkbox-container:active {
     box-shadow: none;
@@ -769,7 +777,7 @@ a:focus, a:hover {
 }
 
 /****************** CONTACT US *******************/
-.input-group-addon {
+.node-contact-us .input-group-addon {
     min-width: 139px;
 }
 /****************** MEMBER AREA *******************/
@@ -980,10 +988,6 @@ a:focus, a:hover {
 .node-search-products .block-category img {
     max-height: 90px;
 }
-.block-product .thumbnail-hover:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 8px 0 rgba(0, 0, 0, 0.19);
-    cursor: pointer;
-}
 .node-search-gifts .block-product .thumbnail,
 .node-search-products .block-product .thumbnail {
     overflow: hidden;
@@ -1166,13 +1170,14 @@ span.count.badge {
 }
 @media (min-width: 768px) {
     .block-option .subtitle-pic {
-        height: 32px;
+        height: 48px;
+        font-size: 13px;
         overflow: hidden;
     }
 }
 .ymal-pics .subtitle-pic {
     min-height: 54px;
-    font-size: 16px;
+    font-size: 14px;
 }
 /******** SLICK *********/
 .slick-prev,
@@ -1233,4 +1238,11 @@ span.count.badge {
 .node-career .filter-group-title{
     padding: 10px;
     background: #ddd;
+}
+/****************************** SAMPLES AND PROTOTYPES***************/
+#webform-client-form-46 .thumbnail img {
+    max-height: 200px;
+}
+#webform-client-form-46 .input-group-addon{
+    min-width: 135px;
 }

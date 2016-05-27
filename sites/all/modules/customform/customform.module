@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * Implementation of hook_webform_select_options_info().
+ * See webform/webform_hooks.php for further information on this hook in the Webform API.
+ */
+function customform_webform_select_options_info() {
+    $items = array();
+    $items['products'] = array(
+        'title' => t('Complicated products'),
+        'options callback' => 'customform_pre_build_list_products'
+    );
+
+   return $items;
+}
+
+/**
+ * Build an options list to be used with webforms select list based in drupal roles
+ */
+function customform_pre_build_list_products() {
+    
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'product')
+            ->fieldCondition('field_complicated', 'value', '1');
+    
+    $aResults = $oQuery->execute()['taxonomy_term'];
+    $aProducts = [];
+    foreach ($aResults as $oResult) {
+        $aProducts[] = taxonomy_term_load($oResult->tid);
+    }
+    
+    $contentarray = [];  
+    foreach ($aProducts as $oProduct) {
+        $contentarray[$oProduct->tid.'L'] = t($oProduct->field_product_ref['und'][0]['value'].' Logotyped');
+        $contentarray[$oProduct->tid.'B'] = t($oProduct->field_product_ref['und'][0]['value'].' Blank no logo');
+    }
+
+    return $contentarray;
+}
