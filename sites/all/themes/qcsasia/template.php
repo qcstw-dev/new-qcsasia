@@ -949,12 +949,22 @@ function displayProductCheckbox($aProducts){
             <?php
         }
     }
-    function displaySelectCountry($aCountries, $bIsRequired){ ?>
+    function displayCheckboxes ($aData, $sName) {
+        foreach ($aData as $sKey => $sValue) { ?>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <input type="checkbox" id="<?= $sKey ?>" name="<?= $sName ?>[]" value="<?= $sKey ?>" />
+                </span>
+                <label class="border padding-5 width-100-percent margin-bottom-0 cursor-pointer" for="<?= $sKey ?>"><?= $sValue ?></label>
+            </div><?php
+        } 
+    }
+    function displaySelect($aData, $sLabel, $sName, $bIsRequired){ ?>
         <div class="input-group">
-            <span class="input-group-addon">Country<?= ($bIsRequired ? '*' : '') ?></span>
-            <select class="form-control <?= ($bIsRequired ? 'required' : '') ?>" name="submitted[country]" ><?php
-                foreach ($aCountries as $sIso => $sName) { ?>
-                    <option value="<?= $sIso ?>"><?= $sName ?></option><?php
+            <span class="input-group-addon"><?= $sLabel.($bIsRequired ? '*' : '') ?></span>
+            <select class="form-control <?= ($bIsRequired ? 'required' : '') ?>" name="<?= $sName ?>" ><?php
+                foreach ($aData as $sKey => $sName) { ?>
+                    <option value="<?= $sKey ?>"><?= $sName ?></option><?php
                 } ?>
             </select>
         </div><?php

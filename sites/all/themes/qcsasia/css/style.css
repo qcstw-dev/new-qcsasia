@@ -208,6 +208,7 @@ a:focus, a:hover {
 .well {
     background: none;
     border-radius: 0;
+    padding: 10px;
 }
 .thumbnail-hover:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 8px 0 rgba(0, 0, 0, 0.19);
@@ -232,6 +233,9 @@ a:focus, a:hover {
 }
 .thumbnail {
     border-radius: 0;
+}
+.width-100-percent {
+    width: 100%;
 }
 
 
@@ -456,7 +460,7 @@ a:focus, a:hover {
     font-weight: bold;
 }
 .border {
-    border: 1px solid #ddd;
+    border: 1px solid #CCC;
     border-radius: 0;
 }
 .border-none {
@@ -1252,9 +1256,30 @@ span.count.badge {
     background: #ddd;
 }
 /****************************** SAMPLES AND PROTOTYPES***************/
-#webform-client-form-46 .thumbnail img {
+.sample-form .thumbnail img {
     max-height: 200px;
 }
-#webform-client-form-46 .input-group-addon{
+.sample-form .input-group-addon{
     min-width: 135px;
+}
+/****************************** CATALOG***************/
+.catalog-form .input-group-addon {
+    min-width: 135px;
+}
+/****************************** TOOLKIT ***************/
+.toolkit-form .input-group-addon {
+    min-width: 135px;
+}
+.toolkit-form .input-group-addon.checkbox {
+    min-width: auto;
+}
+/****************************** NEWSLETTER ***************/
+.node-newsletter .thumbnail .subtitle-pic {
+    height: 50px;
+}
+@media (min-width: 768px) {
+    .node-newsletter .thumbnail img {
+        max-height: 140px;
+        max-width: 150px;
+    }
 }

@@ -61,7 +61,7 @@
 
                     if ($field['#type'] == 'select' && $field['#webform_component']['form_key'] == 'country') {
 //                      preg_match_all('~([A-Z]*)\|([a-zA-Z]*)~', $aComponent['extra']['items'], $match);
-                        displaySelectCountry($field['#options'], $field['#attributes']['required']);
+                        displaySelect($field['#options'], $field['#title'], $field['#name'], $field['#attributes']['required']);
                     } else { ?>
                         <div class="input-group">
                             <span class="input-group-addon"><?php print $field['#webform_component']['name'] . ($field['#required'] ? ' *' : '') ?></span>

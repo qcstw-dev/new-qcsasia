@@ -55,9 +55,9 @@
         </a>
     </div>
     <div class="col-xs-12">
-        <h3>Send me a hardcopy!</h3>
-        <div class="well padding font-size-18">
-            To receive a hardcopy, please fill in the following form:
+        <div class="well padding font-size-18 text-center">
+            <p class="font-size-20 text-uppercase">Send me a hardcopy!</p>
+            <p>To receive a hardcopy, please fill in the following form:</p>
         </div>
     </div>
     <div class="col-xs-12 padding-0"><?php
@@ -81,7 +81,7 @@
                     } 
 
                     if ($field['#type'] == 'select' && $field['#webform_component']['form_key'] == 'country') {
-                        displaySelectCountry($field['#options'], $field['#attributes']['required']);
+                        displaySelect($field['#options'], $field['#title'], $field['#name'], $field['#attributes']['required']);
                     } else { ?>
                         <div class="input-group">
                             <span class="input-group-addon"><?php print $field['#webform_component']['name'] . ($field['#required'] ? ' *' : '') ?></span>
