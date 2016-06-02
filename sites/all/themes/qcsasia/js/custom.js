@@ -76,6 +76,17 @@ $(function () {
             $('.block-filter').removeClass('fixed');
         }
     });
+    $('.popup').on('click', function () {
+        $.magnificPopup.open({
+            items: [{
+                src: $('<div class="white-popup">' +
+                        '<div class="thumbnail border-none"><img src="' + $(this).attr('src') + '" /></div>' +
+                        '</div>'),
+                type: 'inline'
+            }]
+        });
+        
+    });
 });
 function formValidators(form) {
     $('.' + form + ' .email').on('focusout', function () {

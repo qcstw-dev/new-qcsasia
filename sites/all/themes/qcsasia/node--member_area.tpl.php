@@ -189,10 +189,10 @@
                             <h4 class="panel-title">Document center</h4>
                         </div>
                         <div class="panel-body">
-                            <div class="col-md-2 thumbnail border-none margin-bottom-0">
+                            <div class="col-sm-2 thumbnail border-none margin-bottom-0">
                                 <img src="<?= url(path_to_theme() . "/images/member/document-center.png") ?>" alt="Document center" title="Document center" />
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-sm-10">
                                 <p>In this area, you can download our standard documents in editable high definition to use as sales tools :</p>
                                 <ul>
                                     <li style="padding:1px;">Product picture high definition (.psd/photoshop)</li>

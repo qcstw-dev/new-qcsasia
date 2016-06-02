@@ -28,7 +28,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="search?line=doming-patch-with-scratch-lpodd" title="Doming magnet #MGODD">
+                    <a href="search?line=doming-magnet-mgodd" title="Doming magnet #MGODD">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/mgodd-line.jpg") ?>" alt="Doming magnet #MGODD" title="Doming magnet #MGODD" />
                         <div class="slide-text">Doming magnet #MGODD</div>
                     </a>

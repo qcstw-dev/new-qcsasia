@@ -237,7 +237,9 @@ a:focus, a:hover {
 .width-100-percent {
     width: 100%;
 }
-
+.popup {
+    cursor: pointer;
+}
 
 /****************************** MENU COLLAPSE iPad FIX ***************/
 @media (min-width: 991px) {
@@ -1281,5 +1283,11 @@ span.count.badge {
     .node-newsletter .thumbnail img {
         max-height: 140px;
         max-width: 150px;
+    }
+}
+/****************************** LOGO PROCESSES ***************/
+@media (min-width: 640px) and (max-width: 768px) {
+    .node-logo-processes .thumbnail .subtitle-pic {
+        height: 50px;
     }
 }
