@@ -759,6 +759,9 @@ function qcsasia_preprocess_html(&$vars) {
         $vars['oUser'] = $_SESSION['user'];
     }
     switch ($vars['theme_hook_suggestions'][0]) {
+        case 'html__sitemap' :
+            unset($vars);
+            break;
         case 'html__products_ajax' :
             $aProducts = getProducts(drupal_get_query_parameters());
             $vars['aProducts'] = taxonomy_term_load_multiple(array_keys($aProducts));
