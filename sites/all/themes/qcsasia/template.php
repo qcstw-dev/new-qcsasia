@@ -311,7 +311,7 @@ function qcsasia_links__system_main_menu($variables) {
                         } ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right search-form-content">
-                        <li><form action="/search" method="get"><input class="margin-right-xs-10 col-xs-8" placeholder="Search Products" name="keyword" type="text" autocomplete="off" /><button class="btn btn-primary" type="submit">Search</button></form></li>
+                        <li><form action="<?= url('node/13') ?>" method="get"><input class="margin-right-xs-10 col-xs-8" placeholder="Search Products" name="keyword" type="text" autocomplete="off" /><button class="btn btn-primary" type="submit">Search</button></form></li>
                     </ul>
                 </div>
             </div>
