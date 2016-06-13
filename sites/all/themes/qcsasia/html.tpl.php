@@ -54,6 +54,7 @@ verifyMemberConnection(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
 
 <head profile="<?php print $grddl_profile; ?>">
+  <meta name="google-site-verification" content="a8M60emYTmC1u4t2bOKZYXphND6F1ardQ1u7Z_vntoY" />
   <?php print $head; ?>
   <title><?php print $head_title; ?></title><?php
   if ($_SERVER["HTTP_HOST"] != 'localhost') { ?>

@@ -158,7 +158,7 @@
                         } else {
                             if (form === 'member-area-login') {
                                 $('.white-popup .success-message').html(data.error).slideDown();
-                                window.location.replace(baseUrl+'/member-area');
+                                window.location.replace(baseUrl+'member-area');
                             } else {
                             $('.registration-login-area').html('\
                                     <div class="text-center thumbnail border-none">\n\
@@ -183,7 +183,7 @@
                 <a  class="bold pull-right" href="<?= $baseUrl ?>?logout" >Logout <span class="glyphicon glyphicon-log-out"></span></a>
                 <div class="clearfix"></div>
             </div>
-            <a href="<?= url('search', ['query' => ['document_center' => null]]) ?>">
+            <a href="<?= url('node/13', ['query' => ['document_center' => null]]) ?>">
                 <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">Document center</h4>

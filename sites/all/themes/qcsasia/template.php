@@ -274,7 +274,8 @@ function qcsasia_links__system_menu_top($variables) {
 }
 
 function qcsasia_links__system_main_menu($variables) {
-    if ($variables['links']) { ?>
+    if ($variables['links']) { 
+        displaySubMenuProducts(); ?>
         <nav class="navbar navbar-default">
             <div class="container-fluid padding-md-0">
                 <div class="navbar-header">
@@ -289,18 +290,18 @@ function qcsasia_links__system_main_menu($variables) {
                 <div class="navbar-collapse collapse padding-lg-0" id="navbar-collapse-main-menu" aria-expanded="false">
                     <ul class="nav navbar-nav padding-xs padding-lg-0"><?php 
                         foreach ($variables['links'] as $link) { ?>
-                            <li class="<?= ($link['below'] ? 'dropdown' : '') ?><?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>">
-                                <a <?= ($link['below'] ? 'role="button" aria-haspopup="true" aria-expanded="false"' : '') ?> href="<?= url($link['link']['link_path']) ?>" >
+                            <li class="<?= ($link['below'] ? 'dropdown' : '') ?><?= ($link['link']['href'] == 'node/13' ? ' products-menu-item' : '') ?><?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>">
+                                <a <?= ($link['below'] ? 'role="button" aria-haspopup="true" aria-expanded="false"' : '') ?> class="text-uppercase" href="<?= url($link['link']['link_path']) ?>" >
                                     <?= $link['link']['link_title'] ?>
                                 </a><?php 
                                 if ($link['below']) {
                                     $bIsConnected = isset($_SESSION['user']) && $_SESSION['user'];
-                                    if (($link['link']['link_title'] == 'Member area' && $bIsConnected) || $link['link']['link_title'] != 'Member area') { ?>
+                                    if (($link['link']['link_path'] == 'node/38' && $bIsConnected) || $link['link']['link_path'] != 'node/38') { ?>
                                         <ul class="dropdown-menu hidden-xs"><?php
                                             foreach ($link['below'] as $below) {
                                                 if (isset($below['link'])) { ?>
                                                     <li>
-                                                        <a href="<?= url($below['link']['link_path']) . (isset($below['link']['localized_options']['query']) ? "?" . drupal_http_build_query($below['link']['localized_options']['query']) : '') ?>"><?= $below['link']['link_title'] ?></a>
+                                                        <a href="<?= url($below['link']['href'], ['query' => $below['link']['localized_options']['query']]) ?>"><?= $below['link']['link_title'] ?></a>
                                                     </li><?php
                                                 }
                                             } ?>
@@ -318,7 +319,52 @@ function qcsasia_links__system_main_menu($variables) {
         </nav><?php
     }
 }
-
+function displaySubMenuProducts() { ?>
+    <div class="dropdown-menu hidden-xs sub-menu-products col-xs-12">
+        <div class="col-xs-4 border-right">
+            <div class="filter-group-title" data-group-title="criteria"><span class="glyphicon glyphicon-chevron-down"></span> Criteria</div>
+            <div class="block-filter-group group-criteria">
+                <a href="<?= url('node/13', ['query' => ['new' => null]]) ?>" class="padding-5 col-xs-12">New Product</a>
+                <a href="<?= url('node/13', ['query' => ['patented' => null]]) ?>" class="padding-5 col-xs-12">Patented Product</a>
+                <a href="<?= url('node/13', ['query' => ['cheap' => null]]) ?>" class="padding-5 col-xs-12">Very cheap product</a>
+                <a href="<?= url('node/13', ['query' => ['rush' => null]]) ?>" class="padding-5 col-xs-12">Rush service</a>
+            </div>
+            <div class="filter-group-title" data-group-title="material"><span class="glyphicon glyphicon-chevron-down"></span> Material</div>
+            <div class="block-filter-group group-material">
+                <a href="<?= url('node/13', ['query' => ['category' => 'aluminium']]) ?>" class="padding-5 col-xs-12">Aluminium</a>
+                <a href="<?= url('node/13', ['query' => ['category' => 'metal-enamel']]) ?>" class="padding-5 col-xs-12">Metal enamel</a>
+                <a href="<?= url('node/13', ['query' => ['category' => 'plastic-injection']]) ?>" class="padding-5 col-xs-12">Plastic injection</a>
+                <a href="<?= url('node/13', ['query' => ['category' => 'soft-pvc-cloisonne']]) ?>" class="padding-5 col-xs-12">Soft PVC</a>
+            </div>
+        </div>
+        <div class="col-xs-4 border-right">
+            <div class="filter-group-title" data-group-title="function"><span class="glyphicon glyphicon-chevron-down"></span> Function</div>
+            <div class="block-filter-group group-function">
+                <a href="<?= url('node/13', ['query' => ['function' => 'keychain']]) ?>" class="padding-5 col-xs-12">Keychain</a>
+                <a href="<?= url('node/13', ['query' => ['function' => 'bar-accessory']]) ?>" class="padding-5 col-xs-12">Bar accessory</a>
+                <a href="<?= url('node/13', ['query' => ['function' => 'trolley-token']]) ?>" class="padding-5 col-xs-12">Trolley token</a>
+                <a href="<?= url('node/13', ['query' => ['function' => 'wearable']]) ?>" class="padding-5 col-xs-12">Wearable</a>
+                <a href="<?= url('node/13', ['query' => ['function' => 'canister-and-container']]) ?>" class="padding-5 col-xs-12">Canister and container</a>
+                <a href="<?= url('node/13', ['query' => ['function' => '3c-accessory']]) ?>" class="padding-5 col-xs-12">3C accessory</a>
+                <a href="<?= url('node/13', ['query' => ['function' => 'tools']]) ?>" class="padding-5 col-xs-12">Tools</a>
+                <a href="<?= url('node/13', ['query' => ['function' => 'office']]) ?>" class="padding-5 col-xs-12">Office</a>
+                <a href="<?= url('node/13', ['query' => ['function' => 'stickers-and-magnets']]) ?>" class="padding-5 col-xs-12">Stickers and magnets</a>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="filter-group-title" data-group-title="logo-process"><span class="glyphicon glyphicon-chevron-down"></span> Logo process</div>
+            <div class="block-filter-group group-logo-process">
+                <a href="<?= url('node/13', ['query' => ['logo-process' => 'doming']]) ?>" class="padding-5 col-xs-12">Doming</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => 'digital-printing']]) ?>" class="padding-5 col-xs-12">Digital printing</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => 'silk-screen-printing']]) ?>" class="padding-5 col-xs-12">Silk screen engraving</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => 'laser-engraving']]) ?>" class="padding-5 col-xs-12">Doming</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => 'offset-printing']]) ?>" class="padding-5 col-xs-12">Laser engraving</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => 'enamel']]) ?>" class="padding-5 col-xs-12">Enamel</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => 'pvc-cloisonne']]) ?>" class="padding-5 col-xs-12">PVC cloisonne</a>
+            </div>
+        </div>
+    </div><?php
+}
 function qcsasia_breadcrumb($variables) {
     $breadcrumb = $variables['breadcrumb'];
     if (!empty($breadcrumb)) {
@@ -894,8 +940,8 @@ function displayLogoProcessBlock($aLogoProcess) {
     $bLargePicture = $aLogoProcess['large'];
     if ($bComplicatedDisplay) { ?>
         <div class="col-sm-3 margin-top-20 <?= ($bLargePicture ? 'pointer event-enlarge' : '') ?>">
-            <div class="col-xs-12">
-                <img class="thumbnail" src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" />
+            <div class="col-xs-12 thumbnail border-none">
+                <img class="border" src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" />
             </div>
         </div><?php 
     } ?>

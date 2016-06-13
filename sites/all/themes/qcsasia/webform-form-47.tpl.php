@@ -45,7 +45,7 @@
         <a <?= (!$bIsConnected ? 'class="disabled_link"' : '') ?> href="<?= (!$bIsConnected ? url('member-area') : url(path_to_theme() . "/images/catalog/QCS Asia catalog 2016 - unbranded low def.pdf")) ?>" target="_blank" title="Download Catalog 2016">
             <div class="col-sm-offset-1 col-xs-4 col-sm-3">
                 <div class="thumbnail thumbnail-hover margin-bottom-0">
-                    <img src="<?= url(path_to_theme() . "/images/catalog/catalog-2016.jpg") ?>" />
+                    <img src="<?= url(path_to_theme() . "/images/catalog/catalog-2016-unbranded.jpg") ?>" />
                     <div class="subtitle-pic">
                         Download .pdf unbranded version
                         <div class="color-red font-size-15">member only*</div>
