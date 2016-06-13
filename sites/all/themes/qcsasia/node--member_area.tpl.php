@@ -180,7 +180,7 @@
         <div class="col-xs-12 padding-0">
             <div class="alert alert-success" role="alert">
                 <strong>Hello <?= $oUser->name ?> !</strong> Welcome to your member area
-                <a  class="bold pull-right" href="<?= $baseUrl ?>?logout" >Logout <span class="glyphicon glyphicon-log-out"></span></a>
+                <a  class="bold pull-right" href="<?= url('', ['query' => ['logout' => null]]) ?>" >Logout <span class="glyphicon glyphicon-log-out"></span></a>
                 <div class="clearfix"></div>
             </div>
             <a href="<?= url('node/13', ['query' => ['document_center' => null]]) ?>">

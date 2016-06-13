@@ -4,6 +4,12 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('taxonomy/term/815') ?>" title="Metal multi charm keychain #MCKC">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/mckc.jpg") ?>" alt="Metal multi charm keychain #MCKC" title="Metal multi charm keychain #MCKC" />
+                        <div class="slide-text">Metal multi charm keychain #MCKC</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="search?line=metal-fridge-magnet-mfm" title="Metal fridge magnet #MFM line">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/mfm-line.jpg") ?>" alt="Metal fridge magnet #MFM line" title="Metal fridge magnet #MFM line" />
                         <div class="slide-text">Metal fridge magnet #MFM line</div>

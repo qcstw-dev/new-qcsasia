@@ -46,9 +46,15 @@
                             <span class="input-group-addon"><?php print $field['#webform_component']['name'] . ($field['#required'] ? ' *' : '') ?></span>
                             <textarea class="form-control height-150 <?php echo ($field['#required'] ? 'required' : '') ?>" name="<?php print $field['#name'] ?>"></textarea>
                         </div><?php
-                    }
+                } else if ($field['#type'] === 'checkboxes') { 
+                    foreach ($field['#options'] as $key => $value) { ?>
+                        <div class="input-group">
+                            <label class="cursor-pointer"><input type="checkbox" name="<?= $field['#name'] ?>[]" value="<?= $key ?>" <?= ($key == 'accept_promo' ? 'checked' : '') ?> /><?= $value ?></label>
+                        </div><?php
+                    } 
                 }
-            } ?>
+            }
+        } ?>
             <input type="hidden" name="form_build_id" value="<?= $form['form_build_id']['#value'] ?>">
             <input type="hidden" name="form_token" value="<?= $form['form_token']['#value'] ?>">
             <input type="hidden" name="form_id" value="<?= $form['form_id']['#value'] ?>"><?php

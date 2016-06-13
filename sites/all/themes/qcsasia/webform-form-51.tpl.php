@@ -95,8 +95,12 @@
                         }
                         if ($field['#type'] == 'select') {
                             displaySelect($field['#options'], $field['#title'], $field['#name'], $field['#attributes']['required']);
-                        } else if ($field['#type'] == 'checkboxes') {
-                            displayCheckboxes($field['#options'], $field['#name']);
+                        } else if ($field['#type'] == 'checkboxes') { 
+                            foreach ($field['#options'] as $key => $value) { ?>
+                                <div class="input-group">
+                                    <label class="cursor-pointer"><input type="checkbox" name="<?= $field['#name'] ?>[]" value="<?= $key ?>" <?= ($key == 'accept_promo' ? 'checked' : '') ?> /><?= $value ?></label>
+                                </div><?php
+                            }
                         } else if (in_array($field['#type'], ['textfield', 'webform_email'])) {
                             ?>
                             <div class="input-group">
@@ -105,7 +109,7 @@
                             </div><?php
                         }
                         $iCount++;
-                        if ($iCount == 6) {
+                        if ($iCount == 7) {
                             ?>
                         </div>
                         <div class="col-md-6"><?php

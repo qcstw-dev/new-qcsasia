@@ -30,7 +30,7 @@
     </div><?php
     if ($bIsDocCenter) { ?>
         <div class="col-sm-9 document-center">
-            <h3 class="margin-bottom-0">Document center</h3>
+            <h3>Document center</h3>
             <div class="border padding-10"><?php
                 displayDocumentCenter($term); ?>
                 <div class="clearfix"></div>

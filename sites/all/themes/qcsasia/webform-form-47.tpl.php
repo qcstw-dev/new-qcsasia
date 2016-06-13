@@ -65,13 +65,13 @@
         $iCountFields = 0;
         $iCount = 1;
         foreach ($form['submitted'] as $key => $field) {
-            if (strpos($key, "#") === false && in_array($field['#type'], ['textfield', 'webform_email', 'select'])) { 
+            if (strpos($key, "#") === false && in_array($field['#type'], ['textfield', 'webform_email', 'select', 'checkboxes'])) { 
                 $iCountFields++;
             }
         }
         foreach ($form['submitted'] as $key => $field) {
             if (strpos($key, "#") === false) {
-                if (in_array($field['#type'], ['textfield', 'webform_email', 'select']) && $field['#webform_component']['form_key'] != 'product') {
+                if (in_array($field['#type'], ['textfield', 'webform_email', 'select', 'checkboxes']) && $field['#webform_component']['form_key'] != 'product') {
                     if (!$bAlertSet) { ?>
                         <div class="clearfix"></div>
                         <div class="alert alert-danger error-message error-message-empty-field">Please inform fields marked in red</div>
@@ -82,6 +82,12 @@
 
                     if ($field['#type'] == 'select' && $field['#webform_component']['form_key'] == 'country') {
                         displaySelect($field['#options'], $field['#title'], $field['#name'], $field['#attributes']['required']);
+                    } else if ($field['#type'] === 'checkboxes') { 
+                        foreach ($field['#options'] as $key => $value) { ?>
+                            <div class="input-group">
+                                <label class="cursor-pointer"><input type="checkbox" name="<?= $field['#name'] ?>[]" value="<?= $key ?>" <?= ($key == 'accept_promo' ? 'checked' : '') ?> /><?= $value ?></label>
+                            </div><?php
+                        } 
                     } else { ?>
                         <div class="input-group">
                             <span class="input-group-addon"><?php print $field['#webform_component']['name'] . ($field['#required'] ? ' *' : '') ?></span>

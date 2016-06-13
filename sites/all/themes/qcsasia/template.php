@@ -179,9 +179,6 @@ function connectMember($aFields) {
     }
 }
 
-function registration () {
-    
-}
 function getCompanyType () {
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
@@ -301,7 +298,7 @@ function qcsasia_links__system_main_menu($variables) {
                                             foreach ($link['below'] as $below) {
                                                 if (isset($below['link'])) { ?>
                                                     <li>
-                                                        <a href="<?= url($below['link']['href'], ['query' => $below['link']['localized_options']['query']]) ?>"><?= $below['link']['link_title'] ?></a>
+                                                        <a href="<?= url($below['link']['href'], ['query' => (isset($below['link']['localized_options']['query']) ? $below['link']['localized_options']['query'] : '')]) ?>"><?= $below['link']['link_title'] ?></a>
                                                     </li><?php
                                                 }
                                             } ?>
@@ -615,8 +612,7 @@ function getProducts($aQueryParameters, $bCount = false) {
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
             ->entityCondition('bundle', 'product')
-            ->fieldOrderBy('field_date_gmt', 'value', 'DESC')
-            ->fieldCondition('field_old_id', 'value', NULL, 'IS NOT NULL');
+            ->fieldOrderBy('field_date_gmt', 'value', 'DESC');
     if ($aQueryParameters) {
         foreach ($aQueryParameters as $sKey => $mValue) {
             switch ($sKey) {
