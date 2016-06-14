@@ -85,8 +85,7 @@
         foreach ($form['submitted'] as $key => $field) {
             if (strpos($key, "#") === false) {
                 if (in_array($field['#type'], ['textfield', 'webform_email', 'select', 'checkboxes']) && $field['#webform_component']['form_key'] != 'product') {
-                    if (!$bAlertSet) {
-                        ?>
+                    if (!$bAlertSet) { ?>
                         <div class="clearfix"></div>
                         <div class="alert alert-danger error-message error-message-empty-field">Please inform fields marked in red</div>
                         <div class="alert alert-danger error-message error-message-email">Please enter a valid email address</div>
@@ -95,29 +94,27 @@
                         }
                         if ($field['#type'] == 'select') {
                             displaySelect($field['#options'], $field['#title'], $field['#name'], $field['#attributes']['required']);
-                        } else if ($field['#type'] == 'checkboxes') { 
+                        } else if ($field['#type'] == 'checkboxes') {  ?>
+                            <div class="bold margin-bottom-10 <?= ($key == 'accept_promo' ? 'margin-top-20' : '') ?>"><?= $field['#title'] ?></div><?php
                             foreach ($field['#options'] as $key => $value) { ?>
-                                <div class="input-group">
+                                <div class="padding-left-20 input-group">
                                     <label class="cursor-pointer"><input type="checkbox" name="<?= $field['#name'] ?>[]" value="<?= $key ?>" <?= ($key == 'accept_promo' ? 'checked' : '') ?> /><?= $value ?></label>
                                 </div><?php
                             }
-                        } else if (in_array($field['#type'], ['textfield', 'webform_email'])) {
-                            ?>
+                        } else if (in_array($field['#type'], ['textfield', 'webform_email'])) { ?>
                             <div class="input-group">
                                 <span class="input-group-addon"><?php print $field['#webform_component']['name'] . ($field['#required'] ? ' *' : '') ?></span>
                                 <input type="<?php print ($field['#type'] === 'webform_email' ? 'email' : 'text') ?>" class="form-control <?= ($field['#type'] === 'webform_email' ? 'email' : 'text') ?> <?php echo ($field['#required'] ? 'required' : '') ?> <?php print ($field['#type'] === 'webform_email' ? 'email' : '') ?>" name="<?php print $field['#name'] ?>" <?php echo ($field['#required'] ? '' : '') ?> />
                             </div><?php
                         }
                         $iCount++;
-                        if ($iCount == 7) {
-                            ?>
+                        if ($iCount == 7) { ?>
                         </div>
                         <div class="col-md-6"><?php
                         }
                     }
                 }
-            }
-            ?>
+            } ?>
         </div>
         <input type="hidden" name="form_build_id" value="<?= $form['form_build_id']['#value'] ?>">
         <input type="hidden" name="form_token" value="<?= $form['form_token']['#value'] ?>">

@@ -70,8 +70,13 @@
                                 <input class="form-control password_confirm required" type="password" name="password_confirm" autocomplete="off"/>
                             </div>
                             <div class="input-group">
-                                <div class="g-recaptcha" data-sitekey="6Ld-GBATAAAAAExjGxG_83RXLJR-v8mxlHrIvJiQ"></div>
-                            </div>
+                                <label class="cursor-pointer"><input class="margin-bottom-20" type="checkbox" name="accept_promo" checked/>By contacting QCS Asia, I accept to receive latest product updates</label>
+                            </div><?php
+                            if (!user_is_logged_in()) { ?>
+                                <div class="input-group">
+                                    <div class="g-recaptcha" data-sitekey="6Ld-GBATAAAAAExjGxG_83RXLJR-v8mxlHrIvJiQ"></div>
+                                </div><?php
+                            } ?>
                         </div>
                         <input type="button" class="btn btn-primary pull-right btn-submit" data-form="member-area-login" value="Submit"/>
                     </form>

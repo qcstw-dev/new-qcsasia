@@ -22,7 +22,7 @@ function registerMember ($aFields) {
         && $aFields['company_website']
         && $aFields['password']
         && $aFields['password_confirm']) {
-            if ($_SERVER["HTTP_HOST"] != 'localhost') {
+            if ($_SERVER["HTTP_HOST"] != 'localhost' || !user_is_logged_in()) {
                 $ch = curl_init();
 
                     curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
@@ -82,6 +82,7 @@ function registerMember ($aFields) {
             $oTerm->field_member_address['und'][0]['value'] = $aFields['company_address'];
             $oTerm->field_member_phone['und'][0]['value'] = $aFields['company_phone'];
             $oTerm->field_member_website['und'][0]['value'] = $aFields['company_website'];
+            $oTerm->field_accept_promo['und'][0]['value'] = ($aFields['accept_promo'] == 'on' ? true : false);
             if (isset($aFields['company_type']) && $aFields['company_type']) {
                 $oTerm->field_member_company_type['und'][0]['tid'] = $aFields['company_type']; 
             }
@@ -207,23 +208,23 @@ function retrieveCategories($iStart = null, $iLength = null) {
     return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
 }
 
-function displayCategories($iStart = null, $iLength = null) {
-    $aCategories = retrieveCategories($iStart = null, $iLength = null);
-    include 'categories_list.tpl.php';
-}
-
-function retrieveProducts($oTerm = null, $iStart = null, $iLength = null) {
-    $oQuery = new EntityFieldQuery();
-    $oQuery->entityCondition('entity_type', 'taxonomy_term')
-            ->entityCondition('bundle', 'product')
-            ->range(($iStart ? : 0), ($iLength ? : 5));
-    if ($oTerm) {
-        $oQuery->fieldCondition('field_category', 'tid', $oTerm->tid);
-    }
-    $aResult = $oQuery->execute();
-
-    return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
-}
+//function displayCategories($iStart = null, $iLength = null) {
+//    $aCategories = retrieveCategories($iStart = null, $iLength = null);
+//    include 'categories_list.tpl.php';
+//}
+//
+//function retrieveProducts($oTerm = null, $iStart = null, $iLength = null) {
+//    $oQuery = new EntityFieldQuery();
+//    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+//            ->entityCondition('bundle', 'product')
+//            ->range(($iStart ? : 0), ($iLength ? : 5));
+//    if ($oTerm) {
+//        $oQuery->fieldCondition('field_category', 'tid', $oTerm->tid);
+//    }
+//    $aResult = $oQuery->execute();
+//
+//    return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
+//}
 
 //function displayProducts($oTerm = null, $iStart = null, $iLength = null) {
 //    $aProducts = retrieveProducts($oTerm, $iStart = null, $iLength = null);
@@ -341,7 +342,7 @@ function displaySubMenuProducts() { ?>
                 <a href="<?= url('node/13', ['query' => ['function' => 'bar-accessory']]) ?>" class="padding-5 col-xs-12">Bar accessory</a>
                 <a href="<?= url('node/13', ['query' => ['function' => 'trolley-token']]) ?>" class="padding-5 col-xs-12">Trolley token</a>
                 <a href="<?= url('node/13', ['query' => ['function' => 'wearable']]) ?>" class="padding-5 col-xs-12">Wearable</a>
-                <a href="<?= url('node/13', ['query' => ['function' => 'canister-and-container']]) ?>" class="padding-5 col-xs-12">Canister and container</a>
+                <a href="<?= url('node/13', ['query' => ['function' => 'canister-container']]) ?>" class="padding-5 col-xs-12">Canister and container</a>
                 <a href="<?= url('node/13', ['query' => ['function' => '3c-accessory']]) ?>" class="padding-5 col-xs-12">3C accessory</a>
                 <a href="<?= url('node/13', ['query' => ['function' => 'tools']]) ?>" class="padding-5 col-xs-12">Tools</a>
                 <a href="<?= url('node/13', ['query' => ['function' => 'office']]) ?>" class="padding-5 col-xs-12">Office</a>
@@ -796,25 +797,31 @@ function confirmEmail($sAddressEmail) {
 }
 
 function qcsasia_preprocess_html(&$vars) {
-    header('HTTP/1.1 200 OK');
     if (isset($_SESSION['user']) && $_SESSION['user']) {
         $vars['oUser'] = $_SESSION['user'];
     }
     switch ($vars['theme_hook_suggestions'][0]) {
         case 'html__sitemap' :
+            header('HTTP/1.1 200 OK');
             unset($vars);
             break;
         case 'html__products_ajax' :
+            header('HTTP/1.1 200 OK');
             $aProducts = getProducts(drupal_get_query_parameters());
             $vars['aProducts'] = taxonomy_term_load_multiple(array_keys($aProducts));
             break;
         case 'html__themes_ajax' :
+            header('HTTP/1.1 200 OK');
             $aThemes = getThemes(drupal_get_query_parameters());
             $vars['aThemes'] = taxonomy_term_load_multiple(array_keys($aThemes));
             break;
         case 'html__products_number_ajax' :
+            header('HTTP/1.1 200 OK');
             $vars['aFilterNumProducts'] = getPotentialNumberForFilters();
             break;
+    }
+    if (in_array($vars['theme_hook_suggestions'][0], ['html__products_line_ajax'])){
+        header('HTTP/1.1 200 OK');
     }
 }
 
