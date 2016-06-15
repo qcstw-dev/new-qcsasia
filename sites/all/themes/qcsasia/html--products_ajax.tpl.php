@@ -23,14 +23,14 @@ if ($aProducts) {
     $sQueryNoCategory = http_build_query($aQuery); ?>
     <script>
         $('.block-category').on('click', function () {
-            var url = baseUrl + '/products_line_ajax/';
+            var url = baseUrl + 'products_line_ajax/';
             var query = '<?= ($sQueryNoCategory ? '?'.$sQueryNoCategory.'&' : '?') ?>' + 'category=' + $(this).data('reference');
             console.log(url + query);
             displayLineProduct(url + query);
         });<?php 
         
         if (array_key_exists('line', drupal_get_query_parameters())) { ?>
-            displayLineProduct('<?= $base_url.'products_line_ajax/?category='.drupal_get_query_parameters()['line'].($bIsDocCenter ? '&document_center' : '') ?>');<?php
+            displayLineProduct('<?= url('products_line_ajax', ['query' => ['category' => drupal_get_query_parameters()['line'], ($bIsDocCenter ? ['document_center' => null] : [])]]) ?>');<?php
         } ?>
         function displayLineProduct (url) {
             console.log(url);

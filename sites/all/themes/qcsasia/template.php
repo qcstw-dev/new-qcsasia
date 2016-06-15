@@ -819,9 +819,9 @@ function qcsasia_preprocess_html(&$vars) {
             header('HTTP/1.1 200 OK');
             $vars['aFilterNumProducts'] = getPotentialNumberForFilters();
             break;
-    }
-    if (in_array($vars['theme_hook_suggestions'][0], ['html__products_line_ajax'])){
-        header('HTTP/1.1 200 OK');
+        case 'html__products_line_ajax' :
+            header('HTTP/1.1 200 OK');
+            break;
     }
 }
 

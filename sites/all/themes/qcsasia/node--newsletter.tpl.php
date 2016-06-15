@@ -2,6 +2,22 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w24.16-MCKC/newsletter.html') ?>" target="_blank" title="Metal multi charm keychain #MCKC by QCS Asia w24.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w24-16.jpg') ?>" alt="Metal multi charm keychain #MCKC by QCS Asia w24.16" title="Metal multi charm keychain #MCKC by QCS Asia w24.16" />
+                    <div class="subtitle-pic font-size-13">Metal multi charm keychain #MCKC by QCS Asia w24.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w23.16-PCW/newsletter.html') ?>" target="_blank" title="Plastic cable organizer badge #PCW204 by QCS Asia w23.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w23-16.jpg') ?>" alt="Plastic cable organizer badge #PCW204 by QCS Asia w23.16" title="Plastic cable organizer badge #PCW204 by QCS Asia w23.16" />
+                    <div class="subtitle-pic font-size-13">Plastic cable organizer badge #PCW204 by QCS Asia w23.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2016/w22.16-MFM/newsletter.html') ?>" target="_blank" title="Metal fridge magnet #MFM by QCS Asia w22.16">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w22-16.jpg') ?>" alt="Metal fridge magnet #MFM by QCS Asia w22.16" title="Metal fridge magnet #MFM by QCS Asia w22.16" />
@@ -274,7 +290,7 @@
             </a>
         </div>
         <div class="col-sm-3">
-            <a href="<?= url('/qcsasia/product/aluminium-carabiner-kb6dr/stm01-abus/') ?>" target="_blank" title="STM01 – W30.15">
+            <a href="<?= url('/newsletter/2015/w30.15-stm01/newsletter.html') ?>" target="_blank" title="STM01 – W30.15">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w30-15.jpg') ?>" alt="STM01 – W30.15" title="STM01 – W30.15" />
                     <div class="subtitle-pic font-size-13">STM01 – W30.15</div>

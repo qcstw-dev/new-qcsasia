@@ -65,31 +65,31 @@
         <div class="col-md-12 padding-top-10 padding-right-50 padding-left-50">
             <div class="big-slick carousel-category">
                 <div>
-                    <a href="<?= url('search', ['query' => ['category' => 'metal-enamel']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['category' => 'metal-enamel']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/metal-enamel.jpg") ?>" alt="" title="" />
                         <div class="subtitle-pic">Metal enamel</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['category' => 'soft-pvc-cloisonne']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['category' => 'soft-pvc-cloisonne']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/pvc-cloisonne.jpg") ?>" alt="" title="" />
                         <div class="subtitle-pic">Soft PVC cloisonne</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['category' => 'aluminium']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['category' => 'aluminium']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/aluminium.jpg") ?>" alt="" title="" />
                         <div class="subtitle-pic">Aluminium</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['category' => 'plastic-injection']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['category' => 'plastic-injection']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/plastic-injection.jpg") ?>" alt="" title="" />
                         <div class="subtitle-pic">Plastic injection</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search-theme') ?>">
+                    <a href="<?= url('node/33') ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/gift.jpg") ?>" alt="" title="" />
                         <div class="subtitle-pic">Gift & souvenirs</div>
                     </a>
@@ -104,49 +104,49 @@
         <div class="col-md-12 padding-top-10 padding-right-50 padding-left-50">
             <div class="big-slick carousel-function">
                 <div>
-                    <a href="<?= url('search', ['query' => ['function' => 'keychain']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['function' => 'keychain']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/keychain.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Keychain</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['function' => 'bar-accessory']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['function' => 'bar-accessory']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/bar.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Bar - accessory</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['function' => 'trolley-token']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['function' => 'trolley-token']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/trolley-token.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Trolley token</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['function' => 'wearable']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['function' => 'wearable']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/wearable.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Wearable</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['function' => 'canister-container']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['function' => 'canister-container']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/canister.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Canister and container</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['function' => '3c-accessory']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['function' => '3c-accessory']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/3c.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">3C accessory</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['function' => 'tools']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['function' => 'tools']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/tools.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Tools</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['function' => 'stickers-and-magnet']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['function' => 'stickers-and-magnets']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/function/stickers.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Stickers / Doming</div>
                     </a>
@@ -161,43 +161,43 @@
         <div class="col-md-12 padding-top-10 padding-right-50 padding-left-50">
             <div class="big-slick carousel-logo-process">
                 <div>
-                    <a href="<?= url('search', ['query' => ['logo-process' => 'doming']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['logo-process' => 'doming']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/doming.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Doming</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['logo-process' => 'digital-printing']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['logo-process' => 'digital-printing']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/digital-printing.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Digital printing</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['logo-process' => 'silk-screen-print']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['logo-process' => 'silk-screen-printing']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/silk-screen-print.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">silk screen print</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['logo-process' => 'laser-engraving']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['logo-process' => 'laser-engraving']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/laser.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Laser</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['logo-process' => 'offset-printing']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['logo-process' => 'offset-printing']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/offset-printing.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Offset printing</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['logo-process' => 'enamel']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['logo-process' => 'enamel']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/enamel.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">Enamel</div>
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('search', ['query' => ['logo-process' => 'pvc-cloisonne']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['logo-process' => 'pvc-cloisonne']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/pvc-cloisonne.jpg") ?>" title="" alt="" />
                         <div class="subtitle-pic">PVC cloisonne</div>
                     </a>
