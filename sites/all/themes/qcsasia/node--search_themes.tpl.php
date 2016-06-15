@@ -1,5 +1,60 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-    <h2><?= $node->title ?></h2>
+    <div class="col-md-12">
+        <div id="carousel-home" class="carousel carousel-home slide" data-ride="carousel-home">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <a href="<?= url('taxonomy/term/490') ?>" title="Large round aluminium keychain 31mm doming #PKA201">
+                        <img src="<?= url(path_to_theme() . "/images/theme/slideshow/pka201.jpg") ?>" alt="Large round aluminium keychain 31mm doming #PKA201" title="Large round aluminium keychain 31mm doming #PKA201" />
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('taxonomy/term/488') ?>" title="Round aluminium keychain with 26mm doming #PKA202">
+                        <img src="<?= url(path_to_theme() . "/images/theme/slideshow/pka202.jpg") ?>" alt="Round aluminium keychain with 26mm doming #PKA202" title="Round aluminium keychain with 26mm doming #PKA202" />
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('taxonomy/term/491') ?>" title="Pocket plastic ashtray/pillbox keychain #QAT3">
+                        <img src="<?= url(path_to_theme() . "/images/theme/slideshow/qat3.jpg") ?>" alt="Pocket plastic ashtray/pillbox keychain #QAT3" title="Pocket plastic ashtray/pillbox keychain #QAT3" />
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('taxonomy/term/492') ?>" title="Zamac base with double doming keychain #AL">
+                        <img src="<?= url(path_to_theme() . "/images/theme/slideshow/al.jpg") ?>" alt="Zamac base with double doming keychain #AL" title="Zamac base with double doming keychain #AL" />
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('taxonomy/term/494') ?>" title="Zamac top with webbing strap and doming keychain #ZST">
+                        <img src="<?= url(path_to_theme() . "/images/theme/slideshow/zst.jpg") ?>" alt="Zamac top with webbing strap and doming keychain #ZST" title="Zamac top with webbing strap and doming keychain #ZST" />
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('taxonomy/term/496') ?>" title="Round zamac rubber loop keychain #ZSS205">
+                        <img src="<?= url(path_to_theme() . "/images/theme/slideshow/zss205.jpg") ?>" alt="Round zamac rubber loop keychain #ZSS205" title="Round zamac rubber loop keychain #ZSS205" />
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('taxonomy/term/497') ?>" title="Silicon keychain with aluminium patch #SKC105">
+                        <img src="<?= url(path_to_theme() . "/images/theme/slideshow/skc.jpg") ?>" alt="Silicon keychain with aluminium patch #SKC105" title="Silicon keychain with aluminium patch #SKC105" />
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('taxonomy/term/509') ?>" title="Plastic loop keychain #PSS205">
+                        <img src="<?= url(path_to_theme() . "/images/theme/slideshow/pss205.jpg") ?>" alt="Plastic loop keychain #PSS205" title="Plastic loop keychain #PSS205" />
+                    </a>
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-home" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-home" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
     <div class="btn-show-hide-text-area margin-bottom-10"><span class="glyphicon glyphicon-menu-down"></span> Browse by product <span class="glyphicon glyphicon-menu-down"></span></div>
     <div class="col-sm-3 padding-0 border-right-bold hidden-text-area">
         <div class="col-md-12">
@@ -27,6 +82,7 @@
         <div class="clearfix"></div>
         <div class="btn-show-hide-text-area margin-bottom-10"><span class="glyphicon glyphicon-menu-down"></span> Browse by product <span class="glyphicon glyphicon-menu-down"></span></div>
     </div>
+    
     <div class="col-sm-9 padding-0">
         <div class="col-md-12">
             <h3>Browse by theme</h3>

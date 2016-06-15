@@ -5,7 +5,7 @@
             <a href="<?= url('stamping-and-blind-stamping') ?>" title="Stamping and blind stamping">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/logo-processes/stamping-and-blind-stamping.jpg') ?>" alt="Stamping and blind stamping" title="Stamping and blind stamping" />
-                    <div class="subtitle-pic font-size-13">Stamping and blind stamping</div>
+                    <div class="subtitle-pic font-size-13">Stamping and blind stamping #BS</div>
                 </div>
             </a>
         </div>
@@ -29,7 +29,7 @@
             <a href="<?= url('soft-enamel') ?>" title="Soft enamel">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/logo-processes/soft-enamel.jpg') ?>" alt="Soft enamel" title="Soft enamel" />
-                    <div class="subtitle-pic font-size-13">Soft enamel</div>
+                    <div class="subtitle-pic font-size-13">Soft enamel #SE</div>
                 </div>
             </a>
         </div>
@@ -37,7 +37,7 @@
             <a href="<?= url('hard-enamel') ?>" title="Hard enamel">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/logo-processes/hard-enamel.jpg') ?>" alt="Hard enamel" title="Hard enamel" />
-                    <div class="subtitle-pic font-size-13">Hard enamel</div>
+                    <div class="subtitle-pic font-size-13">Hard enamel #HE</div>
                 </div>
             </a>
         </div>
@@ -61,7 +61,7 @@
             <a href="<?= url('laser-engraving') ?>" title="Laser engraving">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/logo-processes/laser-engraving.jpg') ?>" alt="Laser engraving" title="Laser engraving" />
-                    <div class="subtitle-pic font-size-13">Laser engraving</div>
+                    <div class="subtitle-pic font-size-13">Laser engraving #LR</div>
                 </div>
             </a>
         </div>
@@ -69,7 +69,7 @@
             <a href="<?= url('silk-screen-printing') ?>" title="Silk screen printing">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/logo-processes/silk-screen-printing.jpg') ?>" alt="Silk screen printing" title="Silk screen printing" />
-                    <div class="subtitle-pic font-size-13">Silk screen printing</div>
+                    <div class="subtitle-pic font-size-13">Silk screen printing #PP</div>
                 </div>
             </a>
         </div>
@@ -77,7 +77,7 @@
             <a href="<?= url('digital-printing') ?>" title="Digital printing">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/logo-processes/digital-printing.jpg') ?>" alt="Digital printing" title="Digital printing" />
-                    <div class="subtitle-pic font-size-13">Digital printing</div>
+                    <div class="subtitle-pic font-size-13">Digital printing #0D</div>
                 </div>
             </a>
         </div>
@@ -85,7 +85,7 @@
             <a href="<?= url('doming') ?>" title="Doming">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/logo-processes/doming.jpg') ?>" alt="Doming" title="Doming" />
-                    <div class="subtitle-pic font-size-13">Doming</div>
+                    <div class="subtitle-pic font-size-13">Doming #ODD</div>
                 </div>
             </a>
         </div>
@@ -93,7 +93,7 @@
             <a href="<?= url('offset-printing') ?>" title="Offset printing">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/logo-processes/offset-printing.jpg') ?>" alt="Offset printing" title="Offset printing" />
-                    <div class="subtitle-pic font-size-13">Offset printing</div>
+                    <div class="subtitle-pic font-size-13">Offset printing #OP</div>
                 </div>
             </a>
         </div>
@@ -101,7 +101,7 @@
             <a href="<?= url('offset-printing-label') ?>" title="Offset printing label">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/logo-processes/offset-printing-label.jpg') ?>" alt="Offset printing label" title="Offset printing label" />
-                    <div class="subtitle-pic font-size-13">Offset printing label</div>
+                    <div class="subtitle-pic font-size-13">Offset printing label #OPL</div>
                 </div>
             </a>
         </div>

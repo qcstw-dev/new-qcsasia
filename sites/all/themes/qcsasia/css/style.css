@@ -218,6 +218,7 @@ a:focus, a:hover {
 }
 .thumbnail-hover:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 8px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
 }
 .subtitle-pic {
     font-weight: bold;
@@ -806,7 +807,7 @@ a:focus, a:hover {
 }
 .carousel-inner > .item > a > img {
     margin: 0 auto;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 /****************** CONTACT US *******************/
@@ -898,7 +899,7 @@ a:focus, a:hover {
 #carousel-home-2 {
     min-height: 601px;
 }
-.node-home .slide .slide-text {
+.slide .slide-text {
     position: absolute;
     bottom: 5%;
     font-size: 23px;
