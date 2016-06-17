@@ -824,6 +824,31 @@ function qcsasia_preprocess_html(&$vars) {
             header('HTTP/1.1 200 OK');
             break;
     }
+    
+    if ($node = menu_get_object()) {
+        var_dump($node->nid);
+        if ($node->nid == '13') {
+            $description = array(        
+              '#type' => 'html_tag',
+              '#tag' => 'meta',
+              '#attributes' => array(
+                'name' => 'description',
+                'content' => 'here all description goes',
+              )
+            );
+            $title = array(        
+              '#type' => 'html_tag',
+              '#tag' => 'meta',
+              '#attributes' => array(
+                'name' => 'title',
+                'content' => 'toto',
+              )
+            );
+            drupal_add_html_head($title, 'title');
+            drupal_add_html_head($description, 'description');
+        }
+    }
+    
 }
 
 function displayDocumentCenter($term) {
@@ -945,7 +970,10 @@ function displayLogoProcessBlock($aLogoProcess) {
     if ($bComplicatedDisplay) { ?>
         <div class="col-sm-3 margin-top-20 <?= ($bLargePicture ? 'pointer event-enlarge' : '') ?>">
             <div class="col-xs-12 thumbnail border-none">
-                <img class="border" src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" />
+                <img class="border" src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" /><?php
+                if ($bLargePicture) { ?>
+                    <img class="hidden" src="<?= file_create_url($aLogoProcess['large']) ?>" alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" /><?php
+                } ?>
             </div>
         </div><?php 
     } ?>

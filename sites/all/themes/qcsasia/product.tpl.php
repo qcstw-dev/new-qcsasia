@@ -6,13 +6,19 @@
     } ?>
     <div class="col-sm-3 main-picture-block margin-top-10 padding-0">
         <div class="thumbnail thumb margin-bottom-10"><?php 
-            foreach ($term->field_main_photo['und'] as $aFieldMainPhoto) { ?>
-            <div class="event-enlarge"><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" data-large-picture="<?= ($term->field_large_main_photo ? file_create_url($term->field_large_main_photo['und'][0]['uri']) : '') ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php
+            foreach ($term->field_main_photo['und'] as $aFieldMainPhoto) { 
+                $sUlrLargeMainPicture = ($term->field_large_main_photo ? file_create_url($term->field_large_main_photo['und'][0]['uri']) : ''); ?>
+                <div class="event-enlarge"><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" data-large-picture="<?= $sUlrLargeMainPicture ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php
             }
-            if ($term->field_photo_function) { ?>
-            <div class="event-enlarge"><img src="<?= file_create_url($term->field_photo_function['und'][0]['uri']) ?>" data-large-picture="<?= file_create_url($term->field_photo_function['und'][0]['uri']) ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php 
+            if ($term->field_photo_function) {
+                $sUlrLargeFunctionPicture =  file_create_url($term->field_photo_function['und'][0]['uri']); ?>
+                <div class="event-enlarge"><img src="<?= $sUlrLargeFunctionPicture ?>" data-large-picture="<?= $sUlrLargeFunctionPicture ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php 
             } ?>
         </div>
+        <img class="hidden" src="<?= $sUlrLargeMainPicture ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" /><?php
+        if ($term->field_photo_function) { ?>
+            <img class="hidden" src="<?= $sUlrLargeFunctionPicture ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" /><?php
+        } ?>
         <div class="padding-left-30 padding-right-30">
             <div class="thumbnails"><?php 
                 foreach ($term->field_main_photo['und'] as $aFieldMainPhoto) { ?>
@@ -123,16 +129,16 @@
                                     </td>
                                 </tr><?php
                             } 
-                            if ($term->field_display_image_finishes['und'][0]['value']) { ?>
-                                <tr>
-                                    <td class="border-right cell-key">Colors available</td>
-                                    <td colspan="<?= $sColspan ?>">
-                                        <div class="thumbnail border-none margin-bottom-0 event-enlarge">
-                                            <img src="<?= url(path_to_theme() . "/images/colors/finishes.jpg") ?>" data-large-picture="<?= url(path_to_theme() . "/images/colors/finishes-large.jpg") ?>" alt="Finishes available" title="Finishes available" />
-                                        </div>
-                                    </td>
-                                </tr><?php
-                            } 
+                        } 
+                        if ($term->field_display_image_finishes['und'][0]['value']) { ?>
+                            <tr>
+                                <td class="border-right cell-key">Colors available</td>
+                                <td colspan="<?= $sColspan ?>">
+                                    <div class="thumbnail border-none margin-bottom-0 event-enlarge">
+                                        <img src="<?= url(path_to_theme() . "/images/colors/finishes.jpg") ?>" data-large-picture="<?= url(path_to_theme() . "/images/colors/finishes-large.jpg") ?>" alt="Finishes available" title="Finishes available" />
+                                    </div>
+                                </td>
+                            </tr><?php
                         } ?>
                     </tbody>
                 </table>
@@ -214,7 +220,7 @@
                                         <a href="<?= url('taxonomy/term/' . $oYouMightLikeEntity->tid) ?>">
                                             <div class="col-md-12">
                                                 <div class="thumbnail margin-bottom-0">
-                                                    <img src="<?= file_create_url($sProductYouMightLikeUrl) ?>" title="" alt="" />
+                                                    <img src="<?= file_create_url($sProductYouMightLikeUrl) ?>" title="<?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?>" alt="<?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?>" />
                                                     <div class="subtitle-pic"><?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?></div>
                                                 </div>
                                             </div>
@@ -226,9 +232,7 @@
                 </div>
             </div><?php
         }
-    
-    }
-    ?>
+    } ?>
 </div>
 <script>
     $('.tab').on('click', function () {
