@@ -819,6 +819,8 @@ function qcsasia_preprocess_html(&$vars) {
             $vars['aFilterNumProducts'] = getPotentialNumberForFilters();
             break;
         case 'html__products_line_ajax' :
+        case 'html__member_area_register' :
+        case 'html__member_area_login' :
             header('HTTP/1.1 200 OK');
             break;
     }

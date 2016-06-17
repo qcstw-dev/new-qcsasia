@@ -106,7 +106,7 @@
         <input type="hidden" name="form_build_id" value="<?= $form['form_build_id']['#value'] ?>">
         <input type="hidden" name="form_token" value="<?= $form['form_token']['#value'] ?>">
         <input type="hidden" name="form_id" value="<?= $form['form_id']['#value'] ?>">
-        <div class="col-xs-12">
+        <div class="col-xs-12 text-right">
             <input class="btn btn-primary btn-submit" type="button" value="Send" />
         </div>
     </div>

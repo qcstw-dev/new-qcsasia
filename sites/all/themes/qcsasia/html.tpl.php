@@ -48,7 +48,8 @@ if (in_array($_SESSION['country'], ['CN', 'KR', 'KP', 'TR', 'IN'])) {
     echo 'This website is not available in your country';
     exit;
 } 
-verifyMemberConnection(); ?>
+verifyMemberConnection(); 
+$bIsConnected = isset($_SESSION['user']) && $_SESSION['user']; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
   "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
@@ -77,7 +78,7 @@ verifyMemberConnection(); ?>
   <link rel="sitemap" href="/sitemap.xml" />
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>
- <?= (!user_is_logged_in() && $_SERVER['HTTP_HOST'] != 'localhost' ? 'oncontextmenu="return false"' : '') ?>>
+ <?= (user_is_logged_in() || $_SERVER['HTTP_HOST'] == 'localhost' || $bIsConnected ? '' : 'oncontextmenu="return false"') ?>>
   <div id="skip-link">
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
   </div>
