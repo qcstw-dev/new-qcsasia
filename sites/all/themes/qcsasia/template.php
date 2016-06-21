@@ -376,16 +376,18 @@ function qcsasia_breadcrumb($variables) {
                     $aCategoryParents = taxonomy_get_parents($oCategory->tid);
                     if ($aCategoryParents) {
                         foreach ($aCategoryParents as $oCategoryParent) {
-                            $breadcrumb[] = '<a href="' . url('search', ['query' => ['category' => $oCategoryParent->field_reference['und'][0]['value']]]) . '">' . $oCategoryParent->field_category_title['und'][0]['value'] . '</a>';
+                            $breadcrumb[] = '<a href="' . url('node/13', ['query' => ['category' => $oCategoryParent->field_reference['und'][0]['value']]]) . '">' . $oCategoryParent->field_category_title['und'][0]['value'] . '</a>';
                         }
+                        $breadcrumb[] = '<a href="' . url('node/13', ['query' => ['line' => $oCategory->field_reference['und'][0]['value']]]) . '">' . $oCategory->field_category_title['und'][0]['value'] . ' ' . $oCategory->field_category_reference['und'][0]['value'] . '</a>';
+                    } else {
+                        $breadcrumb[] = '<a href="' . url('node/13', ['query' => ['category' => $oCategory->field_reference['und'][0]['value']]]) . '">' . $oCategory->field_category_title['und'][0]['value'] . ' ' . $oCategory->field_category_reference['und'][0]['value'] . '</a>';
                     }
-                    $breadcrumb[] = '<a href="' . url('search', ['query' => ['category' => $oCategory->field_reference['und'][0]['value']]]) . '">' . $oCategory->field_category_title['und'][0]['value'] . ' ' . $oCategory->field_category_reference['und'][0]['value'] . '</a>';
                     break;
                 case 'category':
-                    $breadcrumb[] = '<a href="' . url('products') . '">Promotional products</a>';
+                    $breadcrumb[] = '<a href="' . url('node/13') . '">Promotional products</a>';
                     break;
                 case 'theme':
-                    $breadcrumb[] = '<a href="' . url('search-theme') . '">Themes</a>';
+                    $breadcrumb[] = '<a href="' . url('node/33') . '">Themes</a>';
                     break;
             }
         } else if (strchr($sNormalPath, "node")) {
@@ -826,7 +828,6 @@ function qcsasia_preprocess_html(&$vars) {
     }
     
     if ($node = menu_get_object()) {
-        var_dump($node->nid);
         if ($node->nid == '13') {
             $description = array(        
               '#type' => 'html_tag',
@@ -836,19 +837,10 @@ function qcsasia_preprocess_html(&$vars) {
                 'content' => 'here all description goes',
               )
             );
-            $title = array(        
-              '#type' => 'html_tag',
-              '#tag' => 'meta',
-              '#attributes' => array(
-                'name' => 'title',
-                'content' => 'toto',
-              )
-            );
-            drupal_add_html_head($title, 'title');
+            drupal_set_title('toto');
             drupal_add_html_head($description, 'description');
         }
     }
-    
 }
 
 function displayDocumentCenter($term) {
@@ -859,8 +851,7 @@ function displayDocumentCenter($term) {
     }
     $oFieldDocumentsGroups = entity_load('field_collection_item', $aIdDocumentsGroupsEntities);
     foreach ($oFieldDocumentsGroups as $oFieldDocumentsGroup) {
-        if (count($term->field_group_document['und']) > 2 && $iCounter == 1) {
-            ?>
+        if (count($term->field_group_document['und']) > 2 && $iCounter == 1) { ?>
             <div class="col-sm-6 border-sm-right"><?php 
         } ?>
         <div class="list-title" data-id-doc="1"><span class="glyphicon glyphicon-<?= (strpos(strtolower($oFieldDocumentsGroup->field_group_document_title['und'][0]['value']), 'picture') !== false ? 'picture' : 'file') ?>"></span> <?= $oFieldDocumentsGroup->field_group_document_title['und'][0]['value'] ?></div><?php
@@ -880,11 +871,11 @@ function displayDocumentCenter($term) {
                 } ?>
             </ul><?php
         }
-        if ($iCounter == 2) { ?>
+        if ($iCounter == 2 && count($term->field_group_document['und'])> 2) { ?>
             </div>
             <div class="col-sm-6"><?php
         }
-        if (count($term->field_group_document['und']) == $iCounter) { ?>
+        if (count($term->field_group_document['und'])> 2 && (count($term->field_group_document['und']) == $iCounter)) { ?>
             </div><?php
         }
     $iCounter++;

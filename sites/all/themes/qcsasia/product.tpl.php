@@ -208,25 +208,23 @@
                 <div class="col-md-12 border padding-top-20 padding-0">
                     <div class="padding-left-30 padding-right-30">
                         <div class="big-slick ymal-pics"><?php
-                                foreach ($term->field_you_might_like['und'] as $aYouMightLike) { 
-                                    $oYouMightLikeEntity = taxonomy_term_load($aYouMightLike['tid']);
-                                    $aLogoProcesses = getLogoProcesses($oYouMightLikeEntity);
-                                    $sProductYouMightLikeUrl = (!$aLogoProcesses 
-                                            ? $oYouMightLikeEntity->field_main_photo['und'][0]['uri'] 
-                                            : isset($aLogoProcesses['doming']['thumbnail']) && $aLogoProcesses['doming']['thumbnail'] 
-                                                ? $aLogoProcesses['doming']['thumbnail'] 
-                                                : (array_shift($aLogoProcesses)['thumbnail'] ?: $oYouMightLikeEntity->field_main_photo['und'][0]['uri'])); ?>
-                                    <div>
-                                        <a href="<?= url('taxonomy/term/' . $oYouMightLikeEntity->tid) ?>">
-                                            <div class="col-md-12">
-                                                <div class="thumbnail margin-bottom-0">
-                                                    <img src="<?= file_create_url($sProductYouMightLikeUrl) ?>" title="<?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?>" alt="<?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?>" />
-                                                    <div class="subtitle-pic"><?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?></div>
-                                                </div>
+                            foreach ($term->field_you_might_like['und'] as $aYouMightLike) { 
+                                $oYouMightLikeEntity = taxonomy_term_load($aYouMightLike['tid']);
+                                $aLogoProcesses = getLogoProcesses($oYouMightLikeEntity);
+                                $sProductYouMightLikeUrl = (!$aLogoProcesses 
+                                        ? $oYouMightLikeEntity->field_main_photo['und'][0]['uri'] 
+                                        : isset($aLogoProcesses['doming']['thumbnail']) && $aLogoProcesses['doming']['thumbnail'] 
+                                            ? $aLogoProcesses['doming']['thumbnail'] 
+                                            : (array_shift($aLogoProcesses)['thumbnail'] ?: $oYouMightLikeEntity->field_main_photo['und'][0]['uri'])); ?>
+                                    <a href="<?= url('taxonomy/term/' . $oYouMightLikeEntity->tid) ?>">
+                                        <div class="col-md-12">
+                                            <div class="thumbnail margin-bottom-0">
+                                                <img src="<?= file_create_url($sProductYouMightLikeUrl) ?>" title="<?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?>" alt="<?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?>" />
+                                                <div class="subtitle-pic"><?= $oYouMightLikeEntity->field_product_name['und'][0]['value'] ?></div>
                                             </div>
-                                        </a>
-                                    </div><?php
-                                } ?>
+                                        </div>
+                                    </a><?php
+                            } ?>
                         </div>
                     </div>
                 </div>

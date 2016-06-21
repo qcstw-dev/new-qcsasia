@@ -62,7 +62,7 @@ function displayLineBlock($oCategory, $aLineProducts, $bIsDocCenter) {
             if ($oCategory->field_category_thumbnail) {
                 foreach ($oCategory->field_category_thumbnail['und'] as $aThumbnail) { ?>
                     <div class="col-xs-6 padding-0 thumbnail margin-0 border-none">
-                        <img class="" src = "<?= file_create_url($aThumbnail['uri']) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
+                        <img class="" src = "<?= image_style_url('thumbnail', $aThumbnail['uri']) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
                     </div><?php
                 }
             } ?>
