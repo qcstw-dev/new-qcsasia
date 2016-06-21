@@ -180,7 +180,16 @@ function metatag_metatag_info() {
       '#wysiwyg' => FALSE,
     ),
   );
-
+  // When the maxlength module is enabled, add a limit to the description and
+  // abstract metatag.
+  if (module_exists('maxlength')) {
+    $info['tags']['title']['form']['#maxlength_js_limit'] = 70;
+    $info['tags']['title']['form']['#maxlength_js'] = TRUE;
+    $info['tags']['description']['form']['#maxlength_js_limit'] = 160;
+    $info['tags']['description']['form']['#maxlength_js'] = TRUE;
+    $info['tags']['abstract']['form']['#maxlength_js_limit'] = 160;
+    $info['tags']['abstract']['form']['#maxlength_js'] = TRUE;
+  }
   $info['tags']['keywords'] = array(
     'label' => t('Keywords'),
     'description' => t("A comma-separated list of keywords about the page. This meta tag is <em>not</em> supported by most search engines anymore."),
