@@ -22,7 +22,7 @@ function registerMember ($aFields) {
         && $aFields['company_website']
         && $aFields['password']
         && $aFields['password_confirm']) {
-            if ($_SERVER["HTTP_HOST"] != 'localhost' || !user_is_logged_in()) {
+            if (($_SERVER["HTTP_HOST"] != 'localhost' && !user_is_logged_in()) || $_SERVER["HTTP_HOST"] == 'localhost') {
                 $ch = curl_init();
 
                     curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
@@ -614,7 +614,8 @@ function getProducts($aQueryParameters, $bCount = false) {
     // retrieve products
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
-            ->entityCondition('bundle', 'product');
+            ->entityCondition('bundle', 'product')
+            ->propertyOrderBy('weight', 'ASC');
     if ($aQueryParameters) {
         foreach ($aQueryParameters as $sKey => $mValue) {
             switch ($sKey) {

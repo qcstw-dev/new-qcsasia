@@ -4,13 +4,19 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('node/13', ['query' => ['line' => 'zamac-doming-keychain']]) ?>" title="Zamac doming keychain #ZKA">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZKA-zamac-doming-keychain-slide-homepage.jpg") ?>" alt="Zamac doming keychain #ZKA" title="Zamac doming keychain #ZKA" />
+                        <div class="slide-text">Zamac doming keychain #ZKA</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="<?= url('taxonomy/term/815') ?>" title="Metal multi charm keychain #MCKC">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/mckc.jpg") ?>" alt="Metal multi charm keychain #MCKC" title="Metal multi charm keychain #MCKC" />
                         <div class="slide-text">Metal multi charm keychain #MCKC</div>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="search?line=metal-fridge-magnet-mfm" title="Metal fridge magnet #MFM line">
+                    <a href="<?= url('node/13', ['query' => ['line' => 'metal-fridge-magnet-mfm']]) ?>" title="Metal fridge magnet #MFM line">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/mfm-line.jpg") ?>" alt="Metal fridge magnet #MFM line" title="Metal fridge magnet #MFM line" />
                         <div class="slide-text">Metal fridge magnet #MFM line</div>
                     </a>
@@ -28,13 +34,13 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="<?= url('taxonomy/term/337') ?>" title="Doming patch with scratch #LPODD Line">
+                    <a href="<?= url('node/13', ['query' => ['line' => 'doming-patch-with-scratch-lpodd']]) ?>" title="Doming patch with scratch #LPODD Line">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/lpodd-line.jpg") ?>" alt="Doming patch with scratch #LPODD Line" title="Doming patch with scratch #LPODD Line" />
                         <div class="slide-text">Doming patch with scratch #LPODD Line</div>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="search?line=doming-magnet-mgodd" title="Doming magnet #MGODD">
+                    <a href="<?= url('node/13', ['query' => ['line' => 'doming-magnet-mgodd']]) ?>" title="Doming magnet #MGODD">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/mgodd-line.jpg") ?>" alt="Doming magnet #MGODD" title="Doming magnet #MGODD" />
                         <div class="slide-text">Doming magnet #MGODD</div>
                     </a>

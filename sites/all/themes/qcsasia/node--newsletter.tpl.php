@@ -2,6 +2,14 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w25.16-ZKA/newsletter.html') ?>" target="_blank" title="Zamac keychain with doming #ZKA by QCS Asia w25.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w25-16.jpg') ?>" alt="Zamac keychain with doming #ZKA by QCS Asia w25.16" title="Zamac keychain with doming #ZKA by QCS Asia w25.16" />
+                    <div class="subtitle-pic font-size-13">Zamac keychain with doming #ZKA by QCS Asia w25.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2016/w24.16-MCKC/newsletter.html') ?>" target="_blank" title="Metal multi charm keychain #MCKC by QCS Asia w24.16">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w24-16.jpg') ?>" alt="Metal multi charm keychain #MCKC by QCS Asia w24.16" title="Metal multi charm keychain #MCKC by QCS Asia w24.16" />

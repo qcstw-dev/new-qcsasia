@@ -35,6 +35,14 @@ if ($aProducts) {
         function displayLineProduct (url) {
             console.log(url);
             $.ajax(url, {
+                beforeSend: function () {
+                    $.magnificPopup.open({
+                        items: [{
+                                src: $('<div class="white-popup text-center"><img src="<?= url(path_to_theme() . "/images/template/loader.gif") ?>" /></div>'),
+                                type: 'inline'
+                            }]
+                    });
+                },
                 dataType: 'html',
                 success: function (data) {
                     $.magnificPopup.open({
