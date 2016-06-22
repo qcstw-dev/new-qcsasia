@@ -118,7 +118,7 @@
             dataType: 'html',
             beforeSend: function () {
                 if($(window).width() >= 667) {
-                    $('html,body').animate({scrollTop: $('#menu-top').offset().top}, 200);
+                    $('html,body').animate({scrollTop: $('.themes_list').offset().top}, 200);
                 }
                 $('.themes_list').html('<div class="col-sm-12 text-center margin-top-70"><img src="<?= url(path_to_theme() . "/images/template/loader.gif") ?>" /></div>');
             },
