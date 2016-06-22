@@ -149,36 +149,67 @@
             <nav class="navbar navbar-default margin-bottom-0">
                 <div class=" navbar-collapse padding-0 tabs" id="navbar-collapse-menu-tab">
                     <ul class="nav navbar-nav text-center"><?php
+                        $bIsMetalEnamelCategory = getTopCategoryReferenceByProduct($term) == 'metal-enamel';
+                        
+                        $bDisplayLogoProcess = false;
+                        $bDisplayOption = false;
+                        $bDisplayLayoutMaker = false;
+                        $bDisplayDocCenter = false;
+                        
                         if ($term->field_logo_process_block) { ?>
-                            <li class="border-right <?= ($term->field_logo_process_block ? "active" : '') ?>"><a class="tab" data-id-tab="1">Logo process</a></li><?php
+                            <li class="border-right <?php 
+                            if ($bIsMetalEnamelCategory && $term->field_image_option) { 
+                                $bDisplayLogoProcess = false;
+                                } else if ($term->field_logo_process_block) {
+                                    $bDisplayLogoProcess = true; 
+                                    echo "active"; 
+                                } ?>">
+                                <a class="tab" data-id-tab="1">Logo process</a>
+                            </li><?php
                         }
                         if ($term->field_image_option) {?>
-                            <li <?= (!$term->field_logo_process_block ? 'class="active"' : '') ?>><a class="border-right tab" data-id-tab="2">Options</a></li><?php
+                            <li <?php if ((!$bDisplayLogoProcess && !$bIsMetalEnamelCategory) || $bIsMetalEnamelCategory) {
+                                $bDisplayOption = true;
+                                echo 'class="active"';
+                            } ?>>
+                                <a class="border-right tab" data-id-tab="2">Options</a>
+                            </li><?php
                         } 
                         if ($term->field_complicated['und'][0]['value']) { ?>
-                            <li <?= (!$term->field_image_option && !$term->field_logo_process_block ? 'class="active"' : '') ?>><a class="border-right tab" data-id-tab="3">Layout maker</a></li><?php
+                            <li <?php if (!$bDisplayOption && !$bDisplayLogoProcess) {
+                                $bDisplayLayoutMaker = true;
+                                echo 'class="active"'; 
+                            } ?>>
+                                <a class="border-right tab" data-id-tab="3">Layout maker</a>
+                            </li><?php
                         } 
                         if ($term->field_group_document && $term->field_complicated['und'][0]['value']) { ?>
-                            <li><a class="tab" data-id-tab="4">Document center</a></li><?php
+                            <li <?php 
+                            if (!$bDisplayLayoutMaker && !$bDisplayOption && !$bDisplayLogoProcess) {
+                                $bDisplayDocCenter = true;
+                                echo 'class="active"'; 
+                            } ?>>
+                                <a class="tab" data-id-tab="4">Document center</a></li><?php
                         } ?>
                     </ul>
                 </div><!-- /.navbar-collapse -->
-            </nav>
-            <div class="tab-block tab-block-1 block-logo border border-top-0 <?= ($term->field_logo_process_block ? "block-active" : '') ?>"><?php
-                if ($term->field_logo_process_block) { 
-                    displayLogoProcess($term);
-                } ?>
-                <div class="clearfix"></div>
-            </div><?php
+            </nav><?php
+            if ($term->field_logo_process_block) { ?>
+                <div class="tab-block tab-block-1 block-logo border border-top-0 <?= ($bDisplayLogoProcess ? "block-active" : '') ?>"><?php
+                        displayLogoProcess($term); ?>
+                    <div class="clearfix"></div>
+                </div><?php
+            } 
             if ($term->field_image_option) { ?>
-                <div class="tab-block tab-block-2 border border-top-0 padding-top-10 padding-bottom-10 <?= (!$term->field_logo_process_block ? "block-active" : '') ?>"><?php
+                <div class="tab-block tab-block-2 border border-top-0 padding-top-10 padding-bottom-10 
+                <?= ($bDisplayOption ? "block-active" : '') ?>"><?php
                     foreach ($term->field_image_option['und'] as $aImageOption) {
                         displayOption($aImageOption);
                     } ?>
                     <div class="clearfix"></div>
                 </div><?php
             } ?>
-            <div class="tab-block tab-block-3 border border-top-0 padding-20 <?= (!$term->field_logo_process_block && !$term->field_image_option ? "block-active" : '') ?>">
+            <div class="tab-block tab-block-3 border border-top-0 padding-20 <?= ($bDisplayLayoutMaker ? "block-active" : '') ?>">
                 <div class="col-md-6 thumbnail margin-bottom-0 gallery-container">
                     <a href="<?= url(path_to_theme() . "/images/template/layout-maker-large.png") ?>" title="Layout maker">
                         <img src="<?= url(path_to_theme() . "/images/template/layout-maker-large.png") ?>" alt="" title="" />
@@ -194,7 +225,7 @@
                 <div class="clearfix"></div>
             </div><?php
             if ($term->field_group_document) { ?>
-                <div class="tab-block tab-block-4 border border-top-0 padding-20 document-center padding-top-20"><?php
+                <div class="tab-block tab-block-4 border border-top-0 padding-20 document-center padding-top-20 <?= ($bDisplayDocCenter ? "block-active" : '') ?>"><?php
                      displayDocumentCenter($term); ?>
                     <div class="clearfix"></div>
                 </div><?php

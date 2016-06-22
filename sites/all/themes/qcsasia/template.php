@@ -610,6 +610,15 @@ function getThemes($aQueryParameters) {
     return $aResult['taxonomy_term'];
 }
 
+function getTopCategoryReferenceByProduct($oProduct) {
+    $sCategoryParent = taxonomy_get_parents($oProduct->field_category['und'][0]['tid']);
+    if ($sCategoryParent) {
+        return array_shift(array_values($sCategoryParent))->field_reference['und'][0]['value'];
+    } else {
+        return taxonomy_term_load($oProduct->field_category['und'][0]['tid'])->field_reference['und'][0]['value'];
+    }
+}
+
 function getProducts($aQueryParameters, $bCount = false) {
     // retrieve products
     $oQuery = new EntityFieldQuery();
