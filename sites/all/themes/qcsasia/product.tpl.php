@@ -8,11 +8,17 @@
         <div class="thumbnail thumb margin-bottom-10"><?php 
             foreach ($term->field_main_photo['und'] as $aFieldMainPhoto) { 
                 $sUlrLargeMainPicture = ($term->field_large_main_photo ? file_create_url($term->field_large_main_photo['und'][0]['uri']) : ''); ?>
-                <div class="event-enlarge"><img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" data-large-picture="<?= $sUlrLargeMainPicture ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php
+                <div class="event-enlarge">
+                    <img src="<?= file_create_url($aFieldMainPhoto['uri']) ?>" data-large-picture="<?= $sUlrLargeMainPicture ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" />
+                    <div class="enlarge"><span class="glyphicon glyphicon-zoom-in"></span></div>
+                </div><?php
             }
             if ($term->field_photo_function) {
                 $sUlrLargeFunctionPicture =  file_create_url($term->field_photo_function['und'][0]['uri']); ?>
-                <div class="event-enlarge"><img src="<?= $sUlrLargeFunctionPicture ?>" data-large-picture="<?= $sUlrLargeFunctionPicture ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" /></div><?php 
+                <div class="event-enlarge">
+                    <img src="<?= $sUlrLargeFunctionPicture ?>" data-large-picture="<?= $sUlrLargeFunctionPicture ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" />
+                    <div class="enlarge"><span class="glyphicon glyphicon-zoom-in"></span></div>
+                </div><?php 
             } ?>
         </div>
         <img class="hidden" src="<?= $sUlrLargeMainPicture ?>" alt="<?= $term->field_product_name['und'][0]['value'] ?>" title="<?= $term->field_product_name['und'][0]['value'] ?>" /><?php
@@ -32,7 +38,6 @@
                 } ?>
             </div>
         </div>
-        <div class="enlarge event-enlarge"><span class="glyphicon glyphicon-zoom-in"></span></div>
     </div><?php
     if ($bIsDocCenter) { ?>
         <div class="col-sm-9 document-center">

@@ -1093,7 +1093,7 @@ span.count.badge {
 }
 .enlarge {
     position: absolute;    
-    bottom: 125px;
+    bottom: 0;
     right: 6px;
     cursor: pointer;
     font-size: 20px;
