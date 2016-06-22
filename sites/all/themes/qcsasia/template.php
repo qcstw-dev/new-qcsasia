@@ -836,21 +836,6 @@ function qcsasia_preprocess_html(&$vars) {
             header('HTTP/1.1 200 OK');
             break;
     }
-    
-    if ($node = menu_get_object()) {
-        if ($node->nid == '13') {
-            $description = array(        
-              '#type' => 'html_tag',
-              '#tag' => 'meta',
-              '#attributes' => array(
-                'name' => 'description',
-                'content' => 'here all description goes',
-              )
-            );
-            drupal_set_title('toto');
-            drupal_add_html_head($description, 'description');
-        }
-    }
 }
 
 function displayDocumentCenter($term) {
@@ -941,8 +926,13 @@ function displayLogoProcess($term) { ?>
     <div class="col-md-12"><?php
         $aLogoProcesses = getLogoProcesses($term);
         $bIssetDoming = isset($aLogoProcesses['doming']);
-        displayLogoProcessBlock(($bIssetDoming ? $aLogoProcesses['doming'] : array_values($aLogoProcesses)[0])); ?>
-    </div><?php
+        displayLogoProcessBlock(($bIssetDoming ? $aLogoProcesses['doming'] : array_values($aLogoProcesses)[0])); 
+        foreach ($aLogoProcesses as $key => $aLogoProcess) {
+            if (($bIssetDoming && $key != 'doming') || (!$bIssetDoming && $count > 1 )) { 
+                displayLogoProcessBlock($aLogoProcess); 
+            }
+        } ?>
+    </div><?php /*
     if (count($aLogoProcesses) > 1) { ?>
         <div class="col-md-12 hidden-text-area"><?php
         $count = 1;
@@ -960,32 +950,33 @@ function displayLogoProcess($term) { ?>
             <div class="btn-show-hide-text-area"><span class="glyphicon glyphicon-menu-down"></span> More logo processes <span class="glyphicon glyphicon-menu-down"></span></div>
         </div>
         <div class="clearfix"></div><?php
-    }
+    } */
 }
-
 
 function displayLogoProcessBlock($aLogoProcess) {
     $oLogoProcess = taxonomy_term_load($aLogoProcess['id']);
     $bComplicatedDisplay = $aLogoProcess['thumbnail'];
-    $bLargePicture = $aLogoProcess['large'];
-    if ($bComplicatedDisplay) { ?>
-        <div class="col-sm-3 margin-top-20 <?= ($bLargePicture ? 'pointer event-enlarge' : '') ?>">
-            <div class="col-xs-12 thumbnail border-none">
-                <img class="border" src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" /><?php
-                if ($bLargePicture) { ?>
-                    <img class="hidden" src="<?= file_create_url($aLogoProcess['large']) ?>" alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" /><?php
-                } ?>
+    $bLargePicture = $aLogoProcess['large']; ?>
+    <div class="col-md-12"><?php
+        if ($bComplicatedDisplay) { ?>
+            <div class="col-sm-3 margin-top-20 <?= ($bLargePicture ? 'pointer event-enlarge' : '') ?>">
+                <div class="col-xs-12 thumbnail border-none">
+                    <img class="border" src="<?= file_create_url($aLogoProcess['thumbnail']) ?>" <?= ($bLargePicture ? 'data-large-picture="'.file_create_url($aLogoProcess['large']).'"' : '') ?> alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" /><?php
+                    if ($bLargePicture) { ?>
+                        <img class="hidden" src="<?= file_create_url($aLogoProcess['large']) ?>" alt="<?= $oLogoProcess->name ?>" title="<?= $oLogoProcess->name ?>" /><?php
+                    } ?>
+                </div>
+            </div><?php 
+        } ?>
+        <div class="<?= $bComplicatedDisplay ? 'col-sm-9' : 'col-sm-12' ?> padding-xs-0">
+            <div class="clearfix"></div>
+            <h3 class=""><?= $oLogoProcess->name ?></h3>
+            <div class="col-md-7 margin-bottom-sm-10">
+                <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>
             </div>
-        </div><?php 
-    } ?>
-    <div class="<?= $bComplicatedDisplay ? 'col-sm-9' : 'col-sm-12' ?> padding-xs-0">
-        <div class="clearfix"></div>
-        <h3 class=""><?= $oLogoProcess->name ?></h3>
-        <div class="col-md-7 margin-bottom-sm-10">
-            <?= $oLogoProcess->field_logo_process_description['und'][0]['value'] ?>
-        </div>
-        <div class="col-md-5">
-            <?= $oLogoProcess->field_youtube_video['und'][0]['value'] ?>
+            <div class="col-md-5">
+                <?= $oLogoProcess->field_youtube_video['und'][0]['value'] ?>
+            </div>
         </div>
     </div><?php
 }
