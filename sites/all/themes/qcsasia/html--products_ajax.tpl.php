@@ -1,19 +1,28 @@
 <?php
 $bIsDocCenter = isset($_GET['document_center']);
 if ($aProducts) {
-    $aLineProducts = [];
     $aUsedCategories = []; ?>
     <div class="col-md-12 margin-bottom-10 number-products" data-num-prod="<?= count($aProducts) ?>"><strong><?= count($aProducts) ?> Products</strong></div><?php
     $i = 4;
+    $aSelectedCategories = [];
+    if (isset(drupal_get_query_parameters()['category'])) {
+        $aSelectedCategories = array_keys(getTermByRef(drupal_get_query_parameters()['category'], 'category'));
+    }
     foreach ($aProducts as $oProduct) {
-        if (isset($oProduct->field_category['und'][0]['tid']) && taxonomy_get_parents($oProduct->field_category['und'][0]['tid'])) {
-            $oCategory = taxonomy_term_load($oProduct->field_category['und'][0]['tid']);
+        $aParentCategory = [];
+        foreach ($oProduct->field_category['und'] as $aCategory) {
+            $aParentCategoryKeys = array_keys(taxonomy_get_parents($aCategory['tid']));
+            $aParentCategory[$aCategory['tid']] = array_shift($aParentCategoryKeys);
+        }
+        if (($aParentCategory && array_intersect($aParentCategory, $aSelectedCategories)) || ($aParentCategory && !$aSelectedCategories)) {
+            $oCategory = taxonomy_term_load(array_shift(array_keys(array_intersect($aParentCategory, $aSelectedCategories))));
             if (!in_array($oCategory->field_reference['und'][0]['value'], $aUsedCategories)) {
-                displayLineBlock($oCategory, $aLineProducts, $bIsDocCenter);
+                displayLineBlock($oCategory);
                 $aUsedCategories[] = $oCategory->field_reference['und'][0]['value'];
                 $i++;
             }
-        } else {
+        }
+        else {
             displayProductBlock($oProduct, $bIsDocCenter);
             $i++;
         }
@@ -60,10 +69,9 @@ if ($aProducts) {
     <div class="alert alert-warning" role="alert"><strong>Oops!..</strong> There is currently no products matching with your criteria</div><?php
 }
 
-function displayLineBlock($oCategory, $aLineProducts, $bIsDocCenter) {
+function displayLineBlock($oCategory) {
     $sName = $oCategory->field_category_title['und'][0]['value'];
-    $sRef = (isset($oCategory->field_category_reference['und'][0]['value']) ? $oCategory->field_category_reference['und'][0]['value'] : '');
-    $aLineProducts[$oCategory->field_reference['und'][0]['value']] = []; ?>
+    $sRef = (isset($oCategory->field_category_reference['und'][0]['value']) ? $oCategory->field_category_reference['und'][0]['value'] : ''); ?>
     <div class = "block-product block-category col-xs-6 col-md-3" data-reference="<?= $oCategory->field_reference['und'][0]['value'] ?>">
         <div class = "thumbnail thumbnail-hover">
             <div class="col-md-12 padding-0 products-thumbnails"><?php 

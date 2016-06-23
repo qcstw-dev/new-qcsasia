@@ -837,14 +837,16 @@ function qcsasia_preprocess_html(&$vars) {
             break;
     }
     
-     if ($node = menu_get_object()) {
-         $aQueryParameters = drupal_get_query_parameters();
-         $iNumberFilter = count($aQueryParameters);
+    // page search products change meta regarding to filters
+    if ($node = menu_get_object()) {
+        $aQueryParameters = drupal_get_query_parameters();
+        $iNumberFilter = count($aQueryParameters);
         if ($node->nid == '13' && ($iNumberFilter >= 1 && $iNumberFilter <= 3 )) {
             $vars['head_title'] = '';
+            $sDescriptionFilter = '';
             for ($i = 1; $i <= $iNumberFilter; $i++) {
-                $aKeys{$i} = array_keys($aQueryParameters)[$i-1];
-                $aValues{$i} = array_values($aQueryParameters)[$i-1];
+                $aKeys{$i} = array_keys($aQueryParameters)[$i - 1];
+                $aValues{$i} = array_values($aQueryParameters)[$i - 1];
 
                 // get taxonomy term type
                 $sTaxonomyTermType{$i} = $aKeys{$i};
@@ -855,29 +857,31 @@ function qcsasia_preprocess_html(&$vars) {
                 if (!$sReference{$i}) {
                     $sReference{$i} = $sTaxonomyTermType{$i};
                 }
-            
-                $oTermFilter{$i} = getTermByReference ($sTaxonomyTermType{$i}, $sReference{$i});
+
+                $oTermFilter{$i} = getTermByReference($sTaxonomyTermType{$i}, $sReference{$i});
                 $aMetaFilter{$i} = metatags_get_entity_metatags($oTermFilter{$i}->tid, 'taxonomy_term');
                 $sTitleFilter{$i} = $aMetaFilter{$i}['title']['#attached']['metatag_set_preprocess_variable'][0][2];
-                $sDescriptionFilter{$i} = $aMetaFilter{$i}['description']['#attached']['drupal_add_html_head'][0][0]['#value'];
-                $vars['head_title'] .= ($vars['head_title'] ? ' ' : '').$sTitleFilter{$i};
+                $sDescriptionFilter .= ($sDescriptionFilter ? ' ' : '').$aMetaFilter{$i}['description']['#attached']['drupal_add_html_head'][0][0]['#value'];
+                
+                // modify the title meta tag in the header
+                $vars['head_title'] .= ($vars['head_title'] ? ' ' : '') . $sTitleFilter{$i};
             }
-            
-            // change page title
-            $vars['head_title'] .= ' - '.variable_get('site_name');
 
-            // Add the description meta tag to the header
+            // change page title
+            $vars['head_title'] .= ' - ' . variable_get('site_name');
+
+            // modify the description meta tag in the header
             $meta_description = array(
                 '#type' => 'html_tag',
-                '#tag' => 'meta', 
+                '#tag' => 'meta',
                 '#attributes' => array(
-                    'name' => 'description', 
-                    'content' => 'tutu',
+                    'name' => 'description',
+                    'content' => $sDescriptionFilter,
                 ),
             );
-            drupal_add_html_head($meta_description, 'meta_description' );
+            drupal_add_html_head($meta_description, 'metatag_description_0');
         }
-    } 
+    }
 }
 
 function getTermByReference ($sTaxonomyTermType, $sReference) {
