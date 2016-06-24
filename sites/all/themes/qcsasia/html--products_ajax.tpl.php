@@ -13,9 +13,13 @@ if ($aProducts) {
         foreach ($oProduct->field_category['und'] as $aCategory) {
             $aParentCategoryKeys = array_keys(taxonomy_get_parents($aCategory['tid']));
             $aParentCategory[$aCategory['tid']] = array_shift($aParentCategoryKeys);
-        }
-        if (($aParentCategory && array_intersect($aParentCategory, $aSelectedCategories)) || ($aParentCategory && !$aSelectedCategories)) {
-            $oCategory = taxonomy_term_load(array_shift(array_keys(array_intersect($aParentCategory, $aSelectedCategories))));
+    }
+        if (($aParentCategory && $aSelectedCategories && array_intersect($aParentCategory, $aSelectedCategories)) || (array_shift(array_values($aParentCategory)) && !$aSelectedCategories)) {
+            if ($aSelectedCategories) {
+                $oCategory = taxonomy_term_load(array_shift(array_keys(array_intersect($aParentCategory, $aSelectedCategories))));
+            } else {
+                $oCategory = taxonomy_term_load(array_shift(array_keys($aParentCategory)));
+            }
             if (!in_array($oCategory->field_reference['und'][0]['value'], $aUsedCategories)) {
                 displayLineBlock($oCategory);
                 $aUsedCategories[] = $oCategory->field_reference['und'][0]['value'];
