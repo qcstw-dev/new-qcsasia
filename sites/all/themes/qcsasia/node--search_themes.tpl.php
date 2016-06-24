@@ -95,10 +95,10 @@
 <script>
     $('.block-gift').on('click', function (){
         event.stopPropagation();
-        checkUncheck($(this).find('.checkbox-container'));
-        updateSearchResults();
+        checkUncheckGift($(this).find('.checkbox-container'));
+        updateSearchThemesResults();
     });
-    function updateSearchResults () {
+    function updateSearchThemesResults () {
         var aFilterGift = [];
         var bIssetGetVars = false;
         $('.filter').each(function () {
@@ -106,7 +106,7 @@
                 aFilterGift.push($(this).data('id'));
             }
         });
-        var url = baseUrl + 'themes_ajax/';
+        var url = baseUrl + '/themes_ajax/';
         var query = '';
         $.each(aFilterGift, function (index, value) {
             query = query + (bIssetGetVars ? '&' : '?')+ 'gift[]=' + value;
@@ -129,8 +129,7 @@
             }
         });
     }
-    
-    function checkUncheck(element) {
+    function checkUncheckGift(element) {
         if (element.find('input').is(':checked')) {
             element.find('input').attr('checked', false);
             element.find('.glyphicon').removeClass('glyphicon-check');

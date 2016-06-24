@@ -3,31 +3,33 @@
     // retrieve gift
     foreach ($term->field_theme_gift['und'] as $aFieldThemeGift) {
         $oFieldThemeGift = entity_load('field_collection_item', [$aFieldThemeGift['value']])[$aFieldThemeGift['value']];
-        $oGift = $oFieldThemeGift->field_gift['und'][0]['taxonomy_term']; ?>
-        <div class="col-sm-12"><?php
-            $sProductId = ($oGift->field_product['und'][0]['tid'] ? $oGift->field_product['und'][0]['tid'] : ''); ?>
-            <div class="title-block"><div class="title"><?= $oGift->field_product_name['und'][0]['value'].' '.$oGift->field_product_ref['und'][0]['value'] ?></div><?php 
-                if ($sProductId) { ?>
-                    <a class="font-size-18 right" href="<?= url('taxonomy/term/' . $sProductId) ?>" >Check product specifications <span class="glyphicon glyphicon-arrow-right"></span></a><?php 
+        $oGift = $oFieldThemeGift->field_gift['und'][0]['taxonomy_term']; 
+        if ((isset(drupal_get_query_parameters()['gift']) && in_array($oGift->tid, drupal_get_query_parameters()['gift'])) || !isset(drupal_get_query_parameters()['gift'])) { ?>
+            <div class="col-sm-12"><?php
+                $sProductId = ($oGift->field_product['und'][0]['tid'] ? $oGift->field_product['und'][0]['tid'] : ''); ?>
+                <div class="title-block"><div class="title"><?= $oGift->field_product_name['und'][0]['value'].' '.$oGift->field_product_ref['und'][0]['value'] ?></div><?php 
+                    if ($sProductId) { ?>
+                        <a class="font-size-18 right" href="<?= url('taxonomy/term/' . $sProductId) ?>" >Check product specifications <span class="glyphicon glyphicon-arrow-right"></span></a><?php 
+                    } ?>
+                    <div class="clearfix"></div>
+                </div><?php
+                if ($oFieldThemeGift->field_gift_theme_image) { ?>
+                    <div class="gallery gallery-container"><?php 
+                    foreach ($oFieldThemeGift->field_gift_theme_image['und'] as $aPicture) { ?>
+                        <div class="col-sm-4">
+                            <div class="thumbnail">
+                                <a href="<?= file_create_url($aPicture['uri']) ?>">
+                                    <img src="<?= file_create_url($aPicture['uri']) ?>" title="<?= ($aPicture['title'] ? : $oGift->field_product_name['und'][0]['value'] ) ?>" alt="<?= ($aPicture['alt'] ? : $oGift->field_product_name['und'][0]['value'] ) ?>" />
+                                </a>
+                            </div>
+                        </div><?php 
+                    } ?>
+                    </div>
+                    <div class="clearfix"></div><?php 
                 } ?>
-                <div class="clearfix"></div>
             </div><?php
-            if ($oFieldThemeGift->field_gift_theme_image) { ?>
-                <div class="gallery gallery-container"><?php 
-                foreach ($oFieldThemeGift->field_gift_theme_image['und'] as $aPicture) { ?>
-                    <div class="col-sm-4">
-                        <div class="thumbnail">
-                            <a href="<?= file_create_url($aPicture['uri']) ?>">
-                                <img src="<?= file_create_url($aPicture['uri']) ?>" title="<?= ($aPicture['title'] ? : $oGift->field_product_name['und'][0]['value'] ) ?>" alt="<?= ($aPicture['alt'] ? : $oGift->field_product_name['und'][0]['value'] ) ?>" />
-                            </a>
-                        </div>
-                    </div><?php 
-                } ?>
-                </div>
-                <div class="clearfix"></div><?php 
-            } ?>
-        </div><?php
-    }?>
+        }
+    } ?>
     <div class="col-sm-12">
         <h2>Display options available</h2><?php
         // retrieve display
