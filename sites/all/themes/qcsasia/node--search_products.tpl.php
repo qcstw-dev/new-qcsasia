@@ -50,16 +50,17 @@
                 $_GET['logo-process'] = [$_GET['logo-process']];
             }
             foreach (retrieveFilters('logo_process') as $oTerm) {
-                $sRef = $oTerm->field_reference['und'][0]['value'];
-                $bChecked = isset($_GET['logo-process']) && in_array($sRef, $_GET['logo-process']);
-                ?>
-                <div>
-                    <label class="<?= ($bChecked ? 'bold' : '') ?>">
-                        <input type="checkbox" class="filter multiple logo-process <?= $sRef ?>" value="<?= $sRef ?>" <?= ($bChecked ? 'checked' : '') ?>/>
-                        <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['logo-process'][$sRef] : '') ?></span>
-                    </label>
-                </div><?php }
-                    ?>
+                if (!$oTerm->field_hidde_in_search_page || ($oTerm->field_hidde_in_search_page && $oTerm->field_hidde_in_search_page['und'][0]['value'] == 0)) {
+                    $sRef = $oTerm->field_reference['und'][0]['value'];
+                    $bChecked = isset($_GET['logo-process']) && in_array($sRef, $_GET['logo-process']); ?>
+                    <div>
+                        <label class="<?= ($bChecked ? 'bold' : '') ?>">
+                            <input type="checkbox" class="filter multiple logo-process <?= $sRef ?>" value="<?= $sRef ?>" <?= ($bChecked ? 'checked' : '') ?>/>
+                            <?= $oTerm->name ?> <span class="count badge"><?= (!$bChecked ? $aFilterNumProducts['logo-process'][$sRef] : '') ?></span>
+                        </label>
+                    </div><?php 
+                    }
+                } ?>
         </div>
     <div class="btn-show-hide-text-area margin-bottom-10 margin-top-10"><span class="glyphicon glyphicon-menu-up"></span> Filter <span class="glyphicon glyphicon-menu-up"></span></div>
     </div>
