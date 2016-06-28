@@ -3,58 +3,58 @@ header('Content-Type: text/xml; charset=UTF-8');
 echo '<?xml version="1.0" encoding="UTF-8"?>'."\n"; ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
     <url>
-        <loc>https://qcsasia.com</loc> 
+        <loc>https://www.qcsasia.com</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/promotional-products/</loc> 
+        <loc>https://www.qcsasia.com/promotional-products/</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/promotional-products/?category[]=plastic-injection</loc> 
+        <loc>https://www.qcsasia.com/promotional-products/?category[]=plastic-injection</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/promotional-products/?category[]=metal-enamel</loc> 
+        <loc>https://www.qcsasia.com/promotional-products/?category[]=metal-enamel</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/promotional-products/?category[]=aluminium</loc> 
+        <loc>https://www.qcsasia.com/promotional-products/?category[]=aluminium</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/promotional-products/?category[]=soft-pvc-cloisonne</loc> 
+        <loc>https://www.qcsasia.com/promotional-products/?category[]=soft-pvc-cloisonne</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/promotional-products/?document_center</loc> 
+        <loc>https://www.qcsasia.com/promotional-products/?document_center</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/gift-and-souvenirs</loc> 
+        <loc>https://www.qcsasia.com/gift-and-souvenirs</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/layout-maker</loc> 
+        <loc>https://www.qcsasia.com/layout-maker</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/catalog-and-tools</loc> 
+        <loc>https://www.qcsasia.com/catalog-and-tools</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/samples-and-prototypes</loc> 
+        <loc>https://www.qcsasia.com/samples-and-prototypes</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/catalog-2016</loc> 
+        <loc>https://www.qcsasia.com/catalog-2016</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/toolkit</loc> 
+        <loc>https://www.qcsasia.com/toolkit</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/newsletters</loc> 
+        <loc>https://www.qcsasia.com/newsletters</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/member-area</loc> 
+        <loc>https://www.qcsasia.com/member-area</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/about-us</loc> 
+        <loc>https://www.qcsasia.com/about-us</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/factory-tour</loc> 
+        <loc>https://www.qcsasia.com/factory-tour</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/guidelines</loc> 
+        <loc>https://www.qcsasia.com/guidelines</loc> 
     </url>
     <url>
         <loc>https://www.qcsasia.com/logo-processes</loc> 
@@ -102,16 +102,16 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'."\n"; ?>
         <loc>https://www.qcsasia.com/colors-and-finishes-metal</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/supplier-program</loc> 
+        <loc>https://www.qcsasia.com/supplier-program</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/career</loc> 
+        <loc>https://www.qcsasia.com/career</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/term-conditions</loc> 
+        <loc>https://www.qcsasia.com/term-conditions</loc> 
     </url>
     <url>
-        <loc>https://qcsasia.com/contact-us</loc> 
+        <loc>https://www.qcsasia.com/contact-us</loc> 
     </url><?php
     
     $oQuery = new EntityFieldQuery();
@@ -123,7 +123,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'."\n"; ?>
     foreach ($aResults as $oResult) {
         echo '
             <url>
-                <loc>https://qcsasia.com'.url('taxonomy/term/'.$oResult->tid).'</loc>
+                <loc>https://www.qcsasia.com'.url('taxonomy/term/'.$oResult->tid).'</loc>
             </url>';
     } ?>
 </urlset>
