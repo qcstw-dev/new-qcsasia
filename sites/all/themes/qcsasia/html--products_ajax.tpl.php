@@ -14,11 +14,14 @@ if ($aProducts) {
             $aParentCategoryKeys = array_keys(taxonomy_get_parents($aCategory['tid']));
             $aParentCategory[$aCategory['tid']] = array_shift($aParentCategoryKeys);
     }
-        if (($aParentCategory && $aSelectedCategories && array_intersect($aParentCategory, $aSelectedCategories)) || (array_shift(array_values($aParentCategory)) && !$aSelectedCategories)) {
+    $aParentCategoryValues = array_values($aParentCategory);
+        if (($aParentCategory && $aSelectedCategories && array_intersect($aParentCategory, $aSelectedCategories)) || (array_shift($aParentCategoryValues) && !$aSelectedCategories)) {
             if ($aSelectedCategories) {
-                $oCategory = taxonomy_term_load(array_shift(array_keys(array_intersect($aParentCategory, $aSelectedCategories))));
+                $aIntersecKeys = array_keys(array_intersect($aParentCategory, $aSelectedCategories));
+                $oCategory = taxonomy_term_load(array_shift($aIntersecKeys));
             } else {
-                $oCategory = taxonomy_term_load(array_shift(array_keys($aParentCategory)));
+                $aParentCategoriesKeys = array_keys($aParentCategory);
+                $oCategory = taxonomy_term_load(array_shift($aParentCategoriesKeys));
             }
             if (!in_array($oCategory->field_reference['und'][0]['value'], $aUsedCategories)) {
                 displayLineBlock($oCategory);
@@ -36,12 +39,11 @@ if ($aProducts) {
     $sQueryNoCategory = http_build_query($aQuery); ?>
     <script>
         $('.block-category').on('click', function () {
-            var url = baseUrl + 'products_line_ajax/';
+            var url = baseUrl + '/products_line_ajax';
             var query = '<?= ($sQueryNoCategory ? '?'.$sQueryNoCategory.'&' : '?') ?>' + 'category=' + $(this).data('reference');
             console.log(url + query);
             displayLineProduct(url + query);
         });<?php 
-        
         if (array_key_exists('line', drupal_get_query_parameters())) { ?>
             displayLineProduct('<?= url('products_line_ajax', ['query' => ['category' => drupal_get_query_parameters()['line'], ($bIsDocCenter ? ['document_center' => null] : [])]]) ?>');<?php
         } ?>
