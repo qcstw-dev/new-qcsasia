@@ -325,14 +325,14 @@ function displaySubMenuProducts() { ?>
                 <a href="<?= url('node/13', ['query' => ['new' => null]]) ?>" class="padding-5 col-xs-12">New Product</a>
                 <a href="<?= url('node/13', ['query' => ['patented' => null]]) ?>" class="padding-5 col-xs-12">Patented Product</a>
                 <a href="<?= url('node/13', ['query' => ['cheap' => null]]) ?>" class="padding-5 col-xs-12">Very cheap product</a>
-                <a href="<?= url('node/13', ['query' => ['rush' => null]]) ?>" class="padding-5 col-xs-12">Rush service</a>
+                <a href="<?= url('node/13', ['query' => ['rush' => null]]) ?>" class="padding-5 col-xs-12">Rush service products</a>
             </div>
             <div class="filter-group-title" data-group-title="material"><span class="glyphicon glyphicon-chevron-down"></span> Material</div>
             <div class="block-filter-group group-material">
                 <a href="<?= url('node/13', ['query' => ['category' => 'aluminium']]) ?>" class="padding-5 col-xs-12">Aluminium</a>
-                <a href="<?= url('node/13', ['query' => ['category' => 'metal-enamel']]) ?>" class="padding-5 col-xs-12">Metal enamel</a>
-                <a href="<?= url('node/13', ['query' => ['category' => 'plastic-injection']]) ?>" class="padding-5 col-xs-12">Plastic injection</a>
-                <a href="<?= url('node/13', ['query' => ['category' => 'soft-pvc-cloisonne']]) ?>" class="padding-5 col-xs-12">Soft PVC</a>
+                <a href="<?= url('node/13', ['query' => ['category' => 'metal-enamel']]) ?>" class="padding-5 col-xs-12">Metal</a>
+                <a href="<?= url('node/13', ['query' => ['category' => 'plastic-injection']]) ?>" class="padding-5 col-xs-12">Plastic</a>
+                <a href="<?= url('node/13', ['query' => ['category' => 'soft-pvc-cloisonne']]) ?>" class="padding-5 col-xs-12">PVC cloisonné/rubber</a>
             </div>
         </div>
         <div class="col-xs-4 border-right">
@@ -340,13 +340,13 @@ function displaySubMenuProducts() { ?>
             <div class="block-filter-group group-function">
                 <a href="<?= url('node/13', ['query' => ['function' => 'keychain']]) ?>" class="padding-5 col-xs-12">Keychain</a>
                 <a href="<?= url('node/13', ['query' => ['function' => 'bar-accessory']]) ?>" class="padding-5 col-xs-12">Bar accessory</a>
-                <a href="<?= url('node/13', ['query' => ['function' => 'trolley-token']]) ?>" class="padding-5 col-xs-12">Trolley token</a>
+                <a href="<?= url('node/13', ['query' => ['function' => 'trolley-token']]) ?>" class="padding-5 col-xs-12">Coin keychain</a>
                 <a href="<?= url('node/13', ['query' => ['function' => 'wearable']]) ?>" class="padding-5 col-xs-12">Wearable</a>
-                <a href="<?= url('node/13', ['query' => ['function' => 'canister-container']]) ?>" class="padding-5 col-xs-12">Canister and container</a>
+                <a href="<?= url('node/13', ['query' => ['function' => 'canister-container']]) ?>" class="padding-5 col-xs-12">Canisters & containers</a>
                 <a href="<?= url('node/13', ['query' => ['function' => '3c-accessory']]) ?>" class="padding-5 col-xs-12">3C accessory</a>
                 <a href="<?= url('node/13', ['query' => ['function' => 'tools']]) ?>" class="padding-5 col-xs-12">Tools</a>
                 <a href="<?= url('node/13', ['query' => ['function' => 'office']]) ?>" class="padding-5 col-xs-12">Office</a>
-                <a href="<?= url('node/13', ['query' => ['function' => 'stickers-and-magnets']]) ?>" class="padding-5 col-xs-12">Stickers and magnets</a>
+                <a href="<?= url('node/13', ['query' => ['function' => 'stickers-and-magnets']]) ?>" class="padding-5 col-xs-12">Stickers & magnets</a>
             </div>
         </div>
         <div class="col-xs-4">
@@ -354,12 +354,12 @@ function displaySubMenuProducts() { ?>
             <div class="block-filter-group group-logo-process">
                 <a href="<?= url('node/13', ['query' => ['logo-process' => 'doming']]) ?>" class="padding-5 col-xs-12">Doming</a>
                 <a href="<?= url('node/13', ['query' => ['logo-process' => 'digital-printing']]) ?>" class="padding-5 col-xs-12">Digital printing</a>
-                <a href="<?= url('node/13', ['query' => ['logo-process' => 'silk-screen-printing']]) ?>" class="padding-5 col-xs-12">Silk screen engraving</a>
-                <a href="<?= url('node/13', ['query' => ['logo-process' => 'laser-engraving']]) ?>" class="padding-5 col-xs-12">Doming</a>
-                <a href="<?= url('node/13', ['query' => ['logo-process' => 'offset-printing']]) ?>" class="padding-5 col-xs-12">Laser engraving</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => 'silk-screen-printing']]) ?>" class="padding-5 col-xs-12">Silk screen printing</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => 'laser-engraving']]) ?>" class="padding-5 col-xs-12">Laser engraving</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => 'offset-printing']]) ?>" class="padding-5 col-xs-12">Offset printing</a>
                 <a href="<?= url('node/13', ['query' => ['logo-process' => 'enamel']]) ?>" class="padding-5 col-xs-12">Enamel</a>
-                <a href="<?= url('node/13', ['query' => ['logo-process' => '2d-pvc']]) ?>" class="padding-5 col-xs-12">2D PVC</a>
-                <a href="<?= url('node/13', ['query' => ['logo-process' => '3d-pvc']]) ?>" class="padding-5 col-xs-12">3D PVC</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => '2d-pvc']]) ?>" class="padding-5 col-xs-12">2D PVC cloisonné</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => '3d-pvc']]) ?>" class="padding-5 col-xs-12">3D PVC cloisonné</a>
             </div>
         </div>
     </div><?php
@@ -842,10 +842,10 @@ function qcsasia_preprocess_html(&$vars) {
     if ($node = menu_get_object()) {
         $aQueryParameters = drupal_get_query_parameters();
         $iNumberFilter = count($aQueryParameters);
-        if ($node->nid == '13' && ($iNumberFilter >= 1 && $iNumberFilter <= 3 )) {
+        if ($node->nid == '13' && $iNumberFilter >= 1) {
             $vars['head_title'] = '';
             $sDescriptionFilter = '';
-            for ($i = 1; $i <= $iNumberFilter; $i++) {
+            for ($i = 1; $i <= 2; $i++) {
                 $aKeys{$i} = array_keys($aQueryParameters)[$i - 1];
                 $aValues{$i} = array_values($aQueryParameters)[$i - 1];
 
@@ -858,8 +858,12 @@ function qcsasia_preprocess_html(&$vars) {
                 if (!$sReference{$i}) {
                     $sReference{$i} = $sTaxonomyTermType{$i};
                 }
-
-                $oTermFilter{$i} = getTermByReference($sTaxonomyTermType{$i}, $sReference{$i});
+                if ($sTaxonomyTermType{$i} == 'logo-process') {
+                    
+                }
+//                $sTaxonomyTermType{$i} = str_replace('-', '_', $sTaxonomyTermType{$i});
+                        
+                $oTermFilter{$i} = getTermByReference(($sTaxonomyTermType{$i} == 'logo-process' ? 'logo_process' : $sTaxonomyTermType{$i} ), $sReference{$i});
                 $aMetaFilter{$i} = metatags_get_entity_metatags($oTermFilter{$i}->tid, 'taxonomy_term');
                 $sTitleFilter{$i} = $aMetaFilter{$i}['title']['#attached']['metatag_set_preprocess_variable'][0][2];
                 $sDescriptionFilter .= ($sDescriptionFilter ? ' ' : '').$aMetaFilter{$i}['description']['#attached']['drupal_add_html_head'][0][0]['#value'];
