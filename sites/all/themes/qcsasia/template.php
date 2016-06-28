@@ -358,7 +358,8 @@ function displaySubMenuProducts() { ?>
                 <a href="<?= url('node/13', ['query' => ['logo-process' => 'laser-engraving']]) ?>" class="padding-5 col-xs-12">Doming</a>
                 <a href="<?= url('node/13', ['query' => ['logo-process' => 'offset-printing']]) ?>" class="padding-5 col-xs-12">Laser engraving</a>
                 <a href="<?= url('node/13', ['query' => ['logo-process' => 'enamel']]) ?>" class="padding-5 col-xs-12">Enamel</a>
-                <a href="<?= url('node/13', ['query' => ['logo-process' => 'pvc-cloisonne']]) ?>" class="padding-5 col-xs-12">PVC cloisonne</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => '2d-pvc']]) ?>" class="padding-5 col-xs-12">2D PVC</a>
+                <a href="<?= url('node/13', ['query' => ['logo-process' => '3d-pvc']]) ?>" class="padding-5 col-xs-12">3D PVC</a>
             </div>
         </div>
     </div><?php
@@ -529,7 +530,7 @@ function getGifts($aQueryParameters = null) {
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
             ->entityCondition('bundle', 'gift')
-            ->fieldOrderBy('field_product_name', 'value', 'ASC');
+            ->propertyOrderBy('weight', 'ASC');
 
     $aResult = $oQuery->execute();
     $aGifts = $aResult['taxonomy_term'];
@@ -987,30 +988,14 @@ function displayLogoProcess($term) { ?>
         $aLogoProcesses = getLogoProcesses($term);
         $bIssetDoming = isset($aLogoProcesses['doming']);
         displayLogoProcessBlock(($bIssetDoming ? $aLogoProcesses['doming'] : array_values($aLogoProcesses)[0])); 
+        $count = 1;
         foreach ($aLogoProcesses as $key => $aLogoProcess) {
-            if (($bIssetDoming && $key != 'doming') || (!$bIssetDoming && $count > 1 )) { 
+            if ($key && (($bIssetDoming && $key != 'doming') || (!$bIssetDoming && $count > 1 ))) { 
                 displayLogoProcessBlock($aLogoProcess); 
             }
+            $count++;
         } ?>
-    </div><?php /*
-    if (count($aLogoProcesses) > 1) { ?>
-        <div class="col-md-12 hidden-text-area"><?php
-        $count = 1;
-            foreach ($aLogoProcesses as $key => $aLogoProcess) {
-                if (($bIssetDoming && $key != 'doming') || (!$bIssetDoming && $count > 1 )) { ?>
-                    <div class="col-md-12 padding-0"><?php
-                        displayLogoProcessBlock($aLogoProcess); ?>
-                    </div><?php
-                } 
-                $count++;
-            } ?>
-        </div>
-        <div class="clearfix"></div>
-        <div class="col-md-12 padding-0">
-            <div class="btn-show-hide-text-area"><span class="glyphicon glyphicon-menu-down"></span> More logo processes <span class="glyphicon glyphicon-menu-down"></span></div>
-        </div>
-        <div class="clearfix"></div><?php
-    } */
+    </div><?php
 }
 
 function displayLogoProcessBlock($aLogoProcess) {
