@@ -203,9 +203,15 @@
                     </a>
                 </div>
                 <div>
-                    <a href="<?= url('node/13', ['query' => ['logo-process' => 'pvc-cloisonne']]) ?>">
+                    <a href="<?= url('node/13', ['query' => ['logo-process' => '2d-pvc']]) ?>">
                         <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/pvc-cloisonne.jpg") ?>" title="" alt="" />
-                        <div class="subtitle-pic">PVC cloisonne</div>
+                        <div class="subtitle-pic">2D PVC cloisonne</div>
+                    </a>
+                </div>
+                <div>
+                    <a href="<?= url('node/13', ['query' => ['logo-process' => '3d-pvc']]) ?>">
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/logo-process/pvc-cloisonne.jpg") ?>" title="" alt="" />
+                        <div class="subtitle-pic">3D PVC cloisonne</div>
                     </a>
                 </div>
             </div>
