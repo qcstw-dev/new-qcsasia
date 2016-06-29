@@ -198,11 +198,20 @@ function displaySocialMediaLogo() { ?>
     </div><?php
 }
 
-function retrieveCategories($iStart = null, $iLength = null) {
+function retrieveByTermName($sTermName) {
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
-            ->entityCondition('bundle', 'category')
-            ->range(($iStart ? : 0), ($iLength ? : 6));
+            ->entityCondition('bundle', $sTermName);
+    $aResult = $oQuery->execute();
+    return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
+}
+function retrieveCategories($iStart = null, $iLength = null, $bRetrieveAll = false) {
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'category');
+    if (!$bRetrieveAll) {
+        $oQuery->range(($iStart ? : 0), ($iLength ? : 6));
+    }
 
     $aResult = $oQuery->execute();
     return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
