@@ -191,7 +191,7 @@ function getCompanyType () {
 function displaySocialMediaLogo() { ?>
     <div class="block-social-network">
         <div class="social-network"><a href="https://www.facebook.com/pages/QCS-ASIA/182231511328?fref=ts"><span class="icomoon-facebook2"></span></a></div>
-        <div class="social-network"><a href="https://plus.google.com/105432120660907122700/posts?hl=fr&partnerid=gplp0"><span class="icomoon-google-plus2"></span></a></div>
+        <div class="social-network"><a href="https://plus.google.com/105432120660907122700/posts?hl=fr&partnerid=gplp0" rel="publisher"><span class="icomoon-google-plus2"></span></a></div>
         <div class="social-network"><a href="http://www.linkedin.com/company/qcs-asia-co.-ltd"><span class="icomoon-linkedin"></span></a></div>
 <!--        <div class="social-network"><a href=""><span class="icomoon-twitter"></span></a></div>
         <div class="social-network"><a href=""><span class="icomoon-pinterest"></span></a></div>-->
@@ -842,7 +842,8 @@ function qcsasia_preprocess_html(&$vars) {
     if ($node = menu_get_object()) {
         $aQueryParameters = drupal_get_query_parameters();
         $iNumberFilter = count($aQueryParameters);
-        if ($node->nid == '13' && $iNumberFilter >= 1) {
+        if ($node->nid == '13' && $iNumberFilter >= 1 
+                && !($iNumberFilter == 1 && (isset($aQueryParameters['keyword']) || isset($aQueryParameters['line'])))) {
             $vars['head_title'] = '';
             $sDescriptionFilter = '';
             for ($i = 1; $i <= 2; $i++) {
@@ -858,10 +859,6 @@ function qcsasia_preprocess_html(&$vars) {
                 if (!$sReference{$i}) {
                     $sReference{$i} = $sTaxonomyTermType{$i};
                 }
-                if ($sTaxonomyTermType{$i} == 'logo-process') {
-                    
-                }
-//                $sTaxonomyTermType{$i} = str_replace('-', '_', $sTaxonomyTermType{$i});
                         
                 $oTermFilter{$i} = getTermByReference(($sTaxonomyTermType{$i} == 'logo-process' ? 'logo_process' : $sTaxonomyTermType{$i} ), $sReference{$i});
                 $aMetaFilter{$i} = metatags_get_entity_metatags($oTermFilter{$i}->tid, 'taxonomy_term');
