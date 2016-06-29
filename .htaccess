@@ -104,6 +104,7 @@ DirectoryIndex index.php index.html index.htm
   RewriteRule ^product/1187-2$ https://www.qcsasia.com/product/rubber-keychain [R=301,L]
   RewriteRule ^product/1758-2$ https://www.qcsasia.com/product/carabiner-aluminium-patch-strap-stm01 [R=301,L]
   RewriteRule ^product/1231-2$ https://www.qcsasia.com/product/rubber-luggage-tag [R=301,L]
+  RewriteRule ^product/coin-keychain-holder$ https://www.qcsasia.com/product/trolley-tokens-holder [R=301,L]
   RewriteRule ^search$ https://www.qcsasia.com/promotional-products [R=301,L]
 
   # Modify the RewriteBase if you are using Drupal in a subdirectory or in a
