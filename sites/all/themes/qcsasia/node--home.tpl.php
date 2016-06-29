@@ -72,31 +72,31 @@
             <div class="big-slick carousel-category">
                 <div>
                     <a href="<?= url('node/13', ['query' => ['category' => 'metal-enamel']]) ?>">
-                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/metal-enamel.jpg") ?>" alt="" title="" />
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/metal-enamel.jpg") ?>" alt="Metal enamel" title="Metal enamel" />
                         <div class="subtitle-pic">Metal enamel</div>
                     </a>
                 </div>
                 <div>
                     <a href="<?= url('node/13', ['query' => ['category' => 'soft-pvc-cloisonne']]) ?>">
-                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/pvc-cloisonne.jpg") ?>" alt="" title="" />
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/pvc-cloisonne.jpg") ?>" alt="PVC Cloisonne" title="PVC Cloisonne" />
                         <div class="subtitle-pic">Soft PVC cloisonne</div>
                     </a>
                 </div>
                 <div>
                     <a href="<?= url('node/13', ['query' => ['category' => 'aluminium']]) ?>">
-                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/aluminium.jpg") ?>" alt="" title="" />
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/aluminium.jpg") ?>" alt="Aluminium" title="Aluminium" />
                         <div class="subtitle-pic">Aluminium</div>
                     </a>
                 </div>
                 <div>
                     <a href="<?= url('node/13', ['query' => ['category' => 'plastic-injection']]) ?>">
-                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/plastic-injection.jpg") ?>" alt="" title="" />
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/plastic-injection.jpg") ?>" alt="Plastic injection" title="Plastic injection" />
                         <div class="subtitle-pic">Plastic injection</div>
                     </a>
                 </div>
                 <div>
                     <a href="<?= url('node/33') ?>">
-                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/gift.jpg") ?>" alt="" title="" />
+                        <img class="thumbnail" src="<?= url(path_to_theme() . "/images/home/category/gift.jpg") ?>" alt="Gift and souvenirs" title="Gift and souvenirs" />
                         <div class="subtitle-pic">Gift & souvenirs</div>
                     </a>
                 </div>
