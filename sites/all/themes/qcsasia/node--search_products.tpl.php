@@ -6,6 +6,9 @@
     <div class="btn-show-hide-text-area margin-bottom-10"><span class="glyphicon glyphicon-menu-down"></span> Filter <span class="glyphicon glyphicon-menu-down"></span></div>
     <div class="block-filter col-md-3 thumbnail padding hidden-text-area">
         <h4>Filter by:</h4>
+        <div class="col-xs-12">
+            <div class="btn btn-default untick-all width-100-percent margin-bottom-10"><span class="glyphicon glyphicon-remove color-red"></span> Untick all boxes</div>
+        </div>
         <div class="block-filter-group visible">
             <div><label class="<?= (isset($_GET['new']) ? 'bold' : '') ?>"><input type="checkbox" class="filter new" value="new" <?= (isset($_GET['new']) ? 'checked' : '') ?>/>New Product <span class="count badge"><?= (!isset($_GET['new']) ? $aFilterNumProducts['new'] : '') ?></span></label></div>
             <div><label class="<?= (isset($_GET['patented']) ? 'bold' : '') ?>"><input type="checkbox" class="filter patented" value="patented" <?= (isset($_GET['patented']) ? 'checked' : '') ?>/>Patented Product <span class="count badge"><?= (!isset($_GET['patented']) ? $aFilterNumProducts['patented'] : '') ?></span></label></div>
@@ -95,9 +98,20 @@
         } else {
             $(this).parent().removeClass('bold');
         }
-        updateSearchResults();
+        updateCheckboxes();
     });
-    function updateSearchResults() {
+    
+    $('.untick-all').on('click', function (){
+        $('.filter').each(function() {
+           if ($(this).is(':checked')) {
+                $(this).parent().removeClass('bold');
+                $(this).attr('checked', false);
+           }
+        });
+        updateCheckboxes();
+    });
+    
+    function updateCheckboxes () {
         var aFilterValues = [];
         var aFilterCat = [];
         var aFilterFunction = [];
@@ -145,6 +159,10 @@
         if (bIsDocCenter) {
             query = query + (bIssetGetVars ? '&' : '?') + 'document_center';
         }
+        updateSearchResults(url, query);
+    }
+    
+    function updateSearchResults(url, query) {
         console.log(url + query);
         $.ajax(url + query, {
             dataType: 'html',
@@ -156,23 +174,23 @@
                 $('.products_list').html(data);
                 var newUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : '/' + window.location.pathname.split('/')['2']) + '/' + query;
                 window.history.pushState({path: newUrl}, '', newUrl);
-            }
-        });
-
-        console.log(baseUrl + '/products_number_ajax/' + query);
-        $.ajax(baseUrl + '/products_number_ajax/' + query, {
-            dataType: 'json',
-            success: function (data) {
-                $.each(data, function (index, filter) {
-                    if ($.type(filter) !== 'string') {
-                        $.each(filter, function (i, value) {
-                            $('.' + i).parent().find('.count').html(($('.' + i).is(':checked') ? '' : value));
+                console.log(baseUrl + '/products_number_ajax/' + query);
+                $.ajax(baseUrl + '/products_number_ajax/' + query, {
+                    dataType: 'json',
+                    success: function (data) {
+                        $.each(data, function (index, filter) {
+                            if ($.type(filter) !== 'string') {
+                                $.each(filter, function (i, value) {
+                                    $('.' + i).parent().find('.count').html(($('.' + i).is(':checked') ? '' : value));
+                                });
+                            } else {
+                                $('.' + index).parent().find('.count').html(($('.' + index).is(':checked') ? '' : filter));
+                            }
                         });
-                    } else {
-                        $('.' + index).parent().find('.count').html(($('.' + index).is(':checked') ? '' : filter));
                     }
                 });
             }
         });
+
     }
 </script>

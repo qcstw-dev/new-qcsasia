@@ -167,11 +167,12 @@ ol, .breadcrumb {
 .disabled_link {
     cursor: not-allowed;
 }
-a {
+a, .link {
     color: #38B15D;
     cursor: pointer;
 }
-a:focus, a:hover {
+a:focus, a:hover,
+.link:focus, .link:hover {
     color: #38B15D; 
     text-decoration: none; 
 }
@@ -638,6 +639,9 @@ a:focus, a:hover {
     .margin-top-xs-10 {
         margin-top: 10px;
     }
+    .margin-right-xs-5 {
+        margin-right: 5px;
+    }
     .margin-right-xs-10 {
         margin-right: 10px;
     }
@@ -646,6 +650,12 @@ a:focus, a:hover {
     }
     .margin-right-xs-20 {
         margin-right: 20px;
+    }
+    .margin-left-xs-5 {
+        margin-left: 5px;
+    }
+    .margin-left-xs-10 {
+        margin-left: 10px;
     }
     .margin-left-xs-20 {
         margin-left: 20px;
@@ -1033,9 +1043,12 @@ a:focus, a:hover {
 .block-product .ref-product,
 .block-line-product .title-product-ref {
     font-weight: bold;
-    padding-top: 10px;
+    padding-top: 5px;
     width: 100%;
     color: #379453;
+}
+.block-product .ref-product,
+.block-line-product .title-product-ref {
     height: 30px;
 }
 .block-line .ref-product,
@@ -1254,12 +1267,13 @@ span.count.badge {
 /****************************** SEARCH THEME PAGE ***************/
 .node-search-themes .block-gift {
     cursor: pointer;
+    max-width: calc(100% / 3 - 5px);
 }
 .node-search-themes .block-gift .thumbnail {
     padding-left: 12px;
 }
 .node-search-themes .block-gift .checkbox-container {
-    padding: 5px;
+    padding: 3px;
 }
 .node-search-themes .block-gift .btn-group .checkbox-container {
     position: absolute;
@@ -1267,6 +1281,13 @@ span.count.badge {
 .node-search-themes .block-gift .ref-product {
     font-size: 12px;
     text-align: center;
+}
+.node-search-themes .block-gift .btn-group {
+    position: absolute;
+}
+.node-search-themes .block-gift-selected {
+    border: 1px solid #ddd;
+    background: #ddd;
 }
 /****************************** CAREER PAGE ***************/
 .node-career .filter-group-title{

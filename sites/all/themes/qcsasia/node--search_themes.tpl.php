@@ -59,11 +59,17 @@
     <div class="col-sm-3 padding-0 border-right-bold hidden-text-area">
         <div class="col-md-12">
             <h3>Browse by product</h3>
+        </div>
+        <div class="col-xs-12">
+            <div class="btn btn-default untick-all width-100-percent"><span class="glyphicon glyphicon-remove color-red"></span> Untick all boxes</div>
         </div><?php
         $count = 0;
             foreach ($aGifts as $key => $oGift) { 
-                $bChecked = (isset(drupal_get_query_parameters()['gift']) && in_array($oGift->tid, (is_array(drupal_get_query_parameters()['gift']) ? array_values(drupal_get_query_parameters()['gift']) : [drupal_get_query_parameters()['gift']])) ? 'checked' : '' ) ;?>
-                <div class="block-gift col-xs-4 padding-0">
+                $bChecked = (isset(drupal_get_query_parameters()['gift']) && in_array($oGift->tid, (is_array(drupal_get_query_parameters()['gift']) ? array_values(drupal_get_query_parameters()['gift']) : [drupal_get_query_parameters()['gift']])) ? 'checked' : '' ) ;
+                if ($count == 0) { ?>
+                    <div class="col-xs-12 padding-0"><?php
+                } ?>   
+                <div class="block-gift col-xs-4 margin-right-xs-5 padding-0 margin-top-10 <?= ( $bChecked ? 'block-gift-selected' : '') ?>">
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn checkbox-container">
                             <input class="filter" data-id="<?= $oGift->tid ?>" type="checkbox" autocomplete="off" <?= $bChecked ?> ><span class="glyphicon glyphicon-<?= ($bChecked ? 'check' : 'unchecked') ?>"></span>
@@ -76,7 +82,11 @@
                 </div><?php
                 $count++;
                 if ($count % 3 == 0) { ?>
-                    <div class="clearfix"></div><?php
+                    </div>
+                    <div class="col-xs-12 padding-0"><?php
+                }
+                if ($count == count($aGifts)) { ?>
+                    </div><?php
                 }
             } ?>   
         <div class="clearfix"></div>
@@ -96,6 +106,16 @@
     $('.block-gift').on('click', function (){
         event.stopPropagation();
         checkUncheckGift($(this).find('.checkbox-container'));
+        updateSearchThemesResults();
+    });
+    $('.untick-all').on('click', function (){
+        $('.block-gift').each(function() {
+           if ($(this).find('input').is(':checked')) {
+//               $(this).trigger('click');
+                checkUncheckGift($(this).find('.checkbox-container'));
+                $(this).find('input').attr('checked', false);
+           }
+        });
         updateSearchThemesResults();
     });
     function updateSearchThemesResults () {
@@ -131,10 +151,12 @@
     }
     function checkUncheckGift(element) {
         if (element.find('input').is(':checked')) {
+            element.parent().parent().removeClass('block-gift-selected');
             element.find('input').attr('checked', false);
             element.find('.glyphicon').removeClass('glyphicon-check');
             element.find('.glyphicon').addClass('glyphicon-unchecked');
         } else {
+            element.parent().parent().addClass('block-gift-selected');
             element.find('input').attr('checked', true);
             element.find('.glyphicon').removeClass('glyphicon-unchecked');
             element.find('.glyphicon').addClass('glyphicon-check');
