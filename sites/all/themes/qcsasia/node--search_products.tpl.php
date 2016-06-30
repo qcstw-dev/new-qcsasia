@@ -7,7 +7,7 @@
     <div class="block-filter col-md-3 thumbnail padding hidden-text-area">
         <h4>Filter by:</h4>
         <div class="col-xs-12">
-            <div class="btn btn-default untick-all width-100-percent margin-bottom-10"><span class="glyphicon glyphicon-remove color-red"></span> Untick all boxes</div>
+            <div class="btn btn-default untick-all margin-bottom-10"><span class="glyphicon glyphicon-remove color-red"></span> Untick all boxes</div>
         </div>
         <div class="block-filter-group visible">
             <div><label class="<?= (isset($_GET['new']) ? 'bold' : '') ?>"><input type="checkbox" class="filter new" value="new" <?= (isset($_GET['new']) ? 'checked' : '') ?>/>New Product <span class="count badge"><?= (!isset($_GET['new']) ? $aFilterNumProducts['new'] : '') ?></span></label></div>
@@ -174,19 +174,19 @@
                 $('.products_list').html(data);
                 var newUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : '/' + window.location.pathname.split('/')['2']) + '/' + query;
                 window.history.pushState({path: newUrl}, '', newUrl);
-                console.log(baseUrl + '/products_number_ajax/' + query);
-                $.ajax(baseUrl + '/products_number_ajax/' + query, {
-                    dataType: 'json',
-                    success: function (data) {
-                        $.each(data, function (index, filter) {
-                            if ($.type(filter) !== 'string') {
-                                $.each(filter, function (i, value) {
-                                    $('.' + i).parent().find('.count').html(($('.' + i).is(':checked') ? '' : value));
-                                });
-                            } else {
-                                $('.' + index).parent().find('.count').html(($('.' + index).is(':checked') ? '' : filter));
-                            }
+            }
+        });
+        console.log(baseUrl + '/products_number_ajax/' + query);
+        $.ajax(baseUrl + '/products_number_ajax/' + query, {
+            dataType: 'json',
+            success: function (data) {
+                $.each(data, function (index, filter) {
+                    if ($.type(filter) !== 'string') {
+                        $.each(filter, function (i, value) {
+                            $('.' + i).parent().find('.count').html(($('.' + i).is(':checked') ? '' : value));
                         });
+                    } else {
+                        $('.' + index).parent().find('.count').html(($('.' + index).is(':checked') ? '' : filter));
                     }
                 });
             }
