@@ -154,7 +154,7 @@
             <nav class="navbar navbar-default margin-bottom-0">
                 <div class=" navbar-collapse padding-0 tabs" id="navbar-collapse-menu-tab">
                     <ul class="nav navbar-nav text-center"><?php
-                        $bIsMetalEnamelCategory = getTopCategoryReferenceByProduct($term) == 'metal-enamel';
+                        $bIsMetalEnamelCategory = getTopCategoryReferenceByProduct($term) == 'metal-enamel' && !(isset($term->field_complicated) && $term->field_complicated['und'][0]['value']);
                         
                         $bDisplayLogoProcess = false;
                         $bDisplayOption = false;
