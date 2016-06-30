@@ -297,7 +297,7 @@ function qcsasia_links__system_main_menu($variables) {
                 <div class="navbar-collapse collapse padding-lg-0" id="navbar-collapse-main-menu" aria-expanded="false">
                     <ul class="nav navbar-nav padding-xs padding-lg-0"><?php 
                         foreach ($variables['links'] as $link) { ?>
-                            <li class="<?= ($link['below'] ? 'dropdown' : '') ?><?= ($link['link']['href'] == 'node/13' ? ' products-menu-item' : '') ?><?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>">
+                            <li class="<?= ($link['below'] ? 'dropdown' : '') ?> menu-item <?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>" data-menu-item="<?= ($link['link']['href'] == 'node/13' ? 'products' : ($link['link']['href'] == 'node/33' ? 'gifts' : '')) ?>">
                                 <a <?= ($link['below'] ? 'role="button" aria-haspopup="true" aria-expanded="false"' : '') ?> class="text-uppercase" href="<?= url($link['link']['link_path']) ?>" >
                                     <?= $link['link']['link_title'] ?>
                                 </a><?php 
@@ -327,7 +327,7 @@ function qcsasia_links__system_main_menu($variables) {
     }
 }
 function displaySubMenuProducts() { ?>
-    <div class="dropdown-menu hidden-xs sub-menu-products col-xs-12">
+    <div class="dropdown-menu hidden-xs sub-menu sub-menu-products col-xs-12">
         <div class="col-xs-4 border-right">
             <div class="filter-group-title" data-group-title="criteria"><span class="glyphicon glyphicon-chevron-down"></span> Criteria</div>
             <div class="block-filter-group group-criteria">
@@ -369,6 +369,28 @@ function displaySubMenuProducts() { ?>
                 <a href="<?= url('node/13', ['query' => ['logo-process' => 'enamel']]) ?>" class="padding-5 col-xs-12">Enamel</a>
                 <a href="<?= url('node/13', ['query' => ['logo-process' => '2d-pvc']]) ?>" class="padding-5 col-xs-12">2D PVC cloisonné</a>
                 <a href="<?= url('node/13', ['query' => ['logo-process' => '3d-pvc']]) ?>" class="padding-5 col-xs-12">3D PVC cloisonné</a>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-menu hidden-xs sub-menu sub-menu-gifts col-xs-12">
+        <div class="col-xs-12"><?php
+            $aThemes = taxonomy_term_load_multiple(array_keys(getThemes())); ?>
+            <div class="block-filter-group group-criteria padding-5"><?php
+                $count = 1;
+                foreach ($aThemes as $oTheme) { 
+                    if ($count == 1) { ?>
+                        <div class="col-md-3 border-right"><?php
+                    } ?>
+                    <a href="<?= url('taxonomy/term/'.$oTheme->tid) ?>" title="<?= $oTheme->field_theme_title['und'][0]['value'] ?>" class="padding-5 col-xs-12"><?= $oTheme->field_theme_title['und'][0]['value'] ?></a><?php
+                    if (in_array($count, [6, 12, 18])) { ?>
+                        </div>
+                        <div class="col-md-3 <?= ($count != 18 ? 'border-right' : '') ?>"><?php
+                    } 
+                    if ($count == count($aThemes)) { ?>
+                        </div><?php
+                    }
+                    $count++;
+                } ?>
             </div>
         </div>
     </div><?php
@@ -595,7 +617,7 @@ function getGifts($aQueryParameters = null) {
     return $aGiftToDisplay;
 }
 
-function getThemes($aQueryParameters) {
+function getThemes($aQueryParameters = null) {
     // retrieve themes
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')

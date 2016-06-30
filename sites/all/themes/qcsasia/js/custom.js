@@ -17,17 +17,17 @@ $(function () {
         $(this).find('.dropdown-menu').stop(true, true).hide();
         $(this).removeClass('focus');
     });
-    $('.products-menu-item').hover(function () {
-        if (!$('.sub-menu-products').is(":visible")) {
-            $('.sub-menu-products').stop(true, true).slideDown();
+    $('.menu-item').hover(function () {
+        if (!$('.sub-menu-'+$(this).data('menu-item')).is(":visible")) {
+            $('.sub-menu-'+$(this).data('menu-item')).stop(true, true).slideDown();
         }
     }, function () {
-        $('.sub-menu-products').stop(true, true).slideUp();
+        $('.sub-menu-'+$(this).data('menu-item')).stop(true, true).slideUp();
     });
-    $('.sub-menu-products').hover(function () {
-        $('.sub-menu-products').stop(true, true).show();
+    $('.sub-menu').hover(function () {
+        $(this).stop(true, true).show();
     }, function () {
-        $('.sub-menu-products').stop(true, true).hide();
+        $(this).stop(true, true).hide();
     });
     $('.carousel-home').carousel();
     $('.carousel-category, .carousel-function, .carousel-logo-process').slick({

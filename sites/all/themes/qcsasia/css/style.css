@@ -402,13 +402,14 @@ a:focus, a:hover,
     text-align: left;
     color: #777;
 }
-.sub-menu-products {
+.dropdown-menu {
     top: 48px;
 }
-.sub-menu-products, .sub-menu-products a {
+.sub-menu,
+.sub-menu a {
     color: #777;
 }
-.sub-menu-products a:hover {
+.sub-menu a:hover {
     background: #eee;
 }
 .navbar-top {
@@ -1039,9 +1040,11 @@ a:focus, a:hover,
 .block-product {
     text-align: center;
 }
+.sub-menu-gifts .ref-product,
 .block-gift .ref-product,
 .block-product .ref-product,
 .block-line-product .title-product-ref {
+    text-align: center;
     font-weight: bold;
     padding-top: 5px;
     width: 100%;
