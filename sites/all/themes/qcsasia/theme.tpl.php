@@ -3,8 +3,11 @@
     // retrieve gift
     foreach ($term->field_theme_gift['und'] as $aFieldThemeGift) {
         $oFieldThemeGift = entity_load('field_collection_item', [$aFieldThemeGift['value']])[$aFieldThemeGift['value']];
-        $oGift = $oFieldThemeGift->field_gift['und'][0]['taxonomy_term']; 
-        if ((isset(drupal_get_query_parameters()['gift']) && in_array($oGift->tid, drupal_get_query_parameters()['gift'])) || !isset(drupal_get_query_parameters()['gift'])) { ?>
+        $oGift = $oFieldThemeGift->field_gift['und'][0]['taxonomy_term'];
+        if (isset(drupal_get_query_parameters()['gift'])) {
+            $sIdGiftPreselected = drupal_get_query_parameters()['gift'];
+        }
+        if ((isset(drupal_get_query_parameters()['gift']) && in_array($oGift->tid, (is_array($sIdGiftPreselected) ? $sIdGiftPreselected : [$sIdGiftPreselected]))) || !isset($sIdGiftPreselected)) { ?>
             <div class="col-sm-12"><?php
                 $sProductId = ($oGift->field_product['und'][0]['tid'] ? $oGift->field_product['und'][0]['tid'] : ''); ?>
                 <div class="title-block"><div class="title"><?= $oGift->field_product_name['und'][0]['value'].' '.$oGift->field_product_ref['und'][0]['value'] ?></div><?php 

@@ -110,7 +110,40 @@
         });
         updateCheckboxes();
     });
-    
+    <?php 
+    if (array_key_exists('line', drupal_get_query_parameters())) { ?>
+        displayLineProduct('<?= url('products_line_ajax', ['query' => ['category' => drupal_get_query_parameters()['line'], ($bIsDocCenter ? ['document_center' => null] : [])]]) ?>');<?php
+    } ?>
+    function displayLineProduct (url, newUrl) {
+        $.magnificPopup.instance.close = function () {
+
+            var resetUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : '/' + window.location.pathname.split('/')['2']) + '/';
+            window.history.pushState({path: resetUrl}, '', resetUrl);
+
+            $.magnificPopup.proto.close.call(this);
+          }; 
+        console.log(url);
+        $.ajax(url, {
+            beforeSend: function () {
+                $.magnificPopup.open({
+                    items: [{
+                            src: $('<div class="white-popup text-center"><img src="<?= url(path_to_theme() . "/images/template/loader.gif") ?>" /></div>'),
+                            type: 'inline'
+                        }]
+                });
+            },
+            dataType: 'html',
+            success: function (data) {
+                $.magnificPopup.open({
+                    items: [{
+                            src: $('<div class="white-popup">' + data + '</div>'),
+                            type: 'inline'
+                        }]
+                });
+                window.history.pushState({path: newUrl}, '', newUrl);
+            }
+        });
+    }
     function updateCheckboxes () {
         var aFilterValues = [];
         var aFilterCat = [];

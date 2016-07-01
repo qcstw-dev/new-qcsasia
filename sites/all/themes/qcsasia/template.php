@@ -1063,7 +1063,7 @@ function displayProductCheckbox($aProducts){
     $aProductParameters = is_array($mProductParameter) ? $mProductParameter : [$mProductParameter];
     foreach ($aProducts as $sId => $aProductOption) { 
         $oProduct = taxonomy_term_load($sId); ?>
-            <div class="col-xs-6 col-sm-2">
+            <div class="col-xs-6 col-sm-2" id="<?= $sId ?>">
                 <div class="col-xs-12 thumbnail thumbnail-hover padding-0"><?php
                     $aLogoProcesses = getLogoProcesses($oProduct);
                     $sLogoProcessUri = (!$aLogoProcesses 

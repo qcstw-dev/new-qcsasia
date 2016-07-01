@@ -95,7 +95,19 @@
             if (formSubmitValidator('sample-form')) {
                 $('.webform-client-form').submit();
             }
-        });
+        });<?php
+        if (isset(drupal_get_query_parameters()['product']) && drupal_get_query_parameters()['product']) {
+            if (is_array(drupal_get_query_parameters()['product'])) {
+                $sIdToGo = drupal_get_query_parameters()['product'][0];
+            } else {
+                $sIdToGo = drupal_get_query_parameters()['product'];
+            } ?>
+            $( document ).ready( function () {
+                $('html, body').animate({
+                    scrollTop: $("#<?= $sIdToGo ?>").offset().top
+                }, 500);
+            });<?php
+        } ?>
     </script>
     
     

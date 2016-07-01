@@ -8,13 +8,14 @@ if ($aProducts) {
     if (isset(drupal_get_query_parameters()['category'])) {
         $aSelectedCategories = array_keys(getTermByRef(drupal_get_query_parameters()['category'], 'category'));
     }
+    $aGifts = retrieveByTermName('gift');
     foreach ($aProducts as $oProduct) {
         $aParentCategory = [];
         foreach ($oProduct->field_category['und'] as $aCategory) {
             $aParentCategoryKeys = array_keys(taxonomy_get_parents($aCategory['tid']));
             $aParentCategory[$aCategory['tid']] = array_shift($aParentCategoryKeys);
-    }
-    $aParentCategoryValues = array_values($aParentCategory);
+        }
+        $aParentCategoryValues = array_values($aParentCategory);
         if (($aParentCategory && $aSelectedCategories && array_intersect($aParentCategory, $aSelectedCategories)) || (array_shift($aParentCategoryValues) && !$aSelectedCategories)) {
             if ($aSelectedCategories) {
                 $aIntersecKeys = array_keys(array_intersect($aParentCategory, $aSelectedCategories));
@@ -30,60 +31,32 @@ if ($aProducts) {
             }
         }
         else {
-            displayProductBlock($oProduct, $bIsDocCenter);
+            displayProductBlock($oProduct, $bIsDocCenter, $aGifts);
             $i++;
         }
     }
     parse_str($_SERVER['QUERY_STRING'], $aQuery);
     unset($aQuery['category']);
-    $sQueryNoCategory = http_build_query($aQuery); ?>
-    <script>
-        $('.block-category').on('click', function () {
-            var url = baseUrl + '/products_line_ajax';
-            var currentUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : '/' + window.location.pathname.split('/')['2']) + '/';
-            var newUrl = currentUrl + '?line=' + $(this).data('reference');
-            var query = '<?= ($sQueryNoCategory ? '?'.$sQueryNoCategory.'&' : '?') ?>' + 'category=' + $(this).data('reference');
-            console.log(url + query);
-            displayLineProduct(url + query, newUrl);
-        });<?php 
-        if (array_key_exists('line', drupal_get_query_parameters())) { ?>
-            displayLineProduct('<?= url('products_line_ajax', ['query' => ['category' => drupal_get_query_parameters()['line'], ($bIsDocCenter ? ['document_center' => null] : [])]]) ?>');<?php
-        } ?>
-        function displayLineProduct (url, newUrl) {
-            $.magnificPopup.instance.close = function () {
-
-                var resetUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : '/' + window.location.pathname.split('/')['2']) + '/';
-                window.history.pushState({path: resetUrl}, '', resetUrl);
-
-                $.magnificPopup.proto.close.call(this);
-              }; 
-            console.log(url);
-            $.ajax(url, {
-                beforeSend: function () {
-                    $.magnificPopup.open({
-                        items: [{
-                                src: $('<div class="white-popup text-center"><img src="<?= url(path_to_theme() . "/images/template/loader.gif") ?>" /></div>'),
-                                type: 'inline'
-                            }]
-                    });
-                },
-                dataType: 'html',
-                success: function (data) {
-                    $.magnificPopup.open({
-                        items: [{
-                                src: $('<div class="white-popup">' + data + '</div>'),
-                                type: 'inline'
-                            }]
-                    });
-                    window.history.pushState({path: newUrl}, '', newUrl);
-                }
-            });
-        }
-    </script><?php
-} else {
-    ?>
+    $sQueryNoCategory = http_build_query($aQuery); 
+} else { ?>
     <div class="alert alert-warning" role="alert"><strong>Oops!..</strong> There is currently no products matching with your criteria</div><?php
-}
+} ?>
+<script>
+    $('.block-product .thumbnail').hover(function (){
+        $(this).find('.block-toolbox').stop(true, true).show("slide", { direction: "left" }, 100);
+    }, function () {
+        $(this).find('.block-toolbox').stop(true, true).hide("slide", { direction: "left" }, 100);
+    });
+    $('.block-category').on('click', function () {
+        var url = baseUrl + '/products_line_ajax';
+        var currentUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : '/' + window.location.pathname.split('/')['2']) + '/';
+        var newUrl = currentUrl + '?line=' + $(this).data('reference');
+        var query = '<?= ($sQueryNoCategory ? '?'.$sQueryNoCategory.'&' : '?') ?>' + 'category=' + $(this).data('reference');
+        console.log(url + query);
+        displayLineProduct(url + query, newUrl);
+    });
+</script>
+<?php
 
 function displayLineBlock($oCategory) {
     $sName = $oCategory->field_category_title['und'][0]['value'];
@@ -94,23 +67,57 @@ function displayLineBlock($oCategory) {
             if ($oCategory->field_category_thumbnail) {
                 foreach ($oCategory->field_category_thumbnail['und'] as $aThumbnail) { ?>
                     <div class="col-xs-6 padding-0 thumbnail margin-0 border-none">
-                        <img class="" src = "<?= image_style_url('thumbnail', $aThumbnail['uri']) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
+                        <img class="" src = "<?= file_create_url($aThumbnail['uri']) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
                     </div><?php
                 }
             } ?>
             </div>
             <div class="clearfix"></div>
-            <div class = "ref-product"><?php /*($sRef ? $sRef . ' Line' : (strpos(strtolower($sName), 'metal') !== false ? 'Metal Product line' : 'Product Line'))*/ ?></div>
-            <div class = "title-product color-dark-green bold"><?= $sName ?></div>
+            <div class="subtitle-pic">
+                    <div class = "ref-product"></div>
+                    <div><?= $sName ?></div>
+            </div>
         </div>
     </div><?php
 }
 
-function displayProductBlock($oProduct, $bIsDocCenter) {
+function displayProductBlock($oProduct, $bIsDocCenter, $aGifts) {
     $sName = $oProduct->field_product_name['und'][0]['value'];
     $sRef = (isset($oProduct->field_product_ref['und'][0]['value']) ? $oProduct->field_product_ref['und'][0]['value'] : ''); ?>
     <div class = "block-product col-xs-6 col-md-3">
         <div class = "thumbnail thumbnail-hover">
+            <div class="block-toolbox">
+                <div class="block-toolbox-inner"><?php
+                    if ($oProduct->field_newsletter_url) { ?>
+                        <div>
+                            <a href="<?= $oProduct->field_newsletter_url['und'][0]['value'] ?>" title="Related newsletter">
+                                <span class="toolbox-icon glyphicon glyphicon-list-alt color-soft-orange"></span>
+                            </a>
+                        </div><?php
+                    } 
+                    if (isset($oProduct->field_complicated) && $oProduct->field_complicated['und'][0]['value']) { ?>
+                        <div>
+                            <a href="<?= url('node/46', ['query' => ['product' => $oProduct->tid]]) ?>" title="Samples and prototypes">
+                                <span class="toolbox-icon glyphicon glyphicon-transfer color-soft-blue"></span>
+                            </a>
+                        </div><?php
+                    } ?>
+                    <div>
+                        <a href="<?= url('node/17', ['query' => ['subject' => $sName.' '.$sRef]]) ?>" title="Quick quote" >
+                            <span class="toolbox-icon glyphicon glyphicon-envelope color-soft-green"></span>
+                        </a>
+                    </div><?php
+                    foreach ($aGifts as $oGift) {
+                        if (isset($oGift->field_product['und'][0]['tid']) && $oGift->field_product['und'][0]['tid'] == $oProduct->tid) { ?>
+                            <div>
+                                <a href="<?= url('node/33', ['query' => ['gift' => $oGift->tid]]) ?>#themes_list" title="Item in gift line" >
+                                    <span class="toolbox-icon glyphicon glyphicon-gift color-red"></span>
+                                </a>
+                            </div><?php
+                        }
+                    } ?>
+                </div>
+            </div>
             <a href = "<?= url('taxonomy/term/' . $oProduct->tid).($bIsDocCenter ? '?document_center' : '') ?>" title = ""><?php
                 $aLogoProcesses = getLogoProcesses($oProduct);
                 $sLogoProcessUri = (!$aLogoProcesses 
@@ -121,8 +128,10 @@ function displayProductBlock($oProduct, $bIsDocCenter) {
                                 ? array_values($aLogoProcesses)[0]['thumbnail'] 
                                 : $oProduct->field_main_photo['und'][0]['uri']))); ?>
                 <img src = "<?= file_create_url($sLogoProcessUri) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
-                <div class = "ref-product"><?= ($sRef ? : '') ?></div>
-                <div class = "title-product"><?= $sName ?></div>
+                <div class = "subtitle-pic">
+                    <div class = "ref-product"><?= ($sRef ? : '') ?></div>
+                    <div><?= $sName ?></div>
+                </div>
             </a>
         </div>
     </div><?php
