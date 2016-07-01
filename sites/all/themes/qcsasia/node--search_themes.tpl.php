@@ -97,7 +97,7 @@
         <div class="col-md-12">
             <h3>Browse by theme</h3>
         </div>
-        <div class="themes_list">
+        <div class="themes_list" id="themes_list">
             <?php include 'html--themes_ajax.tpl.php'; ?>
         </div>
     </div>

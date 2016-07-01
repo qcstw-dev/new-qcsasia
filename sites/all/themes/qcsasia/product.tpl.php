@@ -145,6 +145,43 @@
                                 </td>
                             </tr><?php
                         } ?>
+                            <tr>
+                                <td class="border-right cell-key">Toolbox</td>
+                                <td colspan="5"><?php
+                                    if ($term->field_newsletter_url) { ?>
+                                        <div class="col-sm-6 col-md-3 padding-0">
+                                            <a class="color-inherit" href="<?= $term->field_newsletter_url['und'][0]['value'] ?>" title="Related newsletter" >
+                                                <span class="glyphicon glyphicon-list-alt"></span> Related newsletter
+                                            </a>
+                                        </div><?php
+                                    } 
+                                    $oSamplesNode = node_load(46);
+                                    $aSamplesForm = drupal_get_form('webform_client_form_46', $oSamplesNode);
+                                    $aSamplesValues = $aSamplesForm['submitted']['product']['#options'];
+                                    if (array_intersect([$term->tid.'L',$term->tid.'B'], array_keys($aSamplesValues))) { ?>
+                                        <div class="col-sm-6 col-md-3 padding-0">
+                                            <a class="color-inherit" href="<?= url('node/46', ['query' => ['product' => $term->tid]]) ?>" title="Samples and prototypes" >
+                                                <span class="glyphicon glyphicon-transfer"></span> Request samples
+                                            </a>
+                                        </div><?php
+                                    } ?>
+                                    <div class="col-sm-6 col-md-3 padding-0">
+                                        <a class="color-inherit" href="<?= url('node/17', ['query' => ['subject' => $sProductTitle]]) ?>" title="Quick quote" >
+                                            <span class="glyphicon glyphicon-envelope"></span> Quick quote
+                                        </a>
+                                    </div><?php
+                                    $aGifts = retrieveByTermName('gift');
+                                    foreach ($aGifts as $oGift) {
+                                        if ($oGift->field_product['und'][0]['tid'] == $term->tid) { ?>
+                                            <div class="col-sm-6 col-md-3 padding-0">
+                                                <a class="color-inherit" href="<?= url('node/33', ['query' => ['gift' => $oGift->tid]]) ?>#themes_list" title="Show me the gift" >
+                                                    <span class="glyphicon glyphicon-gift"></span> Show me the gift
+                                                </a>
+                                            </div><?php
+                                        }
+                                    } ?>
+                                </td>
+                            </tr>
                     </tbody>
                 </table>
             </div>

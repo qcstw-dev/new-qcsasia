@@ -33,12 +33,13 @@
             print drupal_render($form['preview_message']);
             print '</div>';
         }
+        $sPreFilledSubject = isset(drupal_get_query_parameters()['subject']) ? drupal_get_query_parameters()['subject'] : '';
         foreach ($form['submitted'] as $key => $field) {
             if (strpos($key, "#") === false) {
                 if (in_array($field['#type'], ['textfield', 'webform_email'])) { ?>
                         <div class="input-group">
                             <span class="input-group-addon"><?php print $field['#webform_component']['name'] . ($field['#required'] ? ' *' : '') ?></span>
-                            <input type="<?php print ($field['#type'] === 'webform_email' ? 'email' : 'text') ?>" class="form-control <?php echo ($field['#required'] ? 'required' : '') ?> <?php print ($field['#type'] === 'webform_email' ? 'email' : '') ?>" name="<?php print $field['#name'] ?>" <?php echo ($field['#required'] ? '' : '') ?> />
+                            <input <?= ($sPreFilledSubject && $field['#webform_component']['form_key'] == 'subject' ? 'value="'.$sPreFilledSubject.'"' : '') ?> type="<?php print ($field['#type'] === 'webform_email' ? 'email' : 'text') ?>" class="form-control <?php echo ($field['#required'] ? 'required' : '') ?> <?php print ($field['#type'] === 'webform_email' ? 'email' : '') ?>" name="<?php print $field['#name'] ?>" <?php echo ($field['#required'] ? '' : '') ?> />
                         </div><?php 
                 } 
                 else if ($field['#type'] === 'textarea') { ?>

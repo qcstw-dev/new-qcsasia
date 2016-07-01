@@ -1058,6 +1058,8 @@ function displayLogoProcessBlock($aLogoProcess) {
     </div><?php
 }
 function displayProductCheckbox($aProducts){
+    $mProductParameter = isset(drupal_get_query_parameters()['product']) ? drupal_get_query_parameters()['product'] : '';
+    $aProductParameters = is_array($mProductParameter) ? $mProductParameter : [$mProductParameter];
     foreach ($aProducts as $sId => $aProductOption) { 
         $oProduct = taxonomy_term_load($sId); ?>
             <div class="col-xs-6 col-sm-2">
@@ -1074,10 +1076,16 @@ function displayProductCheckbox($aProducts){
                         <img src="<?= file_create_url($sLogoProcessUri) ?>" title="<?= $oProduct->field_product_name['und'][0]['value'] ?>" alt="<?= $oProduct->field_product_name['und'][0]['value'] ?>" />
                         <div class="col-xs-12 subtitle-pic"><?= (isset($oProduct->field_product_ref['und'][0]['value']) ? $oProduct->field_product_ref['und'][0]['value'] : '')?></div>
                     </a><?php
+                    $bCheck = false;
+                    foreach ($aProductParameters as $aProductParameter) {
+                        if (in_array($sId, [$aProductParameter.'L', $aProductParameter.'B'])) {
+                            $bCheck = true;
+                        }
+                    }
                     if (isset($aProductOption[$sId.'L'])) { ?>
                         <div class="col-xs-12 padding-0 margin-bottom-0 border-bottom">
                             <div class="border-right padding-0 col-xs-2 background-grey text-center">
-                                <input type="checkbox" name="submitted[product][]" value="<?= $sId.'L' ?>" id="logotyped_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" aria-label="...">
+                                <input type="checkbox" name="submitted[product][]" value="<?= $sId.'L' ?>" id="logotyped_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" aria-label="..." <?= ($bCheck ? 'checked' : '')  ?>>
                             </div>
                             <div class="col-xs-10">
                                 <label for="logotyped_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" class="margin-bottom-0 cursor-pointer">Logotyped</label>
@@ -1087,7 +1095,7 @@ function displayProductCheckbox($aProducts){
                     if (isset($aProductOption[$sId.'B'])) { ?>
                         <div class="col-xs-12 padding-0 margin-bottom-0">
                             <div class="border-right padding-0 col-xs-2 background-grey text-center">
-                                <input type="checkbox" name="submitted[product][]" value="<?= $sId.'B' ?>" id="blank_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" aria-label="...">
+                                <input type="checkbox" name="submitted[product][]" value="<?= $sId.'B' ?>" id="blank_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" aria-label="..." <?= ($bCheck ? 'checked' : '')  ?>>
                             </div>
                             <div class="col-xs-10">
                                 <label for="blank_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" class="margin-bottom-0 cursor-pointer">Blank no logo</label>

@@ -194,6 +194,10 @@ a:focus, a:hover,
 .input-group {
     margin-bottom: 20px;
 }
+.color-inherit,
+.color-inherit:hover {
+    color: inherit;
+}
 .color-green {
     color: #38B15D;
 }

@@ -19,10 +19,10 @@ $(function () {
     });
     $('.menu-item').hover(function () {
         if (!$('.sub-menu-'+$(this).data('menu-item')).is(":visible")) {
-            $('.sub-menu-'+$(this).data('menu-item')).stop(true, true).slideDown();
+            $('.sub-menu-'+$(this).data('menu-item')).stop(true, true).show();
         }
     }, function () {
-        $('.sub-menu-'+$(this).data('menu-item')).stop(true, true).slideUp();
+        $('.sub-menu-'+$(this).data('menu-item')).stop(true, true).hide();
     });
     $('.sub-menu').hover(function () {
         $(this).stop(true, true).show();
