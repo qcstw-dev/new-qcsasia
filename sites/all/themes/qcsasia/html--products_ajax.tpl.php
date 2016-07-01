@@ -40,14 +40,23 @@ if ($aProducts) {
     <script>
         $('.block-category').on('click', function () {
             var url = baseUrl + '/products_line_ajax';
+            var currentUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : '/' + window.location.pathname.split('/')['2']) + '/';
+            var newUrl = currentUrl + '?line=' + $(this).data('reference');
             var query = '<?= ($sQueryNoCategory ? '?'.$sQueryNoCategory.'&' : '?') ?>' + 'category=' + $(this).data('reference');
             console.log(url + query);
-            displayLineProduct(url + query);
+            displayLineProduct(url + query, newUrl);
         });<?php 
         if (array_key_exists('line', drupal_get_query_parameters())) { ?>
             displayLineProduct('<?= url('products_line_ajax', ['query' => ['category' => drupal_get_query_parameters()['line'], ($bIsDocCenter ? ['document_center' => null] : [])]]) ?>');<?php
         } ?>
-        function displayLineProduct (url) {
+        function displayLineProduct (url, newUrl) {
+            $.magnificPopup.instance.close = function () {
+
+                var resetUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : '/' + window.location.pathname.split('/')['2']) + '/';
+                window.history.pushState({path: resetUrl}, '', resetUrl);
+
+                $.magnificPopup.proto.close.call(this);
+              }; 
             console.log(url);
             $.ajax(url, {
                 beforeSend: function () {
@@ -66,6 +75,7 @@ if ($aProducts) {
                                 type: 'inline'
                             }]
                     });
+                    window.history.pushState({path: newUrl}, '', newUrl);
                 }
             });
         }

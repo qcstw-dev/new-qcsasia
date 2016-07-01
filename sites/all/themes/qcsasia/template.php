@@ -694,6 +694,7 @@ function getProducts($aQueryParameters, $bCount = false) {
                 case 'rush':
                     $oQuery->fieldCondition('field_rush', 'value', '1');
                     break;
+                case 'line':
                 case 'category':
                     // Rettrieve the category
                     $mCategories = getTermByRef($mValue, 'category');
