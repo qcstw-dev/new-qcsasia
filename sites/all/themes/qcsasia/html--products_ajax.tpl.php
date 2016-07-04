@@ -55,6 +55,9 @@ if ($aProducts) {
         console.log(url + query);
         displayLineProduct(url + query, newUrl);
     });
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });
 </script>
 <?php
 

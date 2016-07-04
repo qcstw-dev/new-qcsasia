@@ -239,6 +239,24 @@ a:hover div {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 8px 0 rgba(0, 0, 0, 0.19);
     cursor: pointer;
 }
+.tooltip-inner {
+    max-width: none;
+    white-space: nowrap;
+    opacity: 1;
+    border-radius: 0;
+}
+#searchclear {
+    position: absolute;
+    right: 58px;
+    top: 0;
+    bottom: 0;
+    height: 18px;
+    margin: auto;
+    font-size: 20px;
+    cursor: pointer;
+    color: #bbb;
+    z-index: 2;
+}
 .subtitle-pic {
     font-weight: bold;
     color: #777;
@@ -1106,8 +1124,8 @@ a:hover div {
     color: inherit;
 }
 .node-search-products .block-product .subtitle-pic{
-    height: 77px;
-    font-size: 14px;
+    height: 70px;
+    font-size: 13px;
 }
 .node-search-themes .block-list-products,
 .node-search-products .block-list-products {
