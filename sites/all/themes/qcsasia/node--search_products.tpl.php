@@ -70,7 +70,8 @@
     <div class="col-md-9 padding-0 block-list-products">
         <div class="col-md-12">
             <div class="input-group padding margin-bottom-10">
-                <input type="text" class="form-control search-field" placeholder="Search for..." value="<?= (isset($_GET['keyword']) && $_GET['keyword'] ? $_GET['keyword'] : '') ?>">
+                <input type="search" id="searchinput" class="form-control search-field" placeholder="Search for..." value="<?= (isset($_GET['keyword']) && $_GET['keyword'] ? $_GET['keyword'] : '') ?>">
+                <span id="searchclear" class="glyphicon glyphicon-remove-circle visible-sm"></span>
                 <span class="input-group-btn">
                     <button class="btn btn-default btn-search" type="button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
@@ -84,12 +85,15 @@
 <script>
     $('.search-field').keypress(function (event) {
         if (event.which == 13) {
-            updateSearchResults();
-            return false;
+            updateCheckboxes();
         }
     });
     $('.btn-search').on('click', function () {
-        updateSearchResults();
+        updateCheckboxes();
+    });
+    $("#searchclear").click(function(){
+        $("#searchinput").val('');
+        updateCheckboxes();
     });
     $('.filter').on('click', function () {
         $(this).parent().find('.count').html('');
@@ -108,6 +112,7 @@
                 $(this).attr('checked', false);
            }
         });
+        $('.search-field').val('');
         updateCheckboxes();
     });
     <?php 
