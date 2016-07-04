@@ -90,27 +90,27 @@ function displayProductBlock($oProduct, $bIsDocCenter, $aGifts) {
                 <div class="block-toolbox-inner"><?php
                     if ($oProduct->field_newsletter_url) { ?>
                         <div>
-                            <a href="<?= $oProduct->field_newsletter_url['und'][0]['value'] ?>" title="Related newsletter">
+                            <a data-toggle="tooltip" data-placement="right" href="<?= $oProduct->field_newsletter_url['und'][0]['value'] ?>" title="Related newsletter">
                                 <span class="toolbox-icon glyphicon glyphicon-list-alt color-soft-orange"></span>
                             </a>
                         </div><?php
                     } 
                     if (isset($oProduct->field_complicated) && $oProduct->field_complicated['und'][0]['value']) { ?>
                         <div>
-                            <a href="<?= url('node/46', ['query' => ['product' => $oProduct->tid]]) ?>" title="Samples and prototypes">
+                            <a data-toggle="tooltip" data-placement="right" href="<?= url('node/46', ['query' => ['product' => $oProduct->tid]]) ?>" title="Request samples">
                                 <span class="toolbox-icon glyphicon glyphicon-transfer color-soft-blue"></span>
                             </a>
                         </div><?php
                     } ?>
                     <div>
-                        <a href="<?= url('node/17', ['query' => ['subject' => $sName.' '.$sRef]]) ?>" title="Quick quote" >
+                        <a data-toggle="tooltip" data-placement="right" href="<?= url('node/17', ['query' => ['subject' => $sName.' '.$sRef]]) ?>" title="Quick quote" >
                             <span class="toolbox-icon glyphicon glyphicon-envelope color-soft-green"></span>
                         </a>
                     </div><?php
                     foreach ($aGifts as $oGift) {
                         if (isset($oGift->field_product['und'][0]['tid']) && $oGift->field_product['und'][0]['tid'] == $oProduct->tid) { ?>
                             <div>
-                                <a href="<?= url('node/33', ['query' => ['gift' => $oGift->tid]]) ?>#themes_list" title="Item in gift line" >
+                                <a data-toggle="tooltip" data-placement="right" href="<?= url('node/33', ['query' => ['gift' => $oGift->tid]]) ?>#themes_list" title="Item in gift line" >
                                     <span class="toolbox-icon glyphicon glyphicon-gift color-red"></span>
                                 </a>
                             </div><?php

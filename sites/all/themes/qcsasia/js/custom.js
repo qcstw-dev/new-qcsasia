@@ -1,7 +1,9 @@
 $(function () {
     var getUrl = window.location;
     baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + (getUrl.host === 'localhost' ? 'new-qcsasia' : '');
-
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });
     $('.btn-show-hide-text-area').on('click', function () {
         if ($('.hidden-text-area').css('display') == 'none') {
             $('.btn-show-hide-text-area').find('.glyphicon').removeClass('glyphicon-menu-down').addClass('glyphicon-menu-up');

@@ -160,7 +160,7 @@
                                     $aSamplesValues = $aSamplesForm['submitted']['product']['#options'];
                                     if (array_intersect([$term->tid.'L',$term->tid.'B'], array_keys($aSamplesValues))) { ?>
                                         <div class="col-sm-6 col-md-3 padding-0">
-                                            <a class="color-inherit" href="<?= url('node/46', ['query' => ['product' => $term->tid]]) ?>" title="Samples and prototypes" >
+                                            <a class="color-inherit" href="<?= url('node/46', ['query' => ['product' => $term->tid]]) ?>" title="Samples & prototypes" >
                                                 <span class="toolbox-icon glyphicon glyphicon-transfer color-soft-blue"></span> Request samples
                                             </a>
                                         </div><?php

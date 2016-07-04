@@ -174,7 +174,9 @@ a, .link {
 a:focus, a:hover,
 .link:focus, .link:hover {
     color: #38B15D; 
-    text-decoration: none; 
+}
+a:hover div {
+    text-decoration: none;
 }
 .event-enlarge {
     cursor: pointer;
@@ -1089,9 +1091,6 @@ a:focus, a:hover,
 .block-line .ref-product,
 .block-line .title-product-ref {
     height: auto;
-}
-.block-line-product .title-product-ref {
-    font-size: 18px;
 }
 .block-line-product .title-product {
     font-weight: bold;
