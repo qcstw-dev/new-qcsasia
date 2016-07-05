@@ -1,6 +1,8 @@
 <div class="product-page"><?php
     $sProductTitle = $term->field_product_name['und'][0]['value']." ".$term->field_product_ref['und'][0]['value'];
     $bIsDocCenter = isset($_GET['document_center']);
+    $aWishlist = (isset($_SESSION['wishlist']) && $_SESSION['wishlist'] ? $_SESSION['wishlist']['product_ids'] : [] );
+    $bIsInWishlist = in_array($term->tid, $aWishlist);
     if ($bIsDocCenter) { ?>
         <h2><?= $sProductTitle ?></h2><?php
     } ?>
@@ -49,7 +51,11 @@
         </div><?php
     } else { ?>
         <div class="col-sm-9">
-            <h2><?= $sProductTitle ?></h2>
+            <h2><?= $sProductTitle ?>
+                <span data-toggle="tooltip" data-placement="top" 
+                      title="<?= ($bIsInWishlist ? 'Delete from wishlist' : 'Add to wishlist') ?>" 
+                      class="add-to-wishlist pull-right margin-right-sm-10 cursor-pointer text-right glyphicon 
+                        <?= ($bIsInWishlist ? 'glyphicon-heart' : 'glyphicon-heart-empty') ?> " data-id="<?= $term->tid ?>"></span></h2>
             <div class="panel panel-default"><?php
                 $sColspan = "";
                 if ($term->field_patent || $term->field_packing || $term->field_item_size) {

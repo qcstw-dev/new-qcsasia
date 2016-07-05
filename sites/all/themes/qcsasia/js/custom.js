@@ -1,6 +1,21 @@
 $(function () {
     var getUrl = window.location;
-    baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + (getUrl.host === 'localhost' ? 'new-qcsasia' : '');
+    baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + (getUrl.host === 'localhost' ? 'new-qcsasia/' : '');
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });
+    $('.add-to-wishlist').click(function (){
+        $(this).toggleClass('glyphicon-heart-empty').toggleClass('glyphicon-heart');
+        if ($(this).hasClass('glyphicon-heart')) {
+            $(this).attr('title', 'Delete from wishlist').tooltip('fixTitle').tooltip('show');
+        } else {
+            $(this).attr('title', 'Add to wishlist').tooltip('fixTitle').tooltip('show');
+        }
+        addToWishlist($(this).data('id'));
+    });
+    $('.wishlist-remove-prod').click(function () {
+       $('.block-wishlist-prod-'+$(this).data('id')).fadeOut();
+    });
     $('.btn-show-hide-text-area').on('click', function () {
         if ($('.hidden-text-area').css('display') == 'none') {
             $('.btn-show-hide-text-area').find('.glyphicon').removeClass('glyphicon-menu-down').addClass('glyphicon-menu-up');
@@ -98,6 +113,28 @@ $(function () {
         });
     });
 });
+
+function addToWishlist(id) {
+    var url = baseUrl+'add_to_wishlist?id='+id;
+    $.ajax(url, {
+        dataType: 'json',
+        success: function (data) {
+            if (data['first_add'] == true) {
+                $.magnificPopup.open({
+                    items: [{
+                        src: $('<div class="white-popup">\n\
+                                    <div class="well margin-0">\n\
+                                        <p class="font-size-20">You just added your first item in your whishlist.</p>\n\
+                                        <p><span class="glyphicon glyphicon-arrow-right"></span> <a href="'+baseUrl+'wishlist/'+data.wishlist.id+'" title="Check out your wishlist">Check it out right now!</a></p>\n\
+                                    </div>\n\
+                                </div>'),
+                        type: 'inline'
+                    }]
+                });
+            }
+        }
+    });
+}
 function formValidators(form) {
     $('.' + form + ' .email').on('focusout', function () {
         if ($(this).prop('type') == 'email') {

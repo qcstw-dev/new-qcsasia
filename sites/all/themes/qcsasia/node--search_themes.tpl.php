@@ -144,7 +144,7 @@
             },
             success: function (data) {
                 $('.themes_list').html(data);
-                var newUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : '/' + window.location.pathname.split('/')['2']) + '/' + query;
+                var newUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : window.location.pathname.split('/')['2']) + '/' + query;
                 window.history.pushState({path: newUrl}, '', newUrl);
             }
         });

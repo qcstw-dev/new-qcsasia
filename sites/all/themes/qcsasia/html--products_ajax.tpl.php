@@ -9,6 +9,7 @@ if ($aProducts) {
         $aSelectedCategories = array_keys(getTermByRef(drupal_get_query_parameters()['category'], 'category'));
     }
     $aGifts = retrieveByTermName('gift');
+    $aWishlist = (isset($_SESSION['wishlist']) && $_SESSION['wishlist'] ? $_SESSION['wishlist']['product_ids'] : [] );
     foreach ($aProducts as $oProduct) {
         $aParentCategory = [];
         foreach ($oProduct->field_category['und'] as $aCategory) {
@@ -31,7 +32,7 @@ if ($aProducts) {
             }
         }
         else {
-            displayProductBlock($oProduct, $bIsDocCenter, $aGifts);
+            displayProductBlock($oProduct, $bIsDocCenter, $aGifts, $aWishlist);
             $i++;
         }
     }
@@ -48,15 +49,12 @@ if ($aProducts) {
         $(this).find('.block-toolbox').stop(true, true).hide("slide", { direction: "left" }, 100);
     });
     $('.block-category').on('click', function () {
-        var url = baseUrl + '/products_line_ajax';
-        var currentUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : '/' + window.location.pathname.split('/')['2']) + '/';
+        var url = baseUrl + 'products_line_ajax';
+        var currentUrl = baseUrl + (window.location.host !== 'localhost' ? window.location.pathname.split('/')['1'] : window.location.pathname.split('/')['2']);
         var newUrl = currentUrl + '?line=' + $(this).data('reference');
         var query = '<?= ($sQueryNoCategory ? '?'.$sQueryNoCategory.'&' : '?') ?>' + 'category=' + $(this).data('reference');
         console.log(url + query);
         displayLineProduct(url + query, newUrl);
-    });
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip(); 
     });
 </script>
 <?php
@@ -84,10 +82,17 @@ function displayLineBlock($oCategory) {
     </div><?php
 }
 
-function displayProductBlock($oProduct, $bIsDocCenter, $aGifts) {
+function displayProductBlock($oProduct, $bIsDocCenter, $aGifts, $aWishlist) {
     $sName = $oProduct->field_product_name['und'][0]['value'];
-    $sRef = (isset($oProduct->field_product_ref['und'][0]['value']) ? $oProduct->field_product_ref['und'][0]['value'] : ''); ?>
+    $sRef = (isset($oProduct->field_product_ref['und'][0]['value']) ? $oProduct->field_product_ref['und'][0]['value'] : ''); 
+    $bIsInWishlist = in_array($oProduct->tid, $aWishlist); ?>
     <div class = "block-product col-xs-6 col-md-3">
+        <div class="search-wishlist-btn">
+            <span class="add-to-wishlist glyphicon <?= ($bIsInWishlist ? 'glyphicon-heart' : 'glyphicon-heart-empty') ?>" 
+                  data-toggle="tooltip" data-placement="top" 
+                  title="<?= ($bIsInWishlist ? 'Delete from wishlist' : 'Add to wishlist') ?>" 
+                  data-id="<?= $oProduct->tid ?>"></span>
+        </div>
         <div class = "thumbnail thumbnail-hover">
             <div class="block-toolbox">
                 <div class="block-toolbox-inner"><?php

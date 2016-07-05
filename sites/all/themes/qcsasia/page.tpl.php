@@ -1,10 +1,10 @@
 <div id="main-content" class="container"><?php if (isset($menu_top) && $menu_top): ?>
     <div id="header" class="row hidden-print">
         <div id="menu-top" class="col-xs-12 padding-0">
-            <div class="col-md-6 visible-lg"><?php
+            <div class="col-md-5 visible-lg"><?php
                 displaySocialMediaLogo() ?>
             </div>
-            <div class="col-md-6 padding-0">
+            <div class="col-md-7 padding-0">
                 <!--<div class="btn-group pull-right">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="flag-icon flag-icon-gb"></span> English <span class="caret"></span>

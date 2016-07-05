@@ -1,5 +1,69 @@
 <?php
 
+function addToWishlist ($sId) {
+    $aResponse = ['success' => false];
+    $aResponse['first_add'] = false;
+    
+    if (isset($_SESSION['wishlist']['id']) && $_SESSION['wishlist']) {
+        $oWishlist = taxonomy_term_load($_SESSION['wishlist']['id']);
+        if (!$oWishlist) {
+            $aResponse['success'] = false;
+            $aResponse['error'] = 'Wishlist does not exist';
+            unset($_SESSION['wishlist']);
+//            addToWishlist($sId);
+        } else {
+            $bDelete = false;
+            if ($oWishlist->field_product) {
+                foreach ($oWishlist->field_product['und'] as $sKey => $aProduct) {
+                    if ($aProduct['tid'] == $sId) {
+                        unset($oWishlist->field_product['und'][$sKey]);
+                        if(($key = array_search($sId, $_SESSION['wishlist']['product_ids'])) !== false) {
+                            unset($_SESSION['wishlist']['product_ids'][$key]);
+                        }
+                        $bDelete = true;
+                    } 
+                }
+            }
+            if (!$bDelete || !$oWishlist->field_product) {
+                if (!$oWishlist->field_product) {
+                    $aResponse['first_add'] = true;
+                }
+                $oWishlist->field_product['und'][] = ['tid' => $sId];
+                $_SESSION['wishlist']['product_ids'][] = $sId;
+            }
+
+            taxonomy_term_save($oWishlist);
+            $aResponse['success'] = true;
+            $aResponse['wishlist']['id'] = $oWishlist->tid;
+            $aResponse['wishlist']['product_ids'] = $_SESSION['wishlist']['product_ids'];
+        }
+    } else {
+        // create wishlist
+        $oWishlist = new stdClass();
+        $oWishlist->name = "Wishlist";
+        $vocab = taxonomy_vocabulary_machine_name_load('wishlist');
+        $oWishlist->vid = $vocab->vid;
+        $oWishlist->language = 'und';
+        taxonomy_term_save($oWishlist);
+        $oWishlist->name = $oWishlist->tid;
+        
+        // add product to list
+        $oWishlist->field_product['und'][] = ['tid' => $sId];
+        $oWishlist->field_date_gmt['und'][0]['value'] = date("Y-m-d");
+        taxonomy_term_save($oWishlist);
+        
+        $_SESSION['wishlist']['id'] = $oWishlist->tid;
+        $_SESSION['wishlist']['product_ids'][] = $sId;
+        
+        $aResponse['success'] = true;
+        $aResponse['first_add'] = true;
+        $aResponse['wishlist']['id'] = $oWishlist->tid;
+        $aResponse['wishlist']['product_ids'] = $_SESSION['wishlist']['product_ids'];
+    }
+    
+    return $aResponse;
+}
+
 function registerMember ($aFields) {
     $aResult = [];
     if (isset(
@@ -254,7 +318,15 @@ function qcsasia_links__system_menu_top($variables) {
                     <div class="visible-xs visible-sm pull-left margin-left-xs-20 margin-top-10"><?= displaySocialMediaLogo() ?></div>
                 </div>
                 <div class="navbar-collapse collapse padding-lg-0" id="navbar-collapse-menu-top" aria-expanded="false">
-                    <ul class="menu-list menu-list"><?php 
+                    <ul class="menu-list menu-list pull-right"><?php
+                        if (isset($_SESSION['wishlist']['id']) && $_SESSION['wishlist']['id'] && $_SESSION['wishlist']['product_ids']) { ?>
+                            <li>
+                                <a href="<?= url('wishlist/'.$_SESSION['wishlist']['id']) ?>" >
+                                <span class="glyphicon glyphicon-heart font-size-15"></span>
+                                    Wishlist
+                                </a>
+                            </li><?php
+                        }
                         foreach ($variables['links'] as $link) { ?>
                                 <li>
                                     <a href="<?= url($link['link']['link_path']) ?>" >
@@ -430,6 +502,9 @@ function qcsasia_breadcrumb($variables) {
             }
         }
         $title = drupal_get_title();
+        if ($oTerm->vocabulary_machine_name == 'wishlist') {
+            $title = 'Wishlist '.$title;
+        }
         if (!empty($title)) {
             $breadcrumb[] = $title;
         }
@@ -866,6 +941,7 @@ function qcsasia_preprocess_html(&$vars) {
         case 'html__products_line_ajax' :
         case 'html__member_area_register' :
         case 'html__member_area_login' :
+        case 'html__add_to_wishlist' :
             header('HTTP/1.1 200 OK');
             break;
     }
@@ -990,8 +1066,8 @@ function displayOption($aImageOption) {
     <div class="col-sm-3 margin-bottom-10 block-option">
         <div class="thumbnail margin-bottom-0">
             <img src="<?= file_create_url($aImageOptionEntity->field_image_option_img['und'][0]['uri']) ?>" alt="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" title="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" />
+            <div class="subtitle-pic"><?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?></div>
         </div>
-        <div class="subtitle-pic"><?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?></div>
     </div><?php
 }
 

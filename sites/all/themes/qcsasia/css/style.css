@@ -167,16 +167,24 @@ ol, .breadcrumb {
 .disabled_link {
     cursor: not-allowed;
 }
-a, .link {
+p a, p .link,
+p a:hover, p .link:hover {
     color: #38B15D;
+}
+a, .link {
+    color: inherit;
     cursor: pointer;
 }
 a:focus, a:hover,
 .link:focus, .link:hover {
-    color: #38B15D; 
-}
-a:hover div {
+    color: inherit; 
     text-decoration: none;
+}
+.underline-none {
+    text-decoration: none !important;
+}
+.text-underline-hover:hover {
+    text-decoration: underline;
 }
 .event-enlarge {
     cursor: pointer;
@@ -208,6 +216,9 @@ a:hover div {
 }
 .color-red {
     color: #d9534f;
+}
+.color-white {
+    color: #fff;
 }
 .color-soft-red {
     color: #EF624C;
@@ -1136,6 +1147,13 @@ span.count.badge {
     background-color: #E8E8E8;
     color: inherit;
 }
+.search-wishlist-btn {
+    position: absolute;
+    left: 23px;
+    top: 5px;
+    font-size: 25px;
+    cursor: pointer;
+}
 @media (max-width: 640px) {
     .block-filter {
         position: initial;
@@ -1276,7 +1294,6 @@ span.count.badge {
 }
 @media (min-width: 768px) {
     .block-option .subtitle-pic {
-        height: 48px;
         font-size: 13px;
         overflow: hidden;
     }
@@ -1311,6 +1328,13 @@ span.count.badge {
 }
 .slick-slider {
     margin-bottom: 20px;
+}
+
+/****************************** WISHLIST PAGE ***************/
+.wishlist-remove-prod {
+    position: absolute;
+    right: 20px;
+    top: 10px;
 }
 /****************************** THEME PAGE ***************/
 .title-block a{
