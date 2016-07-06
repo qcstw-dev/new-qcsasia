@@ -320,10 +320,10 @@ function qcsasia_links__system_menu_top($variables) {
                 <div class="navbar-collapse collapse padding-lg-0" id="navbar-collapse-menu-top" aria-expanded="false">
                     <ul class="menu-list menu-list pull-right"><?php
                         if (isset($_SESSION['wishlist']['id']) && $_SESSION['wishlist']['id'] && $_SESSION['wishlist']['product_ids']) { ?>
-                            <li>
+                            <li class="wishlist-link">
                                 <a href="<?= url('wishlist/'.$_SESSION['wishlist']['id']) ?>" >
-                                <span class="glyphicon glyphicon-heart font-size-15"></span>
-                                    Wishlist
+                                <span class="glyphicon glyphicon-floppy-disk font-size-15"></span>
+                                    Wishlist <span class="count badge"><?= count($_SESSION['wishlist']['product_ids']) ?></span>
                                 </a>
                             </li><?php
                         }

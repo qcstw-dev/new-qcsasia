@@ -45,7 +45,7 @@
                 else if ($field['#type'] === 'textarea') { ?>
                         <div class="input-group">
                             <span class="input-group-addon"><?php print $field['#webform_component']['name'] . ($field['#required'] ? ' *' : '') ?></span>
-                            <textarea class="form-control height-150 <?php echo ($field['#required'] ? 'required' : '') ?>" name="<?php print $field['#name'] ?>"></textarea>
+                            <textarea class="textarea form-control height-150 <?php echo ($field['#required'] ? 'required' : '') ?>" name="<?php print $field['#name'] ?>"></textarea>
                         </div><?php
                 } else if ($field['#type'] === 'checkboxes') { 
                     foreach ($field['#options'] as $key => $value) { ?>
@@ -55,13 +55,20 @@
                     } 
                 }
             }
+        } 
+        if (isset(drupal_get_query_parameters()['product'])) {
+            $sMessage = '';
+            foreach (drupal_get_query_parameters()['product'] as $sProductId) {
+                $oProduct = taxonomy_term_load($sProductId); ?>
+                <div class="product-title hidden"><?= $oProduct->name ?></div><?php
+            }
         } ?>
-            <input type="hidden" name="form_build_id" value="<?= $form['form_build_id']['#value'] ?>">
-            <input type="hidden" name="form_token" value="<?= $form['form_token']['#value'] ?>">
-            <input type="hidden" name="form_id" value="<?= $form['form_id']['#value'] ?>"><?php
-            if (isset($form['captcha']) && strpos($form['captcha']['#captcha_type'], 'recaptcha') !== false) {
-                print $form['captcha']['captcha_widgets']['recaptcha_widget']['#markup'];
-            } ?>
+        <input type="hidden" name="form_build_id" value="<?= $form['form_build_id']['#value'] ?>">
+        <input type="hidden" name="form_token" value="<?= $form['form_token']['#value'] ?>">
+        <input type="hidden" name="form_id" value="<?= $form['form_id']['#value'] ?>"><?php
+        if (isset($form['captcha']) && strpos($form['captcha']['#captcha_type'], 'recaptcha') !== false) {
+            print $form['captcha']['captcha_widgets']['recaptcha_widget']['#markup'];
+        } ?>
         <input type="button" class="btn btn-primary margin-top-10 btn-submit" value="Send"/>
     </div>
 </div>
@@ -102,4 +109,10 @@
             $('.webform-client-form').submit();
         }
     });
+    if ($('.product-title').length) {
+        $('.product-title').each(function () {
+           $('.textarea').append('- '+$(this).text()+"\n\
+"); 
+        });
+    }
 </script>

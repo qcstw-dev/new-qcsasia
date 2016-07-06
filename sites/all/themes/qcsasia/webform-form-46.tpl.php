@@ -47,7 +47,7 @@
                         displayProductCheckbox($aProductValues); ?>
                     </div>
                     <div class="well col-xs-12 font-size-18 text-center">
-                        <p>Complete following form to receive your samples:</p>
+                        Complete following form to receive your samples:
                     </div><?php
                 } 
                 if (in_array($field['#type'], ['textfield', 'webform_email', 'select', 'checkboxes']) && $field['#webform_component']['form_key'] != 'product') {

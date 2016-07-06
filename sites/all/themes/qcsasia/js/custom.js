@@ -4,15 +4,6 @@ $(function () {
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip(); 
     });
-    $('.add-to-wishlist').click(function (){
-        $(this).toggleClass('glyphicon-heart-empty').toggleClass('glyphicon-heart');
-        if ($(this).hasClass('glyphicon-heart')) {
-            $(this).attr('title', 'Delete from wishlist').tooltip('fixTitle').tooltip('show');
-        } else {
-            $(this).attr('title', 'Add to wishlist').tooltip('fixTitle').tooltip('show');
-        }
-        addToWishlist($(this).data('id'));
-    });
     $('.wishlist-remove-prod').click(function () {
        $('.block-wishlist-prod-'+$(this).data('id')).fadeOut();
     });
@@ -113,24 +104,33 @@ $(function () {
         });
     });
 });
-
+function listenAddToWishlistEvent() {
+    console.log('add listener');
+    $('.add-to-wishlist').click(function (){
+        $(this).toggleClass('color-light-grey glyphicon-floppy-disk').toggleClass('glyphicon-floppy-saved');
+        if ($(this).hasClass('glyphicon-floppy-saved')) {
+            $(this).attr('title', 'Delete from wishlist').tooltip('fixTitle').tooltip('show');
+        } else {
+            $(this).attr('title', 'Add to wishlist').tooltip('fixTitle').tooltip('show');
+        }
+        addToWishlist($(this).data('id'));
+    });
+}
 function addToWishlist(id) {
     var url = baseUrl+'add_to_wishlist?id='+id;
     $.ajax(url, {
         dataType: 'json',
         success: function (data) {
-            if (data['first_add'] == true) {
-                $.magnificPopup.open({
-                    items: [{
-                        src: $('<div class="white-popup">\n\
-                                    <div class="well margin-0">\n\
-                                        <p class="font-size-20">You just added your first item in your whishlist.</p>\n\
-                                        <p><span class="glyphicon glyphicon-arrow-right"></span> <a href="'+baseUrl+'wishlist/'+data.wishlist.id+'" title="Check out your wishlist">Check it out right now!</a></p>\n\
-                                    </div>\n\
-                                </div>'),
-                        type: 'inline'
-                    }]
-                });
+            if (!Object.keys(data['wishlist']['product_ids']).length) {
+                $('.wishlist-link').remove();
+            } else if (data['first_add'] == true) {
+                $('.menu-list').prepend('\
+                    <li class="wishlist-link">\n\
+                        <a href="'+baseUrl+'wishlist/'+data.wishlist.id+'" title="Wishlist">\n\
+                            <span class="glyphicon glyphicon-floppy-disk"></span>\n\
+                             Wishlist <span class="count badge">1</span></a></li>');
+            } else {
+                $('.menu-list .wishlist-link .count').text(Object.keys(data['wishlist']['product_ids']).length);
             }
         }
     });

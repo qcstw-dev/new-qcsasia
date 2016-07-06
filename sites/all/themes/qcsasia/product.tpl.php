@@ -55,7 +55,7 @@
                 <span data-toggle="tooltip" data-placement="top" 
                       title="<?= ($bIsInWishlist ? 'Delete from wishlist' : 'Add to wishlist') ?>" 
                       class="add-to-wishlist pull-right margin-right-sm-10 cursor-pointer text-right glyphicon 
-                        <?= ($bIsInWishlist ? 'glyphicon-heart' : 'glyphicon-heart-empty') ?> " data-id="<?= $term->tid ?>"></span></h2>
+                        <?= ($bIsInWishlist ? 'glyphicon-floppy-saved' : 'glyphicon-floppy-disk') ?> color-white" data-id="<?= $term->tid ?>"></span></h2>
             <div class="panel panel-default"><?php
                 $sColspan = "";
                 if ($term->field_patent || $term->field_packing || $term->field_item_size) {
@@ -312,6 +312,7 @@
     } ?>
 </div>
 <script>
+    listenAddToWishlistEvent();
     $('.tab').on('click', function () {
         $('.tab').parent().removeClass('active');
         $(this).parent().addClass('active');

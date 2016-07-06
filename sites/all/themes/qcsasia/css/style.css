@@ -204,6 +204,12 @@ a:focus, a:hover,
 .input-group {
     margin-bottom: 20px;
 }
+.color-grey-hover:hover {
+    color: #777;
+}
+.color-light-grey {
+    color: #ccc;
+}
 .color-inherit,
 .color-inherit:hover {
     color: inherit;
@@ -427,6 +433,10 @@ a:focus, a:hover,
 #menu-top ul li {
     display: inline;
     border-left: 1px solid #fff;
+}
+#menu-top .menu-list span.count.badge {
+    background-color: #fff;
+    color: #38B15D;
 }
 @media (max-width: 768px) {
     #menu-top ul li {
@@ -1143,7 +1153,7 @@ a:focus, a:hover,
     margin-left: 280px;
     min-height: 850px;
 }
-span.count.badge {
+.node-search-products span.count.badge {
     background-color: #E8E8E8;
     color: inherit;
 }
@@ -1151,7 +1161,7 @@ span.count.badge {
     position: absolute;
     left: 23px;
     top: 5px;
-    font-size: 25px;
+    font-size: 23px;
     cursor: pointer;
 }
 @media (max-width: 640px) {

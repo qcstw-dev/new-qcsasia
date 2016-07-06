@@ -56,6 +56,7 @@ if ($aProducts) {
         console.log(url + query);
         displayLineProduct(url + query, newUrl);
     });
+    listenAddToWishlistEvent();
 </script>
 <?php
 
@@ -88,7 +89,7 @@ function displayProductBlock($oProduct, $bIsDocCenter, $aGifts, $aWishlist) {
     $bIsInWishlist = in_array($oProduct->tid, $aWishlist); ?>
     <div class = "block-product col-xs-6 col-md-3">
         <div class="search-wishlist-btn">
-            <span class="add-to-wishlist glyphicon <?= ($bIsInWishlist ? 'glyphicon-heart' : 'glyphicon-heart-empty') ?>" 
+            <span class="add-to-wishlist glyphicon color-grey-hover <?= ($bIsInWishlist ? 'glyphicon-floppy-saved' : 'color-light-grey glyphicon-floppy-disk') ?>" 
                   data-toggle="tooltip" data-placement="top" 
                   title="<?= ($bIsInWishlist ? 'Delete from wishlist' : 'Add to wishlist') ?>" 
                   data-id="<?= $oProduct->tid ?>"></span>

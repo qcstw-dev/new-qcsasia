@@ -15,7 +15,7 @@
         } ?>
             <div class="col-sm-4 block-line-product">
                 <div class="search-wishlist-btn">
-                    <span class="add-to-wishlist glyphicon <?= ($bIsInWishlist ? 'glyphicon-heart' : 'glyphicon-heart-empty') ?>" 
+                    <span class="add-to-wishlist glyphicon color-grey-hover <?= ($bIsInWishlist ? 'glyphicon-floppy-saved' : 'color-light-grey glyphicon-floppy-disk') ?>" 
                           data-toggle="tooltip" data-placement="top" 
                           title="<?= ($bIsInWishlist ? 'Delete from wishlist' : 'Add to wishlist') ?>" 
                           data-id="<?= $oProduct->tid ?>"></span>
@@ -98,16 +98,5 @@
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip(); 
     });
-    $('.add-to-wishlist').click(function (){
-        $(this).toggleClass('glyphicon-heart-empty').toggleClass('glyphicon-heart');
-        if ($(this).hasClass('glyphicon-heart')) {
-            $(this).attr('title', 'Delete from wishlist').tooltip('fixTitle').tooltip('show');
-        } else {
-            $(this).attr('title', 'Add to wishlist').tooltip('fixTitle').tooltip('show');
-        }
-        addToWishlist($(this).data('id'));
-    });
-    $('.wishlist-remove-prod').click(function () {
-       $('.block-wishlist-prod-'+$(this).data('id')).fadeOut();
-    });
+    listenAddToWishlistEvent();
 </script>

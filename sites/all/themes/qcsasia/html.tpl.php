@@ -1,5 +1,10 @@
 <?php
+if ($_SESSION['timeout'] + 60 * 60 < time()) {
+    unset($_SESSION['country']);
+}
 if (!isset($_SESSION['country']) || !$_SESSION['country']) {
+    $_SESSION['timeout'] = time();
+    
     $ip = '';
     if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR']) {
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -49,7 +54,21 @@ if (in_array($_SESSION['country'], ['CN', 'KR', 'KP', 'TR', 'IN'])) {
     exit;
 } 
 verifyMemberConnection(); 
-$bIsConnected = isset($_SESSION['user']) && $_SESSION['user']; ?>
+$bIsConnected = isset($_SESSION['user']) && $_SESSION['user'];
+
+if (user_is_logged_in()) {
+    if (!isset($_SESSION['wishlist_checked'])) {
+        $aWishlists = retrieveByTermName('wishlist');
+        foreach ($aWishlists as $aWishlist) {
+            if(strtotime($aWishlist->field_date_gmt['und'][0]['value']) < strtotime('-2 weeks')) {
+                taxonomy_term_delete($aWishlist->tid);
+            }
+        }
+        $_SESSION['wishlist_checked'] = true;
+    }
+}
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
   "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
