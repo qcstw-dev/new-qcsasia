@@ -108,6 +108,8 @@ DirectoryIndex index.php index.html index.htm
   RewriteRule ^product/coin-keychain-holder$ https://www.qcsasia.com/product/trolley-tokens-holder [R=301,L]
   RewriteRule ^search$ https://www.qcsasia.com/promotional-products [R=301,L]
 
+  RewriteRule ^wishlist-list/([0-9]+)$   ?q=wishlist-list&wishlist=$1 [L]
+
   # Modify the RewriteBase if you are using Drupal in a subdirectory or in a
   # VirtualDocumentRoot and the rewrite rules are not working properly.
   # For example if your site is at http://example.com/drupal uncomment and
@@ -124,6 +126,7 @@ DirectoryIndex index.php index.html index.htm
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_URI} !=/favicon.ico
   RewriteRule ^ index.php [L]
+
 
   # Rules to correctly serve gzip compressed CSS and JS files.
   # Requires both mod_rewrite and mod_headers to be enabled.
