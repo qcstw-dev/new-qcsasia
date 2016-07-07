@@ -5,9 +5,9 @@
         $oFieldThemeGift = entity_load('field_collection_item', [$aFieldThemeGift['value']])[$aFieldThemeGift['value']];
         $oGift = $oFieldThemeGift->field_gift['und'][0]['taxonomy_term'];
         if (isset(drupal_get_query_parameters()['gift'])) {
-            $sIdGiftPreselected = drupal_get_query_parameters()['gift'];
+            $aIdGiftPreselected = (is_array(drupal_get_query_parameters()['gift']) ? drupal_get_query_parameters()['gift'] : [drupal_get_query_parameters()['gift']]);
         }
-        if ((isset(drupal_get_query_parameters()['gift']) && in_array($oGift->tid, (is_array($sIdGiftPreselected) ? $sIdGiftPreselected : [$sIdGiftPreselected]))) || !isset($sIdGiftPreselected)) { ?>
+        if ((isset($aIdGiftPreselected) && in_array($oGift->tid, array_values($aIdGiftPreselected))) || !isset($aIdGiftPreselected)) { ?>
             <div class="col-sm-12"><?php
                 $sProductId = ($oGift->field_product['und'][0]['tid'] ? $oGift->field_product['und'][0]['tid'] : ''); ?>
                 <div class="title-block"><div class="title"><?= $oGift->field_product_name['und'][0]['value'].' '.$oGift->field_product_ref['und'][0]['value'] ?></div><?php 

@@ -194,8 +194,9 @@
                             <h4 class="panel-title">Document center</h4>
                         </div>
                         <div class="panel-body">
-                            <div class="col-sm-2 thumbnail border-none margin-bottom-0">
-                                <img src="<?= url(path_to_theme() . "/images/member/document-center.png") ?>" alt="Document center" title="Document center" />
+                            <div class="col-sm-2 text-center">
+                                <span class="glyphicon glyphicon glyphicon-list-alt font-size-150 color-dark-grey"></span>
+                                <!--<img src="<?= url(path_to_theme() . "/images/member/document-center.png") ?>" alt="Document center" title="Document center" />-->
                             </div>
                             <div class="col-sm-10">
                                 <p>In this area, you can download our standard documents in editable high definition to use as sales tools :</p>

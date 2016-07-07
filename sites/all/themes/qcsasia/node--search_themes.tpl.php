@@ -121,17 +121,15 @@
     function updateSearchThemesResults () {
         var aFilterGift = [];
         var bIssetGetVars = false;
+        var query = '';
         $('.filter').each(function () {
             if ($(this).is(':checked')) {
                 aFilterGift.push($(this).data('id'));
+                query = query + (bIssetGetVars ? '&' : '?')+ 'gift[]=' + $(this).data('id');
+                bIssetGetVars = true;
             }
         });
         var url = baseUrl + '/themes_ajax/';
-        var query = '';
-        $.each(aFilterGift, function (index, value) {
-            query = query + (bIssetGetVars ? '&' : '?')+ 'gift[]=' + value;
-            bIssetGetVars = true;
-        });
         
         console.log(url + query);
         $.ajax(url + query, {

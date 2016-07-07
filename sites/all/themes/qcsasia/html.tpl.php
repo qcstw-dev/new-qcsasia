@@ -1,9 +1,10 @@
 <?php
-if ($_SESSION['timeout'] + 60 * 60 < time()) {
+// we delete the session about checking IP location if older than 1 hour
+if ($_SESSION['timeout_country'] + 60 * 60 < time()) {
     unset($_SESSION['country']);
 }
 if (!isset($_SESSION['country']) || !$_SESSION['country']) {
-    $_SESSION['timeout'] = time();
+    $_SESSION['timeout_country'] = time();
     
     $ip = '';
     if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR']) {
@@ -56,19 +57,38 @@ if (in_array($_SESSION['country'], ['CN', 'KR', 'KP', 'TR', 'IN'])) {
 verifyMemberConnection(); 
 $bIsConnected = isset($_SESSION['user']) && $_SESSION['user'];
 
-if (user_is_logged_in()) {
-    if (!isset($_SESSION['wishlist_checked'])) {
-        $aWishlists = retrieveByTermName('wishlist');
-        foreach ($aWishlists as $aWishlist) {
-            if(strtotime($aWishlist->field_date_gmt['und'][0]['value']) < strtotime('-2 weeks')) {
-                taxonomy_term_delete($aWishlist->tid);
-            }
+// For connected admin we delete the session about wishlist checking if older than 1 hour
+if (user_is_logged_in() && $_SESSION['timeout_admin_wishlist_checked'] + 60 * 60 < time()) {
+    unset($_SESSION['admin_wishlist_checked']);
+}
+if (user_is_logged_in() && !isset($_SESSION['admin_wishlist_checked'])) {
+    $_SESSION['timeout_admin_wishlist_checked'] = time();
+    $aWishlists = retrieveByTermName('wishlist');
+    foreach ($aWishlists as $aWishlist) {
+        if(strtotime($aWishlist->field_date_gmt['und'][0]['value']) < strtotime('-2 weeks')) {
+            taxonomy_term_delete($aWishlist->tid);
         }
-        $_SESSION['wishlist_checked'] = true;
     }
+    $_SESSION['admin_wishlist_checked'] = true;
 }
 
-?>
+if (isset(drupal_get_query_parameters()['new_wishlist'])) {
+    unset($_SESSION['wishlist']);
+    $oWishlist = createWishlist();
+    header('location: '. url('taxonomy/term/'.$oWishlist->tid, ['absolute' => true]));
+}
+if (isset($_SESSION['wishlist']['id']) && !wishlistExist($_SESSION['wishlist']['id'])) {
+    unset($_SESSION['wishlist']);
+    unset($_SESSION['timeout_user_wishlist_checked']);
+}
+// if checking session wishlist older than 5 min then we delete the wishlist 
+// session otherwise we update the last checking time
+if (isset($_SESSION['wishlist']) && isset($_SESSION['timeout_user_wishlist_checked']) && $_SESSION['timeout_user_wishlist_checked'] + 5 * 60 < time()) {
+    unset($_SESSION['wishlist']);
+    unset($_SESSION['timeout_user_wishlist_checked']);
+} else {
+    $_SESSION['timeout_user_wishlist_checked'] = time();
+} ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
   "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>

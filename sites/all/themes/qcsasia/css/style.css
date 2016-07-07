@@ -168,6 +168,7 @@ ol, .breadcrumb {
     cursor: not-allowed;
 }
 p a, p .link,
+.links,
 p a:hover, p .link:hover {
     color: #38B15D;
 }
@@ -220,6 +221,9 @@ a:focus, a:hover,
 .color-dark-green {
     color: #379453;
 }
+.color-dark-grey {
+    color: #444;
+}
 .color-red {
     color: #d9534f;
 }
@@ -240,6 +244,7 @@ a:focus, a:hover,
 }
 .panel-title {
     font-size: 20px;
+    color: #777;
 }
 .panel-body {
     color: #777;
@@ -521,6 +526,9 @@ a:focus, a:hover,
     color: #fff;
     border: none;
 }
+.btn-default {
+    /*background-color: #e8e8e8;*/
+}
 .min-width-10-percent {
     min-width: 10%;
 }
@@ -565,6 +573,9 @@ a:focus, a:hover,
 .font-size-40 {
     font-size: 40px !important;
 }
+.font-size-30 {
+    font-size: 30px !important;
+}
 .font-size-24 {
     font-size: 24px !important;
 }
@@ -582,6 +593,9 @@ a:focus, a:hover,
 }
 .font-size-65 {
     font-size: 65px;
+}
+.font-size-150 {
+    font-size: 150px;
 }
 .height-150 {
     min-height: 150px !important;

@@ -1,7 +1,7 @@
-<h2>Wishlist <?= $term->tid ?> 
-    <a class="pull-right font-size-18" href="mailto:info@qcsasia.com?subject=Wishlist - QCS Asia&body=<?= url('taxonomy/term/'.$term->tid, ['absolute' => true]) ?>">
-        <span class="glyphicon glyphicon-share-alt"></span> Share this wishlist
-    </a>    
+<h2>Wishlist <?= $term->tid ?>
+    <a class="pull-right font-size-18" href="<?= url('', ['query' => ['new_wishlist' => null]]) ?>" data-toggle="tooltip" data-placement="top" title="You won't be able to modify the current wishlist anymore" >
+        <span class="glyphicon glyphicon-plus"></span> Create a new wishlist
+    </a>
 </h2>
 <div class="col-xs-12"><?php
     // retrieve products
@@ -9,33 +9,36 @@
     foreach ($term->field_product['und'] as $aWishlistProduct) {
         $aProducts[] = taxonomy_term_load($aWishlistProduct['tid']);
     }
-
     // display products
-    foreach ($aProducts as $oProduct) { 
-        $sProductTitle = $oProduct->field_product_name['und'][0]['value']." ".$oProduct->field_product_ref['und'][0]['value']; 
-        $aLogoProcesses = getLogoProcesses($oProduct);
-        $sLogoProcessUri = (!$aLogoProcesses 
-                ? $oProduct->field_main_photo['und'][0]['uri']
-                : (isset($aLogoProcesses['doming']) && $aLogoProcesses['doming']['thumbnail']
-                    ? $aLogoProcesses['doming']['thumbnail'] 
-                    : (isset(array_values($aLogoProcesses)[0]['thumbnail']) && array_values($aLogoProcesses)[0]['thumbnail']
-                        ? array_values($aLogoProcesses)[0]['thumbnail'] 
-                        : $oProduct->field_main_photo['und'][0]['uri']))); ?>
-        <div class="block-wishlist-prod block-wishlist-prod-<?= $oProduct->tid ?> col-xs-12 thumbnail thumbnail-hover" data-id="<?= $oProduct->tid ?>">
-            <a href="<?= url('taxonomy/term/'.$oProduct->tid) ?>" title="<?= $sProductTitle ?>">
-                <div class="col-sm-2 thumbnail margin-bottom-0">
-                    <img src="<?= file_create_url($sLogoProcessUri) ?>" title="<?= $sProductTitle ?>" alt="<?= $sProductTitle ?>" />
-                </div>
-                <div class="col-sm-6">
-                    <div class="product-title font-size-20 bold margin-bottom-20 margin-top-10"><?= $sProductTitle ?></div>
-                    <div class="margin-bottom-10"><strong>Description:</strong> <?= substr(strip_tags($oProduct->field_description['und'][0]['value']), 0, 150).' [...]' ?></div>
-                    <div><strong>Item size:</strong> <?= $oProduct->field_item_size['und'][0]['value'] ?></div>
-                    <div><strong>Logo size:</strong> <?= $oProduct->field_logo_size['und'][0]['value'] ?></div>
-                    <div><strong>Packaging:</strong> <?= $oProduct->field_packaging['und'][0]['value'] ?></div>
-                </div>
-                <div class="col-sm-3 padding-0 margin-top-10">
-                    <div class="well bottom-0">
-                        <div class="font-size-18 bold margin-bottom-10">Toolbox</div><?php
+    if ($aProducts) {
+        foreach ($aProducts as $oProduct) { 
+            $sProductTitle = $oProduct->field_product_name['und'][0]['value']." ".$oProduct->field_product_ref['und'][0]['value']; 
+            $aLogoProcesses = getLogoProcesses($oProduct);
+            $sLogoProcessUri = (!$aLogoProcesses 
+                    ? $oProduct->field_main_photo['und'][0]['uri']
+                    : (isset($aLogoProcesses['doming']) && $aLogoProcesses['doming']['thumbnail']
+                        ? $aLogoProcesses['doming']['thumbnail'] 
+                        : (isset(array_values($aLogoProcesses)[0]['thumbnail']) && array_values($aLogoProcesses)[0]['thumbnail']
+                            ? array_values($aLogoProcesses)[0]['thumbnail'] 
+                            : $oProduct->field_main_photo['und'][0]['uri']))); ?>
+            <div class="block-wishlist-prod block-wishlist-prod-<?= $oProduct->tid ?> col-xs-12 thumbnail thumbnail-hover" data-id="<?= $oProduct->tid ?>">
+                <a href="<?= url('taxonomy/term/'.$oProduct->tid) ?>" title="<?= $sProductTitle ?>">
+                    <div class="col-sm-2 thumbnail margin-bottom-0">
+                        <img src="<?= file_create_url($sLogoProcessUri) ?>" title="<?= $sProductTitle ?>" alt="<?= $sProductTitle ?>" />
+                    </div>
+                    <div class="col-sm-6 margin-top-10">
+                        <div class="product-title font-size-20 bold margin-bottom-20"><?= $sProductTitle ?></div>
+                        <div class="margin-bottom-10"><strong>Description:</strong> <?= substr(strip_tags($oProduct->field_description['und'][0]['value']), 0, 150).' [...]' ?></div>
+                        <div><strong>Item size:</strong> <?= $oProduct->field_item_size['und'][0]['value'] ?></div>
+                        <div><strong>Logo size:</strong> <?= $oProduct->field_logo_size['und'][0]['value'] ?></div>
+                        <div><strong>Packaging:</strong> <?= $oProduct->field_packaging['und'][0]['value'] ?></div>
+                    </div>
+                </a>
+                <div class="col-sm-3 padding-0 panel panel-default margin-top-10">
+                    <div class="panel-heading">
+                        <div class="panel-title">Toolbox</div>
+                    </div>
+                    <div class="panel-body"><?php
                         if ($oProduct->field_newsletter_url) { ?>
                             <div>
                                 <span class="toolbox-icon glyphicon glyphicon-list-alt color-soft-orange"></span>
@@ -75,16 +78,40 @@
                         <span class="glyphicon glyphicon-remove font-size-24"></span>
                     </div><?php
                 } ?>
-            </a>
-            <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                </div><?php
+            } ?>
+        <div class="block-button">
+            <div class="btn btn-default btn-quotation">Send quotation request for all products listed</div>
+            <div class="btn btn-default btn-samples">Send samples request for all products listed</div>
+            <div class="col-xs-12 alert alert-warning padding-10 margin-top-20">
+                <div class="col-xs-1 font-size-40">
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                </div>
+                <div class="col-xs-11">
+                    <p>If you want to be able to get back to your wishlist, please 
+                        <span class="bookmark link bold" data-title="Wishlist - <?= variable_get('site_name') ?>" 
+                              data-url="<?= url('taxonomy/term'.$term->tid, ['absolute' => true]) ?>" rel="sidebar">bookmark this page</span> or save wishlist page URL, otherwise the wishlist will be lost</p>
+                    <p class="margin-bottom-0">Note that your for wishlist will be saved for <b>two weeks only</b></p>
+                </div>
+            </div>
         </div><?php
-    }
-    if ($aProducts) { ?>
-        <div class="btn btn-primary btn-quotation">Send quotation request for all products listed</div>
-        <div class="btn btn-primary btn-samples">Send samples request for all products listed</div><?php
     } ?>
+    <div class="col-xs-12 message-no-product alert alert-success <?= ($aProducts ? 'hidden' : '') ?>">
+        There is no products in your wishlist, <a href="<?= url('node/13') ?>" class="link bold" title="Promotional Products">find products to add here</a>
+    </div>
 </div>
 <script>
+    listenAddToWishlistEvent();
+    $('.wishlist-remove-prod').click(function () {
+        $('.block-wishlist-prod-'+$(this).data('id')).fadeOut('slow', function() {
+            $(this).remove();
+           if (!$('.block-wishlist-prod').length) {
+               $('.message-no-product').removeClass('hidden');
+               $('.block-button').addClass('hidden');
+           }
+        });
+    });
     $('.btn-quotation').click(function () {
         var sQuery = '';
         $('.block-wishlist-prod').each(function () {
@@ -99,4 +126,15 @@
         });
         window.location.href = baseUrl+'samples-and-prototypes/?'+sQuery;
     });
+    function openPopupInstruction () {
+        $.magnificPopup.open({
+            items: [{
+                src: $('<div class="white-popup bold">' +
+                        'Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') !== - 1 ? 'Command/Cmd' : 'CTRL') + ' + D to bookmark this page.' +
+                        '</div>'),
+                type: 'inline'
+            }]
+        });
+    }
+    
 </script>

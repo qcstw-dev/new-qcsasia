@@ -26,7 +26,7 @@ if ($aProducts) {
                 $oCategory = taxonomy_term_load(array_shift($aParentCategoriesKeys));
             }
             if (!in_array($oCategory->field_reference['und'][0]['value'], $aUsedCategories)) {
-                displayLineBlock($oCategory);
+                displayLineBlock($oCategory, $oProduct);
                 $aUsedCategories[] = $oCategory->field_reference['und'][0]['value'];
                 $i++;
             }
@@ -60,9 +60,10 @@ if ($aProducts) {
 </script>
 <?php
 
-function displayLineBlock($oCategory) {
+function displayLineBlock($oCategory, $oProduct) {
     $sName = $oCategory->field_category_title['und'][0]['value'];
-    $sRef = (isset($oCategory->field_category_reference['und'][0]['value']) ? $oCategory->field_category_reference['und'][0]['value'] : ''); ?>
+//    $sRef = (isset($oCategory->field_category_reference['und'][0]['value']) ? $oCategory->field_category_reference['und'][0]['value'] : ''); 
+    $sRef = preg_replace('/[0-9]+/', '',(isset($oProduct->field_product_ref['und'][0]['value']) ? $oProduct->field_product_ref['und'][0]['value'] : '')); ?>
     <div class = "block-product block-category col-xs-6 col-md-3" data-reference="<?= $oCategory->field_reference['und'][0]['value'] ?>">
         <div class = "thumbnail thumbnail-hover">
             <div class="col-md-12 padding-0 products-thumbnails"><?php 
@@ -76,8 +77,8 @@ function displayLineBlock($oCategory) {
             </div>
             <div class="clearfix"></div>
             <div class="subtitle-pic">
-                    <div class = "ref-product"></div>
-                    <div><?= $sName ?></div>
+                <div class = "ref-product"><?= $sRef ?></div>
+                <div><?= $sName ?></div>
             </div>
         </div>
     </div><?php

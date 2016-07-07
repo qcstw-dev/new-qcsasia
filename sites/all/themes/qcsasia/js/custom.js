@@ -4,9 +4,6 @@ $(function () {
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip(); 
     });
-    $('.wishlist-remove-prod').click(function () {
-       $('.block-wishlist-prod-'+$(this).data('id')).fadeOut();
-    });
     $('.btn-show-hide-text-area').on('click', function () {
         if ($('.hidden-text-area').css('display') == 'none') {
             $('.btn-show-hide-text-area').find('.glyphicon').removeClass('glyphicon-menu-down').addClass('glyphicon-menu-up');
@@ -14,6 +11,27 @@ $(function () {
             $('.btn-show-hide-text-area').find('.glyphicon').removeClass('glyphicon-menu-up').addClass('glyphicon-menu-down');
         }
         $('.hidden-text-area').slideToggle();
+    });
+    $(".bookmark").click(function(e){
+        e.preventDefault(); // this will prevent the anchor tag from going the user off to the link
+        var bookmarkUrl = $(this).data('url');
+        var bookmarkTitle = $(this).data('title');
+        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+             openPopupInstruction();
+             return false;
+        } else if (window.sidebar) { // For Mozilla Firefox Bookmark
+//            window.sidebar.addPanel(bookmarkTitle, bookmarkUrl,"");
+             openPopupInstruction();
+        } else if( window.external || document.all) { // For IE Favorite
+            window.external.AddFavorite( bookmarkUrl, bookmarkTitle);
+        } else if(window.opera) { // For Opera Browsers
+            $(".bookmark").attr("href",bookmarkUrl);
+            $(".bookmark").attr("title",bookmarkTitle);
+            $(".bookmark").attr("rel","sidebar");
+        } else { // for other browsers which does not support
+             openPopupInstruction();
+             return false;
+        }
     });
     $('ul.nav li.dropdown').hover(function () {
         $(this).find('.dropdown-menu').stop(true, true).show();
@@ -105,7 +123,6 @@ $(function () {
     });
 });
 function listenAddToWishlistEvent() {
-    console.log('add listener');
     $('.add-to-wishlist').click(function (){
         $(this).toggleClass('color-light-grey glyphicon-floppy-disk').toggleClass('glyphicon-floppy-saved');
         if ($(this).hasClass('glyphicon-floppy-saved')) {
@@ -121,9 +138,7 @@ function addToWishlist(id) {
     $.ajax(url, {
         dataType: 'json',
         success: function (data) {
-            if (!Object.keys(data['wishlist']['product_ids']).length) {
-                $('.wishlist-link').remove();
-            } else if (data['first_add'] == true) {
+            if (!$('.wishlist-link').length) {
                 $('.menu-list').prepend('\
                     <li class="wishlist-link">\n\
                         <a href="'+baseUrl+'wishlist/'+data.wishlist.id+'" title="Wishlist">\n\

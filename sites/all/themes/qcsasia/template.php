@@ -1,5 +1,28 @@
 <?php
-
+function wishlistExist($sId) {
+    if (taxonomy_term_load($sId)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+function createWishlist () {
+    // create wishlist
+    $oWishlist = new stdClass();
+    $oWishlist->name = "Wishlist";
+    $vocab = taxonomy_vocabulary_machine_name_load('wishlist');
+    $oWishlist->vid = $vocab->vid;
+    $oWishlist->language = 'und';
+    $oWishlist->field_date_gmt['und'][0]['value'] = date("Y-m-d");
+    taxonomy_term_save($oWishlist);
+    
+    $_SESSION['wishlist']['id'] = $oWishlist->tid;
+    
+    $oWishlist->name = $oWishlist->tid;
+    taxonomy_term_save($oWishlist);
+    
+    return $oWishlist;
+}
 function addToWishlist ($sId) {
     $aResponse = ['success' => false];
     $aResponse['first_add'] = false;
@@ -38,21 +61,13 @@ function addToWishlist ($sId) {
             $aResponse['wishlist']['product_ids'] = $_SESSION['wishlist']['product_ids'];
         }
     } else {
-        // create wishlist
-        $oWishlist = new stdClass();
-        $oWishlist->name = "Wishlist";
-        $vocab = taxonomy_vocabulary_machine_name_load('wishlist');
-        $oWishlist->vid = $vocab->vid;
-        $oWishlist->language = 'und';
-        taxonomy_term_save($oWishlist);
-        $oWishlist->name = $oWishlist->tid;
+        
+        $oWishlist = createWishlist();
         
         // add product to list
         $oWishlist->field_product['und'][] = ['tid' => $sId];
-        $oWishlist->field_date_gmt['und'][0]['value'] = date("Y-m-d");
         taxonomy_term_save($oWishlist);
         
-        $_SESSION['wishlist']['id'] = $oWishlist->tid;
         $_SESSION['wishlist']['product_ids'][] = $sId;
         
         $aResponse['success'] = true;
@@ -319,7 +334,7 @@ function qcsasia_links__system_menu_top($variables) {
                 </div>
                 <div class="navbar-collapse collapse padding-lg-0" id="navbar-collapse-menu-top" aria-expanded="false">
                     <ul class="menu-list menu-list pull-right"><?php
-                        if (isset($_SESSION['wishlist']['id']) && $_SESSION['wishlist']['id'] && $_SESSION['wishlist']['product_ids']) { ?>
+                        if (isset($_SESSION['wishlist']['id']) && $_SESSION['wishlist']['id']) { ?>
                             <li class="wishlist-link">
                                 <a href="<?= url('wishlist/'.$_SESSION['wishlist']['id']) ?>" >
                                 <span class="glyphicon glyphicon-floppy-disk font-size-15"></span>
@@ -328,11 +343,11 @@ function qcsasia_links__system_menu_top($variables) {
                             </li><?php
                         }
                         foreach ($variables['links'] as $link) { ?>
-                                <li>
-                                    <a href="<?= url($link['link']['link_path']) ?>" >
-                                        <?= $link['link']['link_title'] ?>
-                                    </a>
-                                </li><?php 
+                            <li>
+                                <a href="<?= url($link['link']['link_path']) ?>" >
+                                    <?= $link['link']['link_title'] ?>
+                                </a>
+                            </li><?php 
                         } ?>
                     </ul>
                 </div>
@@ -1138,7 +1153,8 @@ function displayProductCheckbox($aProducts){
     $mProductParameter = isset(drupal_get_query_parameters()['product']) ? drupal_get_query_parameters()['product'] : '';
     $aProductParameters = is_array($mProductParameter) ? $mProductParameter : [$mProductParameter];
     foreach ($aProducts as $sId => $aProductOption) { 
-        $oProduct = taxonomy_term_load($sId); ?>
+        $oProduct = taxonomy_term_load($sId);
+        $sProductTitle = $oProduct->field_product_name['und'][0]['value']." ".$oProduct->field_product_ref['und'][0]['value']; ?>
             <div class="col-xs-6 col-sm-2" id="<?= $sId ?>">
                 <div class="col-xs-12 thumbnail thumbnail-hover padding-0"><?php
                     $aLogoProcesses = getLogoProcesses($oProduct);
@@ -1162,7 +1178,7 @@ function displayProductCheckbox($aProducts){
                     if (isset($aProductOption[$sId.'L'])) { ?>
                         <div class="col-xs-12 padding-0 margin-bottom-0 border-bottom">
                             <div class="border-right padding-0 col-xs-2 background-grey text-center">
-                                <input type="checkbox" name="submitted[product][]" value="<?= $sId.'L' ?>" id="logotyped_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" aria-label="..." <?= ($bCheck ? 'checked' : '')  ?>>
+                                <input class="checkbox-sample" data-id="<?= $sId ?>" data-type="L" data-product-title="<?= $sProductTitle ?>" type="checkbox" name="submitted[product][]" value="<?= $sId.'L' ?>" id="logotyped_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" aria-label="..." <?= ($bCheck ? 'checked' : '')  ?>>
                             </div>
                             <div class="col-xs-10">
                                 <label for="logotyped_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" class="margin-bottom-0 cursor-pointer">Logotyped</label>
@@ -1172,7 +1188,7 @@ function displayProductCheckbox($aProducts){
                     if (isset($aProductOption[$sId.'B'])) { ?>
                         <div class="col-xs-12 padding-0 margin-bottom-0">
                             <div class="border-right padding-0 col-xs-2 background-grey text-center">
-                                <input type="checkbox" name="submitted[product][]" value="<?= $sId.'B' ?>" id="blank_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" aria-label="..." <?= ($bCheck ? 'checked' : '')  ?>>
+                                <input class="checkbox-sample" data-id="<?= $sId ?>" data-type="B" data-product-title="<?= $sProductTitle ?>" type="checkbox" name="submitted[product][]" value="<?= $sId.'B' ?>" id="blank_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" aria-label="..." <?= ($bCheck ? 'checked' : '')  ?>>
                             </div>
                             <div class="col-xs-10">
                                 <label for="blank_<?= $oProduct->field_product_ref['und'][0]['value'] ?>" class="margin-bottom-0 cursor-pointer">Blank no logo</label>
