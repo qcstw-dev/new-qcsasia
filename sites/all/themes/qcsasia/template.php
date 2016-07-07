@@ -1,6 +1,11 @@
 <?php
 function wishlistExist($sId) {
-    if (taxonomy_term_load($sId)) {
+    $oQuery = new EntityFieldQuery();
+    $oQuery->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'wishlist')
+            ->propertyCondition('tid', $sId, '=');
+          
+    if ($oQuery->execute()['taxonomy_term']) {
         return true;
     } else {
         return false;
