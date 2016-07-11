@@ -4,6 +4,12 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('taxonomy/term/850') ?>" title="Zamac hotel & rental keychain #ZHK">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZHK-zamac-hotel-and-rental-keychain.jpg") ?>" alt="Zamac hotel & rental keychain #ZHK" title="Zamac hotel & rental keychain #ZHK" />
+                        <div class="slide-text">Zamac hotel & rental keychain #ZHK</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="<?= url('node/13', ['query' => ['line' => 'zamac-doming-keychain']]) ?>" title="Zamac doming keychain #ZKA">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/ZKA-zamac-doming-keychain-slide-homepage.jpg") ?>" alt="Zamac doming keychain #ZKA" title="Zamac doming keychain #ZKA" />
                         <div class="slide-text">Zamac doming keychain #ZKA</div>
@@ -43,12 +49,6 @@
                     <a href="<?= url('node/13', ['query' => ['line' => 'doming-magnet-mgodd']]) ?>" title="Doming magnet #MGODD">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/mgodd-line.jpg") ?>" alt="Doming magnet #MGODD" title="Doming magnet #MGODD" />
                         <div class="slide-text">Doming magnet #MGODD</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/349') ?>" title="Plastic key hanger #PHM203">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/phm.jpg") ?>" alt="Plastic key hanger #PHM203" title="Plastic key hanger #PHM203" />
-                        <div class="slide-text">Plastic key hanger #PHM203</div>
                     </a>
                 </div>
             </div>
