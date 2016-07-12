@@ -33,7 +33,7 @@
         $bIsConnected = isset($_SESSION['user']) && $_SESSION['user']; ?>
         <a <?= (!$bIsConnected ? 'class="disabled_link"' : '') ?> href="<?= (!$bIsConnected ? url('member-area') : url(path_to_theme() . "/images/catalog/QCS ASIA promotional product, gift & souvenir catalog 2016.pdf")) ?>" target="_blank" title="Download Catalog 2016">
             <div class="col-xs-offset-2 col-sm-offset-3 col-xs-4 col-sm-3">
-                <div class="thumbnail thumbnail-hover">
+                <div class="thumbnail thumbnail-hover <?= (!$bIsConnected ? 'disabled_link' : '') ?>">
                     <img src="<?= url(path_to_theme() . "/images/catalog/catalog-2016.jpg") ?>" />
                     <div class="subtitle-pic">
                         Download .pdf<br /> version
@@ -44,7 +44,7 @@
         </a>
         <a <?= (!$bIsConnected ? 'class="disabled_link"' : '') ?> href="<?= (!$bIsConnected ? url('member-area') : url(path_to_theme() . "/images/catalog/QCS Asia catalog 2016 - unbranded low def.pdf")) ?>" target="_blank" title="Download Catalog 2016">
             <div class="col-sm-offset-1 col-xs-4 col-sm-3">
-                <div class="thumbnail thumbnail-hover margin-bottom-0">
+                <div class="thumbnail thumbnail-hover <?= (!$bIsConnected ? 'disabled_link' : '') ?> margin-bottom-0">
                     <img src="<?= url(path_to_theme() . "/images/catalog/catalog-2016-unbranded.jpg") ?>" />
                     <div class="subtitle-pic">
                         Download .pdf unbranded version

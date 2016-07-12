@@ -31,7 +31,7 @@
     $bAlertSet = false;
     $iCountFields = 0;
     $iCount = 1;
-    $aPreselectedProducts = (isset(drupal_get_query_parameters()['product']) ? drupal_get_query_parameters()['product'] : []);
+    $aPreselectedProducts = (isset(drupal_get_query_parameters()['product']) ? (is_array(drupal_get_query_parameters()['product']) ? drupal_get_query_parameters()['product'] : [drupal_get_query_parameters()['product']]) : []);
     foreach ($form['submitted'] as $key => $field) {
         if (strpos($key, "#") === false && in_array($field['#type'], ['textfield', 'webform_email', 'select', 'checkboxes'])) { 
             $iCountFields++;
@@ -47,7 +47,7 @@
                 <div class="col-xs-12 padding-0"><?php
                     displayProductCheckbox($aProductValues); ?>
                 </div>
-                <div class="col-xs-12 well">
+                <div class="col-xs-12 background-grey well ">
                     <div class="col-xs-12 font-size-18 text-center">
                         Complete following form to receive your samples:
                     </div>
