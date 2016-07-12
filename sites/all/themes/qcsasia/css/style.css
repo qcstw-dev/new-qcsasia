@@ -164,9 +164,6 @@ ol, .breadcrumb {
 .breadcrumb {
     background-color: #E8E8E8;
 }
-.disabled_link {
-    cursor: not-allowed;
-}
 p a, p .link,
 .links,
 p a:hover, p .link:hover {
@@ -253,13 +250,17 @@ a:focus, a:hover,
     border-radius: 0;
 }
 .well {
-    background: none;
     border-radius: 0;
     padding: 10px;
 }
 .thumbnail-hover:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 8px 0 rgba(0, 0, 0, 0.19);
+}
+.thumbnail-hover {
     cursor: pointer;
+}
+.disabled_link {
+    cursor: not-allowed;
 }
 .tooltip-inner {
     max-width: none;
@@ -527,7 +528,7 @@ a:focus, a:hover,
     border: none;
 }
 .btn-default {
-    /*background-color: #e8e8e8;*/
+    background-color: #eee;
 }
 .min-width-10-percent {
     min-width: 10%;
