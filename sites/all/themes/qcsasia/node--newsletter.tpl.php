@@ -2,6 +2,14 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w28.16-ZHK/newsletter.html') ?>" target="_blank" title="Zamac hotel & rental keychain #ZHK by QCS Asia W28.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w28-16.jpg') ?>" alt="Zamac hotel & rental keychain #ZHK by QCS Asia W28.16" title="Zamac hotel & rental keychain #ZHK by QCS Asia W28.16" />
+                    <div class="subtitle-pic font-size-13">Zamac hotel & rental keychain #ZHK by QCS Asia W28.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2016/w27.16-PWH/newsletter.html') ?>" target="_blank" title="Webcam cover & screen cleaner #PWH104 by QCS Asia W27.16">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w27-16.jpg') ?>" alt="Webcam cover & screen cleaner #PWH104 by QCS Asia W27.16" title="Webcam cover & screen cleaner #PWH104 by QCS Asia W27.16" />
