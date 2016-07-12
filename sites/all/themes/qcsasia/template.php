@@ -962,6 +962,7 @@ function qcsasia_preprocess_html(&$vars) {
         case 'html__member_area_register' :
         case 'html__member_area_login' :
         case 'html__add_to_wishlist' :
+        case 'html__rss_news' :
             header('HTTP/1.1 200 OK');
             break;
     }

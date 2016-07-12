@@ -67,7 +67,7 @@
     <div class="col-md-12 margin-top-10 padding-0">
         <h2>Our product lines</h2>
     </div>
-    <div class="col-md-12 border padding-0">
+    <div class="col-md-12 padding-0">
         <div class="col-md-12 padding-top-10 padding-right-50 padding-left-50">
             <div class="big-slick carousel-category">
                 <div>
@@ -106,7 +106,7 @@
     <div class="col-md-12 margin-top-10 padding-0">
         <h2>Our product functions</h2>
     </div>
-    <div class="col-md-12 border padding-0">
+    <div class="col-md-12 padding-0">
         <div class="col-md-12 padding-top-10 padding-right-50 padding-left-50">
             <div class="big-slick carousel-function">
                 <div>
@@ -163,7 +163,7 @@
     <div class="col-md-12 margin-top-10 padding-0">
         <h2>Our logo processes</h2>
     </div>
-    <div class="col-md-12 border padding-0">
+    <div class="col-md-12 padding-0">
         <div class="col-md-12 padding-top-10 padding-right-50 padding-left-50">
             <div class="big-slick carousel-logo-process">
                 <div>
