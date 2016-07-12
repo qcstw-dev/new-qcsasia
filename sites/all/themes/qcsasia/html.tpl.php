@@ -58,7 +58,7 @@ verifyMemberConnection();
 $bIsConnected = isset($_SESSION['user']) && $_SESSION['user'];
 
 // For connected admin we delete the session about wishlist checking if older than 1 hour
-if (user_is_logged_in() && $_SESSION['timeout_admin_wishlist_checked'] + 60 * 60 < time()) {
+if (user_is_logged_in() && isset($_SESSION['timeout_admin_wishlist_checked']) && $_SESSION['timeout_admin_wishlist_checked'] + 60 * 60 < time()) {
     unset($_SESSION['admin_wishlist_checked']);
 }
 if (user_is_logged_in() && !isset($_SESSION['admin_wishlist_checked'])) {
@@ -114,6 +114,7 @@ if (isset($_SESSION['wishlist']) && isset($_SESSION['timeout_user_wishlist_check
   <?php print $scripts; ?>
   <meta property="og:image" content="<?= base_path().drupal_get_path('theme', 'qcsasia') ?>/sites/all/themes/qcsasia/logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="msvalidate.01" content="8756BB9222C8487BADF4ECD837762676" />
   <link rel="sitemap" href="/sitemap.xml" />
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>
