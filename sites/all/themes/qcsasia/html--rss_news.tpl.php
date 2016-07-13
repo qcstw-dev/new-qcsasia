@@ -18,7 +18,7 @@ if ($aNews) {
         $thumbnail_url = file_create_url($oNews->field_news_thumbnail['und'][0]['uri']);
         $post = $xml->addChild('post');
         $post->addAttribute('id', $post_id);
-        $post->addChild('title', $title);
+        $post->addChild('title', urlencode($title));
         $post->addChild('url', $url);
         $post->addChild('thumbnail_url', $thumbnail_url);
     }
