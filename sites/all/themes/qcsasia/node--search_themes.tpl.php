@@ -57,10 +57,10 @@
     </div>
     <div class="btn-show-hide-text-area margin-bottom-10"><span class="glyphicon glyphicon-menu-down"></span> Browse by product <span class="glyphicon glyphicon-menu-down"></span></div>
     <div class="col-sm-3 padding-0 border-right-bold hidden-text-area">
-        <div class="col-md-12">
+        <div class="col-md-12 padding-left-0">
             <h3>Browse by product</h3>
         </div>
-        <div class="col-xs-12">
+        <div class="col-xs-12 padding-left-0">
             <div class="btn btn-default untick-all width-100-percent"><span class="glyphicon glyphicon-remove color-red"></span> Untick all boxes</div>
         </div><?php
         $count = 0;

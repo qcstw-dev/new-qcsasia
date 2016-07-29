@@ -9,7 +9,13 @@ if ($aProducts) {
         $aSelectedCategories = array_keys(getTermByRef(drupal_get_query_parameters()['category'], 'category'));
     }
     $aGifts = retrieveByTermName('gift');
-    $aWishlist = (isset($_SESSION['wishlist']) && $_SESSION['wishlist'] ? $_SESSION['wishlist']['product_ids'] : [] );
+    $aWishlist = [];
+    if (isset($_SESSION['wishlist']) && $_SESSION['wishlist']) {
+        $oWishlist = taxonomy_term_load($_SESSION['wishlist']['id']);
+        foreach ($oWishlist->field_product['und'] as $aWishlistProduct) {
+            $aWishlist[] = $aWishlistProduct['tid'];
+        }
+    }
     foreach ($aProducts as $oProduct) {
         $aParentCategory = [];
         foreach ($oProduct->field_category['und'] as $aCategory) {

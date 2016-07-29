@@ -99,8 +99,32 @@ ul{
     float: left;
     margin-left: -20px;
 }
+.btn-show-hide-text-area .glyphicon {
+    font-size: 14px;
+}
+.btn-show-hide-text-area {
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+    background: #E8E8E8;
+    color: #777;
+    font-size: 18px;
+}
+.hidden-text-area {
+    display: none;
+}
+.background-primary {
+    background-color: #38B15D;
+    color: #fff;
+}
 .background-grey {
     background: #eee;
+}
+.background-white {
+    background: #fff;
+}
+.background-dark-grey {
+    background: #e4e4e4;
 }
 .background-grey-hover:hover {
     background: #eee;
@@ -189,6 +213,12 @@ a:focus, a:hover,
 }
 .pointer {
     cursor: pointer;
+}
+.position-absolute {
+    position: absolute;
+}
+.z-index-150 {
+    z-index: 150;
 }
 .navbar-default {
     border-radius: 0;
@@ -290,6 +320,10 @@ a:focus, a:hover,
     font-size: 18px;
     margin-top: 4px;
     background: rgba(221, 221, 221, 0.77);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
 }
 .checkbox-container.active, .checkbox-container:active {
     box-shadow: none;
@@ -592,6 +626,9 @@ a:focus, a:hover,
 .font-size-13 {
     font-size: 13px !important;
 }
+.font-size-9 {
+    font-size: 9px !important;
+}
 .font-size-65 {
     font-size: 65px;
 }
@@ -609,6 +646,12 @@ a:focus, a:hover,
 }
 .border-right {
     border-right: 1px solid #ddd;
+}
+.border-left-0 {
+    border-left: 0;
+}
+.border-right-0 {
+    border-right: 0;
 }
 .border-right-bold {
     border-right: 3px solid #ddd;
@@ -839,20 +882,7 @@ a:focus, a:hover,
         padding-right: 0;
     }
 }
-.btn-show-hide-text-area .glyphicon {
-    font-size: 14px;
-}
-.btn-show-hide-text-area {
-    padding: 5px;
-    text-align: center;
-    cursor: pointer;
-    background: #E8E8E8;
-    color: #777;
-    font-size: 18px;
-}
-.hidden-text-area {
-    display: none;
-}
+
 @media (min-width: 640px) {
     .node-search-themes .hidden-text-area,
     .node-search-products .hidden-text-area {
@@ -895,6 +925,10 @@ a:focus, a:hover,
 
 /****************** CONTACT US *******************/
 .node-contact-us .input-group-addon {
+    min-width: 139px;
+}
+/****************** SEND LAYOUT US *******************/
+.send-layout-form .input-group-addon {
     min-width: 139px;
 }
 /****************** MEMBER AREA *******************/
@@ -952,7 +986,7 @@ a:focus, a:hover,
     background: #FFF;
     padding: 20px;
     width: auto;
-    max-width: 500px;
+    max-width: 700px;
     margin: 20px auto;
 }
 .white-popup {
@@ -1140,7 +1174,7 @@ a:focus, a:hover,
 }
 .block-product .ref-product,
 .block-line-product .title-product-ref {
-    height: 18px;
+    /*height: 18px;*/
 }
 .block-line .ref-product,
 .block-line .title-product-ref {
@@ -1162,6 +1196,10 @@ a:focus, a:hover,
 .node-search-products .block-product .subtitle-pic{
     height: 70px;
     font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
 }
 .node-search-themes .block-list-products,
 .node-search-products .block-list-products {
@@ -1243,10 +1281,20 @@ a:focus, a:hover,
 .block-tabs .nav {
     width: 100%;
 }
+.tab-block {
+    border: 3px solid #38B15D;
+}
 .block-tabs .navbar-default .navbar-nav>li>a {
-    background: #E8E8E8;
+    background: #777;
     text-shadow: none;
-    color: #777;
+    color: #fff;
+    margin-right: 4px;
+}
+.block-tabs .navbar-default {
+    border: none;
+}
+.block-tabs .navbar-default .navbar-collapse, .block-tabs .navbar-default .navbar-form {
+    border-top: none;
 }
 .block-tabs .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.open>a {
     background: #38B15D;
@@ -1317,11 +1365,13 @@ a:focus, a:hover,
 .big-slick .slick-next:before {
     font-size: 40px;
 }
-@media (min-width: 768px) {
-    .block-option .subtitle-pic {
-        font-size: 13px;
-        overflow: hidden;
-    }
+.block-option .thumbnail .subtitle-pic {
+    font-size: 13px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
 }
 .ymal-pics .subtitle-pic {
     min-height: 54px;

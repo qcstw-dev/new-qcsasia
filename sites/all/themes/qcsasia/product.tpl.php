@@ -205,7 +205,7 @@
                         $bDisplayDocCenter = false;
                         
                         if ($term->field_logo_process_block) { ?>
-                            <li class="border-right <?php 
+                            <li class=" <?php 
                             if ($bIsMetalEnamelCategory && $term->field_image_option) { 
                                 $bDisplayLogoProcess = false;
                                 } else if ($term->field_logo_process_block) {
@@ -220,15 +220,15 @@
                                 $bDisplayOption = true;
                                 echo 'class="active"';
                             } ?>>
-                                <a class="border-right tab" data-id-tab="2">Options</a>
+                                <a class=" tab" data-id-tab="2">Options</a>
                             </li><?php
                         } 
-                        if ($term->field_complicated['und'][0]['value']) { ?>
-                            <li <?php if (!$bDisplayOption && !$bDisplayLogoProcess) {
+                        if ($term->field_complicated['und'][0]['value'] && $term->field_layout_maker_block['und'][0]['value']) { ?>
+                            <li class=" visible-lg" <?php if (!$bDisplayOption && !$bDisplayLogoProcess) {
                                 $bDisplayLayoutMaker = true;
                                 echo 'class="active"'; 
                             } ?>>
-                                <a class="border-right tab" data-id-tab="3">Layout maker</a>
+                                <a class=" tab" data-id-tab="3">Layout maker</a>
                             </li><?php
                         } 
                         if ($term->field_group_document && $term->field_complicated['und'][0]['value']) { ?>
@@ -256,22 +256,17 @@
                     } ?>
                     <div class="clearfix"></div>
                 </div><?php
-            } ?>
-            <div class="tab-block tab-block-3 border border-top-0 padding-20 <?= ($bDisplayLayoutMaker ? "block-active" : '') ?>">
-                <div class="col-md-6 thumbnail margin-bottom-0 gallery-container">
-                    <a href="<?= url(path_to_theme() . "/images/template/layout-maker-large.png") ?>" title="Layout maker">
-                        <img src="<?= url(path_to_theme() . "/images/template/layout-maker-large.png") ?>" alt="" title="" />
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <h3>Under construction - coming soon</h3>
-                    <div class="col-lg-5 margin-auto thumbnail border-none">
-                        <img src="<?= url(path_to_theme() . "/images/template/work-in-progress.png") ?>" title="work in progress" alt="" />
-                    </div>
-                    <!--<p class="text-right bold"><a href="#" ><span class="glyphicon glyphicon-edit"></span> Customise your product</a></p>-->
-                </div>
-                <div class="clearfix"></div>
-            </div><?php
+            } 
+            if ($term->field_layout_maker_block['und'][0]['value']) { ?>
+                <div class="tab-block tab-block-3 border border-top-0 <?= ($bDisplayLayoutMaker ? "block-active" : '') ?>"><?php
+                    // retrieve products
+                    $oCategory = getProductMainCategory($term);
+                    $aOptions = ['layout_maker' => true, 'get_object' => true];
+                    $aProducts[$oCategory->field_reference['und'][0]['value']] = getProducts(['product' => $term->tid], $aOptions); 
+                    include("layout.tpl.php"); ?>
+                    <div class="clearfix"></div>
+                </div><?php
+            } 
             if ($term->field_group_document) { ?>
                 <div class="tab-block tab-block-4 border border-top-0 padding-20 document-center padding-top-20 <?= ($bDisplayDocCenter ? "block-active" : '') ?>"><?php
                      displayDocumentCenter($term); ?>
@@ -284,7 +279,7 @@
                 <h3 class="margin-0">You might also like</h3>
             </div>
             <div class="col-md-12">
-                <div class="col-md-12 border padding-top-20 padding-0">
+                <div class="col-md-12 padding-top-20 padding-0">
                     <div class="padding-left-30 padding-right-30">
                         <div class="big-slick ymal-pics"><?php
                             foreach ($term->field_you_might_like['und'] as $aYouMightLike) { 
@@ -350,6 +345,9 @@
                     }]
             });
         }); <?php
+        if (isset(drupal_get_query_parameters()['play_video'])) { ?>
+            $('.play-video').trigger('click');<?php            
+        } 
     } ?>
     $('.thumb').slick({
         slidesToShow: 1,

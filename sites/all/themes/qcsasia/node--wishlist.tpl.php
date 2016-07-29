@@ -91,7 +91,7 @@ if (!isset(drupal_get_query_parameters()['wishlist']) || !wishlistExist(drupal_g
             <div class="block-button">
                 <div class="btn btn-default btn-quotation">Send quotation request for all products listed</div>
                 <div class="btn btn-default btn-samples">Send samples request for all products listed</div>
-                <div class="col-xs-12 alert alert-warning padding-10 margin-top-20">
+                <div class="col-xs-12 alert alert-success padding-10 margin-top-20">
                     <div class="col-xs-1 font-size-40">
                         <span class="glyphicon glyphicon-warning-sign"></span>
                     </div>

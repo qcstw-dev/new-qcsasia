@@ -32,7 +32,7 @@ function addToWishlist ($sId) {
     $aResponse = ['success' => false];
     $aResponse['first_add'] = false;
     
-    if (isset($_SESSION['wishlist']['id']) && $_SESSION['wishlist']) {
+    if (isset($_SESSION['wishlist']['id']) && $_SESSION['wishlist']['id']) {
         $oWishlist = taxonomy_term_load($_SESSION['wishlist']['id']);
         if (!$oWishlist) {
             $aResponse['success'] = false;
@@ -45,8 +45,8 @@ function addToWishlist ($sId) {
                 foreach ($oWishlist->field_product['und'] as $sKey => $aProduct) {
                     if ($aProduct['tid'] == $sId) {
                         unset($oWishlist->field_product['und'][$sKey]);
-                        if(($key = array_search($sId, $_SESSION['wishlist']['product_ids'])) !== false) {
-                            unset($_SESSION['wishlist']['product_ids'][$key]);
+                        if(($sKey = array_search($sId, $_SESSION['wishlist']['product_ids'])) !== false) {
+                            unset($_SESSION['wishlist']['product_ids'][$sKey]);
                         }
                         $bDelete = true;
                     } 
@@ -63,7 +63,9 @@ function addToWishlist ($sId) {
             taxonomy_term_save($oWishlist);
             $aResponse['success'] = true;
             $aResponse['wishlist']['id'] = $oWishlist->tid;
-            $aResponse['wishlist']['product_ids'] = $_SESSION['wishlist']['product_ids'];
+            foreach ($oWishlist->field_product['und'] as $aTid) {
+                $aResponse['wishlist']['product_ids'][] = $aTid['tid'];
+            }
         }
     } else {
         
@@ -78,7 +80,9 @@ function addToWishlist ($sId) {
         $aResponse['success'] = true;
         $aResponse['first_add'] = true;
         $aResponse['wishlist']['id'] = $oWishlist->tid;
-        $aResponse['wishlist']['product_ids'] = $_SESSION['wishlist']['product_ids'];
+        foreach ($oWishlist->field_product['und'] as $aTid) {
+            $aResponse['wishlist']['product_ids'][] = $aTid['tid'];
+        }
     }
     
     return $aResponse;
@@ -339,11 +343,15 @@ function qcsasia_links__system_menu_top($variables) {
                 </div>
                 <div class="navbar-collapse collapse padding-lg-0" id="navbar-collapse-menu-top" aria-expanded="false">
                     <ul class="menu-list menu-list pull-right"><?php
-                        if (isset($_SESSION['wishlist']['id']) && $_SESSION['wishlist']['id']) { ?>
+                        if (isset($_SESSION['wishlist']['id']) && $oWishlist = taxonomy_term_load($_SESSION['wishlist']['id'])) { ?>
                             <li class="wishlist-link">
                                 <a href="<?= url('wishlist/'.$_SESSION['wishlist']['id']) ?>" >
-                                <span class="glyphicon glyphicon-floppy-disk font-size-15"></span>
-                                    Wishlist <span class="count badge"><?= count($_SESSION['wishlist']['product_ids']) ?></span>
+                                <span class="glyphicon glyphicon-floppy-disk font-size-15"></span><?php
+                                    $aProductIds = [];
+                                    foreach ($oWishlist->field_product['und'] as $aWishlistProduct) {
+                                        $aProductIds[] = $aWishlistProduct['tid'];
+                                    } ?>
+                                    Wishlist <span class="count badge"><?= count($aProductIds) ?></span>
                                 </a>
                             </li><?php
                         }
@@ -389,7 +397,7 @@ function qcsasia_links__system_main_menu($variables) {
                 <div class="navbar-collapse collapse padding-lg-0" id="navbar-collapse-main-menu" aria-expanded="false">
                     <ul class="nav navbar-nav padding-xs padding-lg-0"><?php 
                         foreach ($variables['links'] as $link) { ?>
-                            <li class="<?= ($link['below'] ? 'dropdown' : '') ?> menu-item <?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>" data-menu-item="<?= ($link['link']['href'] == 'node/13' ? 'products' : ($link['link']['href'] == 'node/33' ? 'gifts' : '')) ?>">
+                            <li class="<?= ($link['link']['link_path'] == 'node/32' ? 'visible-lg' : '') ?><?= ($link['below'] ? 'dropdown' : '') ?> menu-item <?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>" data-menu-item="<?= ($link['link']['href'] == 'node/13' ? 'products' : ($link['link']['href'] == 'node/33' ? 'gifts' : '')) ?>">
                                 <a <?= ($link['below'] ? 'role="button" aria-haspopup="true" aria-expanded="false"' : '') ?> class="text-uppercase" href="<?= url($link['link']['link_path']) ?>" >
                                     <?= $link['link']['link_title'] ?>
                                 </a><?php 
@@ -487,6 +495,20 @@ function displaySubMenuProducts() { ?>
         </div>
     </div><?php
 }
+
+function getProductMainCategory ($oTerm) {
+    $oMainCategory = '';
+    $oCategory = taxonomy_term_load($oTerm->field_category['und'][0]['tid']);
+    $aCategoryParents = taxonomy_get_parents($oCategory->tid);
+    
+    if ($aCategoryParents) {
+        $oMainCategory = array_shift(array_values($aCategoryParents));
+    } else {
+        $oMainCategory = $oCategory;
+    }
+    return $oMainCategory;
+}
+
 function qcsasia_breadcrumb($variables) {
     $breadcrumb = $variables['breadcrumb'];
     if (!empty($breadcrumb)) {
@@ -567,7 +589,40 @@ function qcsasia_preprocess_node(&$vars) {
                 $vars['bIsConfirmed'] = false;
             }
             break;
+        case 'layout_maker':
+            addLayoutFiles();
+            break;
     }
+}
+function qcsasia_preprocess_taxonomy_term(&$vars) {
+    switch ($vars['vocabulary_machine_name']) {
+        case 'product' :
+            addLayoutFiles();
+            break;
+    }
+    
+}
+function  addLayoutFiles () {
+    //Add the JavaScript file.
+    drupal_add_js(path_to_theme().'/js/layout_maker/component.js', ['scope' => 'footer']);
+    drupal_add_js(path_to_theme().'/js/layout_maker/custom.js', ['scope' => 'footer']);
+    drupal_add_js(path_to_theme().'/js/fileupload/load-image.all.min.js', ['scope' => 'footer']);
+    drupal_add_js(path_to_theme().'/js/fileupload/canvas-to-blob.min.js', ['scope' => 'footer']);
+    drupal_add_js(path_to_theme().'/js/fileupload/jquery.iframe-transport.js', ['scope' => 'footer']);
+    drupal_add_js(path_to_theme().'/js/fileupload/jquery.ui.widget.js', ['scope' => 'footer']);
+    drupal_add_js(path_to_theme().'/js/fileupload/jquery.fileupload.js', ['scope' => 'footer']);
+    drupal_add_js(path_to_theme().'/js/fileupload/jquery.fileupload-process.js', ['scope' => 'footer']);
+    drupal_add_js(path_to_theme().'/js/fileupload/jquery.fileupload-image.js', ['scope' => 'footer']);
+    drupal_add_js(path_to_theme().'/js/fileupload/jquery.fileupload-validate.js', ['scope' => 'footer']);
+    drupal_add_js(path_to_theme().'/js/fileupload/custom.js', ['scope' => 'footer']);
+
+    //Add the CSS file.
+    drupal_add_css(path_to_theme().'/css/layout_maker/component.css');
+    drupal_add_css(path_to_theme().'/css/layout_maker/demo.css');
+    drupal_add_css(path_to_theme().'/css/layout_maker/custom.css');
+    drupal_add_css(path_to_theme().'/css/layout_maker/normalize.css');
+    drupal_add_css(path_to_theme().'/css/jquery-ui.min.css');
+    drupal_add_css(path_to_theme().'/css/jquery.fileupload.css');
 }
 
 function getPotentialNumberForFilters() {
@@ -586,7 +641,7 @@ function getPotentialNumberForFilters() {
     $aCurrentFilters = drupal_get_query_parameters();
     $aFiltersPotential = [];
 
-    $iNumberProducts = getProducts($aCurrentFilters, true);
+    $iNumberProducts = getProducts($aCurrentFilters, ['count' => true]);
     foreach ($aAllFilters as $sKey => $mValue) {
         if (is_array($mValue)) {
             foreach ($mValue as $sValue) {
@@ -597,7 +652,7 @@ function getPotentialNumberForFilters() {
                     } else {
                         $aFiltersPotential[$sKey] = $sValue;
                     }
-                    $iNumberProductFiltrated = getProducts($aFiltersPotential, true);
+                    $iNumberProductFiltrated = getProducts($aFiltersPotential, ['count' => true]);
                     $aFilterNumProducts[$sKey][$sValue] = ($iNumberProductFiltrated > $iNumberProducts ? $iNumberProductFiltrated - $iNumberProducts : $iNumberProductFiltrated);
                 }
             }
@@ -605,7 +660,7 @@ function getPotentialNumberForFilters() {
             if (!in_array($mValue, $aCurrentFilters)) {
                 $aFiltersPotential = $aCurrentFilters;
                 $aFiltersPotential[$mValue] = '';
-                $iNumberProductFiltrated = getProducts($aFiltersPotential, true);
+                $iNumberProductFiltrated = getProducts($aFiltersPotential, ['count' => true]);
                 $aFilterNumProducts[$mValue] = ($iNumberProductFiltrated > $iNumberProducts ? $iNumberProductFiltrated - $iNumberProducts : $iNumberProductFiltrated);
             }
         }
@@ -746,15 +801,30 @@ function getTopCategoryReferenceByProduct($oProduct) {
     }
 }
 
-function getProducts($aQueryParameters, $bCount = false) {
+function getProducts($aQueryParameters, $aOptions = []) {
+    $aOptions += [
+        'count'             => false,
+        'layout_maker'      => false,
+        'get_object'        => false,
+        'order_by_category' => false
+    ];
     // retrieve products
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'taxonomy_term')
             ->entityCondition('bundle', 'product')
-            ->propertyOrderBy('weight', 'ASC');
+            ;
+    if ($aOptions['order_by_category']) {
+            $oQuery->fieldOrderBy('field_category', 'tid', 'ASC');
+    }
+    
+    $oQuery->propertyOrderBy('weight', 'ASC');
+    
     if ($aQueryParameters) {
         foreach ($aQueryParameters as $sKey => $mValue) {
             switch ($sKey) {
+                case 'product':
+                    $oQuery->propertyCondition('tid', $mValue, '=');
+                    break;
                 case 'keyword':
 //                    $aKeyword = explode(" ", $mValue);
 //                        $oQuery->propertyCondition('name', $sKeyword, 'CONTAINS');
@@ -836,11 +906,18 @@ function getProducts($aQueryParameters, $bCount = false) {
             }
         }
     }
-    if ($bCount) {
+    if ($aOptions['layout_maker']) {
+        $oQuery->fieldCondition('field_layout_maker_block');
+    }
+    if ($aOptions['count']) {
         return $oQuery->count()->execute();
     } else {
         $aResult = $oQuery->execute();
-        return $aResult['taxonomy_term'];
+        if ($aOptions['get_object']) {
+            return taxonomy_term_load_multiple(array_keys($aResult['taxonomy_term']));
+        } else {
+            return $aResult['taxonomy_term'];
+        }
     }
 }
 
@@ -963,6 +1040,8 @@ function qcsasia_preprocess_html(&$vars) {
         case 'html__member_area_login' :
         case 'html__add_to_wishlist' :
         case 'html__rss_news' :
+        case 'html__upload' :
+        case 'html__download' :
             header('HTTP/1.1 200 OK');
             break;
     }

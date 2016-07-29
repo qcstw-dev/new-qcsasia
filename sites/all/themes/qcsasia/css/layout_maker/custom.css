@@ -1,0 +1,82 @@
+.component {
+    text-align: center;
+}
+.component .fileinput-button {
+    top: 20px;
+    left: 46px;
+    position: absolute;
+}
+.white-image, .custom-white-image {
+    display: none;
+}
+#slider-vertical {
+    float: right;
+    height: 100%;
+}
+#slider-vertical, #slider-vertical span {
+    cursor: pointer;
+}
+.icon-rotate {
+    margin-left: -6px;
+    position: absolute;
+    margin-top: -30px;
+}
+
+.change-color-product-block {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    display: none;
+}
+
+.preview-color div {
+    max-height: 550px;
+}
+.change-color-product-block,
+.fileinput-button,
+#slider-vertical,
+.btn-crop {
+    z-index: 101;
+}
+.change-color-product {
+    height: 100%;
+    cursor: pointer;
+}   
+.change-product .subtitle-pic {
+    font-size: 13px;
+}
+.block-choose-product {
+    height: 495px;
+    overflow: auto;
+}
+.overlay-top,
+.overlay-bottom,
+.overlay-left,
+.overlay-right {
+    position: absolute;
+    z-index: 100;
+    background: white;
+    pointer-events: none;
+}
+.overlay-top {
+    width: 100%;
+    top: 0;
+    height: 57px;
+}
+.overlay-bottom {
+    width: 100%;
+    bottom: 0;
+    height: 38px;
+}
+.overlay-right {
+    height: 100%;
+    width: 251px;
+    top: 0;
+    right: 0;
+}
+.overlay-left {
+    height: 100%;
+    width: 283px;
+    top: 0;
+    left: 0;
+}

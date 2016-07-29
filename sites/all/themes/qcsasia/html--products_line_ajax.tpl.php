@@ -4,7 +4,13 @@
     $iNumberProducts = count($aProductsLine);
     $count = 1;
     $aGifts = retrieveByTermName('gift');
-    $aWishlist = (isset($_SESSION['wishlist']) && $_SESSION['wishlist'] ? $_SESSION['wishlist']['product_ids'] : [] );
+    $aWishlist = [];
+    if (isset($_SESSION['wishlist']) && $_SESSION['wishlist']) {
+        $oWishlist = taxonomy_term_load($_SESSION['wishlist']['id']);
+        foreach ($oWishlist->field_product['und'] as $aWishlistProduct) {
+            $aWishlist[] = $aWishlistProduct['tid'];
+        }
+    }
     foreach ($aProductsLine as $key => $oProduct) {
         $oLineProduct = taxonomy_term_load($oProduct->tid); 
         $sRef = ($oLineProduct->field_product_ref['und'][0]['value'] ?: $oLineProduct->field_product_name['und'][0]['value']);

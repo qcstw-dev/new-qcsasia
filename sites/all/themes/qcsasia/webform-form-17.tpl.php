@@ -73,9 +73,10 @@
     </div>
 </div>
 <div class="col-md-6">
-    <div class="col-xs-12 padding-left-0">
+    <div class="col-xs-12 padding-0">
         <h3>Taiwan head office:</h3>
-
+    </div>
+    <div class="col-xs-12">
         <p>QCS ASIA CO. ,LTD 台灣妍品有限公司<br />
             5F-8, 63 HEPING E. RD , SEC3 TAIPEI TAIWAN<br />
             台北市和平東路3段63號5樓之8 (嘉樂大樓)<br />
@@ -87,9 +88,10 @@
         </div>
     </div>
 
-    <div class="col-xs-12 padding-right-0">
+    <div class="col-xs-12 padding-0">
         <h3>China Factory:</h3>
-
+    </div>
+    <div class="col-xs-12">
         <p>QCS Gift Factory 高要市廣星禮品有限公司<br />
             D2 DISTRICT, JINDU, GAOYAO CITY, GUANGDONG, CHINA<br />
             中國廣東省肇慶高要市金渡鎮D2小區 ZIP: 526108<br />

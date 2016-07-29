@@ -95,7 +95,7 @@
                         </div><?php
                     }
                     $iCount++; 
-                    if ($iCount == 5) { ?>
+                    if ($iCount == 6) { ?>
                         </div>
                         <div class="col-md-6"><?php
                     }
