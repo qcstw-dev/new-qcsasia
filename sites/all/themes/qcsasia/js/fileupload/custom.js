@@ -2,7 +2,7 @@ $(function () {
     $('#fileupload').fileupload({
         dataType: 'json',
         autoUpload: false,
-        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png|eps)$/i,
         previewMaxWidth: 800,
         previewMaxHeight: 400,
         previewThumbnail: false,
@@ -13,6 +13,7 @@ $(function () {
         data.context = $('#files');
 
     }).on('fileuploadprocessalways', function (e, data) {
+        $('.file-error').remove();
         var index = data.index,
                 file = data.files[index],
                 node = $(data.context);
