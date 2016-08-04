@@ -1,4 +1,5 @@
 <div class="visible-lg"><?php
+    global $base_url;
     $aInfoProduct = [];
     foreach ($aProducts as $sCategory => $aGroupProducts) {
         $aInfoProduct['group_products'][$sCategory]['title_group'] = array_shift(array_values(getTermByRef($sCategory, 'category')))->name;
@@ -44,7 +45,7 @@
                     } ?>
                 </div>
                 <div class="clearfix"></div>
-                <div class="btn-show-hide-text-area background-primary"><span class="glyphicon glyphicon-menu-down"></span> Products available in layout maker <span class="glyphicon glyphicon-menu-down"></span></div>
+                <div class="btn-show-hide-text-area background-primary title-orange"><span class="glyphicon glyphicon-menu-down"></span> Products available in layout maker <span class="glyphicon glyphicon-menu-down"></span></div>
             </div>
             <div class="clearfix"></div>
             <div class="margin-top-50"><?php
@@ -81,9 +82,9 @@
                         <img class="overlay-img" src="<?= ($oPreselectProduct ? file_create_url($oPreselectProduct->layout_maker_images[0]['uri']) : '') ?>">
                     </div>
                 </div>
-                <img id="image" class="resize-image" data-is-first-image="1" src="<?php (!$bIsUniqueProduct && !$oPreselectProduct ? print path_to_theme().'/images/layout_maker/drag-and-drop.png' : '') ?>">
+                <img id="image" class="resize-image" data-is-first-image="1" src="<?php (!$bIsUniqueProduct && !$oPreselectProduct ? print $base_url.'/'.path_to_theme().'/images/layout_maker/drag-and-drop.png' : '') ?>">
                 <div id="slider-vertical">
-                    <img class="icon-rotate" src="<?php print ($bIsUniqueProduct ? '../' : '').path_to_theme().'/images/layout_maker/reload.svg' ?>" alt="rotate">
+                    <img class="icon-rotate" src="<?php print $base_url.'/'.path_to_theme().'/images/layout_maker/reload.svg' ?>" alt="rotate">
                 </div><?php
                     foreach ($aInfoProduct['group_products'] as $aGroupProducts) {
                         foreach ($aGroupProducts['products'] as $oProduct) { ?>
@@ -147,7 +148,7 @@
                         }
                     } ?>
                 <div class="clear"></div>
-                <button class="btn btn-primary btn-crop js-crop">Preview / Download / Send <img class="icon-crop" src="<?php print ($bIsUniqueProduct ? '../' : '').path_to_theme().'/images/layout_maker/crop.svg' ?>"  alt="crop"></button>
+                <button class="btn btn-primary btn-crop js-crop">Preview / Download / Send <img class="icon-crop" src="<?php print $base_url.'/'.path_to_theme().'/images/layout_maker/crop.svg' ?>"  alt="crop"></button>
             </div>
         </div>
     <!--<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix col-md-12"<?php print $attributes; ?>>
