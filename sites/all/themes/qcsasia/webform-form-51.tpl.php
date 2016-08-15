@@ -82,6 +82,7 @@
                 $iCountFields++;
             }
         }
+        $iCountFields = $iCountFields +7;
         foreach ($form['submitted'] as $key => $field) {
             if (strpos($key, "#") === false) {
                 if (in_array($field['#type'], ['textfield', 'webform_email', 'select', 'checkboxes']) && $field['#webform_component']['form_key'] != 'product') {
@@ -95,9 +96,9 @@
                         if ($field['#type'] == 'select') {
                             displaySelect($field['#options'], $field['#title'], $field['#name'], $field['#attributes']['required']);
                         } else if ($field['#type'] == 'checkboxes') {  ?>
-                            <div class="bold margin-bottom-10 <?= ($key == 'accept_promo' ? 'margin-top-20' : '') ?>"><?= $field['#title'] ?></div><?php
+                            <div class="bold margin-bottom-10 <?= ($key == 'accept_promo' ? 'margin-top-10' : '') ?>"><?= $field['#title'] ?></div><?php
                             foreach ($field['#options'] as $key => $value) { ?>
-                                <div class="padding-left-20 input-group">
+                                <div class="padding-left-20 input-group margin-bottom-10">
                                     <label class="cursor-pointer"><input type="checkbox" name="<?= $field['#name'] ?>[]" value="<?= $key ?>" <?= ($key == 'accept_promo' ? 'checked' : '') ?> /><?= $value ?></label>
                                 </div><?php
                             }
@@ -108,12 +109,15 @@
                             </div><?php
                         }
                         $iCount++;
-                        if ($iCount == 7) { ?>
+                        if ($iCount == round($iCountFields / 2)) { ?>
                         </div>
                         <div class="col-md-6"><?php
                         }
                     }
                 }
+            } 
+            if (isset($form['captcha']) && strpos($form['captcha']['#captcha_type'], 'recaptcha') !== false) {
+                print $form['captcha']['captcha_widgets']['recaptcha_widget']['#markup'];
             } ?>
         </div>
         <input type="hidden" name="form_build_id" value="<?= $form['form_build_id']['#value'] ?>">

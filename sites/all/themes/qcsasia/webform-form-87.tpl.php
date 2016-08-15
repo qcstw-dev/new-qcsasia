@@ -1,4 +1,4 @@
-<h2>Send your custom layout</h2><?php
+<h2>Send layout to get a quick quote</h2><?php
 $sLayoutUrl = (isset($_GET['layout_file']) ? $_GET['layout_file'] : ''); 
 if ($sLayoutUrl) { 
     global $base_url; ?>
@@ -34,6 +34,9 @@ if ($sLayoutUrl) {
                         } 
                     }
                 }
+            } 
+            if (isset($form['captcha']) && strpos($form['captcha']['#captcha_type'], 'recaptcha') !== false) {
+                print $form['captcha']['captcha_widgets']['recaptcha_widget']['#markup'];
             } ?>
             <input type="hidden" name="form_build_id" value="<?= $form['form_build_id']['#value'] ?>">
             <input type="hidden" name="form_token" value="<?= $form['form_token']['#value'] ?>">

@@ -110,7 +110,7 @@ function registerMember ($aFields) {
         && $aFields['company_website']
         && $aFields['password']
         && $aFields['password_confirm']) {
-            if (($_SERVER["HTTP_HOST"] != 'localhost' && !user_is_logged_in()) || $_SERVER["HTTP_HOST"] == 'localhost') {
+            if (($_SERVER["HTTP_HOST"] != 'localhost' && !user_is_logged_in()) || ($_SERVER["HTTP_HOST"] == 'localhost' && !user_is_logged_in())) {
                 $ch = curl_init();
 
                     curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
@@ -966,6 +966,22 @@ function retrieveFilters($sType) {
     return taxonomy_term_load_multiple($aFilters);
 }
 
+function generateRandomString($length = 10) {
+    return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+}
+
+function getMemberByEmail($sEmail) {
+    $oQueryTerm = new EntityFieldQuery();
+    $oQueryTerm
+            ->entityCondition('entity_type', 'taxonomy_term')
+            ->entityCondition('bundle', 'member')
+            ->fieldCondition('field_member_email', 'value', $sEmail);
+    $aTermResult = $oQueryTerm->execute();
+    if ($aTermResult){
+        $oTermMember = taxonomy_term_load(array_keys($aTermResult['taxonomy_term'])[0]);
+        return $oTermMember;
+    }
+}
 /**
  * 
  * @param multiple (array or string) $mReferences

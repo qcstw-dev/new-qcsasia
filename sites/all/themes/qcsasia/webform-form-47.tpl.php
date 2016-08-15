@@ -69,6 +69,7 @@
                 $iCountFields++;
             }
         }
+        $iCountFields = $iCountFields +4;
         foreach ($form['submitted'] as $key => $field) {
             if (strpos($key, "#") === false) {
                 if (in_array($field['#type'], ['textfield', 'webform_email', 'select', 'checkboxes']) && $field['#webform_component']['form_key'] != 'product') {
@@ -95,12 +96,15 @@
                         </div><?php
                     }
                     $iCount++; 
-                    if ($iCount == 6) { ?>
+                    if ($iCount == round($iCountFields / 2)) { ?>
                         </div>
                         <div class="col-md-6"><?php
                     }
                 }
             }
+        } 
+        if (isset($form['captcha']) && strpos($form['captcha']['#captcha_type'], 'recaptcha') !== false) {
+            print $form['captcha']['captcha_widgets']['recaptcha_widget']['#markup'];
         } ?>
         </div>
         <input type="hidden" name="form_build_id" value="<?= $form['form_build_id']['#value'] ?>">

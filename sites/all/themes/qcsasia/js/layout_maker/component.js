@@ -252,11 +252,13 @@ var resizeableImage = function (image_target) {
         var crop_canvas;
         crop_canvas = capture($('.overlay'));
         
-        var ctx = crop_canvas.getContext("2d");
-        ctx.font = "12px Arial";
-        ctx.fillText('Product: '+$('.overlay').data('ref'),10,30);
-        ctx.fillText('Item size: '+$('.overlay').data('item-size'),10,50);
-        ctx.fillText('Logo size: '+$('.overlay').data('logo-size'),10,70);
+        if ($('.overlay').data('write-info') === 'true') {
+            var ctx = crop_canvas.getContext("2d");
+            ctx.font = "12px Arial";
+            ctx.fillText('Product: '+$('.overlay').data('ref'),10,30);
+            ctx.fillText('Item size: '+$('.overlay').data('item-size'),10,50);
+            ctx.fillText('Logo size: '+$('.overlay').data('logo-size'),10,70);
+        }
         
         $.magnificPopup.open({
             items: [{

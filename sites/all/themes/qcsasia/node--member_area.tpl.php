@@ -72,7 +72,7 @@
                             <div class="input-group">
                                 <label class="cursor-pointer"><input class="margin-bottom-20" type="checkbox" name="accept_promo" checked/>By contacting QCS Asia, I accept to receive latest product updates</label>
                             </div><?php
-                            if (!user_is_logged_in()) { ?>
+                            if (($_SERVER["HTTP_HOST"] != 'localhost' && !user_is_logged_in()) || ($_SERVER["HTTP_HOST"] == 'localhost' && !user_is_logged_in())) { ?>
                                 <div class="input-group">
                                     <div class="g-recaptcha" data-sitekey="6Ld-GBATAAAAAExjGxG_83RXLJR-v8mxlHrIvJiQ"></div>
                                 </div><?php
@@ -91,10 +91,11 @@
                         <span class="input-group-addon">Email</span>
                         <input class="form-control email required" type="email" name="email" autocomplete="off"/>
                     </div>
-                    <div class="input-group">
+                    <div class="input-group margin-bottom-0">
                         <span class="input-group-addon">Password</span>
                         <input class="form-control required" type="password" name="password" autocomplete="off"/>
                     </div>
+                    <div class="col-xs-12 padding-0 font-size-9"><a href="<?= url('reset-password') ?>">Forgot password ?</a></div>
                     <input type="button" class="btn btn-primary pull-right btn-submit" data-form="member-area-login" value="Login"/>
                 </form>
                 <div class="clearfix"></div>

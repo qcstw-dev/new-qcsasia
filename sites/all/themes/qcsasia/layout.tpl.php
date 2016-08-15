@@ -11,11 +11,11 @@
                 foreach ($aObjectFieldLayoutBlocks as $sKey => $oFieldLayoutBlock) {
                     $sColor = ($oFieldLayoutBlock->field_layout_maker_color ? taxonomy_term_load($oFieldLayoutBlock->field_layout_maker_color['und'][0]['tid'])->name : '');
                     $aImages[] = [
-                                    'uri'       => $oFieldLayoutBlock->field_layout_maker_picture['und'][0]['uri'], 
-                                    'color'     => $sColor,
-                                    'item_size' => ($oFieldLayoutBlock->field_item_size ? $oFieldLayoutBlock->field_item_size['und'][0]['value'] : '' ),
-                                    'logo_size'     => ($oFieldLayoutBlock->field_logo_size ? $oFieldLayoutBlock->field_logo_size['und'][0]['value'] : '' )
-                                ];
+                        'uri'       => $oFieldLayoutBlock->field_layout_maker_picture['und'][0]['uri'], 
+                        'color'     => $sColor,
+                        'item_size' => ($oFieldLayoutBlock->field_item_size ? $oFieldLayoutBlock->field_item_size['und'][0]['value'] : '' ),
+                        'logo_size'  => ($oFieldLayoutBlock->field_logo_size ? $oFieldLayoutBlock->field_logo_size['und'][0]['value'] : '' )
+                    ];
                 }
             }
             $aInfoProduct['group_products'][$sCategory]['products'][$oProduct->tid]->layout_maker_images = $aImages;
@@ -77,7 +77,8 @@
                         echo 'data-ref="'.$oPreselectProduct->field_product_ref['und'][0]['value'].'"'
                         .'data-item-size="'.($oPreselectProduct->layout_maker_images[0]['item_size']?: $oPreselectProduct->field_item_size['und'][0]['value']).'"'
                         .'data-logo-size="'.($oPreselectProduct->layout_maker_images[0]['logo_size']?: $oPreselectProduct->field_logo_size['und'][0]['value']).'"';
-                    } ?>>
+                    } ?>
+                     data-write-info="<?= (!(isset(drupal_get_query_parameters()['write-info']) && drupal_get_query_parameters()['write-info'] == 0) ? 'true' : 'false') ?>">
                     <div class="overlay-inner">
                         <img class="overlay-img" src="<?= ($oPreselectProduct ? file_create_url($oPreselectProduct->layout_maker_images[0]['uri']) : '') ?>">
                     </div>
@@ -118,7 +119,7 @@
                                                     <div class="col-xs-6 block-color-product">
                                                         <div class="thumbnail thumbnail-hover">
                                                             <img class="change-color-product <?= $oProduct->tid ?>" 
-                                                                 src="<?= image_style_url('medium', $aImage['uri']) ?>" 
+                                                                 src="<?= file_create_url($aImage['uri']) ?>" 
                                                                  data-image-large="<?= file_create_url($aImage['uri']) ?>" 
                                                                  data-item-size="<?= ($aImage['item_size'] ?: $oProduct->field_item_size['und'][0]['value']) ?>" 
                                                                  data-logo-size="<?= ($aImage['logo_size'] ?: $oProduct->field_logo_size['und'][0]['value']) ?>" 

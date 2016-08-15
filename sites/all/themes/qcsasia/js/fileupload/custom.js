@@ -2,7 +2,7 @@ $(function () {
     $('#fileupload').fileupload({
         dataType: 'json',
         autoUpload: false,
-        acceptFileTypes: /(\.|\/)(gif|jpe?g|png|eps)$/i,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png|eps|raw)$/i,
         previewMaxWidth: 800,
         previewMaxHeight: 400,
         previewThumbnail: false,

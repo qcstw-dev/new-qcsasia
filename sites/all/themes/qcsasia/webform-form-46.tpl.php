@@ -37,6 +37,7 @@
             $iCountFields++;
         }
     }
+    $iCountFields = $iCountFields+2;
     foreach ($form['submitted'] as $key => $field) {
         if (strpos($key, "#") === false) {
             if  ($field['#webform_component']['form_key'] == 'product') {
@@ -92,6 +93,9 @@
                 }
             }
         }
+    } 
+    if (isset($form['captcha']) && strpos($form['captcha']['#captcha_type'], 'recaptcha') !== false) {
+        print $form['captcha']['captcha_widgets']['recaptcha_widget']['#markup'];
     } ?>
     </div>
     <input type="hidden" name="form_build_id" value="<?= $form['form_build_id']['#value'] ?>">

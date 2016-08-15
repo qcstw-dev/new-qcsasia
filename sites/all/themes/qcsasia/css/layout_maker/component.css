@@ -196,10 +196,10 @@
     display: none;
     position: absolute;
     background: #fff;
-    top: 80px;
+    top: 85px;
     border: 1px solid #ddd;
     border-top: 0;
-    width: 76%;
+    width: 75%;
     font-size: 11px;
     padding: 6px;
     z-index: 1;
