@@ -244,7 +244,9 @@ var resizeableImage = function (image_target) {
         
         var ctx = crop_canvas.getContext("2d");
         ctx.drawImage(image_target, left, top, width, height, 0, 0, width, height);
-        ctx.drawImage(image_overlay, left_overlay, top_overlay, width, height, 0, 0, width, height);
+        if ($('.overlay').data('write-info') === 'true') {
+            ctx.drawImage(image_overlay, left_overlay, top_overlay, width, height, 0, 0, width, height);
+        }
         
         return crop_canvas;
     };
