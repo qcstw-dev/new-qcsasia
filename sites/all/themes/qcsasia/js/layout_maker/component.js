@@ -244,7 +244,7 @@ var resizeableImage = function (image_target) {
         
         var ctx = crop_canvas.getContext("2d");
         ctx.drawImage(image_target, left, top, width, height, 0, 0, width, height);
-        if ($('.overlay').data('write-info') === 'true') {
+        if ($('.overlay').data('write-info') === true) {
             ctx.drawImage(image_overlay, left_overlay, top_overlay, width, height, 0, 0, width, height);
         }
         
@@ -254,7 +254,7 @@ var resizeableImage = function (image_target) {
         var crop_canvas;
         crop_canvas = capture($('.overlay'));
         
-        if ($('.overlay').data('write-info') === 'true') {
+        if ($('.overlay').data('write-info') === true) {
             var ctx = crop_canvas.getContext("2d");
             ctx.font = "12px Arial";
             ctx.fillText('Product: '+$('.overlay').data('ref'),10,30);
@@ -273,9 +273,15 @@ var resizeableImage = function (image_target) {
             }]
         });
         $('.export-image').on('click', function () {
+            var fileName;
+            if ($('.overlay').data('write-info') === true) {
+                fileName = "qcsasia-layout-maker-"+$('.overlay').data('ref').replace('#', '')+".png";
+            } else {
+                fileName = $('.overlay').data('ref').replace('#', '')+" - "+$('.resize-image').data('picture_name')+".png";
+            }
            var a = $("<a>")
                 .attr("href", crop_canvas.toDataURL("image/png"))
-                .attr("download", "qcsasia-layout-maker-"+$('.overlay').data('ref').replace('#', '')+".png")
+                .attr("download", fileName)
                 .appendTo("body");
             a[0].click();
             a.remove();

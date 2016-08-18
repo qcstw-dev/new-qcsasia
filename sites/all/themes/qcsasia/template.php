@@ -823,7 +823,7 @@ function getProducts($aQueryParameters, $aOptions = []) {
         foreach ($aQueryParameters as $sKey => $mValue) {
             switch ($sKey) {
                 case 'product':
-                    $oQuery->propertyCondition('tid', $mValue, '=');
+                    $oQuery->propertyCondition('tid', $mValue);
                     break;
                 case 'keyword':
 //                    $aKeyword = explode(" ", $mValue);

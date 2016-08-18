@@ -13,6 +13,7 @@ $(function () {
         data.context = $('#files');
 
     }).on('fileuploadprocessalways', function (e, data) {
+        $('.resize-image').data('picture_name', data.files[0].name.replace('.jpg', '').replace('.jpeg', '').replace('.png', ''));
         $('.file-error').remove();
         var index = data.index,
                 file = data.files[index],

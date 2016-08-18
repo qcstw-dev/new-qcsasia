@@ -26,21 +26,25 @@
             <div class="col-xs-12 padding-0 position-absolute z-index-150 background-white">
                 <div class="col-xs-12 hidden-text-area block-choose-product padding-10 border"><?php
                     $sCurrentCategory = array_keys($aInfoProduct['group_products'])[0];
-                    foreach ($aInfoProduct['group_products'] as $sCategoryRef => $aGroupProducts) {?>
-                        <h3 class="col-xs-12"><?= $aGroupProducts['title_group'] ?></h3><?php
-                        foreach ($aGroupProducts['products'] as $sKey => $oProduct) { ?>
-                            <div class="change-product col-md-2" 
-                                 data-image-large="<?= file_create_url($oProduct->layout_maker_images[0]['uri']) ?>" 
-                                 data-product-id="<?= $oProduct->tid ?>" 
-                                 data-ref="<?= $oProduct->field_product_ref['und'][0]['value'] ?>"
-                                 data-item-size="<?= ($oProduct->layout_maker_images[0]['item_size'] ?: $oProduct->field_item_size['und'][0]['value'])  ?>"
-                                 data-logo-size="<?= ($oProduct->layout_maker_images[0]['logo_size']?: $oProduct->field_logo_size['und'][0]['value']) ?>"
-                                 data-product-id="<?= $oProduct->tid ?>">
-                                <div class="thumbnail thumbnail-hover">
-                                    <img src="<?= image_style_url('medium', $oProduct->layout_maker_images[0]['uri']) ?>" alt="<?= $oProduct->field_product_ref['und'][0]['value'] ?>"/>
-                                    <div class="subtitle-pic"><?= $oProduct->field_product_ref['und'][0]['value'] ?></div>
-                                </div>
-                            </div><?php
+                    foreach ($aInfoProduct['group_products'] as $sCategoryRef => $aGroupProducts) {
+                        if ($aGroupProducts['products']) {
+                            if ($aGroupProducts['title_group']) { ?>
+                                <h3 class="col-xs-12"><?= $aGroupProducts['title_group'] ?></h3><?php
+                            }
+                            foreach ($aGroupProducts['products'] as $sKey => $oProduct) { ?>
+                                <div class="change-product col-md-2" 
+                                     data-image-large="<?= file_create_url($oProduct->layout_maker_images[0]['uri']) ?>" 
+                                     data-product-id="<?= $oProduct->tid ?>" 
+                                     data-ref="<?= $oProduct->field_product_ref['und'][0]['value'] ?>"
+                                     data-item-size="<?= ($oProduct->layout_maker_images[0]['item_size'] ?: $oProduct->field_item_size['und'][0]['value'])  ?>"
+                                     data-logo-size="<?= ($oProduct->layout_maker_images[0]['logo_size']?: $oProduct->field_logo_size['und'][0]['value']) ?>"
+                                     data-product-id="<?= $oProduct->tid ?>">
+                                    <div class="thumbnail thumbnail-hover">
+                                        <img src="<?= image_style_url('medium', $oProduct->layout_maker_images[0]['uri']) ?>" alt="<?= $oProduct->field_product_ref['und'][0]['value'] ?>"/>
+                                        <div class="subtitle-pic"><?= $oProduct->field_product_ref['und'][0]['value'] ?></div>
+                                    </div>
+                                </div><?php
+                            }
                         }
                     } ?>
                 </div>
