@@ -8,7 +8,7 @@ if (isset(drupal_get_query_parameters()['category'])) {
 } else {
     $aProducts = [];
     $aParameters = drupal_get_query_parameters();
-    if (!drupal_get_query_parameters()['write-info']) {
+    if (isset(drupal_get_query_parameters()['write-info']) && !drupal_get_query_parameters()['write-info']) {
         $aProducts = [
             '331', '820', '819', '818', '323', '324', '326', '327', '328', 
             '331', '333', '334', '336', '337', '341', '343', '344', '345', 
