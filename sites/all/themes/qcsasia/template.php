@@ -838,10 +838,14 @@ function getProducts($aQueryParameters, $aOptions = []) {
                     $mValue = explode(' ', $mValue);
                     foreach ($mValue as $sKeyword) {
                         $sKeyword = rtrim($sKeyword);
-                        preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matches);
-                        if ($matches) {
+                        preg_match('/(#[a-zA-Z0-9]+)/', $sKeyword, $matchesRef);
+                        preg_match('/^#?([a-zA-Z]{2}[0-9]+)/', $sKeyword, $matchesPatent);
+                        if ($matchesPatent) {
+                            $oQuery->fieldCondition('field_patent', 'value', $sKeyword, 'CONTAINS');
+                        } elseif ($matchesRef) {
                             $oQuery->fieldCondition('field_product_ref', 'value', $sKeyword, 'CONTAINS');
-                        } else {
+                        }
+                        else {
                             $oQuery->propertyCondition('name', $sKeyword, 'CONTAINS');
 //                            $oQuery->fieldCondition('field_product_name', 'value', $sKeyword, 'CONTAINS');
                         }
