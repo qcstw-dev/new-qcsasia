@@ -23,6 +23,7 @@ $(function() {
         $('.btn-show-hide-text-area').trigger('click');
         $('.product-title').hide();
         $('.product-title-'+$(this).data('product-id')).show();
+        $(".overlay-img").removeClass('hidden');
         $('.change-color-product-block').hide();
         $('.change-color-product-block.'+$(this).data('product-id')).show();
         $('.overlay-img').attr('src', $(this).data('image-large'));
