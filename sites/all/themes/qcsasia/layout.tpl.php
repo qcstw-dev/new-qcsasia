@@ -1,4 +1,4 @@
-<div class="visible-lg"><?php
+<div class="visible-lg visible-md"><?php
     global $base_url;
     $aInfoProduct = [];
     foreach ($aProducts as $sCategory => $aGroupProducts) {

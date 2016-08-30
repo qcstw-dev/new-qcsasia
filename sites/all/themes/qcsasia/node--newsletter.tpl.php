@@ -445,7 +445,7 @@
             <a href="<?= url('/newsletter/2015/w15.15-qat3/newsletter.html') ?>" target="_blank" title="#QAT3 – W15.15">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w15-15.jpg') ?>" alt="#QAT3 – W15.15" title="#QAT3 – W15.15" />
-                    <div class="subtitle-pic font-size-13">Trolley keychain – W15.15</div>
+                    <div class="subtitle-pic font-size-13">Pocket plastic ashtray/pillbox keychain #QAT3 - W15.15</div>
                 </div>
             </a>
         </div>

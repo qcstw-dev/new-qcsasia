@@ -4,6 +4,12 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('taxonomy/term/896') ?>" title="Zamac “8” shape bottle opener keychain with full surface doming ZOP8F">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZOP8F-SLIDE-8-shape-zamac-bottle-opener-keychain-with-full-side-doming.jpg") ?>" alt="Zamac “8” shape bottle opener keychain with full surface doming ZOP8F" title="Zamac “8” shape bottle opener keychain with full surface doming ZOP8F" />
+                        <div class="slide-text">Zamac “8” shape bottle opener keychain with full surface doming ZOP8F</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="<?= url('taxonomy/term/850') ?>" title="Zamac hotel & rental keychain #ZHK">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/ZHK-zamac-hotel-and-rental-keychain.jpg") ?>" alt="Zamac hotel & rental keychain #ZHK" title="Zamac hotel & rental keychain #ZHK" />
                         <div class="slide-text">Zamac hotel & rental keychain #ZHK</div>
@@ -43,12 +49,6 @@
                     <a href="<?= url('node/13', ['query' => ['line' => 'doming-patch-with-scratch-lpodd']]) ?>" title="Doming patch with scratch #LPODD Line">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/lpodd-line.jpg") ?>" alt="Doming patch with scratch #LPODD Line" title="Doming patch with scratch #LPODD Line" />
                         <div class="slide-text">Doming patch with scratch #LPODD Line</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('node/13', ['query' => ['line' => 'doming-magnet-mgodd']]) ?>" title="Doming magnet #MGODD">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/mgodd-line.jpg") ?>" alt="Doming magnet #MGODD" title="Doming magnet #MGODD" />
-                        <div class="slide-text">Doming magnet #MGODD</div>
                     </a>
                 </div>
             </div>
