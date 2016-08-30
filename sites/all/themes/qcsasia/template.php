@@ -592,6 +592,9 @@ function qcsasia_preprocess_node(&$vars) {
         case 'layout_maker':
             addLayoutFiles();
             break;
+        case 'reset_password':
+            drupal_add_js('https://www.google.com/recaptcha/api.js', ['scope' => 'footer']);
+            break;
     }
 }
 function qcsasia_preprocess_taxonomy_term(&$vars) {

@@ -16,7 +16,7 @@ if (isset($_POST['email'], $_POST['g-recaptcha-response']) && $_POST['g-recaptch
     $server_output = json_decode(curl_exec ($ch));
 
     curl_close ($ch);
-    var_dump($server_output);
+    
     if (!$server_output->success) { ?>
         <div class="alert alert-info">Wrong Captcha</div><?php
     } else {
