@@ -2,6 +2,46 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w38.16-PSKC/newsletter.html') ?>" target="_blank" title="Silicon keychain with plastic patch #PSKC by QCS Asia w38.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w38-16.jpg') ?>" alt="Silicon keychain with plastic patch #PSKC by QCS Asia w38.16" title="Silicon keychain with plastic patch #PSKC by QCS Asia w38.16" />
+                    <div class="subtitle-pic font-size-13">Silicon keychain with plastic patch #PSKC by QCS Asia w38.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w37.16-PSBA/newsletter.html') ?>" target="_blank" title="Silicon wristband with plastic patch #PSBA by QCS Asia by QCS Asia w37.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w37-16.jpg') ?>" alt="Silicon wristband with plastic patch #PSBA by QCS Asia by QCS Asia w37.16" title="Silicon wristband with plastic patch #PSBA by QCS Asia by QCS Asia w37.16" />
+                    <div class="subtitle-pic font-size-13">Silicon wristband with plastic patch #PSBA by QCS Asia by QCS Asia w37.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w36.16-ZOP8F/newsletter.html') ?>" target="_blank" title="Zamac “8” shape bottle opener keychain with full surface doming #ZOP8F by QCS Asia w36.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w36-16.jpg') ?>" alt="Zamac “8” shape bottle opener keychain with full surface doming #ZOP8F by QCS Asia w36.16" title="Zamac “8” shape bottle opener keychain with full surface doming #ZOP8F by QCS Asia w36.16" />
+                    <div class="subtitle-pic font-size-13">Zamac “8” shape bottle opener keychain with full surface doming #ZOP8F by QCS Asia w36.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w35.16-QAT3/newsletter.html') ?>" target="_blank" title="Pocket plastic ashtray/pillbox keychain #QAT3 by QCS Asia w35.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w35-16.jpg') ?>" alt="Pocket plastic ashtray/pillbox keychain #QAT3 by QCS Asia w35.16" title="Pocket plastic ashtray/pillbox keychain #QAT3 by QCS Asia w35.16" />
+                    <div class="subtitle-pic font-size-13">Pocket plastic ashtray/pillbox keychain #QAT3 by QCS Asia w35.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w31.16-ECB/newsletter.html') ?>" target="_blank" title="Rubber shopping bag holder keychain #ECB by QCS Asia w31.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w31-16.jpg') ?>" alt="Rubber shopping bag holder keychain #ECB by QCS Asia w31.16" title="Rubber shopping bag holder keychain #ECB by QCS Asia w31.16" />
+                    <div class="subtitle-pic font-size-13">Rubber shopping bag holder keychain #ECB by QCS Asia w31.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2016/w30.16-DOMING/newsletter.html') ?>" target="_blank" title="Doming label by QCS Asia w30.16">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w30-16.jpg') ?>" alt="Doming label by QCS Asia w30.16" title="Doming label by QCS Asia w30.16" />

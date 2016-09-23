@@ -600,7 +600,9 @@ function qcsasia_preprocess_node(&$vars) {
 function qcsasia_preprocess_taxonomy_term(&$vars) {
     switch ($vars['vocabulary_machine_name']) {
         case 'product' :
-            addLayoutFiles();
+            if ($vars['field_layout_maker_block']) {
+                addLayoutFiles();
+            }
             break;
     }
     
@@ -650,7 +652,7 @@ function getPotentialNumberForFilters() {
             foreach ($mValue as $sValue) {
                 $aFiltersPotential = $aCurrentFilters;
                 if (!isset($aCurrentFilters[$sKey]) || (is_array($aCurrentFilters[$sKey]) && !in_array($sValue, $aCurrentFilters[$sKey]))) {
-                    if (isset($aFiltersPotential[$sKey]) && count($aFiltersPotential[$sKey]) > 1) {
+                    if (isset($aFiltersPotential[$sKey]) && count($aFiltersPotential[$sKey]) >= 1) {
                         $aFiltersPotential[$sKey][] = $sValue;
                     } else {
                         $aFiltersPotential[$sKey] = $sValue;
@@ -819,6 +821,8 @@ function getProducts($aQueryParameters, $aOptions = []) {
     if ($aOptions['order_by_category']) {
             $oQuery->fieldOrderBy('field_category', 'tid', 'ASC');
     }
+    // not draft
+    $oQuery->fieldCondition('field_draft', 'value', '1', '<>');
     
     $oQuery->propertyOrderBy('weight', 'ASC');
     
@@ -892,16 +896,29 @@ function getProducts($aQueryParameters, $aOptions = []) {
                     break;
                 case 'function':
                     $aFunctions = getTermByRef($mValue, 'function');
-                    $oQuery->fieldCondition('field_function', 'tid', array_keys($aFunctions));
+                    foreach ($aFunctions as $id => $sFunction) {
+                        $oQuery->fieldCondition('field_function', 'tid', $id);
+                    }
                     break;
                 case 'logo-process':
                     $aLogoProcesses = getTermByRef($mValue, 'logo_process');
                     $inner = new EntityFieldQuery();
-                    $inner_r = $inner->entityCondition('entity_type', 'field_collection_item')
+                    $inner->entityCondition('entity_type', 'field_collection_item')
                             ->entityCondition('bundle', 'field_logo_process_block')
                             ->fieldCondition('field_logo_process', 'tid', array_keys($aLogoProcesses))
-                            ->execute();
+                    ;
+//                    if (count($aLogoProcesses) > 1) {
+//                        foreach ($aLogoProcesses as $idLogoProcess => $sLogoProcess) {
+//                            $inner->fieldCondition('field_logo_process', 'tid', $idLogoProcess);
+//                        }
+//                    } else {
+//                        $inner->fieldCondition('field_logo_process', 'tid', array_keys($aLogoProcesses));
+//                    }
+
+                    $inner_r = $inner->execute();
+                    
                     $aFieldCollections = entity_load('field_collection_item', array_keys($inner_r['field_collection_item']));
+                    
                     if ($aFieldCollections) {
                         // retrieve logo
                         $oQuery->fieldCondition('field_logo_process_block', 'value', array_keys($aFieldCollections));

@@ -4,21 +4,21 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('node/13', ['query' => ['line' => 'metal-keychain-with-doming']]) ?>" title="Metal keychain with doming #MKA">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/MKA-SLIDESHOW-metal-shape-keychain.jpg") ?>" alt="Metal keychain with doming #MKA" title="Metal keychain with doming #MKA" />
+                        <div class="slide-text">Metal keychain with doming #MKA</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="<?= url('taxonomy/term/896') ?>" title="Zamac “8” shape bottle opener keychain with full surface doming ZOP8F">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/ZOP8F-SLIDE-8-shape-zamac-bottle-opener-keychain-with-full-side-doming.jpg") ?>" alt="Zamac “8” shape bottle opener keychain with full surface doming ZOP8F" title="Zamac “8” shape bottle opener keychain with full surface doming ZOP8F" />
-                        <div class="slide-text">Zamac “8” shape bottle opener keychain with full surface doming ZOP8F</div>
+                        <div class="slide-text">Zamac “8” shape bottle opener keychain with full surface doming #ZOP8F</div>
                     </a>
                 </div>
                 <div class="item">
                     <a href="<?= url('taxonomy/term/850') ?>" title="Zamac hotel & rental keychain #ZHK">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/ZHK-zamac-hotel-and-rental-keychain.jpg") ?>" alt="Zamac hotel & rental keychain #ZHK" title="Zamac hotel & rental keychain #ZHK" />
                         <div class="slide-text">Zamac hotel & rental keychain #ZHK</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('node/13', ['query' => ['line' => 'zamac-doming-keychain']]) ?>" title="Zamac doming keychain #ZKA">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZKA-zamac-doming-keychain-slide-homepage.jpg") ?>" alt="Zamac doming keychain #ZKA" title="Zamac doming keychain #ZKA" />
-                        <div class="slide-text">Zamac doming keychain #ZKA</div>
                     </a>
                 </div>
                 <div class="item">
