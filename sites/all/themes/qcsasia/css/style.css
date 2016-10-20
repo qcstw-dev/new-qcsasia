@@ -1486,3 +1486,9 @@ a:focus, a:hover,
         height: 50px;
     }
 }
+.comodo-logo {
+    position: fixed;
+    _position: absolute;
+    bottom: 0px;
+    right: 0px;
+}

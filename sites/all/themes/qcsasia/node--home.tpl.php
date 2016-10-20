@@ -4,33 +4,45 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('taxonomy/term/950') ?>" title="Doming bottle coaster with EVA anti grip #DBC">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/DBC-doming-bottle-coaster-eva-anti-grip.jpg") ?>" alt="Doming bottle coaster with EVA anti grip #DBC" title="Doming bottle coaster with EVA anti grip #DBC" />
+                        <div class="slide-text">Doming bottle coaster with EVA anti grip #DBC</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('taxonomy/term/951') ?>" title="Plastic bottle coaster with doming and EVA anti-grip #PBC">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/PBC-plastic-bottle-coaster-doming-and-eva-anti-grip.jpg") ?>" alt="Plastic bottle coaster with doming and EVA anti-grip #PBC" title="Plastic bottle coaster with doming and EVA anti-grip #PBC" />
+                        <div class="slide-text">Plastic bottle coaster with doming and EVA anti-grip #PBC</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('node/13', ['query' => ['line' => 'zamac-bottle-opener-keychain']]) ?>" title="Zamac bottle opener keychain #ZOP">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZOP-line-SLIDESHOW-Zamac-bottle-opener-keychain.jpg") ?>" alt="Zamac bottle opener keychain #ZOP" title="Zamac bottle opener keychain #ZOP" />
+                        <div class="slide-text">Zamac bottle opener keychain #ZOP</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('node/13', ['query' => ['product' => ['942', '941']]]) ?>" title="Golf divot tool with ball marker #PGT">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/PGT-SLIDESHOW-Golf-divot-tool-with-ball-marker.jpg") ?>" alt="Golf divot tool with ball marker #PGT" title="Golf divot tool with ball marker #PGT" />
+                        <div class="slide-text">Golf divot tool with ball marker #PGT</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('node/13', ['query' => ['line' => 'zamac-dogtag-bottle-opener']]) ?>" title="Zamac dogtag bottle opener #ZDT">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZDTO-SLIDE-cheap-zamac-dogtag-bottle-opener.jpg") ?>" alt="Zamac dogtag bottle opener #ZDT" title="Zamac dogtag bottle opener #ZDT" />
+                        <div class="slide-text">Zamac dogtag bottle opener #ZDT</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="<?= url('node/13', ['query' => ['line' => 'metal-keychain-with-doming']]) ?>" title="Metal keychain with doming #MKA">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/MKA-SLIDESHOW-metal-shape-keychain.jpg") ?>" alt="Metal keychain with doming #MKA" title="Metal keychain with doming #MKA" />
                         <div class="slide-text">Metal keychain with doming #MKA</div>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="<?= url('taxonomy/term/896') ?>" title="Zamac “8” shape bottle opener keychain with full surface doming ZOP8F">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZOP8F-SLIDE-8-shape-zamac-bottle-opener-keychain-with-full-side-doming.jpg") ?>" alt="Zamac “8” shape bottle opener keychain with full surface doming ZOP8F" title="Zamac “8” shape bottle opener keychain with full surface doming ZOP8F" />
-                        <div class="slide-text">Zamac “8” shape bottle opener keychain with full surface doming #ZOP8F</div>
-                    </a>
-                </div>
-                <div class="item">
                     <a href="<?= url('taxonomy/term/850') ?>" title="Zamac hotel & rental keychain #ZHK">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/ZHK-zamac-hotel-and-rental-keychain.jpg") ?>" alt="Zamac hotel & rental keychain #ZHK" title="Zamac hotel & rental keychain #ZHK" />
                         <div class="slide-text">Zamac hotel & rental keychain #ZHK</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/815') ?>" title="Metal multi charm keychain #MCKC">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/mckc.jpg") ?>" alt="Metal multi charm keychain #MCKC" title="Metal multi charm keychain #MCKC" />
-                        <div class="slide-text">Metal multi charm keychain #MCKC</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('node/13', ['query' => ['line' => 'metal-fridge-magnet-mfm']]) ?>" title="Metal fridge magnet #MFM line">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/mfm-line.jpg") ?>" alt="Metal fridge magnet #MFM line" title="Metal fridge magnet #MFM line" />
-                        <div class="slide-text">Metal fridge magnet #MFM line</div>
                     </a>
                 </div>
                 <div class="item">
@@ -43,12 +55,6 @@
                     <a href="<?= url('taxonomy/term/328') ?>" title="Plastic cable organizer badge #PCW204">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/pcw.jpg") ?>" alt="Plastic cable organizer badge #PCW204" title="Plastic cable organizer badge #PCW204" />
                         <div class="slide-text">Plastic cable organizer badge #PCW204</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('node/13', ['query' => ['line' => 'doming-patch-with-scratch-lpodd']]) ?>" title="Doming patch with scratch #LPODD Line">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/lpodd-line.jpg") ?>" alt="Doming patch with scratch #LPODD Line" title="Doming patch with scratch #LPODD Line" />
-                        <div class="slide-text">Doming patch with scratch #LPODD Line</div>
                     </a>
                 </div>
             </div>

@@ -905,15 +905,7 @@ function getProducts($aQueryParameters, $aOptions = []) {
                     $inner = new EntityFieldQuery();
                     $inner->entityCondition('entity_type', 'field_collection_item')
                             ->entityCondition('bundle', 'field_logo_process_block')
-                            ->fieldCondition('field_logo_process', 'tid', array_keys($aLogoProcesses))
-                    ;
-//                    if (count($aLogoProcesses) > 1) {
-//                        foreach ($aLogoProcesses as $idLogoProcess => $sLogoProcess) {
-//                            $inner->fieldCondition('field_logo_process', 'tid', $idLogoProcess);
-//                        }
-//                    } else {
-//                        $inner->fieldCondition('field_logo_process', 'tid', array_keys($aLogoProcesses));
-//                    }
+                            ->fieldCondition('field_logo_process', 'tid', array_keys($aLogoProcesses));
 
                     $inner_r = $inner->execute();
                     

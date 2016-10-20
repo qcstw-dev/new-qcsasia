@@ -2,6 +2,30 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w41.16-ICGT/newsletter.html') ?>" target="_blank" title="Golf metal ball maker with doming #ICGT by QCS Asia w41.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w41-16.jpg') ?>" alt="Golf metal ball maker with doming #ICGT by QCS Asia w41.16" title="Golf metal ball maker with doming #ICGT by QCS Asia w41.16" />
+                    <div class="subtitle-pic font-size-13">Golf metal ball maker with doming #ICGT by QCS Asia w41.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w40.16-ZDT/newsletter.html') ?>" target="_blank" title="Zamac dogtag bottle opener #ZDT by QCS Asia w40.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w40-16.jpg') ?>" alt="Zamac dogtag bottle opener #ZDT by QCS Asia w40.16" title="Zamac dogtag bottle opener #ZDT by QCS Asia w40.16" />
+                    <div class="subtitle-pic font-size-13">Zamac dogtag bottle opener #ZDT by QCS Asia w40.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w39.16-ECB/newsletter.html') ?>" target="_blank" title="Rubber shopping bag holder keychain #ECB by QCS Asia w39.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w39-16.jpg') ?>" alt="Rubber shopping bag holder keychain #ECB by QCS Asia w39.16" title="Rubber shopping bag holder keychain #ECB by QCS Asia w39.16" />
+                    <div class="subtitle-pic font-size-13">Rubber shopping bag holder keychain #ECB by QCS Asia w39.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2016/w38.16-PSKC/newsletter.html') ?>" target="_blank" title="Silicon keychain with plastic patch #PSKC by QCS Asia w38.16">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w38-16.jpg') ?>" alt="Silicon keychain with plastic patch #PSKC by QCS Asia w38.16" title="Silicon keychain with plastic patch #PSKC by QCS Asia w38.16" />

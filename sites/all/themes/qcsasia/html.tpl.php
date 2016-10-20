@@ -116,6 +116,11 @@ if (isset($_SESSION['wishlist']) && isset($_SESSION['timeout_user_wishlist_check
   <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="msvalidate.01" content="8756BB9222C8487BADF4ECD837762676" />
   <link rel="sitemap" href="/sitemap.xml" />
+    <script type="text/javascript"> //<![CDATA[ 
+        var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+        document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+        //]]>
+    </script>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>
  <?= (user_is_logged_in() || $_SERVER['HTTP_HOST'] == 'localhost' || $bIsConnected ? '' : 'oncontextmenu="return false"') ?>>
@@ -125,5 +130,11 @@ if (isset($_SESSION['wishlist']) && isset($_SESSION['timeout_user_wishlist_check
   <?php print $page_top; ?>
   <?php print $page; ?>
   <?php print $page_bottom; ?>
+    <div class="comodo-logo">
+        <script language="JavaScript" type="text/javascript">
+        TrustLogo("http://qcsasia.com/comodo_secure_seal.png", "CL1", "none");
+        </script>
+        <a  href="https://ssl.comodo.com" id="comodoTL">Comodo SSL</a>
+    </div>
 </body>
 </html>
