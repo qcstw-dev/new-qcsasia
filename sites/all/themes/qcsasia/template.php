@@ -187,6 +187,7 @@ function registerMember ($aFields) {
             if ($_SERVER["HTTP_HOST"] == 'localhost') {
                 $ip = "61.220.251.250";
             }
+            $oTerm->field_member_ip['und'][0]['value'] = $ip;
             
             $url = "http://ip2c.org/" . $ip;
             set_time_limit(10);
@@ -435,6 +436,7 @@ function displaySubMenuProducts() { ?>
                 <a href="<?= url('node/13', ['query' => ['patented' => null]]) ?>" class="padding-5 col-xs-12">Patented Product</a>
                 <a href="<?= url('node/13', ['query' => ['cheap' => null]]) ?>" class="padding-5 col-xs-12">Very cheap product</a>
                 <a href="<?= url('node/13', ['query' => ['rush' => null]]) ?>" class="padding-5 col-xs-12">Rush service products</a>
+                <a href="<?= url('node/13', ['query' => ['bestseller' => null]]) ?>" class="padding-5 col-xs-12">Best Sellers</a>
             </div>
             <div class="filter-group-title" data-group-title="material"><span class="glyphicon glyphicon-chevron-down"></span> Material</div>
             <div class="block-filter-group group-material">
@@ -633,7 +635,7 @@ function  addLayoutFiles () {
 function getPotentialNumberForFilters() {
     // retrieve potential number for filters
     //get all filters
-    $aAllFilters = ['new', 'cheap', 'patented', 'rush'];
+    $aAllFilters = ['new', 'cheap', 'patented', 'rush', 'bestseller'];
     foreach (retrieveFilters('category') as $oTerm) {
         $aAllFilters['category'][] = $oTerm->field_reference['und'][0]['value'];
     }
@@ -869,6 +871,9 @@ function getProducts($aQueryParameters, $aOptions = []) {
                     break;
                 case 'rush':
                     $oQuery->fieldCondition('field_rush', 'value', '1');
+                    break;
+                case 'bestseller':
+                    $oQuery->fieldCondition('field_best_sellers', 'value', '1');
                     break;
                 case 'line':
                 case 'category':

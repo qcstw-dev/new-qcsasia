@@ -14,6 +14,7 @@
             <div><label class="<?= (isset($_GET['patented']) ? 'bold' : '') ?>"><input type="checkbox" class="filter patented" value="patented" <?= (isset($_GET['patented']) ? 'checked' : '') ?>/>Patented Product <span class="count badge"><?= (!isset($_GET['patented']) ? $aFilterNumProducts['patented'] : '') ?></span></label></div>
             <div><label class="<?= (isset($_GET['cheap']) ? 'bold' : '') ?>"><input type="checkbox" class="filter cheap" value="cheap" <?= (isset($_GET['cheap']) ? 'checked' : '') ?>/>Very cheap product <span class="count badge"><?= (!isset($_GET['cheap']) ? $aFilterNumProducts['cheap'] : '') ?></span></label></div>
             <div><label class="<?= (isset($_GET['rush']) ? 'bold' : '') ?>"><input type="checkbox" class="filter rush" value="rush" <?= (isset($_GET['rush']) ? 'checked' : '') ?>/>Rush service product <span class="count badge"><?= (!isset($_GET['rush']) ? $aFilterNumProducts['rush'] : '') ?></span></label></div>
+            <div><label class="<?= (isset($_GET['bestseller']) ? 'bold' : '') ?>"><input type="checkbox" class="filter bestseller" value="bestseller" <?= (isset($_GET['bestseller']) ? 'checked' : '') ?>/>Best sellers <span class="count badge"><?= (!isset($_GET['bestseller']) ? $aFilterNumProducts['bestseller'] : '') ?></span></label></div>
         </div>
         <div class="filter-group-title" data-group-title="material"><span class="glyphicon glyphicon-chevron-down"></span> Material</div>
         <div class="block-filter-group group-material"><?php

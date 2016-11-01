@@ -4,6 +4,12 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('node/13', ['query' => ['line' => 'zamac-trolley-opener-keychain-ztop']]) ?>" title="Zamac trolley opener keychain #ZTOP line">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZTOP-zamac-trolley-opener-keychain.jpg") ?>" alt="Zamac trolley opener keychain #ZTOP line" title="Zamac trolley opener keychain #ZTOP line" />
+                        <div class="slide-text">Zamac trolley opener keychain #ZTOP line</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="<?= url('taxonomy/term/950') ?>" title="Doming bottle coaster with EVA anti grip #DBC">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/DBC-doming-bottle-coaster-eva-anti-grip.jpg") ?>" alt="Doming bottle coaster with EVA anti grip #DBC" title="Doming bottle coaster with EVA anti grip #DBC" />
                         <div class="slide-text">Doming bottle coaster with EVA anti grip #DBC</div>

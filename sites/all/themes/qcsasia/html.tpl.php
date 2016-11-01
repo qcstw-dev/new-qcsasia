@@ -132,7 +132,7 @@ if (isset($_SESSION['wishlist']) && isset($_SESSION['timeout_user_wishlist_check
   <?php print $page_bottom; ?>
     <div class="comodo-logo">
         <script language="JavaScript" type="text/javascript">
-        TrustLogo("http://qcsasia.com/comodo_secure_seal.png", "CL1", "none");
+        TrustLogo("https://qcsasia.com/comodo_secure_seal.png", "CL1", "none");
         </script>
         <a  href="https://ssl.comodo.com" id="comodoTL">Comodo SSL</a>
     </div>

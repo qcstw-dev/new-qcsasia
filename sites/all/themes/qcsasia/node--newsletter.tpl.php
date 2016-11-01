@@ -2,6 +2,22 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w43.16-MKA/newsletter.html') ?>" target="_blank" title="Metal keychain with doming #MKA line by QCS Asia w43.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w43-16.jpg') ?>" alt="Metal keychain with doming #MKA line by QCS Asia w43.16" title="Metal keychain with doming #MKA line by QCS Asia w43.16" />
+                    <div class="subtitle-pic font-size-13">Metal keychain with doming #MKA line by QCS Asia w43.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w42.16-ZOP/newsletter.html') ?>" target="_blank" title="Zamac bottle opener keychain #ZOP line by QCS Asia w42.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w42-16.jpg') ?>" alt="Zamac bottle opener keychain #ZOP line by QCS Asia w42.16" title="Zamac bottle opener keychain #ZOP line by QCS Asia w42.16" />
+                    <div class="subtitle-pic font-size-13">Zamac bottle opener keychain #ZOP line by QCS Asia w42.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2016/w41.16-ICGT/newsletter.html') ?>" target="_blank" title="Golf metal ball maker with doming #ICGT by QCS Asia w41.16">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w41-16.jpg') ?>" alt="Golf metal ball maker with doming #ICGT by QCS Asia w41.16" title="Golf metal ball maker with doming #ICGT by QCS Asia w41.16" />

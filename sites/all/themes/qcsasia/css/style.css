@@ -1492,3 +1492,8 @@ a:focus, a:hover,
     bottom: 0px;
     right: 0px;
 }
+@media (max-width: 1366px) {
+    .comodo-logo {
+        position: initial;
+    }
+}
