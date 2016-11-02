@@ -156,7 +156,7 @@ function registerMember ($aFields) {
                 return $aResult;
             }
             $oTerm = new stdClass();
-            $oTerm->name = $aFields['first_name'].' '.$aFields['last_name'];
+            $oTerm->name = $aFields['first_name'].' '.$aFields['last_name'].' '.$aFields['email'];
             $oTerm->vid = taxonomy_vocabulary_machine_name_load('member')->vid;
             $oTerm->language = 'und';
             $oTerm->field_membrer_registration_date['und'][0]['value'] = date("Y-m-d");
