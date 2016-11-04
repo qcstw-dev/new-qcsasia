@@ -1199,10 +1199,15 @@ function getNameFromDocument($file) {
 }
 
 function displayOption($aImageOption) {
-    $aImageOptionEntity = array_values(entity_load('field_collection_item', [$aImageOption['value']]))[0]; ?>
-    <div class="col-sm-3 margin-bottom-10 block-option">
+    $aImageOptionEntity = array_values(entity_load('field_collection_item', [$aImageOption['value']]))[0]; 
+    $bLargePicture = isset($aImageOptionEntity->field_image_option_img_large['und'][0]['uri']);
+    $urlLargePicture = $bLargePicture ? file_create_url($aImageOptionEntity->field_image_option_img_large['und'][0]['uri']) : ''; ?>
+    <div class="col-sm-3 margin-bottom-10 block-option <?= $bLargePicture ? 'pointer event-enlarge' : '' ?>">
         <div class="thumbnail margin-bottom-0">
-            <img src="<?= file_create_url($aImageOptionEntity->field_image_option_img['und'][0]['uri']) ?>" alt="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" title="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" />
+            <img class="popup" <?= $bLargePicture ? "data-large-picture='$urlLargePicture'" : '' ?> src="<?= file_create_url($aImageOptionEntity->field_image_option_img['und'][0]['uri']) ?>" alt="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" title="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" /><?php
+            if ($bLargePicture) { ?>
+                <img class="hidden" src="<?= $urlLargePicture ?>" alt="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" title="<?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?>" /><?php
+            } ?>
             <div class="subtitle-pic"><?= $aImageOptionEntity->field_image_option_title['und'][0]['value'] ?></div>
         </div>
     </div><?php
@@ -1215,14 +1220,14 @@ function getLogoProcesses ($oTerm) {
         foreach ($oTerm->field_logo_process_block['und'] as $aLogoProcessBlock) {
             $aIds[] = $aLogoProcessBlock['value'];
         }
-        foreach ($aIds as $sId) {
+        foreach ($aIds as $key => $sId) {
             $oFieldLogoProcess = array_values(entity_load('field_collection_item', [$sId]))[0];
             if (isset($oFieldLogoProcess->field_logo_process['und'][0]['tid'])) {
                 $oLogoProcess = taxonomy_term_load($oFieldLogoProcess->field_logo_process['und'][0]['tid']);
                 $sRefLogoProcess = isset($oLogoProcess->field_reference['und'][0]['value']) ? $oLogoProcess->field_reference['und'][0]['value'] : '';
-                $aLogoProcess[$sRefLogoProcess]['id'] = $oLogoProcess->tid;
-                $aLogoProcess[$sRefLogoProcess]['thumbnail'] = isset($oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri'] : '';
-                $aLogoProcess[$sRefLogoProcess]['large'] = isset($oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri'] : '';
+                $aLogoProcess[$sRefLogoProcess][$key]['id'] = $oLogoProcess->tid;
+                $aLogoProcess[$sRefLogoProcess][$key]['thumbnail'] = isset($oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri'] : '';
+                $aLogoProcess[$sRefLogoProcess][$key]['large'] = isset($oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri'] : '';
             }
         }
     }
@@ -1233,11 +1238,17 @@ function displayLogoProcess($term) { ?>
     <div class="col-md-12"><?php
         $aLogoProcesses = getLogoProcesses($term);
         $bIssetDoming = isset($aLogoProcesses['doming']);
-        displayLogoProcessBlock(($bIssetDoming ? $aLogoProcesses['doming'] : array_values($aLogoProcesses)[0])); 
+        if ($bIssetDoming) {
+            foreach ($aLogoProcesses['doming'] as $aLogoPro) {
+                displayLogoProcessBlock($aLogoPro); 
+            }
+        }
         $count = 1;
         foreach ($aLogoProcesses as $key => $aLogoProcess) {
-            if ($key && (($bIssetDoming && $key != 'doming') || (!$bIssetDoming && $count > 1 ))) { 
-                displayLogoProcessBlock($aLogoProcess); 
+            if ($key != 'doming') { 
+                foreach ($aLogoProcess as $aLogoPro) {
+                    displayLogoProcessBlock($aLogoPro); 
+                }
             }
             $count++;
         } ?>
