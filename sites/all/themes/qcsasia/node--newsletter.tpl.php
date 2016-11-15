@@ -2,6 +2,22 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w46.16-2017-MULT-PROD/newsletter.html') ?>" target="_blank" title="2017 new products by QCS Asia w46.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w46-16.jpg') ?>" alt="2017 new products by QCS Asia w46.16" title="2017 new products by QCS Asia w46.16" />
+                    <div class="subtitle-pic font-size-13">2017 new products by QCS Asia w46.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w45.16-ZTOP/newsletter.html') ?>" target="_blank" title="Zamac trolley opener keychain #ZTOP line by QCS Asia w45.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w45-16.jpg') ?>" alt="Zamac trolley opener keychain #ZTOP line by QCS Asia w45.16" title="Zamac trolley opener keychain #ZTOP line by QCS Asia w45.16" />
+                    <div class="subtitle-pic font-size-13">Zamac trolley opener keychain #ZTOP line by QCS Asia w45.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2016/w43.16-MKA/newsletter.html') ?>" target="_blank" title="Metal keychain with doming #MKA line by QCS Asia w43.16">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w43-16.jpg') ?>" alt="Metal keychain with doming #MKA line by QCS Asia w43.16" title="Metal keychain with doming #MKA line by QCS Asia w43.16" />

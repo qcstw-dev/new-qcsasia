@@ -95,6 +95,8 @@ function registerMember ($aFields) {
         $aFields['last_name'],
         $aFields['company_name'],
         $aFields['company_address'],
+        $aFields['zip'],
+        $aFields['city'],
         $aFields['country'],
         $aFields['company_phone'],
         $aFields['company_website'],
@@ -105,6 +107,8 @@ function registerMember ($aFields) {
         && $aFields['last_name']
         && $aFields['company_name']
         && $aFields['company_address']
+        && $aFields['zip']
+        && $aFields['city']
         && $aFields['country']
         && $aFields['company_phone']
         && $aFields['company_website']
@@ -168,6 +172,8 @@ function registerMember ($aFields) {
             $oTerm->field_member_email['und'][0]['value'] = $aFields['email'];
             $oTerm->field_member_company_name['und'][0]['value'] = $aFields['company_name'];
             $oTerm->field_member_address['und'][0]['value'] = $aFields['company_address'];
+            $oTerm->field_member_zip['und'][0]['value'] = $aFields['zip'];
+            $oTerm->field_member_city['und'][0]['value'] = $aFields['city'];
             $oTerm->field_member_phone['und'][0]['value'] = $aFields['company_phone'];
             $oTerm->field_member_website['und'][0]['value'] = $aFields['company_website'];
             $oTerm->field_accept_promo['und'][0]['value'] = ($aFields['accept_promo'] == 'on' ? true : false);
@@ -1220,14 +1226,16 @@ function getLogoProcesses ($oTerm) {
         foreach ($oTerm->field_logo_process_block['und'] as $aLogoProcessBlock) {
             $aIds[] = $aLogoProcessBlock['value'];
         }
-        foreach ($aIds as $key => $sId) {
+        foreach ($aIds as $sId) {
             $oFieldLogoProcess = array_values(entity_load('field_collection_item', [$sId]))[0];
             if (isset($oFieldLogoProcess->field_logo_process['und'][0]['tid'])) {
                 $oLogoProcess = taxonomy_term_load($oFieldLogoProcess->field_logo_process['und'][0]['tid']);
                 $sRefLogoProcess = isset($oLogoProcess->field_reference['und'][0]['value']) ? $oLogoProcess->field_reference['und'][0]['value'] : '';
-                $aLogoProcess[$sRefLogoProcess][$key]['id'] = $oLogoProcess->tid;
-                $aLogoProcess[$sRefLogoProcess][$key]['thumbnail'] = isset($oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri'] : '';
-                $aLogoProcess[$sRefLogoProcess][$key]['large'] = isset($oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri'] : '';
+                $aLogoProcess[$sRefLogoProcess][] = [
+                        'id' => $oLogoProcess->tid,
+                        'thumbnail' => isset($oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_thumbnail['und'][0]['uri'] : '',
+                        'large' => isset($oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri']) ? $oFieldLogoProcess->field_logo_process_large_picture['und'][0]['uri'] : ''
+                    ];
             }
         }
     }
@@ -1245,7 +1253,7 @@ function displayLogoProcess($term) { ?>
         }
         $count = 1;
         foreach ($aLogoProcesses as $key => $aLogoProcess) {
-            if ($key != 'doming') { 
+            if ($key != 'doming') {
                 foreach ($aLogoProcess as $aLogoPro) {
                     displayLogoProcessBlock($aLogoPro); 
                 }
@@ -1293,13 +1301,13 @@ function displayProductCheckbox($aProducts){
                     $aLogoProcesses = getLogoProcesses($oProduct);
                     $sLogoProcessUri = (!$aLogoProcesses 
                             ? $oProduct->field_main_photo['und'][0]['uri']
-                            : (isset($aLogoProcesses['doming']) && $aLogoProcesses['doming']['thumbnail']
-                                ? $aLogoProcesses['doming']['thumbnail'] 
+                            : (isset($aLogoProcesses['doming'][0]['thumbnail']) && $aLogoProcesses['doming'][0]['thumbnail']
+                                ? $aLogoProcesses['doming'][0]['thumbnail'] 
                                 : (isset(array_values($aLogoProcesses)[0]['thumbnail']) && array_values($aLogoProcesses)[0]['thumbnail']
                                     ? array_values($aLogoProcesses)[0]['thumbnail'] 
                                     : $oProduct->field_main_photo['und'][0]['uri']))); ?>
                     <a href="<?= url('taxonomy/term/'.$oProduct->tid) ?>" target="_blank" title="<?= $oProduct->field_product_name['und'][0]['value'] ?>">
-                        <img src="<?= file_create_url($sLogoProcessUri) ?>" title="<?= $oProduct->field_product_name['und'][0]['value'] ?>" alt="<?= $oProduct->field_product_name['und'][0]['value'] ?>" />
+                        <img src="<?= image_style_url('medium', $sLogoProcessUri) ?>" title="<?= $oProduct->field_product_name['und'][0]['value'] ?>" alt="<?= $oProduct->field_product_name['und'][0]['value'] ?>" />
                         <div class="col-xs-12 subtitle-pic"><?= (isset($oProduct->field_product_ref['und'][0]['value']) ? $oProduct->field_product_ref['und'][0]['value'] : '')?></div>
                     </a><?php
                     $bCheck = false;

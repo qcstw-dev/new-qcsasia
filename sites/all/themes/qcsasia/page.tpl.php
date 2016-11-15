@@ -78,7 +78,12 @@
     <?php if ($page['footer']): ?>
             <div class="clearfix"></div>
         <div id="footer" class="col-xs-12">
-            <?php print render($page['footer']); ?>
+            <div class="col-xs-9">
+                <?php print render($page['footer']); ?>
+            </div>
+            <div class="col-xs-3 font-size-13 bottom-right position-absolute bottom-right text-right">
+                B to C website: <a href="https://www.giftattitude.com" target="_blank">www.giftattitude.com</a>
+            </div>
         </div>
     <?php endif; ?>
             <div class="clearfix"></div>

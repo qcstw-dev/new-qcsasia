@@ -26,8 +26,25 @@
                                 <input class="form-control required" type="text" name="company_name" autocomplete="off"/>
                             </div>
                             <div class="input-group">
-                                <span class="input-group-addon">Company address*</span>
+                                <span class="input-group-addon">Company type</span>
+                                <select class="form-control" name="company_type">
+                                    <option></option><?php
+                                    foreach(getCompanyType() as $oCompanyType) { ?>
+                                        <option value="<?= $oCompanyType->tid ?>"><?= $oCompanyType->name ?></option><?php
+                                    } ?>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Address*</span>
                                 <input class="form-control required" type="text" name="company_address" autocomplete="off"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Zip*</span>
+                                <input class="form-control required" type="text" name="zip" autocomplete="off"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">City*</span>
+                                <input class="form-control required" type="text" name="city" autocomplete="off"/>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Country*</span>
@@ -38,24 +55,15 @@
                                     } ?>
                                 </select>
                             </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Company phone*</span>
-                                <input class="form-control required" type="text" name="company_phone" autocomplete="off"/>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Company website*</span>
-                                <input class="form-control required" type="text" name="company_website" autocomplete="off"/>
-                            </div>
                         </div>
                         <div class="col-md-6 padding-right-lg-0">
                             <div class="input-group">
-                                <span class="input-group-addon">Company type</span>
-                                <select class="form-control" name="company_type">
-                                    <option></option><?php
-                                    foreach(getCompanyType() as $oCompanyType) { ?>
-                                        <option value="<?= $oCompanyType->tid ?>"><?= $oCompanyType->name ?></option><?php
-                                    } ?>
-                                </select>
+                                <span class="input-group-addon">Website*</span>
+                                <input class="form-control required" type="text" name="company_website" autocomplete="off"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Phone*</span>
+                                <input class="form-control required" type="text" name="company_phone" autocomplete="off"/>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Email*</span>

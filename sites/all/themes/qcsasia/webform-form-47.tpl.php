@@ -81,7 +81,7 @@
                         $bAlertSet = true;
                     } 
 
-                    if ($field['#type'] == 'select' && $field['#webform_component']['form_key'] == 'country') {
+                    if ($field['#type'] == 'select') {
                         displaySelect($field['#options'], $field['#title'], $field['#name'], $field['#attributes']['required']);
                     } else if ($field['#type'] === 'checkboxes') { 
                         foreach ($field['#options'] as $key => $value) { ?>

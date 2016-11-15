@@ -4,6 +4,12 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('node/13', ['query' => ['keyword' => 'MSO']]) ?>" title="Stainless steel speed bottle opener #MSO line">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/MSO-Slideshow.jpg") ?>" alt="Stainless steel speed bottle opener #MSO line" title="Stainless steel speed bottle opener #MSO line" />
+                        <div class="slide-text">Stainless steel speed bottle opener #MSO line</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="<?= url('node/13', ['query' => ['line' => 'zamac-trolley-opener-keychain-ztop']]) ?>" title="Zamac trolley opener keychain #ZTOP line">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/ZTOP-zamac-trolley-opener-keychain.jpg") ?>" alt="Zamac trolley opener keychain #ZTOP line" title="Zamac trolley opener keychain #ZTOP line" />
                         <div class="slide-text">Zamac trolley opener keychain #ZTOP line</div>

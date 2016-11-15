@@ -138,8 +138,8 @@ function displayProductBlock($oProduct, $bIsDocCenter, $aGifts, $aWishlist) {
                 $aLogoProcesses = getLogoProcesses($oProduct);
                 $sLogoProcessUri = (!$aLogoProcesses 
                         ? $oProduct->field_main_photo['und'][0]['uri']
-                        : (isset($aLogoProcesses['doming']) && $aLogoProcesses['doming']['thumbnail']
-                            ? $aLogoProcesses['doming']['thumbnail'] 
+                        : (isset($aLogoProcesses['doming'][0]['thumbnail']) && $aLogoProcesses['doming'][0]['thumbnail']
+                            ? $aLogoProcesses['doming'][0]['thumbnail'] 
                             : (isset(array_values($aLogoProcesses)[0]['thumbnail']) && array_values($aLogoProcesses)[0]['thumbnail']
                                 ? array_values($aLogoProcesses)[0]['thumbnail'] 
                                 : $oProduct->field_main_photo['und'][0]['uri']))); ?>

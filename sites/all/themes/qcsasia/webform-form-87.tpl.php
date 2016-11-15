@@ -23,7 +23,7 @@ if ($sLayoutUrl) {
                                 <span class="input-group-addon"><?php print $field['#webform_component']['name'] . ($field['#required'] ? ' *' : '') ?></span>
                                 <textarea class="textarea form-control height-150 <?php echo ($field['#required'] ? 'required' : '') ?>" name="<?php print $field['#name'] ?>"></textarea>
                             </div><?php
-                    } else if ($field['#type'] == 'select' && $field['#webform_component']['form_key'] == 'country') {
+                    } else if ($field['#type'] == 'select') {
     //                      preg_match_all('~([A-Z]*)\|([a-zA-Z]*)~', $aComponent['extra']['items'], $match);
                         displaySelect($field['#options'], $field['#title'], $field['#name'], $field['#attributes']['required']);
                     } else if ($field['#type'] === 'checkboxes') { 

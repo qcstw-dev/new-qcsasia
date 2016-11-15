@@ -71,7 +71,7 @@
                     <div class="col-md-6"><?php
                     $bAlertSet = true;
                 } 
-                if ($field['#type'] == 'select' && $field['#webform_component']['form_key'] == 'country') {
+                if ($field['#type'] == 'select') {
 //                      preg_match_all('~([A-Z]*)\|([a-zA-Z]*)~', $aComponent['extra']['items'], $match);
                     displaySelect($field['#options'], $field['#title'], $field['#name'], $field['#attributes']['required']);
                 } else if ($field['#type'] === 'checkboxes') { 

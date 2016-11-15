@@ -23,8 +23,8 @@ if (!isset(drupal_get_query_parameters()['wishlist']) || !wishlistExist(drupal_g
                 $aLogoProcesses = getLogoProcesses($oProduct);
                 $sLogoProcessUri = (!$aLogoProcesses 
                         ? $oProduct->field_main_photo['und'][0]['uri']
-                        : (isset($aLogoProcesses['doming']) && $aLogoProcesses['doming']['thumbnail']
-                            ? $aLogoProcesses['doming']['thumbnail'] 
+                        : (isset($aLogoProcesses['doming']) && $aLogoProcesses['doming'][0]['thumbnail']
+                            ? $aLogoProcesses['doming'][0]['thumbnail'] 
                             : (isset(array_values($aLogoProcesses)[0]['thumbnail']) && array_values($aLogoProcesses)[0]['thumbnail']
                                 ? array_values($aLogoProcesses)[0]['thumbnail'] 
                                 : $oProduct->field_main_photo['und'][0]['uri']))); ?>
