@@ -144,7 +144,6 @@
             });
             function submitAjax(form, url) {
                 var query = '';
-                console.log($( '.'+form ).serialize());
                 $.ajax(baseUrl + url, {
                     dataType: 'json',
                     type: "POST",

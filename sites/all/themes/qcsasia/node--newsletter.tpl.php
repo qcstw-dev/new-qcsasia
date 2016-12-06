@@ -2,6 +2,30 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w49.16-MSO1840/newsletter.html') ?>" target="_blank" title="Original stainless steel speed opener #MSO1840 by QCS Asia w49.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w49-16.jpg') ?>" alt="Original stainless steel speed opener #MSO1840 by QCS Asia w49.16" title="Original stainless steel speed opener #MSO1840 by QCS Asia w49.16" />
+                    <div class="subtitle-pic font-size-13">Original stainless steel speed opener #MSO1840 by QCS Asia w49.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w48.16-POB-ZOB/newsletter.html') ?>" target="_blank" title="Radiator opener keychain#POB #ZOB by QCS Asia w48.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w48-16.jpg') ?>" alt="Radiator opener keychain#POB #ZOB by QCS Asia w48.16" title="Radiator opener keychain#POB #ZOB by QCS Asia w48.16" />
+                    <div class="subtitle-pic font-size-13">Radiator opener keychain#POB #ZOB by QCS Asia w48.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w47.16-PBC/newsletter.html') ?>" target="_blank" title="Plastic bottle coaster with doming and EVA anti-grip #PBC">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w47-16.jpg') ?>" alt="Plastic bottle coaster with doming and EVA anti-grip #PBC" title="Plastic bottle coaster with doming and EVA anti-grip #PBC" />
+                    <div class="subtitle-pic font-size-13">Plastic bottle coaster with doming and EVA anti-grip #PBC</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2016/w46.16-2017-MULT-PROD/newsletter.html') ?>" target="_blank" title="2017 new products by QCS Asia w46.16">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w46-16.jpg') ?>" alt="2017 new products by QCS Asia w46.16" title="2017 new products by QCS Asia w46.16" />

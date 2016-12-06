@@ -39,7 +39,7 @@ if (!isset($_SESSION['country']) || !$_SESSION['country']) {
         } else {
             $_SESSION['country'] = '';
         }
-        if (in_array($_SESSION['country'], ['CN', 'KR', 'KP', 'TR', 'IN'])) {
+        if (in_array($_SESSION['country'], ['CN', 'KR', 'KP', 'IN'])) {
             $sqlQuery = "INSERT IGNORE INTO ip_blocked (ip, country) VALUES ('".$ip."', '".$_SESSION['country']."')";
         } else {
             $sqlQuery = "INSERT IGNORE INTO ip_unblocked (ip, country) VALUES ('".$ip."', '".$_SESSION['country']."')";
@@ -50,7 +50,7 @@ if (!isset($_SESSION['country']) || !$_SESSION['country']) {
         $_SESSION['country'] = $retrievedIp['country'];
     }
 }
-if (in_array($_SESSION['country'], ['CN', 'KR', 'KP', 'TR', 'IN'])) {
+if (in_array($_SESSION['country'], ['CN', 'KR', 'KP', 'IN'])) {
     echo 'This website is not available in your country';
     exit;
 } 

@@ -140,8 +140,8 @@ function displayProductBlock($oProduct, $bIsDocCenter, $aGifts, $aWishlist) {
                         ? $oProduct->field_main_photo['und'][0]['uri']
                         : (isset($aLogoProcesses['doming'][0]['thumbnail']) && $aLogoProcesses['doming'][0]['thumbnail']
                             ? $aLogoProcesses['doming'][0]['thumbnail'] 
-                            : (isset(array_values($aLogoProcesses)[0]['thumbnail']) && array_values($aLogoProcesses)[0]['thumbnail']
-                                ? array_values($aLogoProcesses)[0]['thumbnail'] 
+                            : (isset(array_values($aLogoProcesses)[0][0]['thumbnail']) && array_values($aLogoProcesses)[0][0]['thumbnail']
+                                ? array_values($aLogoProcesses)[0][0]['thumbnail'] 
                                 : $oProduct->field_main_photo['und'][0]['uri']))); ?>
                 <img src = "<?= file_create_url($sLogoProcessUri) ?>" alt = "<?= $sName ?>" title = "<?= $sName ?>" />
                 <div class = "subtitle-pic">
