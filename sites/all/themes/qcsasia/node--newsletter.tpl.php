@@ -2,6 +2,30 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w52.16-MSOCD/newsletter.html') ?>" target="_blank" title="Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w52.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w52-16.jpg') ?>" alt="Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w52." title="Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w52.16" />
+                    <div class="subtitle-pic font-size-13">Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w52.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w51.16-OFFSET-COIN/newsletter.html') ?>" target="_blank" title="Custom offset printing coin keychain by QCS Asia w51.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w51-16.jpg') ?>" alt="Custom offset printing coin keychain by QCS Asia w51.16" title="Custom offset printing coin keychain by QCS Asia w51.16" />
+                    <div class="subtitle-pic font-size-13">Custom offset printing coin keychain by QCS Asia w51.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2016/w50.16-PGT/newsletter.html') ?>" target="_blank" title="Golf divot tool with ball marker #PGT by QCS Asia w50.16">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w50-16.jpg') ?>" alt="Golf divot tool with ball marker #PGT by QCS Asia w50.16" title="Golf divot tool with ball marker #PGT by QCS Asia w50.16" />
+                    <div class="subtitle-pic font-size-13">Golf divot tool with ball marker #PGT by QCS Asia w50.16</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2016/w49.16-MSO1840/newsletter.html') ?>" target="_blank" title="Original stainless steel speed opener #MSO1840 by QCS Asia w49.16">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w49-16.jpg') ?>" alt="Original stainless steel speed opener #MSO1840 by QCS Asia w49.16" title="Original stainless steel speed opener #MSO1840 by QCS Asia w49.16" />

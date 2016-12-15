@@ -287,9 +287,9 @@
                                 $aLogoProcesses = getLogoProcesses($oYouMightLikeEntity);
                                 $sProductYouMightLikeUrl = (!$aLogoProcesses 
                                         ? $oYouMightLikeEntity->field_main_photo['und'][0]['uri'] 
-                                        : isset($aLogoProcesses['doming']['thumbnail']) && $aLogoProcesses['doming']['thumbnail'] 
-                                            ? $aLogoProcesses['doming']['thumbnail'] 
-                                            : (array_shift($aLogoProcesses)['thumbnail'] ?: $oYouMightLikeEntity->field_main_photo['und'][0]['uri'])); ?>
+                                        : isset($aLogoProcesses['doming'][0]['thumbnail']) && $aLogoProcesses['doming'][0]['thumbnail'] 
+                                            ? $aLogoProcesses['doming'][0]['thumbnail'] 
+                                            : (array_shift($aLogoProcesses)[0]['thumbnail'] ?: $oYouMightLikeEntity->field_main_photo['und'][0]['uri'])); ?>
                                     <a href="<?= url('taxonomy/term/' . $oYouMightLikeEntity->tid) ?>">
                                         <div class="col-md-12">
                                             <div class="thumbnail margin-bottom-0">

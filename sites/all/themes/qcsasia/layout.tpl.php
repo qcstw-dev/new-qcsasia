@@ -87,10 +87,7 @@
                         <img class="overlay-img <?= !$oPreselectProduct ? 'hidden' : '' ?>" src="<?= ($oPreselectProduct ? file_create_url($oPreselectProduct->layout_maker_images[0]['uri']) : $base_url.'/'.path_to_theme().'/images/layout_maker/drag-and-drop.png') ?>">
                     </div>
                 </div>
-                <img id="image" class="resize-image" data-is-first-image="1" src="<?php (!$bIsUniqueProduct && !$oPreselectProduct ? print $base_url.'/'.path_to_theme().'/images/layout_maker/drag-and-drop.png' : '') ?>">
-                <div id="slider-vertical">
-                    <img class="icon-rotate" src="<?php print $base_url.'/'.path_to_theme().'/images/layout_maker/reload.svg' ?>" alt="rotate">
-                </div><?php
+                <img id="image" class="resize-image" data-is-first-image="1" src="<?php (!$bIsUniqueProduct && !$oPreselectProduct ? print $base_url.'/'.path_to_theme().'/images/layout_maker/drag-and-drop.png' : '') ?>"><?php
                     foreach ($aInfoProduct['group_products'] as $aGroupProducts) {
                         foreach ($aGroupProducts['products'] as $oProduct) { ?>
                             <div class="change-color-product-block <?= $oProduct->tid ?> text-left col-xs-3 background-white position-absolute" <?= ($oPreselectProduct && $oProduct->tid == $oPreselectProduct->tid ? 'style="display: block"' : '') ?>><?php
@@ -153,7 +150,8 @@
                         }
                     } ?>
                 <div class="clear"></div>
-                <button class="btn btn-primary btn-crop js-crop">Preview / Download / Send <img class="icon-crop" src="<?php print $base_url.'/'.path_to_theme().'/images/layout_maker/crop.svg' ?>"  alt="crop"></button>
+                <button class="btn btn-primary btn-crop js-crop"><img class="icon-crop" src="<?php print $base_url.'/'.path_to_theme().'/images/layout_maker/crop.svg' ?>"  alt="crop"> Preview / Download / Send</button>
+                <button class="btn btn-primary margin-left-10 btn-rotate rotate"><span class="glyphicon glyphicon-repeat"></span> Rotate</button>
             </div>
         </div>
     <!--<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix col-md-12"<?php print $attributes; ?>>

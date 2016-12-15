@@ -1303,8 +1303,8 @@ function displayProductCheckbox($aProducts){
                             ? $oProduct->field_main_photo['und'][0]['uri']
                             : (isset($aLogoProcesses['doming'][0]['thumbnail']) && $aLogoProcesses['doming'][0]['thumbnail']
                                 ? $aLogoProcesses['doming'][0]['thumbnail'] 
-                                : (isset(array_values($aLogoProcesses)[0]['thumbnail']) && array_values($aLogoProcesses)[0]['thumbnail']
-                                    ? array_values($aLogoProcesses)[0]['thumbnail'] 
+                                : (isset(array_values($aLogoProcesses)[0][0]['thumbnail']) && array_values($aLogoProcesses)[0][0]['thumbnail']
+                                    ? array_values($aLogoProcesses)[0][0]['thumbnail'] 
                                     : $oProduct->field_main_photo['und'][0]['uri']))); ?>
                     <a href="<?= url('taxonomy/term/'.$oProduct->tid) ?>" target="_blank" title="<?= $oProduct->field_product_name['und'][0]['value'] ?>">
                         <img src="<?= image_style_url('medium', $sLogoProcessUri) ?>" title="<?= $oProduct->field_product_name['und'][0]['value'] ?>" alt="<?= $oProduct->field_product_name['und'][0]['value'] ?>" />

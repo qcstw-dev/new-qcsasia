@@ -173,10 +173,15 @@
 	margin-top: -2px;
 }
 
+.btn-rotate {
+    position: absolute;
+    right: 2px;
+    bottom: 5px;
+    z-index: 101;
+}
 .btn-crop {
     position: absolute;
-    vertical-align: bottom;
-    right: 30px;
+    right: 95px;
     bottom: 5px;
 }
 .btn-crop-all {
