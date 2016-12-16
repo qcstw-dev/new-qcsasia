@@ -302,7 +302,7 @@ var resizeableImage = function (image_target, customizable) {
         $('.export-image').on('click', function () {
             var fileName;
             if ($('.overlay').data('write-info') === true) {
-                fileName = "qcsasia-layout-maker-"+$('.overlay').data('ref').replace('#', '')+".png";
+                fileName = $('.overlay').data('ref').replace('#', '')+" - from QCS Asia layout maker.png";
             } else {
                 fileName = $('.overlay').data('ref').replace('#', '')+" - "+$('.resize-image').data('picture_name')+".png";
             }
