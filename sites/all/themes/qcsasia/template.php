@@ -881,7 +881,7 @@ function getProducts($aQueryParameters, $aOptions = []) {
                 case 'bestseller':
                     $oQuery->fieldCondition('field_best_sellers', 'value', '1');
                     break;
-                case 'line':
+//                case 'line':
                 case 'category':
                     // Rettrieve the category
                     $mCategories = getTermByRef($mValue, 'category');
