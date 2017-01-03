@@ -155,7 +155,7 @@ var resizeableImage = function (image_target, customizable) {
             left = mouse.x;
 //            top = mouse.y;
 //            if (constrain || e.shiftKey) {
-            top = mouse.y - ((width / resize_canvas.width * resize_canvas.height) - height);
+                top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
 //            }
         } else if ($(event_state.evnt.target).hasClass('resize-handle-ne')) {
             width = mouse.x - event_state.container_left;
@@ -163,13 +163,13 @@ var resizeableImage = function (image_target, customizable) {
             left = event_state.container_left;
 //            top = mouse.y;
 //            if (constrain || e.shiftKey) {
-            top = mouse.y - ((width / resize_canvas.width * resize_canvas.height) - height);
+                top = mouse.y - ((width / orig_src.width * orig_src.height) - height);
 //            }
         }
 
         // Optionally maintain aspect ratio
 //        if (constrain || e.shiftKey) {
-        height = width / resize_canvas.width * resize_canvas.height;
+            height = width / orig_src.width * orig_src.height;
 //        }
 
         if (width > min_width && height > min_height && width < max_width && height < max_height) {
