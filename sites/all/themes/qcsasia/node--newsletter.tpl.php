@@ -2,10 +2,10 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
-            <a href="<?= url('/newsletter/2016/w52.16-MSOCD/newsletter.html') ?>" target="_blank" title="Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w52.16">
+            <a href="<?= url('/newsletter/2017/w1.17-MSOCD/newsletter.html') ?>" target="_blank" title="Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w1.17">
                 <div class="thumbnail thumbnail-hover">
-                    <img src="<?= url(path_to_theme().'/images/newsletter/w52-16.jpg') ?>" alt="Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w52." title="Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w52.16" />
-                    <div class="subtitle-pic font-size-13">Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w52.16</div>
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w1-17.jpg') ?>" alt="Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w1.17" title="Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w1.17" />
+                    <div class="subtitle-pic font-size-13">Credit card shape stainless steel speed bottle opener #MSOCD by QCS Asia w1.17</div>
                 </div>
             </a>
         </div>

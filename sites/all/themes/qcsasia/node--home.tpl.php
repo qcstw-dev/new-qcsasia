@@ -4,6 +4,18 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('taxonomy/term/1008') ?>" title="Plastic carabiner 80mm #PKB8">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/SLIDESHOW-Plastic-carabiner-80mm-PKB8.jpg") ?>" alt="Plastic carabiner 80mm #PKB8" title="Plastic carabiner 80mm #PKB8" />
+                        <div class="slide-text">Plastic carabiner 80mm #PKB8</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('taxonomy/term/1009') ?>" title="Plastic carabiner 80mm with patch #PTM04">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/SLIDESHOW-plastic-carabiner-80mm-with-patch-PTM04.jpg") ?>" alt="Plastic carabiner 80mm with patch #PTM04" title="Plastic carabiner 80mm with patch #PTM04" />
+                        <div class="slide-text">Plastic carabiner 80mm with patch #PTM04</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="<?= url('node/13', ['query' => ['keyword' => 'MSO']]) ?>" title="Stainless steel speed bottle opener #MSO line">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/MSO-Slideshow.jpg") ?>" alt="Stainless steel speed bottle opener #MSO line" title="Stainless steel speed bottle opener #MSO line" />
                         <div class="slide-text">Stainless steel speed bottle opener #MSO line</div>
