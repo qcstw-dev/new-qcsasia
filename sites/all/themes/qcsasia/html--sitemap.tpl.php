@@ -77,7 +77,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>'."\n"; ?>
         <loc><![CDATA[https://www.qcsasia.com/samples-and-prototypes]]></loc> 
     </url>
     <url>
-        <loc><![CDATA[https://www.qcsasia.com/catalog-2016]]></loc> 
+        <loc><![CDATA[https://www.qcsasia.com/catalog]]></loc> 
     </url>
     <url>
         <loc><![CDATA[https://www.qcsasia.com/toolkit]]></loc> 

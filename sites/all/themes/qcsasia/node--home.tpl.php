@@ -4,18 +4,6 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <a href="<?= url('taxonomy/term/1014') ?>" title="Metal dealership and garage totem keychain #MKATT">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/MKATT-SLIDESHOW.jpg") ?>" alt="Metal dealership and garage totem keychain #MKATT" title="Metal dealership and garage totem keychain #MKATT" />
-                        <div class="slide-text">Metal dealership and garage totem keychain #MKATT</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/1015') ?>" title="High end metal dealership and garage totem keychain #ZKATT">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZKATT-SLIDESHOW.jpg") ?>" alt="High end metal dealership and garage totem keychain #ZKATT" title="High end metal dealership and garage totem keychain #ZKATT" />
-                        <div class="slide-text">High end metal dealership and garage totem keychain #ZKATT</div>
-                    </a>
-                </div>
-                <div class="item">
                     <a href="<?= url('taxonomy/term/1016') ?>" title="ICKC01# EURO 1.00 iron coin keychain with thin doming">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/ICK-SLIDESHOW.jpg") ?>" alt="ICKC01# EURO 1.00 iron coin keychain with thin doming" title="ICKC01# EURO 1.00 iron coin keychain with thin doming" />
                         <div class="slide-text">ICKC01# EURO 1.00 iron coin keychain with thin doming</div>
@@ -31,6 +19,12 @@
                     <a href="<?= url('taxonomy/term/1009') ?>" title="Plastic carabiner 80mm with patch #PTM04">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/SLIDESHOW-plastic-carabiner-80mm-with-patch-PTM04.jpg") ?>" alt="Plastic carabiner 80mm with patch #PTM04" title="Plastic carabiner 80mm with patch #PTM04" />
                         <div class="slide-text">Plastic carabiner 80mm with patch #PTM04</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('taxonomy/term/1014') ?>" title="Metal dealership and garage totem keychain #MKATT">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/MKATT-SLIDESHOW.jpg") ?>" alt="Metal dealership and garage totem keychain #MKATT" title="Metal dealership and garage totem keychain #MKATT" />
+                        <div class="slide-text">Metal dealership and garage totem keychain #MKATT</div>
                     </a>
                 </div>
                 <div class="item">

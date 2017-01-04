@@ -22,15 +22,28 @@
 //$form = drupal_get_form('webform_client_form_46',$node,array()); ?>
 
 <div class="catalog-form">
-    <h2>Catalog 2016 !</h2>
+    <h2>Catalog 2017 !</h2>
     <div class="col-xs-12 padding-0">
-        <div data-configid="0/30751501" style="width:100%; height:855px;" class="issuuembed visible-lg margin-auto"></div>
-        <div data-configid="0/30751501" style="width:100%; height:680px;" class="issuuembed visible-sm margin-auto"></div>
-        <div data-configid="0/30751501" style="width:100%; height:307px;" class="issuuembed visible-xs margin-auto"></div>
+        <div data-configid="0/42526816" style="width:100%; height:855px;" class="issuuembed visible-lg margin-auto"></div>
+        <div data-configid="0/42526816" style="width:100%; height:680px;" class="issuuembed visible-sm margin-auto"></div>
+        <div data-configid="0/42526816" style="width:100%; height:307px;" class="issuuembed visible-xs margin-auto"></div>
         <script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>
     </div>
-    <div class="col-xs-12 padding-0 margin-top-20"><?php
+    <div class="col-xs-12 padding-0 margin-top-20">
+        <?php
         $bIsConnected = isset($_SESSION['user']) && $_SESSION['user']; ?>
+        <a <?= (!$bIsConnected ? 'class="disabled_link"' : '') ?> href="<?= (!$bIsConnected ? url('member-area') : url(path_to_theme() . "/images/catalog/QCS ASIA promotional product, gift & souvenir catalog 2017.pdf")) ?>" target="_blank" title="Download Catalog 2016">
+            <div class="margin-auto col-xs-4 col-sm-3">
+                <div class="thumbnail thumbnail-hover <?= (!$bIsConnected ? 'disabled_link' : '') ?>">
+                    <img src="<?= url(path_to_theme() . "/images/catalog/catalog-2017.jpg") ?>" />
+                    <div class="subtitle-pic">
+                        Download .pdf<br /> version
+                        <div class="color-red font-size-15">member only*</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <!--
         <a <?= (!$bIsConnected ? 'class="disabled_link"' : '') ?> href="<?= (!$bIsConnected ? url('member-area') : url(path_to_theme() . "/images/catalog/QCS ASIA promotional product, gift & souvenir catalog 2016.pdf")) ?>" target="_blank" title="Download Catalog 2016">
             <div class="col-xs-offset-2 col-sm-offset-3 col-xs-4 col-sm-3">
                 <div class="thumbnail thumbnail-hover <?= (!$bIsConnected ? 'disabled_link' : '') ?>">
@@ -53,6 +66,7 @@
                 </div>
             </div>
         </a>
+    -->
     </div>
     <div class="col-xs-12">
         <div class="well padding font-size-18 text-center">

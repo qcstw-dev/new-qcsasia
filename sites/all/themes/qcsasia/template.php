@@ -349,7 +349,7 @@ function qcsasia_links__system_menu_top($variables) {
                     <div class="visible-xs visible-sm pull-left margin-left-xs-20 margin-top-10"><?= displaySocialMediaLogo() ?></div>
                 </div>
                 <div class="navbar-collapse collapse padding-lg-0" id="navbar-collapse-menu-top" aria-expanded="false">
-                    <ul class="menu-list menu-list pull-right"><?php
+                    <ul class="menu-list menu-list"><?php
                         if (isset($_SESSION['wishlist']['id']) && $oWishlist = taxonomy_term_load($_SESSION['wishlist']['id'])) { ?>
                             <li class="wishlist-link">
                                 <a href="<?= url('wishlist/'.$_SESSION['wishlist']['id']) ?>" >
