@@ -1,4 +1,24 @@
 <div class="product-page"><?php
+/*
+$sDateCreation = $term->field_date_gmt['und'][0]['value'];
+$dDateCreation = DateTime::createFromFormat("d/m/Y - G:i", $sDateCreation);
+$iDateCreationTimestamp = $dDateCreation->getTimestamp();
+
+if($iDateCreationTimestamp < strtotime('-180 days')) {
+    echo "true";
+ } else {
+    echo "false";
+ }
+*/
+//$iTimeStamp6months = strtotime("-6 months", time());
+//var_dump($iTimeStamp6months, $iDateCreationTimestamp);
+//if ($iTimeStamp6months < $iDateCreationTimestamp) {
+//    echo "true";
+//} else {
+//    echo "false";
+//}
+//var_dump($iTimeStamp6months > $iDateCreationTimestamp);
+//var_dump($iDateCreationTimestamp < $iTimeStamp6months);
     $sProductTitle = $term->field_product_name['und'][0]['value']." ".$term->field_product_ref['und'][0]['value'];
     $bIsDocCenter = isset($_GET['document_center']);
     $aWishlist = (isset($_SESSION['wishlist']) && $_SESSION['wishlist'] ? $_SESSION['wishlist']['product_ids'] : [] );

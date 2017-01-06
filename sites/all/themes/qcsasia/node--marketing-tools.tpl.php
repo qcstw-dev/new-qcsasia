@@ -4,7 +4,7 @@
         <div class="col-sm-5">
             <a href="<?= url('catalog') ?>">
                 <div class="thumbnail thumbnail-hover">
-                    <img src="<?= url(path_to_theme() . "/images/marketing-tools/catalog-2016.jpg") ?>" />
+                    <img src="<?= url(path_to_theme() . "/images/marketing-tools/catalog.jpg") ?>" />
                     <div class="subtitle-pic font-size-24">Catalog 2017</div>
                 </div>
             </a>
