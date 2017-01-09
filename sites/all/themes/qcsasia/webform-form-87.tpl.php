@@ -32,6 +32,11 @@ if ($sLayoutUrl) {
                                 <label class="cursor-pointer"><input type="checkbox" name="<?= $field['#name'] ?>[]" value="<?= $key ?>" <?= ($key == 'accept_promo' ? 'checked' : '') ?> /><?= $value ?></label>
                             </div><?php
                         } 
+                    } else if ($field['#type'] === 'webform_number') { ?>
+                        <div class="input-group">
+                            <span class="input-group-addon"><?php print $field['#webform_component']['name'] . ($field['#required'] ? ' *' : '') ?></span>
+                            <input type="number" class="form-control <?php echo ($field['#required'] ? 'required' : '') ?>" name="<?php print $field['#name'] ?>" <?php echo ($field['#required'] ? '' : '') ?> />
+                        </div><?php
                     }
                 }
             } 

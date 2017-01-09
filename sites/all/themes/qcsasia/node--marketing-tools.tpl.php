@@ -10,6 +10,14 @@
             </a>
         </div>
         <div class="col-sm-5">
+            <a href="<?= url('brochure') ?>">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme() . "/images/marketing-tools/brochure.jpg") ?>" />
+                    <div class="subtitle-pic font-size-24">Brochure 2017</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-5">
             <a href="<?= url('samples-and-prototypes') ?>">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme() . "/images/marketing-tools/samples-and-prototype.jpg") ?>" />
