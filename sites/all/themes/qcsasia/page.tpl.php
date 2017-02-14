@@ -1,10 +1,10 @@
 <div id="main-content" class="container"><?php if (isset($menu_top) && $menu_top): ?>
     <div id="header" class="row hidden-print">
         <div id="menu-top" class="col-xs-12 padding-0">
-            <div class="col-md-6 visible-lg"><?php
+            <div class="col-md-5 visible-lg"><?php
                 displaySocialMediaLogo() ?>
             </div>
-            <div class="col-md-6 padding-0">
+            <div class="col-md-7 padding-0">
                 <!--<div class="btn-group pull-right">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="flag-icon flag-icon-gb"></span> English <span class="caret"></span>
@@ -78,10 +78,10 @@
     <?php if ($page['footer']): ?>
             <div class="clearfix"></div>
         <div id="footer" class="col-xs-12">
-            <div class="col-xs-9">
+            <div class="col-xs-8">
                 <?php print render($page['footer']); ?>
             </div>
-            <div class="col-xs-3 font-size-13 bottom-right position-absolute bottom-right text-right">
+            <div class="col-xs-4 font-size-13 padding-0 pull-right text-right">
                 <div>Doming website: <a href="http://doming-stickers.com" target="_blank">doming-stickers.com</a></div>
                 <div>B to C website: <a href="https://www.giftattitude.com" target="_blank">www.giftattitude.com</a></div>
             </div>

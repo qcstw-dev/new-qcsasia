@@ -36,9 +36,15 @@ if (!isset(drupal_get_query_parameters()['wishlist']) || !wishlistExist(drupal_g
                         <div class="col-sm-6 margin-top-10">
                             <div class="product-title font-size-20 bold margin-bottom-20"><?= $sProductTitle ?></div>
                             <div class="margin-bottom-10"><strong>Description:</strong> <?= substr(strip_tags($oProduct->field_description['und'][0]['value']), 0, 140).' [...]' ?></div>
-                            <div><strong>Item size:</strong> <?= $oProduct->field_item_size['und'][0]['value'] ?></div>
-                            <div><strong>Logo size:</strong> <?= $oProduct->field_logo_size['und'][0]['value'] ?></div>
-                            <div><strong>Packaging:</strong> <?= $oProduct->field_packaging['und'][0]['value'] ?></div>
+                            <?php if($oProduct->field_item_size['und'][0]['value']): ?>
+                                <div><strong>Item size:</strong> <?= $oProduct->field_item_size['und'][0]['value'] ?></div>
+                            <?php endif ?>
+                            <?php if($oProduct->field_logo_size['und'][0]['value']): ?>
+                                <div><strong>Logo size:</strong> <?= $oProduct->field_logo_size['und'][0]['value'] ?></div>
+                            <?php endif ?>
+                            <?php if($oProduct->field_packaging['und'][0]['value']): ?>
+                                <div><strong>Packaging:</strong> <?= $oProduct->field_packaging['und'][0]['value'] ?></div>
+                            <?php endif ?>
                         </div>
                     </a>
                     <div class="col-sm-3 padding-0 panel panel-default margin-top-10">

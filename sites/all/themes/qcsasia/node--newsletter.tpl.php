@@ -2,6 +2,46 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w7.17-ICKC/newsletter.html') ?>" target="_blank" title="EURO 1.00 iron coin keychain with thin doming #ICKC01by QCS Asia W7.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w7-17.jpg') ?>" alt="EURO 1.00 iron coin keychain with thin doming #ICKC01by QCS Asia W7.17" title="EURO 1.00 iron coin keychain with thin doming #ICKC01by QCS Asia W7.17" />
+                    <div class="subtitle-pic font-size-13">EURO 1.00 iron coin keychain with thin doming #ICKC01by QCS Asia W7.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w6.17-MSO8/newsletter.html') ?>" target="_blank" title="“8” shape stainless steel speed bottle opener #MSO8by QCS Asia W6.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w6-17.jpg') ?>" alt="“8” shape stainless steel speed bottle opener #MSO8by QCS Asia W6.17" title="“8” shape stainless steel speed bottle opener #MSO8by QCS Asia W6.17" />
+                    <div class="subtitle-pic font-size-13">“8” shape stainless steel speed bottle opener #MSO8by QCS Asia W6.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w5.17-PTM/newsletter.html') ?>" target="_blank" title="Plastic carabiner 80mm with patch #PTM04by QCS Asia W5.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w5-17.jpg') ?>" alt="Plastic carabiner 80mm with patch #PTM04by QCS Asia W5.17" title="Plastic carabiner 80mm with patch #PTM04by QCS Asia W5.17" />
+                    <div class="subtitle-pic font-size-13">Plastic carabiner 80mm with patch #PTM04by QCS Asia W5.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w4.17-MKATT/newsletter.html') ?>" target="_blank" title="Metal dealership and garage totem keychain #MKATTby QCS Asia W4.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w4-17.jpg') ?>" alt="Metal dealership and garage totem keychain #MKATTby QCS Asia W4.17" title="Metal dealership and garage totem keychain #MKATTby QCS Asia W4.17" />
+                    <div class="subtitle-pic font-size-13">Metal dealership and garage totem keychain #MKATTby QCS Asia W4.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w3.17-PCC/newsletter.html') ?>" target="_blank" title="Trolley token clip & lottery scratcher #PCCby QCS Asia W3.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w3-17.jpg') ?>" alt="Trolley token clip & lottery scratcher #PCCby QCS Asia W3.17" title="Trolley token clip & lottery scratcher #PCCby QCS Asia W3.17" />
+                    <div class="subtitle-pic font-size-13">Trolley token clip & lottery scratcher #PCCby QCS Asia W3.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2017/w2.17-PKB8/newsletter.html') ?>" target="_blank" title="Plastic carabiner 80mm #PKB8 by QCS Asia w2.17">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w2-17.jpg') ?>" alt="Plastic carabiner 80mm #PKB8 by QCS Asia w2.17" title="Plastic carabiner 80mm #PKB8 by QCS Asia w2.17" />

@@ -106,8 +106,12 @@ if($iDateCreationTimestamp < strtotime('-180 days')) {
                                         <td colspan="<?= ($term->field_patent || $term->field_packing || $term->field_item_size ? '3' : '4') ?>"><?= $term->field_attachement['und'][0]['value'] ?></td><?php
                                     }
                                     if ($term->field_packing) { ?>
-                                        <td class="border-right cell-key <?= ($term->field_attachement ? 'border-left': '') ?>">Packing</td>
-                                        <td><?= $term->field_packing ['und'][0]['value'] ?></td><?php
+                                        <tr class="visible-xs">
+                                            <td class="border-right cell-key <?= ($term->field_attachement ? 'border-left': '') ?>">Packing</td>
+                                            <td><?= $term->field_packing ['und'][0]['value'] ?></td>
+                                        </tr>
+                                        <td class="border-right cell-key <?= ($term->field_attachement ? 'border-left': '') ?> visible-sm visible-md visible-lg">Packing</td>
+                                        <td class="visible-sm visible-md visible-lg"><?= $term->field_packing ['und'][0]['value'] ?></td><?php
                                     } ?>
                                 </tr><?php
                             }
