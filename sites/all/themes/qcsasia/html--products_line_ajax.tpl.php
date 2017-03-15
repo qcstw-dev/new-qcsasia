@@ -31,8 +31,8 @@
                         $sPictureUri = '';
                         if ($oLineProduct->field_logo_process_block) {
                             $aLogoProcesses = getLogoProcesses($oLineProduct);
-                            if (isset($aLogoProcesses['doming']) && $aLogoProcesses['doming']['thumbnail']) {
-                                $sPictureUri = $aLogoProcesses['doming']['thumbnail'];
+                            if (isset($aLogoProcesses['doming']) && $aLogoProcesses['doming'][0]['thumbnail']) {
+                                $sPictureUri = $aLogoProcesses['doming'][0]['thumbnail'];
                             } else {
                                 $sPictureUri = array_values($aLogoProcesses)[0]['thumbnail'];
                             }

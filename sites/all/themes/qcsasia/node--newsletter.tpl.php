@@ -2,10 +2,42 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
-            <a href="<?= url('/newsletter/2017/w7.17-ICKC/newsletter.html') ?>" target="_blank" title="EURO 1.00 iron coin keychain with thin doming #ICKC01by QCS Asia W7.17">
+            <a href="<?= url('/newsletter/2017/w11.17-MSOBT/newsletter.html') ?>" target="_blank" title="Bottle shape stainless steel speed bottle opener #MSOBT by QCS Asia w11.17">
                 <div class="thumbnail thumbnail-hover">
-                    <img src="<?= url(path_to_theme().'/images/newsletter/w7-17.jpg') ?>" alt="EURO 1.00 iron coin keychain with thin doming #ICKC01by QCS Asia W7.17" title="EURO 1.00 iron coin keychain with thin doming #ICKC01by QCS Asia W7.17" />
-                    <div class="subtitle-pic font-size-13">EURO 1.00 iron coin keychain with thin doming #ICKC01by QCS Asia W7.17</div>
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w11-17.jpg') ?>" alt="Bottle shape stainless steel speed bottle opener #MSOBT by QCS Asia w11.17" title="Bottle shape stainless steel speed bottle opener #MSOBT by QCS Asia w11.17" />
+                    <div class="subtitle-pic font-size-13">Bottle shape stainless steel speed bottle opener #MSOBT by QCS Asia w11.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w10.17-ZKATT/newsletter.html') ?>" target="_blank" title="High end metal dealership and garage totem keychain #ZKATTby QCS Asia w10.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w10-17.jpg') ?>" alt="High end metal dealership and garage totem keychain #ZKATTby QCS Asia w10.17" title="High end metal dealership and garage totem keychain #ZKATTby QCS Asia w10.17" />
+                    <div class="subtitle-pic font-size-13">High end metal dealership and garage totem keychain #ZKATTby QCS Asia w10.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w9.17-PCP/newsletter.html') ?>" target="_blank" title="Trolley coin with shopping list holder #PCP by QCS Asia w9.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w9-17.jpg') ?>" alt="Trolley coin with shopping list holder #PCP by QCS Asia w9.17" title="Trolley coin with shopping list holder #PCP by QCS Asia w9.17" />
+                    <div class="subtitle-pic font-size-13">Trolley coin with shopping list holder #PCP by QCS Asia w9.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w8.17-MSO1950/newsletter.html') ?>" target="_blank" title="Supersized stainless steelspeed bottle opener #MSO1950 by QCS Asia w8.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w8-17.jpg') ?>" alt="Supersized stainless steelspeed bottle opener #MSO1950 by QCS Asia w8.17" title="Supersized stainless steelspeed bottle opener #MSO1950 by QCS Asia w8.17" />
+                    <div class="subtitle-pic font-size-13">Supersized stainless steelspeed bottle opener #MSO1950 by QCS Asia w8.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w7.17-SOFT-PVC/newsletter.html') ?>" target="_blank" title="Soft PVC product line by QCS Asia W7.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w7-17.jpg') ?>" alt="Soft PVC product line by QCS Asia W7.17" title="Soft PVC product line by QCS Asia W7.17" />
+                    <div class="subtitle-pic font-size-13">Soft PVC product line by QCS Asia W7.17</div>
                 </div>
             </a>
         </div>

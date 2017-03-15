@@ -4,6 +4,12 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('taxonomy/term/418') ?>" title="Trolley token clip & lottery scratcher #PCC">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/PCC-SLIDESHOW.jpg") ?>" alt="Trolley token clip & lottery scratcher #PCC" title="Trolley token clip & lottery scratcher #PCC" />
+                        <div class="slide-text">Trolley token clip & lottery scratcher #PCC</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="<?= url('taxonomy/term/1016') ?>" title="ICKC01# EURO 1.00 iron coin keychain with thin doming">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/ICK-SLIDESHOW.jpg") ?>" alt="ICKC01# EURO 1.00 iron coin keychain with thin doming" title="ICKC01# EURO 1.00 iron coin keychain with thin doming" />
                         <div class="slide-text">ICKC01# EURO 1.00 iron coin keychain with thin doming</div>
@@ -67,30 +73,6 @@
                     <a href="<?= url('node/13', ['query' => ['line' => 'zamac-dogtag-bottle-opener']]) ?>" title="Zamac dogtag bottle opener #ZDT">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/ZDTO-SLIDE-cheap-zamac-dogtag-bottle-opener.jpg") ?>" alt="Zamac dogtag bottle opener #ZDT" title="Zamac dogtag bottle opener #ZDT" />
                         <div class="slide-text">Zamac dogtag bottle opener #ZDT</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('node/13', ['query' => ['line' => 'metal-keychain-with-doming']]) ?>" title="Metal keychain with doming #MKA">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/MKA-SLIDESHOW-metal-shape-keychain.jpg") ?>" alt="Metal keychain with doming #MKA" title="Metal keychain with doming #MKA" />
-                        <div class="slide-text">Metal keychain with doming #MKA</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/850') ?>" title="Zamac hotel & rental keychain #ZHK">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZHK-zamac-hotel-and-rental-keychain.jpg") ?>" alt="Zamac hotel & rental keychain #ZHK" title="Zamac hotel & rental keychain #ZHK" />
-                        <div class="slide-text">Zamac hotel & rental keychain #ZHK</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/331') ?>" title="Plastic glass holder badge and keychain #PKGH">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/pkgh.jpg") ?>" alt="Plastic glass holder badge and keychain #PKGH" title="Plastic glass holder badge and keychain #PKGH" />
-                        <div class="slide-text">Plastic glass holder badge and keychain #PKGH</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/328') ?>" title="Plastic cable organizer badge #PCW204">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/pcw.jpg") ?>" alt="Plastic cable organizer badge #PCW204" title="Plastic cable organizer badge #PCW204" />
-                        <div class="slide-text">Plastic cable organizer badge #PCW204</div>
                     </a>
                 </div>
             </div>

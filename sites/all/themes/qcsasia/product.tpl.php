@@ -103,7 +103,7 @@ if($iDateCreationTimestamp < strtotime('-180 days')) {
                                 <tr><?php
                                     if ($term->field_attachement) { ?>
                                         <td class="border-right cell-key">Attachement</td>
-                                        <td colspan="<?= ($term->field_patent || $term->field_packing || $term->field_item_size ? '3' : '4') ?>"><?= $term->field_attachement['und'][0]['value'] ?></td><?php
+                                        <td colspan="<?= ($term->field_patent && $term->field_packing && $term->field_item_size ? '5' : ($term->field_patent || $term->field_packing || $term->field_item_size ? '3' : '')) ?>"><?= $term->field_attachement['und'][0]['value'] ?></td><?php
                                     }
                                     if ($term->field_packing) { ?>
                                         <tr class="visible-xs">

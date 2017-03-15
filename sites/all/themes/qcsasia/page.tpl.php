@@ -89,7 +89,7 @@
     <?php endif; ?>
             <div class="clearfix"></div>
     <div class="margin-bottom-20">
-        <div class="col-xs-offset-1 col-xs-2 thumbnail border-none">
+        <div class="col-xs-offset-2 col-xs-2 thumbnail border-none">
             <img src="<?= base_path() . path_to_theme() . "/images/footer/caefi.jpg" ?>" alt="caefi" title="caefi" />
         </div>
 
@@ -103,9 +103,6 @@
 
         <div class="col-xs-2 thumbnail border-none">
             <img src="<?= base_path() . path_to_theme() . "/images/footer/sedex_trans.jpg" ?>" alt="sedex" title="sedex" />
-        </div>
-        <div class="col-xs-2 thumbnail border-none">
-            <img src="<?= base_path() . path_to_theme() . "/images/footer/PPAI-logo-QCS.jpg" ?>" alt="PPAI" title="PPAI" />
         </div>
     </div>
 </div>
