@@ -4,15 +4,15 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <a href="<?= url('taxonomy/term/418') ?>" title="Trolley token clip & lottery scratcher #PCC">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/PCC-SLIDESHOW.jpg") ?>" alt="Trolley token clip & lottery scratcher #PCC" title="Trolley token clip & lottery scratcher #PCC" />
-                        <div class="slide-text">Trolley token clip & lottery scratcher #PCC</div>
+                    <a href="<?= url('node/13', ['query' => ['category' => 'iron-coin-keychain-with-thin-doming']]) ?>" title="Iron coin keychain with thin doming #ICKC line">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/ICKC-SLIDESHOW-iron-coin-keychain-with-thin-doming.jpg") ?>" alt="Iron coin keychain with thin doming #ICKC line" title="Iron coin keychain with thin doming #ICKC line" />
+                        <div class="slide-text">Iron coin keychain with thin doming #ICKC line</div>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="<?= url('taxonomy/term/1016') ?>" title="ICKC01# EURO 1.00 iron coin keychain with thin doming">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/ICK-SLIDESHOW.jpg") ?>" alt="ICKC01# EURO 1.00 iron coin keychain with thin doming" title="ICKC01# EURO 1.00 iron coin keychain with thin doming" />
-                        <div class="slide-text">ICKC01# EURO 1.00 iron coin keychain with thin doming</div>
+                    <a href="<?= url('taxonomy/term/418') ?>" title="Trolley token clip & lottery scratcher #PCC">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/PCC-SLIDESHOW.jpg") ?>" alt="Trolley token clip & lottery scratcher #PCC" title="Trolley token clip & lottery scratcher #PCC" />
+                        <div class="slide-text">Trolley token clip & lottery scratcher #PCC</div>
                     </a>
                 </div>
                 <div class="item">
@@ -61,12 +61,6 @@
                     <a href="<?= url('node/13', ['query' => ['line' => 'zamac-bottle-opener-keychain']]) ?>" title="Zamac bottle opener keychain #ZOP">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/ZOP-line-SLIDESHOW-Zamac-bottle-opener-keychain.jpg") ?>" alt="Zamac bottle opener keychain #ZOP" title="Zamac bottle opener keychain #ZOP" />
                         <div class="slide-text">Zamac bottle opener keychain #ZOP</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('node/13', ['query' => ['product' => ['942', '941']]]) ?>" title="Golf divot tool with ball marker #PGT">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/PGT-SLIDESHOW-Golf-divot-tool-with-ball-marker.jpg") ?>" alt="Golf divot tool with ball marker #PGT" title="Golf divot tool with ball marker #PGT" />
-                        <div class="slide-text">Golf divot tool with ball marker #PGT</div>
                     </a>
                 </div>
                 <div class="item">

@@ -2,6 +2,30 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w14.17-ZAMAC-3D/newsletter.html') ?>" target="_blank" title="Zamac 3D promotional products by QCS Asia w14.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w14-17.jpg') ?>" alt="Zamac 3D promotional products by QCS Asia w14.17" title="Zamac 3D promotional products by QCS Asia w14.17" />
+                    <div class="subtitle-pic font-size-13">Zamac 3D promotional products by QCS Asia w14.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w13.17-ICKC/newsletter.html') ?>" target="_blank" title="ICKC line: Multi country coin trolley keychain with doming by QCS Asia w13.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w13-17.jpg') ?>" alt="ICKC line: Multi country coin trolley keychain with doming by QCS Asia w13.17" title="ICKC line: Multi country coin trolley keychain with doming by QCS Asia w13.17" />
+                    <div class="subtitle-pic font-size-13">ICKC line: Multi country coin trolley keychain with doming by QCS Asia w13.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w12.17-PSMC/newsletter.html') ?>" target="_blank" title="Bottle and can opener plastic keychain #PSMC105 by QCS Asia w12.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w12-17.jpg') ?>" alt="Bottle and can opener plastic keychain #PSMC105 by QCS Asia w12.17" title="Bottle and can opener plastic keychain #PSMC105 by QCS Asia w12.17" />
+                    <div class="subtitle-pic font-size-13">Bottle and can opener plastic keychain #PSMC105 by QCS Asia w12.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2017/w11.17-MSOBT/newsletter.html') ?>" target="_blank" title="Bottle shape stainless steel speed bottle opener #MSOBT by QCS Asia w11.17">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w11-17.jpg') ?>" alt="Bottle shape stainless steel speed bottle opener #MSOBT by QCS Asia w11.17" title="Bottle shape stainless steel speed bottle opener #MSOBT by QCS Asia w11.17" />

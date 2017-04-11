@@ -321,7 +321,7 @@ a:focus, a:hover,
     text-align: center;
     clear: left;
     padding: 7px;
-    font-size: 18px;
+    font-size: 15px;
     margin-top: 4px;
     background: rgba(221, 221, 221, 0.77);
     display: flex;
@@ -834,7 +834,7 @@ a:focus, a:hover,
         border-top: 1px solid #ddd;
     }
     .subtitle-pic {
-        font-size: 18px;
+        font-size: 15px;
     }
 }
 @media (min-width: 992px) {
