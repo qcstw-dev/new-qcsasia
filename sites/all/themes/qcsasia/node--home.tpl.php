@@ -4,6 +4,18 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('taxonomy/term/1095') ?>" title="Metal money clip #MMC">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/MMC-Metal-money-clip.jpg") ?>?fsdfd" alt="Metal money clip #MMC" title="Metal money clip #MMC" />
+                        <div class="slide-text">Metal money clip #MMC</div>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="<?= url('taxonomy/term/1093') ?>" title="Plastic coin keychain with doming #PCK01">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/PCK01-plastic-coin-keychain-doming.jpg") ?>" alt="Plastic coin keychain with doming #PCK01" title="Plastic coin keychain with doming #PCK01" />
+                        <div class="slide-text">Plastic coin keychain with doming #PCK01</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="<?= url('node/13', ['query' => ['category' => 'iron-coin-keychain-with-thin-doming']]) ?>" title="Iron coin keychain with thin doming #ICKC line">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/ICKC-SLIDESHOW-iron-coin-keychain-with-thin-doming.jpg") ?>" alt="Iron coin keychain with thin doming #ICKC line" title="Iron coin keychain with thin doming #ICKC line" />
                         <div class="slide-text">Iron coin keychain with thin doming #ICKC line</div>
@@ -37,18 +49,6 @@
                     <a href="<?= url('node/13', ['query' => ['keyword' => 'MSO']]) ?>" title="Stainless steel speed bottle opener #MSO line">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/MSO-Slideshow.jpg") ?>" alt="Stainless steel speed bottle opener #MSO line" title="Stainless steel speed bottle opener #MSO line" />
                         <div class="slide-text">Stainless steel speed bottle opener #MSO line</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('node/13', ['query' => ['line' => 'zamac-trolley-opener-keychain-ztop']]) ?>" title="Zamac trolley opener keychain #ZTOP line">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZTOP-zamac-trolley-opener-keychain.jpg") ?>" alt="Zamac trolley opener keychain #ZTOP line" title="Zamac trolley opener keychain #ZTOP line" />
-                        <div class="slide-text">Zamac trolley opener keychain #ZTOP line</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/950') ?>" title="Doming bottle coaster with EVA anti grip #DBC">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/DBC-doming-bottle-coaster-eva-anti-grip.jpg") ?>" alt="Doming bottle coaster with EVA anti grip #DBC" title="Doming bottle coaster with EVA anti grip #DBC" />
-                        <div class="slide-text">Doming bottle coaster with EVA anti grip #DBC</div>
                     </a>
                 </div>
                 <div class="item">
