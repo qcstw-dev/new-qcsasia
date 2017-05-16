@@ -2,6 +2,38 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w20.17-MMC/newsletter.html') ?>" target="_blank" title="Metal money clip #MMC QCS Asia w20.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w20-17.jpg') ?>" alt="Metal money clip #MMC QCS Asia w20.17" title="Metal money clip #MMC QCS Asia w20.17" />
+                    <div class="subtitle-pic font-size-13">Metal money clip #MMC QCS Asia w20.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w18.17-PSR205/newsletter.html') ?>" target="_blank" title="Plastic loop keychain #PSR205 QCS Asia w18.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w18-17.jpg') ?>" alt="Plastic loop keychain #PSR205 QCS Asia w18.17" title="Plastic loop keychain #PSR205 QCS Asia w18.17" />
+                    <div class="subtitle-pic font-size-13">Plastic loop keychain #PSR205 QCS Asia w18.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w17.17-KCODD/newsletter.html') ?>" target="_blank" title="Double side doming keychain #KCODD line by QCS Asia w17.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w17-17.jpg') ?>" alt="Double side doming keychain #KCODD line by QCS Asia w17.17" title="Double side doming keychain #KCODD line by QCS Asia w17.17" />
+                    <div class="subtitle-pic font-size-13">Double side doming keychain #KCODD line by QCS Asia w17.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w16.17-TCT/newsletter.html') ?>" target="_blank" title="Cash tray and money tray #TCT by QCS Asia w16.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w16-17.jpg') ?>" alt="Cash tray and money tray #TCT by QCS Asia w16.17" title="Cash tray and money tray #TCT by QCS Asia w16.17" />
+                    <div class="subtitle-pic font-size-13">Cash tray and money tray #TCT by QCS Asia w16.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2017/w14.17-ZAMAC-3D/newsletter.html') ?>" target="_blank" title="Zamac 3D promotional products by QCS Asia w14.17">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w14-17.jpg') ?>" alt="Zamac 3D promotional products by QCS Asia w14.17" title="Zamac 3D promotional products by QCS Asia w14.17" />
