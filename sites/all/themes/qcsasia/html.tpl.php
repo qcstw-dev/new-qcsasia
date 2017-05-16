@@ -1,4 +1,16 @@
 <?php
+$ip = '';
+if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR']) {
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+    $ip = $_SERVER['REMOTE_ADDR'];
+}
+if ($_SERVER["HTTP_HOST"] == 'localhost') {
+//        $ip = "61.220.251.250";
+    $ip = "121.247.253.51";
+    // test china
+//            $ip = "113.100.99.221";
+}
 // we delete the session about checking IP location if older than 1 hour
 if ($_SESSION['timeout_country'] + 60 * 60 < time()) {
     unset($_SESSION['country']);
@@ -6,17 +18,6 @@ if ($_SESSION['timeout_country'] + 60 * 60 < time()) {
 if (!isset($_SESSION['country']) || !$_SESSION['country']) {
     $_SESSION['timeout_country'] = time();
     
-    $ip = '';
-    if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR']) {
-        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } else {
-        $ip = $_SERVER['REMOTE_ADDR'];
-    }
-    if ($_SERVER["HTTP_HOST"] == 'localhost') {
-        $ip = "61.220.251.250";
-        // test china
-//            $ip = "113.100.99.221";
-    }
 //        $sqlQuerySelect = "SELECT ip FROM ip_blocked WHERE ip = '".$ip."'";
     $retrievedIp = db_select('ip_blocked')
                 ->fields('ip_blocked')
@@ -50,7 +51,7 @@ if (!isset($_SESSION['country']) || !$_SESSION['country']) {
         $_SESSION['country'] = $retrievedIp['country'];
     }
 }
-if (in_array($_SESSION['country'], ['CN', 'KR', 'KP', 'IN'])) {
+if (in_array($_SESSION['country'], ['CN', 'KR', 'KP', 'IN']) && $ip != '121.247.253.51') {
     echo 'This website is not available in your country';
     exit;
 } 
