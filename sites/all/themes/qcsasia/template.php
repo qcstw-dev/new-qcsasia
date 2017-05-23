@@ -900,7 +900,7 @@ function getProducts($aQueryParameters, $aOptions = []) {
                                 $aCategoriesBis[$oChildrenCategory->tid] = $oChildrenCategory;
                             }
                         } else {
-                            $aCategoriesBis[$oChildrenCategory->tid] = $oChildrenCategory;
+                            $aCategoriesBis[$oCategory->tid] = $oCategory;
                         }
                     }
                     $oQuery->fieldCondition('field_category', 'tid', array_keys($aCategoriesBis));

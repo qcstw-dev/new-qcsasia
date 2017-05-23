@@ -94,23 +94,23 @@ $(function () {
         }
         $('.group-' + $(this).data('group-title')).slideToggle();
     });
-    $(window).scroll(function () {
-        if ($('.block-list-products').length && $(window).width() >= 667) {
-            if (($(window).scrollTop() - $('.block-list-products').offset().top) > 0) {
-                if (($('#footer').offset().top - $(window).scrollTop() - $('.block-filter').height()) < 0) {
-                    $('.block-filter').removeClass('fixed');
-                    $('.block-filter').addClass('block-filter-bottom');
-                } else {
-                    $('.block-filter').addClass('fixed');
-                }
-            } else {
-                $('.block-filter').removeClass('fixed');
-                $('.block-filter').removeClass('block-filter-bottom');
-            }
-        } else {
-            $('.block-filter').removeClass('fixed');
-        }
-    });
+//    $(window).scroll(function () {
+//        if ($('.block-list-products').length && $(window).width() >= 667) {
+//            if (($(window).scrollTop() - $('.block-list-products').offset().top) > 0) {
+//                if (($('#footer').offset().top - $(window).scrollTop() - $('.block-filter').height()) < 0) {
+//                    $('.block-filter').removeClass('fixed');
+//                    $('.block-filter').addClass('block-filter-bottom');
+//                } else {
+//                    $('.block-filter').addClass('fixed');
+//                }
+//            } else {
+//                $('.block-filter').removeClass('fixed');
+//                $('.block-filter').removeClass('block-filter-bottom');
+//            }
+//        } else {
+//            $('.block-filter').removeClass('fixed');
+//        }
+//    });
     $('.popup').on('click', function () {
         $.magnificPopup.open({
             items: [{
