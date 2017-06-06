@@ -2,6 +2,14 @@
     <h2 class="margin-top-0">Newsletter</h3>
     <div class="col-xs-12 padding-0">
         <div class="col-sm-3">
+            <a href="<?= url('/newsletter/2017/w22.17-PCA19/newsletter.html') ?>" target="_blank" title="Plastic canister & everyday use container keychain #PCA19 QCS Asia w22.17">
+                <div class="thumbnail thumbnail-hover">
+                    <img src="<?= url(path_to_theme().'/images/newsletter/w22-17.jpg') ?>" alt="Plastic canister & everyday use container keychain #PCA19 QCS Asia w22.17" title="Plastic canister & everyday use container keychain #PCA19 QCS Asia w22.17" />
+                    <div class="subtitle-pic font-size-13">Plastic canister & everyday use container keychain #PCA19 QCS Asia w22.17</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3">
             <a href="<?= url('/newsletter/2017/w21.17-PCK/newsletter.html') ?>" target="_blank" title="Plastic coin keychain with doming #PCK01 QCS Asia w21.17">
                 <div class="thumbnail thumbnail-hover">
                     <img src="<?= url(path_to_theme().'/images/newsletter/w21-17.jpg') ?>" alt="Plastic coin keychain with doming #PCK01 QCS Asia w21.17" title="Plastic coin keychain with doming #PCK01 QCS Asia w21.17" />

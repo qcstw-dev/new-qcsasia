@@ -4,6 +4,12 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
+                    <a href="<?= url('taxonomy/term/1108') ?>" title="Metal cufflink with doming #MCL210">
+                        <img src="<?= url(path_to_theme() . "/images/home/slider/MCL-ODD-SLIDESHOW.jpg") ?>?fsdfd" alt="Metal cufflink with doming #MCL210" title="Metal cufflink with doming #MCL210" />
+                        <div class="slide-text">Metal cufflink with doming #MCL210</div>
+                    </a>
+                </div>
+                <div class="item">
                     <a href="<?= url('taxonomy/term/1095') ?>" title="Metal money clip #MMC">
                         <img src="<?= url(path_to_theme() . "/images/home/slider/MMC-Metal-money-clip.jpg") ?>?fsdfd" alt="Metal money clip #MMC" title="Metal money clip #MMC" />
                         <div class="slide-text">Metal money clip #MMC</div>

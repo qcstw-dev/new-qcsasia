@@ -388,8 +388,32 @@ function qcsasia_links__system_menu_top($variables) {
 }
 
 function qcsasia_links__system_main_menu($variables) {
-    if ($variables['links']) { 
-        displaySubMenuProducts(); ?>
+    $vocabulary = taxonomy_vocabulary_machine_name_load('dropdown_menu');
+    $aSubmenus = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
+    $aFormattedSubmenu = [];
+    foreach ($aSubmenus as $aSubmenu) {
+        $iIdMenuItem = $aSubmenu->field_menu_item['und'][0]['value'];
+        $aFormattedSubmenu[$iIdMenuItem] = [];
+        foreach ($aSubmenu->field_dropdown_menu_group['und'] as $key => $field_dropdown_menu_group) {
+            $group = field_collection_item_load($field_dropdown_menu_group['value']);
+            $aFormattedSubmenu[$iIdMenuItem]['groups'][$key]['title_group'] = $group->field_title_group_dropdown_menu['und'][0]['value'];
+            foreach ($group->field_dropdown_menu_item['und'] as $field_dropdown_menu_item) {
+                $item = field_collection_item_load($field_dropdown_menu_item['value']);
+                $aFormattedSubmenu[$iIdMenuItem]['groups'][$key]['sub_items'][] = [
+                    'title' => $item->field_title['und'][0]['value'],
+                    'url' => $item->field_url['und'][0]['value']
+                ];
+            }
+        }
+    }
+//    var_dump($aFormattedSubmenu[645]['groups'][0]['sub_items']);
+//    die;
+    if ($variables['links']) {
+        foreach ($variables['links'] as $link) {
+            if (in_array($link['link']['mlid'], array_keys($aFormattedSubmenu))) {
+                displayDropdownMenu($aFormattedSubmenu[$link['link']['mlid']], $link['link']['mlid']);
+            }
+        } ?>
         <nav class="navbar navbar-default">
             <div class="container-fluid padding-md-0">
                 <div class="navbar-header">
@@ -404,7 +428,7 @@ function qcsasia_links__system_main_menu($variables) {
                 <div class="navbar-collapse collapse padding-lg-0" id="navbar-collapse-main-menu" aria-expanded="false">
                     <ul class="nav navbar-nav padding-xs padding-lg-0"><?php 
                         foreach ($variables['links'] as $link) { ?>
-                            <li class="<?= ($link['link']['link_path'] == 'node/32' ? 'visible-lg' : '') ?><?= ($link['below'] ? 'dropdown' : '') ?> menu-item <?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>" data-menu-item="<?= ($link['link']['href'] == 'node/13' ? 'products' : ($link['link']['href'] == 'node/33' ? 'gifts' : '')) ?>">
+                            <li class="<?= ($link['link']['link_path'] == 'node/32' ? 'visible-lg' : '') ?><?= ($link['below'] ? 'dropdown' : '') ?> menu-item <?= (($_SERVER["REQUEST_URI"] === url($link['link']['link_path']) && $link['link']['href'] != '<front>') ? ' active' : '') ?>" data-id="<?= $link['link']['mlid'] ?>">
                                 <a <?= ($link['below'] ? 'role="button" aria-haspopup="true" aria-expanded="false"' : '') ?> class="text-uppercase" href="<?= url($link['link']['link_path']) ?>" >
                                     <?= $link['link']['link_title'] ?>
                                 </a><?php 
@@ -433,8 +457,25 @@ function qcsasia_links__system_main_menu($variables) {
         </nav><?php
     }
 }
+function displayDropdownMenu($aFormattedSubmenu, $iItemId) {
+    global $base_url; ?>
+     <div class="dropdown-menu hidden-xs hidden-sm sub-menu sub-menu-<?= $iItemId ?> col-xs-12"><?php
+            foreach ($aFormattedSubmenu['groups'] as $key => $aGroupSubmenu) { ?>
+                <div class="col-xs-<?= 12/count($aFormattedSubmenu['groups'])?> border-right"><?php
+                    if ($aGroupSubmenu['title_group']) { ?>
+                        <div class="filter-group-title" data-group-title="<?= $key ?>"><span class="glyphicon glyphicon-chevron-down"></span> <?= $aGroupSubmenu['title_group'] ?></div><?php
+                    } ?>
+                    <div class="block-filter-group group-<?= $key ?>"><?php
+                        foreach ($aGroupSubmenu['sub_items'] as $aSubItem) { ?>
+                            <a href="<?= str_replace('{base_url}', $base_url, $aSubItem['url']) ?>" class="padding-5 col-xs-12"><?= $aSubItem['title'] ?></a><?php
+                        } ?>
+                    </div>
+                </div><?php
+            } ?>
+     </div><?php
+}
 function displaySubMenuProducts() { ?>
-    <div class="dropdown-menu hidden-xs sub-menu sub-menu-products col-xs-12">
+    <div class="dropdown-menu hidden-xs hidden-sm sub-menu sub-menu-products col-xs-12">
         <div class="col-xs-4 border-right">
             <div class="filter-group-title" data-group-title="criteria"><span class="glyphicon glyphicon-chevron-down"></span> Criteria</div>
             <div class="block-filter-group group-criteria">

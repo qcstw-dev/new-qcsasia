@@ -41,11 +41,11 @@ $(function () {
         $(this).removeClass('focus');
     });
     $('.menu-item').hover(function () {
-        if (!$('.sub-menu-'+$(this).data('menu-item')).is(":visible")) {
-            $('.sub-menu-'+$(this).data('menu-item')).stop(true, true).show();
+        if (!$('.sub-menu-'+$(this).data('id')).is(":visible")) {
+            $('.sub-menu-'+$(this).data('id')).stop(true, true).show();
         }
     }, function () {
-        $('.sub-menu-'+$(this).data('menu-item')).stop(true, true).hide();
+        $('.sub-menu-'+$(this).data('id')).stop(true, true).hide();
     });
     $('.sub-menu').hover(function () {
         $(this).stop(true, true).show();

@@ -232,6 +232,7 @@ a:focus, a:hover,
 }
 .dropdown-menu {
     border-radius: 0;
+    width: 100%;
 }
 .input-group {
     margin-bottom: 20px;
