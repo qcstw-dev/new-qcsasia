@@ -2,79 +2,18 @@
     <div class="col-md-12 padding-0">
         <div id="carousel-home" class="carousel carousel-home slide" data-ride="carousel-home">
             <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <a href="<?= url('taxonomy/term/1108') ?>" title="Metal cufflink with doming #MCL210">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/MCL-ODD-SLIDESHOW.jpg") ?>?fsdfd" alt="Metal cufflink with doming #MCL210" title="Metal cufflink with doming #MCL210" />
-                        <div class="slide-text">Metal cufflink with doming #MCL210</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/1095') ?>" title="Metal money clip #MMC">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/MMC-Metal-money-clip.jpg") ?>?fsdfd" alt="Metal money clip #MMC" title="Metal money clip #MMC" />
-                        <div class="slide-text">Metal money clip #MMC</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/1093') ?>" title="Plastic coin keychain with doming #PCK01">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/PCK01-plastic-coin-keychain-doming.jpg") ?>" alt="Plastic coin keychain with doming #PCK01" title="Plastic coin keychain with doming #PCK01" />
-                        <div class="slide-text">Plastic coin keychain with doming #PCK01</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('node/13', ['query' => ['category' => 'iron-coin-keychain-with-thin-doming']]) ?>" title="Iron coin keychain with thin doming #ICKC line">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/ICKC-SLIDESHOW-iron-coin-keychain-with-thin-doming.jpg") ?>" alt="Iron coin keychain with thin doming #ICKC line" title="Iron coin keychain with thin doming #ICKC line" />
-                        <div class="slide-text">Iron coin keychain with thin doming #ICKC line</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/418') ?>" title="Trolley token clip & lottery scratcher #PCC">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/PCC-SLIDESHOW.jpg") ?>" alt="Trolley token clip & lottery scratcher #PCC" title="Trolley token clip & lottery scratcher #PCC" />
-                        <div class="slide-text">Trolley token clip & lottery scratcher #PCC</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/1008') ?>" title="Plastic carabiner 80mm #PKB8">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/SLIDESHOW-Plastic-carabiner-80mm-PKB8.jpg") ?>" alt="Plastic carabiner 80mm #PKB8" title="Plastic carabiner 80mm #PKB8" />
-                        <div class="slide-text">Plastic carabiner 80mm #PKB8</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/1009') ?>" title="Plastic carabiner 80mm with patch #PTM04">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/SLIDESHOW-plastic-carabiner-80mm-with-patch-PTM04.jpg") ?>" alt="Plastic carabiner 80mm with patch #PTM04" title="Plastic carabiner 80mm with patch #PTM04" />
-                        <div class="slide-text">Plastic carabiner 80mm with patch #PTM04</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/1014') ?>" title="Metal dealership and garage totem keychain #MKATT">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/MKATT-SLIDESHOW.jpg") ?>" alt="Metal dealership and garage totem keychain #MKATT" title="Metal dealership and garage totem keychain #MKATT" />
-                        <div class="slide-text">Metal dealership and garage totem keychain #MKATT</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('node/13', ['query' => ['keyword' => 'MSO']]) ?>" title="Stainless steel speed bottle opener #MSO line">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/MSO-Slideshow.jpg") ?>" alt="Stainless steel speed bottle opener #MSO line" title="Stainless steel speed bottle opener #MSO line" />
-                        <div class="slide-text">Stainless steel speed bottle opener #MSO line</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('taxonomy/term/951') ?>" title="Plastic bottle coaster with doming and EVA anti-grip #PBC">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/PBC-plastic-bottle-coaster-doming-and-eva-anti-grip.jpg") ?>" alt="Plastic bottle coaster with doming and EVA anti-grip #PBC" title="Plastic bottle coaster with doming and EVA anti-grip #PBC" />
-                        <div class="slide-text">Plastic bottle coaster with doming and EVA anti-grip #PBC</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('node/13', ['query' => ['line' => 'zamac-bottle-opener-keychain']]) ?>" title="Zamac bottle opener keychain #ZOP">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZOP-line-SLIDESHOW-Zamac-bottle-opener-keychain.jpg") ?>" alt="Zamac bottle opener keychain #ZOP" title="Zamac bottle opener keychain #ZOP" />
-                        <div class="slide-text">Zamac bottle opener keychain #ZOP</div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="<?= url('node/13', ['query' => ['line' => 'zamac-dogtag-bottle-opener']]) ?>" title="Zamac dogtag bottle opener #ZDT">
-                        <img src="<?= url(path_to_theme() . "/images/home/slider/ZDTO-SLIDE-cheap-zamac-dogtag-bottle-opener.jpg") ?>" alt="Zamac dogtag bottle opener #ZDT" title="Zamac dogtag bottle opener #ZDT" />
-                        <div class="slide-text">Zamac dogtag bottle opener #ZDT</div>
-                    </a>
-                </div>
+            <div class="carousel-inner" role="listbox"><?php
+                $aHomeSlideShow = taxonomy_term_load(1111); 
+                global $base_url;
+                foreach ($aHomeSlideShow->field_slide['und'] as $key => $aSlide) { 
+                $oSlide = field_collection_item_load($aSlide['value']); ?>
+                    <div class="item <?= ($key == 0 ? 'active' : '') ?>">
+                        <a href="<?= str_replace('{base_url}', $base_url, $oSlide->field_slide_url['und'][0]['value']) ?>" title="<?= $oSlide->field_slide_title['und'][0]['value'] ?>">
+                            <img src="<?= file_create_url($oSlide->field_slide_image['und'][0]['uri']) ?>" alt="<?= $oSlide->field_slide_title['und'][0]['value'] ?>" title="<?= $oSlide->field_slide_title['und'][0]['value'] ?>" />
+                            <div class="slide-text"><?= $oSlide->field_slide_title['und'][0]['value'] ?></div>
+                        </a>
+                    </div><?php
+                } ?>
             </div>
             <!-- Controls -->
             <a class="left carousel-control" href="#carousel-home" role="button" data-slide="prev">
