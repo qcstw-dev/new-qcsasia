@@ -3,7 +3,7 @@
         <div id="carousel-home" class="carousel carousel-home slide" data-ride="carousel-home">
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox"><?php
-                $aHomeSlideShow = taxonomy_term_load(1111); 
+                $aHomeSlideShow = array_values(taxonomy_get_term_by_name('Home slideshow', 'slideshow'))[0]; 
                 global $base_url;
                 foreach ($aHomeSlideShow->field_slide['und'] as $key => $aSlide) { 
                 $oSlide = field_collection_item_load($aSlide['value']); ?>
