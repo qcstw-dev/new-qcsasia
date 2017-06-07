@@ -396,7 +396,7 @@ function qcsasia_links__system_main_menu($variables) {
         $aFormattedSubmenu[$iIdMenuItem] = [];
         foreach ($aSubmenu->field_dropdown_menu_group['und'] as $key => $field_dropdown_menu_group) {
             $group = field_collection_item_load($field_dropdown_menu_group['value']);
-            $aFormattedSubmenu[$iIdMenuItem]['groups'][$key]['title_group'] = $group->field_title_group_dropdown_menu['und'][0]['value'];
+            $aFormattedSubmenu[$iIdMenuItem]['groups'][$key]['title_group'] = isset($group->field_title_group_dropdown_menu['und'][0]['value']) ? $group->field_title_group_dropdown_menu['und'][0]['value'] : '';
             foreach ($group->field_dropdown_menu_item['und'] as $field_dropdown_menu_item) {
                 $item = field_collection_item_load($field_dropdown_menu_item['value']);
                 $aFormattedSubmenu[$iIdMenuItem]['groups'][$key]['sub_items'][] = [
