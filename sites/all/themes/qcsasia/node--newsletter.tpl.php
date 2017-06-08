@@ -1,5 +1,5 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-    <h2 class="margin-top-0">Newsletter</h3>
+    <h2 class="margin-top-0">Newsletters</h3>
     <div class="col-xs-12 padding-0"><?php
     global $base_url;
         $vocabulary = taxonomy_vocabulary_machine_name_load('newsletter_block');

@@ -3,7 +3,7 @@
     $oQuery = new EntityFieldQuery();
     $oQuery->entityCondition('entity_type', 'node')
             ->propertyCondition('status', 1)
-            ->propertyCondition('type', 'news')
+            ->propertyCondition('type', ['news', 'news_newsletter', 'news_sample_products'])
             ->propertyOrderBy('created', 'DESC');
     $aResult = $oQuery->execute();
     if ($aResult) {
