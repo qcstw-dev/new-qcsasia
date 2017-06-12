@@ -331,6 +331,7 @@ if($iDateCreationTimestamp < strtotime('-180 days')) {
             </div><?php
         }
     } ?>
+    <div class="clearfix"></div>
 </div>
 <script>
     listenAddToWishlistEvent();

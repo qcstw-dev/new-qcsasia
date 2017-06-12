@@ -1382,6 +1382,9 @@ a:focus, a:hover,
     min-height: 54px;
     font-size: 14px;
 }
+.node-readmore {
+    display: none !important;
+}
 /******** SLICK *********/
 .slick-prev,
 .slick-next,

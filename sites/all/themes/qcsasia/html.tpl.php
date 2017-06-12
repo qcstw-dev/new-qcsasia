@@ -9,7 +9,7 @@ if ($_SERVER["HTTP_HOST"] == 'localhost') {
 //        $ip = "61.220.251.250";
     $ip = "121.247.253.51";
     // test china
-            $ip = "113.100.99.221";
+//            $ip = "113.100.99.221";
 }
 
 // we delete the session about checking IP location if older than 1 hour
