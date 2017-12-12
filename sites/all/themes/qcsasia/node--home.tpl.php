@@ -217,5 +217,6 @@
                 } ?>
         </div><?php
     } ?>
-            <div class="col-md-12 bold"><a class="pull-right" href="<?= url('node/23')?>"><span class="glyphicon glyphicon-arrow-right"></span> Read previous news</a></div>
+    <div class="col-md-12 bold"><a class="pull-right" href="<?= url('node/23')?>"><span class="glyphicon glyphicon-arrow-right"></span> Read previous news</a></div>
 </div>
+<div>Website designed by <a href="https://www.pineapple-web.com" target="_blank" class="text-underline">Pineapple Web - Digital marketing & web agency</a></div>

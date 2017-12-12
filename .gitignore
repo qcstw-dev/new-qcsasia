@@ -8,3 +8,4 @@ sites/*/private
 /backupdatabase/
 /temp/
 /wp-content/
+/nbproject/private/

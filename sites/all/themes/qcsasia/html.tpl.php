@@ -103,7 +103,8 @@ if (isset($_SESSION['wishlist']) && isset($_SESSION['timeout_user_wishlist_check
         ?>
         <?php print $styles; ?>
         <?php print $scripts; ?>
-        <meta property="og:image" content="<?= base_path() . drupal_get_path('theme', 'qcsasia') ?>/sites/all/themes/qcsasia/logo.png" />
+        <?php global $base_url; ?>
+        <meta property="og:image" content="<?= $base_url ?>/sites/all/themes/qcsasia/og_image_qcs.jpg" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="msvalidate.01" content="8756BB9222C8487BADF4ECD837762676" />
             <link rel="sitemap" href="/sitemap.xml" />

@@ -78,12 +78,12 @@
     <?php if ($page['footer']): ?>
             <div class="clearfix"></div>
         <div id="footer" class="col-xs-12">
-            <div class="col-xs-8">
+            <div class="col-xs-12 col-md-7">
                 <?php print render($page['footer']); ?>
             </div>
-            <div class="col-xs-4 font-size-13 padding-0 pull-right text-right">
-                <div>Doming website: <a href="http://doming-stickers.com" target="_blank">doming-stickers.com</a></div>
-                <div>B to C website: <a href="https://www.giftattitude.com" target="_blank">www.giftattitude.com</a></div>
+            <div class="col-xs-12 col-md-5 font-size-13 padding-0 pull-right text-right">
+                <div>Doming website: <a href="http://doming-stickers.com" target="_blank" class="text-underline">doming-stickers.com</a></div>
+                <div>B to C website: <a href="https://www.giftattitude.com" target="_blank" class="text-underline">www.giftattitude.com</a></div>
             </div>
         </div>
     <?php endif; ?>

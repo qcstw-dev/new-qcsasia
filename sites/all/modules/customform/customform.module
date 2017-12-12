@@ -7,7 +7,7 @@
 function customform_webform_select_options_info() {
     $items = array();
     $items['products'] = array(
-        'title' => t('Standard products'),
+        'title' => t('Complicated products'),
         'options callback' => 'customform_pre_build_list_products'
     );
 
